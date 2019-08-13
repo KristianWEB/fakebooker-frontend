@@ -17,11 +17,6 @@ module.exports = async ({ config }) => {
       use: ['babel-loader'],
     },
     {
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: ['babel-loader', 'eslint-loader'],
-    },
-    {
       test: /\.svg$/,
       use: [
         {
