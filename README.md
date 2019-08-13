@@ -1,4 +1,4 @@
-## Steps to clone and get started
+## Steps to get started
 
 ### `git clone https://github.com/open-source-developers/front-end.git`
 
@@ -6,10 +6,7 @@
 
 ### `yarn start`
 
-If the app doesn't start, please run the following command,
-### `yarn add react-scripts@1.1.1`
-
-If the problem still persists, cd to root folder and run,
+If you face any problems, cd to root folder and run,
 ### `yarn upgrade`
 
 Runs the app in the development mode.<br>
