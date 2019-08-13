@@ -1,6 +1,6 @@
 import React, { useReducer, createContext, useCallback } from 'react';
 
-import ACTION_NAMES from '../constants';
+import ACTION_NAMES from '../Constants';
 import reducer from './reducer';
 
 const initialContext = {data:{}};
@@ -8,7 +8,7 @@ const initialContext = {data:{}};
 export const Context = createContext(initialContext);
 
 export const ContextProvider = ({ children }) => {
-  const [ Context, dispatch ] = useReducer(reducer, initialContext);
+  const [ context, dispatch ] = useReducer(reducer, initialContext);
 
   const setData = useCallback(data => dispatch({
     type: ACTION_NAMES.NAME,
@@ -17,11 +17,11 @@ export const ContextProvider = ({ children }) => {
 
   return (
     <Context.Provider value={{
-      context: Context,
-      setData,
-    }}
-    >
-      {children}
-    </Context.Provider>
+        context: context,
+        setData,
+      }}
+      >
+        {children}
+      </Context.Provider>
   );
 };

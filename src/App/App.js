@@ -1,6 +1,24 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 
-function App() {
+import {ContextProvider, Context } from './Context';
+
+const App= ()=> {
+  const {
+    context: {
+      data: {
+        testData,
+      },
+    },
+    setData,
+  } = useContext(Context);
+
+ const testData1= {data2:"string"};
+ 
+  useEffect(() => {
+      setData({
+        testData: {testData1},
+      });
+  }, [setData, testData, testData1]);
   return (
     <div>
       <header>
@@ -15,8 +33,12 @@ function App() {
           Learn React
         </a>
       </header>
+      {testData1.data2} is rendered
     </div>
   );
 }
-
-export default App;
+export default () => (
+  <ContextProvider>
+    <App />
+  </ContextProvider>
+);

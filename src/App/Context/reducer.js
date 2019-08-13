@@ -1,4 +1,4 @@
-import ACTION_NAMES from '../constants';
+import ACTION_NAMES from '../Constants';
 
 export default function reducer(state, action) {
   switch (action.type) {
