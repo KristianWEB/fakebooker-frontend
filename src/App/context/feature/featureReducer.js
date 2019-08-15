@@ -1,8 +1,8 @@
-import ACTION_NAMES from '../Constants';
+import {EXAMPLE_TYPE} from '../types';
 
-export default function reducer(state, action) {
+export default (state, action) => {
   switch (action.type) {
-    case ACTION_NAMES.NAME:
+    case EXAMPLE_TYPE:
       return {
         ...state,
         data: {

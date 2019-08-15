@@ -1,44 +1,14 @@
-import React, {useContext, useEffect} from 'react';
+import React from 'react';
+import InitialPage from './components/InitialPage';
 
-import {ContextProvider, Context } from './Context';
+import FeatureState from './context/feature/FeatureState';
 
-const App= ()=> {
-  const {
-    context: {
-      data: {
-        testData,
-      },
-    },
-    setData,
-  } = useContext(Context);
-
- const testData1= {data2:"string"};
- 
-  useEffect(() => {
-      setData({
-        testData: {testData1},
-      });
-  }, [setData, testData, testData1]);
+const App = () => {
   return (
-    <div>
-      <header>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      {testData1.data2} is rendered
-    </div>
+    <FeatureState>
+      <InitialPage />
+    </FeatureState>
   );
-}
-export default () => (
-  <ContextProvider>
-    <App />
-  </ContextProvider>
-);
+};
+
+export default App;
