@@ -1,22 +1,13 @@
-import React, {useContext} from 'react';
-import { Layout, Button } from 'antd';
+import React, { useContext } from 'react';
 
 import FeatureContext from '../context/feature/featureContext';
 
-const { Header } = Layout;
-
 const InitialPage = props => {
-    const featureContext = useContext(FeatureContext);
+  const featureContext = useContext(FeatureContext);
 
-    const {items} = featureContext;
+  const { items } = featureContext;
 
-    return (
-        <Layout>
-            <Header className='header'>
-                <h1 className='title'>First ant design stuff</h1>
-            </Header>
-        </Layout>
-    )
-}
+  return items.map((item, index) => <h1 key={index}>{item}</h1>);
+};
 
 export default InitialPage;

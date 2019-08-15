@@ -36,7 +36,7 @@
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.4.5",
-    "@pollyjs/core": "^2.4.0",
+    "@pollyjs/core": "^2.6.2",
     "@svgr/webpack": "4.1.0",
     "@testing-library/react": "^8.0.1",
     "babel-eslint": "^10.0.1",

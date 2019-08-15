@@ -1105,9 +1105,10 @@
   dependencies:
     "@pollyjs/utils" "^2.6.0"
 
-"@pollyjs/core@^2.4.0":
+"@pollyjs/core@^2.6.2":
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/@pollyjs/core/-/core-2.6.2.tgz#c2a1ddfedbbf93a19e107eadaf8f22b409b0725c"
+  integrity sha512-jkH39B6/tR0yAraUr/GN2ifE6JXmKTfOLJSX4jXGiD6mWHzMi6cB5464mzs+vGWywiqWWcxEP1gKEgeGTdOb/g==
   dependencies:
     "@pollyjs/utils" "^2.6.0"
     "@sindresorhus/fnv1a" "^1.2.0"
