@@ -1,4 +1,3 @@
 export default {
-    NAME: 'NAME',
-  };
-  
+  NAME: 'NAME',
+};
