@@ -1,3 +1,9 @@
+# Frontend
+
+[![Build Status](https://travis-ci.com/open-source-developers/front-end.svg?branch=master)](https://travis-ci.com/open-source-developers/front-end)
+
+Go to this url for [Live Demo](https://open-source-developers.github.io/front-end/)
+
 ## Steps to get started
 
 ### `git clone https://github.com/open-source-developers/front-end.git`
