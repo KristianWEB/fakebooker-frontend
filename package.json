@@ -9,7 +9,7 @@
   "author": "Open Source Developers",
   "license": "",
   "private": true,
-  "homepage": "https://rohitkrishna094.github.io/front-end/",
+  "homepage": "https://open-source-developers.github.io/front-end/",
   "dependencies": {
     "@pollyjs/adapter-fetch": "^2.4.0",
     "@pollyjs/adapter-xhr": "^2.4.0",
