@@ -6,8 +6,8 @@ export default function reducer(state, action) {
       return {
         ...state,
         data: {
-            ...state.data,
-            ...action.data,
+          ...state.data,
+          ...action.data,
         },
       };
     default:
