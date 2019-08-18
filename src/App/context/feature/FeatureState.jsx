@@ -10,7 +10,6 @@ const FeatureState = props => {
   };
 
   const [state, dispatch] = useReducer(featureReducer, initialState);
-
   const setData = useCallback(
     data =>
       dispatch({
@@ -20,15 +19,17 @@ const FeatureState = props => {
     []
   );
 
+  const { Provider } = FeatureContext;
+
   return (
-    <FeatureContext.Provider
+    <Provider
       value={{
         items: state.items,
         setData
       }}
     >
       {props.children}
-    </FeatureContext.Provider>
+    </Provider>
   );
 };
 

@@ -1,4 +1,4 @@
-import {EXAMPLE_TYPE} from '../types';
+import { EXAMPLE_TYPE } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -13,4 +13,4 @@ export default (state, action) => {
     default:
       return state;
   }
-}
+};
