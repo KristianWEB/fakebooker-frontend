@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import FeatureContext from '../context/feature/featureContext';
+import FeatureContext from '../../Context/feature/featureContext';
 
 const LandingPage = (props) => {
   const featureContext = useContext(FeatureContext);
