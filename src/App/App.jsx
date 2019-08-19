@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import InitialPage from './components/InitialPage';
+import LandingPage from './components/LandingPage/LandingPage';
 
 
 import FeatureState from './context/feature/FeatureState';
@@ -9,7 +9,7 @@ import FeatureState from './context/feature/FeatureState';
 const App = () => {
   return (
     <FeatureState>
-      <InitialPage />
+      <LandingPage />
     </FeatureState>
   );
 };
