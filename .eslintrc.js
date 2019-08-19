@@ -3,9 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: [
-    'airbnb',
-  ],
+  extends: ['airbnb'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -17,14 +15,14 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
+  plugins: ['react'],
   rules: {
-    "no-console": "off",
-    "no-underscore-dangle": 'off',
-    "no-param-reassign": 0,
-    "react/prop-types": 0,
-    "no-use-before-define": 'off'
+    'no-console': 'off',
+    'no-underscore-dangle': 'off',
+    'no-param-reassign': 0,
+    'react/prop-types': 0,
+    'no-use-before-define': 'off',
+    'linebreak-style': 0,
+    'no-unused-vars': 'off',
   },
 };
