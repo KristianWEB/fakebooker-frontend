@@ -4,7 +4,7 @@ import './App.css';
 import LandingPage from './components/LandingPage/LandingPage';
 
 
-import FeatureState from './Context/feature/FeatureState';
+import FeatureState from './context/feature/FeatureState';
 
 const App = () => (
   <FeatureState>
