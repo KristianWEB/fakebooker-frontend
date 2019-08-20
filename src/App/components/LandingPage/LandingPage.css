@@ -1,19 +1,32 @@
+@import "~antd/dist/antd.css";
+
 .fas {
-    font-size: 48px;
-    position: relative;
-    margin-left: -10px;
+  font-size: 48px;
+  position: relative;
+  margin-left: -10px;
 }
 
 .auth_display {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .auth_display > * {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .auth_display > button {
-    /* padding: 20px 0; */
+  /* padding: 20px 0; */
+}
+
+h3 {
+  color: #808080;
+}
+
+#project-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
