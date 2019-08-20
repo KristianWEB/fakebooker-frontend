@@ -5,10 +5,11 @@ cache:
   yarn: true
   directories:
   - node_modules
+env:
+  - CI=false
 script:
   - yarn run lint
   - yarn run build
-
 deploy:
   provider: pages
   skip_cleanup: true
