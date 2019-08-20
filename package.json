@@ -81,7 +81,7 @@
   "scripts": {
     "tdd": "jest --no-coverage --watch",
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "set \"CI=false\" && react-app-rewired build",
     "test": "react-app-rewired test",
     "lint": "eslint ./",
     "lint-fix": "eslint --fix ./"
