@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   Row, Col, Tabs, Input, Button,
 } from 'antd';
 
-import FeatureContext from '../../context/feature/featureContext';
 import './LandingPage.css';
 
 const { TabPane } = Tabs;
-
 
 const Auth = (props) => (
   <div style={{
@@ -42,16 +40,11 @@ const Auth = (props) => (
   </div>
 );
 
-const LandingPage = (props) => {
-  const featureContext = useContext(FeatureContext);
-  // const { items } = featureContext;
-
-  return (
-    <Row>
-      <Col span={16} style={{ backgroundColor: '#FEB048', height: '100vh' }}><h1>Left side</h1></Col>
-      <Col span={8} style={{ backgroundColor: '#FEFDF9', height: '100vh' }}><Auth /></Col>
-    </Row>
-  );
-};
+const LandingPage = (props) => (
+  <Row>
+    <Col span={16} style={{ backgroundColor: '#FEB048', height: '100vh' }}><h1>Left side</h1></Col>
+    <Col span={8} style={{ backgroundColor: '#FEFDF9', height: '100vh' }}><Auth /></Col>
+  </Row>
+);
 
 export default LandingPage;
