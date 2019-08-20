@@ -44,7 +44,7 @@ const Auth = (props) => (
 
 const LandingPage = (props) => {
   const featureContext = useContext(FeatureContext);
-  const { items } = featureContext;
+  // const { items } = featureContext;
 
   return (
     <Row>
