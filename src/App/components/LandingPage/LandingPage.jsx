@@ -1,30 +1,30 @@
 import React, { useContext } from "react";
 import { Row, Col, Tabs, Input, Button, Checkbox } from "antd";
 
-import FeatureContext from "../../context/feature/featureContext";
-import "./LandingPage.css";
+import FeatureContext from '../../context/feature/featureContext';
+import './LandingPage.css';
 
 const { TabPane } = Tabs;
 const projectColor = "#3B5999";
 
-const Auth = props => (
+const Auth = (props) => (
   <div
     className="authentication"
     style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100%"
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100%',
     }}
   >
     <Col span={20} offset={2}>
-      <div id='project-logo'>
+      <div id="project-logo">
         {/* TEMPORARY PLACEHOLDER FOR LOGO */}
-        <img src='https://avatars1.githubusercontent.com/u/54007466?s=200&v=4' />
+        <img src="https://avatars1.githubusercontent.com/u/54007466?s=200&v=4" alt="" />
       </div>
-      <Tabs tabPosition='top'>
-        <TabPane tab='Login' key='1'>
-          <div className='auth_display'>
+      <Tabs tabPosition="top">
+        <TabPane tab="Login" key="1">
+          <div className="auth_display">
             <h1>Welcome Back</h1>
             <h3>Login to continue</h3>
             <Input placeholder='Email' size='large' />
@@ -68,7 +68,7 @@ const LandingPage = props => {
       <Col span={16} style={{ backgroundColor: projectColor, height: "100vh" }}>
         <LandingContent />
       </Col>
-      <Col span={8} style={{ backgroundColor: "#FEFDF9", height: "100vh" }}>
+      <Col span={8} style={{ backgroundColor: '#FEFDF9', height: '100vh' }}>
         <Auth />
       </Col>
     </Row>
