@@ -16,6 +16,10 @@
   margin-bottom: 40px;
 }
 
+.auth_display > Checkbox{
+  color: red
+}
+
 .auth_display > button {
   /* padding: 20px 0; */
 }
@@ -29,4 +33,13 @@ h3 {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+img {
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.container{
+  background-color:	#F5F5F5;
 }
