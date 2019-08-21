@@ -1,21 +1,22 @@
-import React, { useReducer, useCallback } from 'react';
+import React, { useReducer, useCallback } from "react";
 
-import FeatureContext from './featureContext';
-import featureReducer from './featureReducer';
-import { EXAMPLE_TYPE } from '../types';
+import FeatureContext from "./featureContext";
+import featureReducer from "./featureReducer";
+import { EXAMPLE_TYPE } from "../types";
 
-const FeatureState = (props) => {
+const FeatureState = props => {
   const initialState = {
-    items: ['item1', 'item2', 'item3', 'item4'],
+    items: ["item1", "item2", "item3", "item4"]
   };
 
   const [state, dispatch] = useReducer(featureReducer, initialState);
   const setData = useCallback(
-    (data) => dispatch({
-      type: EXAMPLE_TYPE,
-      data,
-    }),
-    [],
+    data =>
+      dispatch({
+        type: EXAMPLE_TYPE,
+        data
+      }),
+    []
   );
 
   const { Provider } = FeatureContext;
@@ -24,7 +25,7 @@ const FeatureState = (props) => {
     <Provider
       value={{
         items: state.items,
-        setData,
+        setData
       }}
     >
       {props.children}
