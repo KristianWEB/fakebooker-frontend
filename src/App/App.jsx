@@ -1,15 +1,10 @@
 import React from 'react';
 import './App.css';
 
-import LandingPage from './components/LandingPage/LandingPage';
-
-
-import FeatureState from './context/feature/FeatureState';
+import Routes from './components/routing/Routes';
 
 const App = () => (
-  <FeatureState>
-    <LandingPage />
-  </FeatureState>
+  <Routes />
 );
 
 export default App;

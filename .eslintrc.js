@@ -26,5 +26,6 @@ module.exports = {
     'linebreak-style': 0,
     'no-unused-vars': 'off',
     'react/destructuring-assignment': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
 };
