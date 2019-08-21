@@ -1,7 +1,7 @@
-import React from 'react';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-import LandingPage from '../LandingPage/LandingPage';
-import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import React from "react";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import LandingPage from "../LandingPage/LandingPage";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 export default function Routes() {
   return (
