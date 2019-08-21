@@ -29,13 +29,16 @@ h3 {
 }
 
 #project-logo {
+  margin: 0;
+}
+
+#project-logo img{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
 }
 
-img {
+.container img {
   max-height: 100%;
   object-fit: cover;
 }
