@@ -1,19 +1,16 @@
-import React, { useState } from "react";
-import {
-  Route,
-  Switch,
-  BrowserRouter as Router,
-  Redirect
-} from "react-router-dom";
+import React, { useContext } from "react";
+import { Route, Redirect } from "react-router-dom";
+
+import globalContext from "../../context/global/globalContext";
 
 export default function PrivateRoute({ component: Component, ...rest }) {
-  const { auth, setAuth } = useState(false);
-  const { loading, setLoading } = useState(false);
+  const { state } = useContext(globalContext);
+
   return (
     <Route
       {...rest}
       render={props =>
-        auth && !loading ? <Component {...props} /> : <Redirect to="/" />
+        state.authToken ? <Component {...props} /> : <Redirect to="/login" />
       }
     />
   );
