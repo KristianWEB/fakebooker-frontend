@@ -22,9 +22,12 @@ const Auth = props => {
     password: '',
     confirmPassword: ''
   });
+  
   const AuthContext = useContext(authContext);
   const GlobalContext = useContext(globalContext);
 
+
+  // Actual functions from auth provider
   const { login, signUp } = AuthContext;
 
   if (GlobalContext.state.authToken) {
