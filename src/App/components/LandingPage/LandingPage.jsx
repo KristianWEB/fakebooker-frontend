@@ -1,31 +1,30 @@
-import React, { useContext, useState } from 'react';
-import { Button, Checkbox, Col, Input, message, Row, Tabs } from 'antd';
-import logo from '../../../assets/logo.svg';
+import React, { useContext, useState } from "react";
+import { Button, Checkbox, Col, Input, message, Row, Tabs } from "antd";
+import logo from "../../../assets/logo.svg";
 
-import AuthProvider from '../../context/auth/AuthProvider';
-import authContext from '../../context/auth/authContext';
-import globalContext from '../../context/global/globalContext';
+import AuthProvider from "../../context/auth/AuthProvider";
+import authContext from "../../context/auth/authContext";
+import globalContext from "../../context/global/globalContext";
 
-import './LandingPage.css';
+import "./LandingPage.css";
 
 const { TabPane } = Tabs;
-const projectColor = '#3B5999';
+const projectColor = "#3B5999";
 
 const Auth = props => {
   const [loginState, setLoginState] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     remember: false
   });
   const [signUpState, setSignUpState] = useState({
-    email: '',
-    password: '',
-    confirmPassword: ''
+    email: "",
+    password: "",
+    confirmPassword: ""
   });
-  
+
   const AuthContext = useContext(authContext);
   const GlobalContext = useContext(globalContext);
-
 
   // Actual functions from auth provider
   const { login, signUp } = AuthContext;
@@ -50,13 +49,13 @@ const Auth = props => {
     const { success, token, msg } = loginResponse;
 
     if (success) {
-      message.success('Login sucessful');
+      message.success("Login sucessful");
       AuthContext.setState({
         isAuthenticated: true
       });
       GlobalContext.setState({
         authToken: token,
-        remember: remember
+        remember
       });
       props.isLoggedIn();
     } else {
@@ -73,7 +72,7 @@ const Auth = props => {
 
     const { success, msg } = signUpResponse;
     if (success) {
-      message.success('Registration sucessful');
+      message.success("Registration sucessful");
     } else {
       message.error(msg);
     }
@@ -83,10 +82,10 @@ const Auth = props => {
     <div
       className="authentication"
       style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%'
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100%"
       }}
     >
       <Col span={20} offset={2}>
@@ -123,7 +122,7 @@ const Auth = props => {
                     remember: event.target.checked
                   });
                 }}
-                style={{ alignSelf: 'left' }}
+                style={{ alignSelf: "left" }}
               >
                 Rememeber Me
               </Checkbox>
@@ -131,13 +130,13 @@ const Auth = props => {
                 type="primary"
                 block
                 style={{
-                  height: '40px',
+                  height: "40px",
                   backgroundColor: projectColor,
                   borderColor: projectColor
                 }}
                 onClick={onSubmit}
               >
-                <span style={{ fontSize: '16px' }}>Login</span>
+                <span style={{ fontSize: "16px" }}>Login</span>
               </Button>
               <a style={{ color: projectColor }} href="/">
                 Forgot Password?
@@ -173,13 +172,13 @@ const Auth = props => {
                 type="primary"
                 block
                 style={{
-                  height: '40px',
+                  height: "40px",
                   backgroundColor: projectColor,
                   borderColor: projectColor
                 }}
                 onClick={onSubmitRegister}
               >
-                <span style={{ fontSize: '16px' }}>Register</span>
+                <span style={{ fontSize: "16px" }}>Register</span>
               </Button>
             </div>
           </TabPane>
@@ -200,18 +199,18 @@ const LandingContent = () => (
 
 const LandingPage = props => {
   const isLoggedIn = () => {
-    props.history.push('/');
+    props.history.push("/");
   };
   return (
     <AuthProvider>
       <Row>
         <Col
           span={16}
-          style={{ backgroundColor: projectColor, height: '100vh' }}
+          style={{ backgroundColor: projectColor, height: "100vh" }}
         >
           <LandingContent />
         </Col>
-        <Col span={8} style={{ backgroundColor: '#FEFDF9', height: '100vh' }}>
+        <Col span={8} style={{ backgroundColor: "#FEFDF9", height: "100vh" }}>
           <Auth isLoggedIn={isLoggedIn} />
         </Col>
       </Row>

@@ -20,7 +20,7 @@ const AuthProvider = props => {
   );
 
   const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const BaseURL = 'http://osd-sidekick.herokuapp.com/api/auth';
+  const BaseURL = "http://osd-sidekick.herokuapp.com/api/auth";
 
   const login = async (email, password) => {
     /*
@@ -38,13 +38,13 @@ const BaseURL = 'http://osd-sidekick.herokuapp.com/api/auth';
     }
 
     const res = await fetch(`${BaseURL}/login`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify({
         email,
         password
       }),
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       }
     });
     const json = await res.json();
@@ -66,16 +66,16 @@ const BaseURL = 'http://osd-sidekick.herokuapp.com/api/auth';
       return { success: false, msg: "Password can't be empty!" };
     }
     if (password !== confirmPassword) {
-      return { success: false, msg: 'Passwords must be same!' };
+      return { success: false, msg: "Passwords must be same!" };
     }
     const res = await fetch(`${BaseURL}/register`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify({
         email,
         password
       }),
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       }
     });
     const json = await res.json();
