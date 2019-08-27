@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Button, Checkbox, Col, Input, message, Row, Tabs } from 'antd';
+import logo from '../../../assets/logo.svg';
 
 import AuthProvider from '../../context/auth/AuthProvider';
 import authContext from '../../context/auth/authContext';
@@ -9,7 +10,6 @@ import './LandingPage.css';
 
 const { TabPane } = Tabs;
 const projectColor = '#3B5999';
-
 
 const Auth = props => {
   const [loginState, setLoginState] = useState({
@@ -38,41 +38,43 @@ const Auth = props => {
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
 
   const onSubmit = async e => {
-      e.preventDefault();
+    e.preventDefault();
 
-      const loginResponse = await login(
-        loginState.email,
-        loginState.password
-      );
-      if (loginResponse.success) {
-        message.success('Login sucessful');
-        AuthContext.setState({
-          isAuthenticated: true
-        });
-        GlobalContext.setState({
-          authToken: loginResponse.token,
-          remember: loginState.remember
-        });
-        props.isLoggedIn();
-      } else {
-        message.error(loginResponse.msg);
-      }
-  }
+    const { email, password, remember } = loginState;
+
+    const loginResponse = await login(email, password);
+
+    const { success, token, msg } = loginResponse;
+
+    if (success) {
+      message.success('Login sucessful');
+      AuthContext.setState({
+        isAuthenticated: true
+      });
+      GlobalContext.setState({
+        authToken: token,
+        remember: remember
+      });
+      props.isLoggedIn();
+    } else {
+      message.error(msg);
+    }
+  };
 
   const onSubmitRegister = async e => {
-      e.preventDefault();
+    e.preventDefault();
 
-      const signUpResponse = await signUp(
-        signUpState.email,
-        signUpState.password,
-        signUpState.confirmPassword
-      );
-      if (signUpResponse.success) {
-        message.success('Registration sucessful');
-      } else {
-        message.error(signUpResponse.msg);
-      }
-  }
+    const { email, password, confirmPassword } = signUpState;
+
+    const signUpResponse = await signUp(email, password, confirmPassword);
+
+    const { success, msg } = signUpResponse;
+    if (success) {
+      message.success('Registration sucessful');
+    } else {
+      message.error(msg);
+    }
+  };
 
   return (
     <div
@@ -87,10 +89,7 @@ const Auth = props => {
       <Col span={20} offset={2}>
         <div id="project-logo">
           {/* TEMPORARY PLACEHOLDER FOR LOGO */}
-          <img
-            src="https://avatars1.githubusercontent.com/u/54007466?s=200&v=4"
-            alt=""
-          />
+          <img src={logo} alt="" />
         </div>
         <Tabs tabPosition="top">
           <TabPane tab="Login" key="1">
