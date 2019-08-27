@@ -1,103 +1,87 @@
-import React, { useContext, useState } from "react";
-import { Button, Checkbox, Col, Input, message, Row, Tabs } from "antd";
+import React, { useContext, useState } from 'react';
+import { Button, Checkbox, Col, Input, message, Row, Tabs } from 'antd';
 
-import AuthProvider from "../../context/auth/AuthProvider";
-import authContext from "../../context/auth/authContext";
-import globalContext from "../../context/global/globalContext";
+import AuthProvider from '../../context/auth/AuthProvider';
+import authContext from '../../context/auth/authContext';
+import globalContext from '../../context/global/globalContext';
 
-import "./LandingPage.css";
+import './LandingPage.css';
 
 const { TabPane } = Tabs;
-const projectColor = "#3B5999";
-const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const BaseURL = "http://osd-sidekick.herokuapp.com/api/auth";
+const projectColor = '#3B5999';
+
 
 const Auth = props => {
   const [loginState, setLoginState] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     remember: false
   });
   const [signUpState, setSignUpState] = useState({
-    email: "",
-    password: "",
-    confirmPassword: ""
+    email: '',
+    password: '',
+    confirmPassword: ''
   });
   const AuthContext = useContext(authContext);
   const GlobalContext = useContext(globalContext);
+
+  const { login, signUp } = AuthContext;
 
   if (GlobalContext.state.authToken) {
     props.isLoggedIn();
   }
 
-  const login = async (email, password) => {
-    /*
-    http://osd-sidekick.herokuapp.com
-    email, password, remember
-  */
-    if (!email) {
-      return { success: false, msg: "Email can't be empty!" };
-    }
-    if (!emailRegex.test(email)) {
-      return { success: false, msg: "Email isn't valid!" };
-    }
-    if (!password) {
-      return { success: false, msg: "Password can't be empty!" };
-    }
+  const onChange = e =>
+    setLoginState({ ...loginState, [e.target.name]: e.target.value });
 
-    const res = await fetch(`${BaseURL}/login`, {
-      method: "POST",
-      body: JSON.stringify({
-        email,
-        password
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    const json = await res.json();
-    return json;
-  };
+  const onChangeRegister = e =>
+    setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
 
-  const signUp = async (email, password, confirmPassword) => {
-    /*
-    http://osd-sidekick.herokuapp.com
-    email, password
-  */
-    if (!email) {
-      return { success: false, msg: "Email can't be empty!" };
-    }
-    if (!emailRegex.test(email)) {
-      return { success: false, msg: "Email isn't valid!" };
-    }
-    if (!password) {
-      return { success: false, msg: "Password can't be empty!" };
-    }
-    if (password !== confirmPassword) {
-      return { success: false, msg: "Passwords must be same!" };
-    }
-    const res = await fetch(`${BaseURL}/register`, {
-      method: "POST",
-      body: JSON.stringify({
-        email,
-        password
-      }),
-      headers: {
-        "Content-Type": "application/json"
+  const onSubmit = async e => {
+      e.preventDefault();
+
+      const loginResponse = await login(
+        loginState.email,
+        loginState.password
+      );
+      if (loginResponse.success) {
+        message.success('Login sucessful');
+        AuthContext.setState({
+          isAuthenticated: true
+        });
+        GlobalContext.setState({
+          authToken: loginResponse.token,
+          remember: loginState.remember
+        });
+        props.isLoggedIn();
+      } else {
+        message.error(loginResponse.msg);
       }
-    });
-    const json = await res.json();
-    return json;
-  };
+  }
+
+  const onSubmitRegister = async e => {
+      e.preventDefault();
+
+      const signUpResponse = await signUp(
+        signUpState.email,
+        signUpState.password,
+        signUpState.confirmPassword
+      );
+      if (signUpResponse.success) {
+        message.success('Registration sucessful');
+      } else {
+        message.error(signUpResponse.msg);
+      }
+  }
 
   return (
     <div
       className="authentication"
       style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%"
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%'
       }}
     >
       <Col span={20} offset={2}>
@@ -114,24 +98,18 @@ const Auth = props => {
               <h1>Welcome Back</h1>
               <h3>Login to continue</h3>
               <Input
+                type="email"
+                name="email"
                 value={loginState.email}
-                onChange={event => {
-                  setLoginState({
-                    ...loginState,
-                    email: event.target.value
-                  });
-                }}
+                onChange={onChange}
                 placeholder="Email"
                 size="large"
               />
               <Input.Password
+                type="password"
+                name="password"
                 value={loginState.password}
-                onChange={event => {
-                  setLoginState({
-                    ...loginState,
-                    password: event.target.value
-                  });
-                }}
+                onChange={onChange}
                 placeholder="Password"
                 size="large"
               />
@@ -143,7 +121,7 @@ const Auth = props => {
                     remember: event.target.checked
                   });
                 }}
-                style={{ alignSelf: "left" }}
+                style={{ alignSelf: 'left' }}
               >
                 Rememeber Me
               </Checkbox>
@@ -151,33 +129,13 @@ const Auth = props => {
                 type="primary"
                 block
                 style={{
-                  height: "40px",
+                  height: '40px',
                   backgroundColor: projectColor,
                   borderColor: projectColor
                 }}
-                onClick={async event => {
-                  event.preventDefault();
-
-                  const loginResponse = await login(
-                    loginState.email,
-                    loginState.password
-                  );
-                  if (loginResponse.success) {
-                    message.success("Login sucessful");
-                    AuthContext.setState({
-                      isAuthenticated: true
-                    });
-                    GlobalContext.setState({
-                      authToken: loginResponse.token,
-                      remember: loginState.remember
-                    });
-                    props.isLoggedIn();
-                  } else {
-                    message.error(loginResponse.msg);
-                  }
-                }}
+                onClick={onSubmit}
               >
-                <span style={{ fontSize: "16px" }}>Login</span>
+                <span style={{ fontSize: '16px' }}>Login</span>
               </Button>
               <a style={{ color: projectColor }} href="/">
                 Forgot Password?
@@ -189,35 +147,23 @@ const Auth = props => {
               <h1>Create Your Account</h1>
               <h3>Register</h3>
               <Input
+                name="email"
                 value={signUpState.email}
-                onChange={event => {
-                  setSignUpState({
-                    ...signUpState,
-                    email: event.target.value
-                  });
-                }}
+                onChange={onChangeRegister}
                 placeholder="Email"
                 size="large"
               />
               <Input.Password
+                name="password"
                 value={signUpState.password}
-                onChange={event => {
-                  setSignUpState({
-                    ...signUpState,
-                    password: event.target.value
-                  });
-                }}
+                onChange={onChangeRegister}
                 placeholder="New Password"
                 size="large"
               />
               <Input.Password
+                name="confirmPassword"
                 value={signUpState.confirmPassword}
-                onChange={event => {
-                  setSignUpState({
-                    ...signUpState,
-                    confirmPassword: event.target.value
-                  });
-                }}
+                onChange={onChangeRegister}
                 placeholder="Confirm Password"
                 size="large"
               />
@@ -225,26 +171,13 @@ const Auth = props => {
                 type="primary"
                 block
                 style={{
-                  height: "40px",
+                  height: '40px',
                   backgroundColor: projectColor,
                   borderColor: projectColor
                 }}
-                onClick={async event => {
-                  event.preventDefault();
-
-                  const signUpResponse = await signUp(
-                    signUpState.email,
-                    signUpState.password,
-                    signUpState.confirmPassword
-                  );
-                  if (signUpResponse.success) {
-                    message.success("Registration sucessful");
-                  } else {
-                    message.error(signUpResponse.msg);
-                  }
-                }}
+                onClick={onSubmitRegister}
               >
-                <span style={{ fontSize: "16px" }}>Register</span>
+                <span style={{ fontSize: '16px' }}>Register</span>
               </Button>
             </div>
           </TabPane>
@@ -265,18 +198,18 @@ const LandingContent = () => (
 
 const LandingPage = props => {
   const isLoggedIn = () => {
-    props.history.push("/");
+    props.history.push('/');
   };
   return (
     <AuthProvider>
       <Row>
         <Col
           span={16}
-          style={{ backgroundColor: projectColor, height: "100vh" }}
+          style={{ backgroundColor: projectColor, height: '100vh' }}
         >
           <LandingContent />
         </Col>
-        <Col span={8} style={{ backgroundColor: "#FEFDF9", height: "100vh" }}>
+        <Col span={8} style={{ backgroundColor: '#FEFDF9', height: '100vh' }}>
           <Auth isLoggedIn={isLoggedIn} />
         </Col>
       </Row>

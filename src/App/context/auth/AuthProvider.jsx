@@ -19,13 +19,78 @@ const AuthProvider = props => {
     []
   );
 
+  const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const BaseURL = 'http://osd-sidekick.herokuapp.com/api/auth';
+
+  const login = async (email, password) => {
+    /*
+    http://osd-sidekick.herokuapp.com
+    email, password, remember
+  */
+    if (!email) {
+      return { success: false, msg: "Email can't be empty!" };
+    }
+    if (!emailRegex.test(email)) {
+      return { success: false, msg: "Email isn't valid!" };
+    }
+    if (!password) {
+      return { success: false, msg: "Password can't be empty!" };
+    }
+
+    const res = await fetch(`${BaseURL}/login`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = await res.json();
+    return json;
+  };
+
+  const signUp = async (email, password, confirmPassword) => {
+    /*
+    http://osd-sidekick.herokuapp.com
+    email, password
+  */
+    if (!email) {
+      return { success: false, msg: "Email can't be empty!" };
+    }
+    if (!emailRegex.test(email)) {
+      return { success: false, msg: "Email isn't valid!" };
+    }
+    if (!password) {
+      return { success: false, msg: "Password can't be empty!" };
+    }
+    if (password !== confirmPassword) {
+      return { success: false, msg: 'Passwords must be same!' };
+    }
+    const res = await fetch(`${BaseURL}/register`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = await res.json();
+    return json;
+  };
+
   const { Provider } = AuthContext;
 
   return (
     <Provider
       value={{
         state,
-        setState: setData
+        setState: setData,
+        login,
+        signUp
       }}
     >
       {props.children}
