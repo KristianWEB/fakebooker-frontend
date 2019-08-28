@@ -11,6 +11,7 @@ const GlobalProvider = props => {
   };
 
   const [state, setState] = useReducer(globalReducer, initialState);
+
   const setData = useCallback(data => {
     setState({
       type: data.signOut ? LOG_OUT : LOGIN,
@@ -18,13 +19,22 @@ const GlobalProvider = props => {
     });
   }, []);
 
+  const logout = history => {
+    setState({
+      type: LOG_OUT
+    });
+
+    history.push("/test");
+  };
+
   const { Provider } = globalContext;
 
   return (
     <Provider
       value={{
         state,
-        setState: setData
+        setState: setData,
+        logout
       }}
     >
       {props.children}

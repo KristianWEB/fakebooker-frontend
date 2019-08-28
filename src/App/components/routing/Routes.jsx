@@ -15,6 +15,7 @@ export default function Routes() {
         <Switch>
           <PrivateRoute exact path="/" component={HomePage} />
           <Route exact path="/login" component={LandingPage} />
+          <Route exact path="/test" />
           {/* below line for testing */}
           <Route component={NotFoundPage} />
         </Switch>
