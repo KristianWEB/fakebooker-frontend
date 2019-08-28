@@ -19,7 +19,7 @@ const GlobalProvider = props => {
     });
   }, []);
 
-  const logout = history => {
+  const logout = () => {
     setState({
       type: LOG_OUT
     });
