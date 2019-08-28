@@ -15,3 +15,5 @@ deploy:
   api_key:
     secure: $heroku_token
   app: osd-sidekick-frontend
+  on:
+    repo: open-source-developers/front-end
