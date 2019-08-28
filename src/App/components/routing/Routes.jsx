@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import LandingPage from "../LandingPage/LandingPage";
 import HomePage from "../HomePage/HomePage";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
+import Test from "../Test/test";
 
 import PrivateRoute from "./PrivateRoute";
 
@@ -15,7 +16,7 @@ export default function Routes() {
         <Switch>
           <PrivateRoute exact path="/" component={HomePage} />
           <Route exact path="/login" component={LandingPage} />
-          <Route exact path="/test" />
+          <Route exact path="/test" component={Test} />
           {/* below line for testing */}
           <Route component={NotFoundPage} />
         </Switch>
