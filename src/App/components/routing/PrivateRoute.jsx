@@ -10,7 +10,11 @@ export default function PrivateRoute({ component: Component, ...rest }) {
     <Route
       {...rest}
       render={props =>
-        state.authToken ? <Component {...props} /> : <Redirect to="/login" />
+        state.authToken !== null ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
       }
     />
   );

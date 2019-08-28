@@ -17,7 +17,7 @@ export default (state, action) => {
       localStorage.removeItem("authToken");
       return {
         ...state,
-        ...action.data
+        authToken: null
       };
     default:
       return state;

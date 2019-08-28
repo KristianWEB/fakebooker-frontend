@@ -23,8 +23,6 @@ const GlobalProvider = props => {
     setState({
       type: LOG_OUT
     });
-
-    history.push("/test");
   };
 
   const { Provider } = globalContext;
