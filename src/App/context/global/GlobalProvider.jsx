@@ -1,5 +1,7 @@
 import React, { useReducer, useCallback } from "react";
 
+import { message } from "antd";
+
 import globalContext from "./globalContext";
 import globalReducer from "./globalReducer";
 import { LOGIN, LOG_OUT } from "../types";
@@ -19,11 +21,13 @@ const GlobalProvider = props => {
     });
   }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setState({
       type: LOG_OUT
     });
-  };
+
+    message.success("Logout successful");
+  }, []);
 
   const { Provider } = globalContext;
 
