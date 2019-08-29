@@ -205,12 +205,19 @@ const LandingPage = props => {
     <AuthProvider>
       <Row>
         <Col
-          span={16}
+          xs={0}
+          md={12}
+          lg={16}
           style={{ backgroundColor: projectColor, height: "100vh" }}
         >
           <LandingContent />
         </Col>
-        <Col span={8} style={{ backgroundColor: "#FEFDF9", height: "100vh" }}>
+        <Col
+          xs={24}
+          md={12}
+          lg={8}
+          style={{ backgroundColor: "#FEFDF9", height: "100vh" }}
+        >
           <Auth isLoggedIn={isLoggedIn} />
         </Col>
       </Row>
