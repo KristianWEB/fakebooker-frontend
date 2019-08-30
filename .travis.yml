@@ -13,7 +13,7 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: IwLpxA1aSVVk9XXxjT62QWpYjesCC6bbC5AfRKvPVold45xoZo53dqGSo7/k3lI5VxAImTfzcVxNppvpqzVvA//d1+0131ui1RSHVeaYySlVpApmeCmrBWz/zjK1X5gi8JOnbFI5nhmzlNYcGDIz+cJ4O5R7oNJhQQgcSzKUAIJSSr+QvMHLQeS5yYcHpd4aamr+ra51fbP27f45Xx5cP1M54Fx1gdFvdkJfnbuHmgkzsxYSxKJw2ZaeO/FcFk3vW4BY2YMxMZCBM1eil64QhDfN/rmB9iRXRzK/wTUGom+AJ4gBslVSV0XS9PamTwm+uczaRmZdjXBHO7MoM6gey3HoeUzysHlnjUsbs2AXpGIFpuQRwkR/99hn/a4oW7zrOxvSWpfS/abnd+v0W1SHisp2y5/IfbQ7G52PycC9TOMdH3xwHH2BXMx3BoLwsrECtGmk8HcztjsvC9qZ9Ikzj+cgPhaoMPn4Ctbypm2glfMisG7EGuDejIsxJE6ZmxpHdxafRXk6op7yxXGWmPGWXiUBZ+EdpYq6trdSqV8SnwMb9KSzACTu1/SwP0T7Rt4aD+JmbLbHI7NOWd8sGPYYvsnMnZsjA+XAPCfALlYe8TMUOSEurfcAElOSjTn3vieQLjYPDIEkyWaNj7bAHVmFPgOURrFE23zKCrXm9EcLTXg=
+    secure: $heroku_token
   app: osd-sidekick-app
   on:
     repo: open-source-developers/front-end
