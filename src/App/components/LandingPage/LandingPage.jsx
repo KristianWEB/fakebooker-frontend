@@ -71,8 +71,15 @@ const Auth = props => {
     const signUpResponse = await signUp(email, password, confirmPassword);
 
     const { success, msg } = signUpResponse;
+    
     if (success) {
       message.success("Registration sucessful");
+
+      setSignUpState({
+        email: "",
+        password: "",
+        confirmPassword: ""
+      });
     } else {
       message.error(msg);
     }
