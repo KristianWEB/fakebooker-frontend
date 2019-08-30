@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/open-source-developers/front-end.svg?branch=master)](https://travis-ci.com/open-source-developers/front-end)
 
-Go to this url for [Live Demo](https://open-source-developers.github.io/front-end/)
+Go to this url for [Live Demo](https://side-kick-app.herokuapp.com/#/login)
 
 ## Steps to get started
 
