@@ -1,19 +1,19 @@
 language: node_js
 node_js:
-  - stable
+- stable
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
 env:
-  - CI=false
+- CI=false
 script:
-  - yarn run lint
-  - yarn run build
+- yarn run lint
+- yarn run build
 deploy:
   provider: heroku
   api_key:
-    secure: $heroku_token
-  app: osd-sidekick-frontend
+    secure: OflyVJsryb6wmjHybj/+hJztyNNYzWfWY/siy3VK0abZx/EyJ7cUJNA39ruC+5DnD9i5xBEsnGbUa+y4SAu8bOx1+mppZ3GQaWsJaIGy9kMyhxAehYzIfOn7UlFimeBrVcayd1aKlLSTUxnCjSlYiAP4hlMGiV8EztZoOr8sSTQJWxVjbXjD/jSZ4K0oIRui2/em3LUHfXbduOnvwVSM5IgYs7C/lYlOJlVyBx4iIAh4jopvshkKH2Y9Zkhib6V6EzOW2yYlW6BT+Soo3ICaMSe7CDDJ7xFyFQktNU4l9U0059XFRnDwyEHBg1Le8WPIq40Wye4kKHSx487IxzokYhE+/hIsfaega0ItueWIi5eLD6NtrODHueIyPySw8GYIObdgcgS+JiSZCiZ6fKDmnx/qtHpciEfpGrLJK5LhKX7vFsnpJrhQSvUv6I3+8AOzvI6VvKvgYELvMajAThwol1zKnn/293dHaOIIi4+8bnNo1FCGNiwdRGkDhnERMqcYcNfnSpoFNtVvEkMlYqga5QB8jWo6Dr7YdG0IXzpRKkvqi72svRsnUljI6LhfjfoX6Qw0jUekkSs3mWObB5ZlVD/QhytyoQJk+v7nbih6n5U88dlP/dVFLA+iBP5U0mt2dZt3TM0C9n29sEVbNRLNBzmQulwFqWCxpDJZVJA88t0=
+  app: socialfb
   on:
-    repo: open-source-developers/front-end
+    branch: master
