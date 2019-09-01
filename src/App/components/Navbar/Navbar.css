@@ -1,0 +1,47 @@
+.nav-container {
+  background-color: #444;
+  width: 100%;
+  padding: 5px 0px 5px 200px;
+  align-items: center;
+}
+
+.logo,
+.profile,
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.logo .logo-img {
+  width: 45px;
+  height: 45px;
+  margin-right: 10px;
+}
+.logo .logo-header,
+.profile .profile-header {
+  color: white;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.search-bar {
+  height: 50px;
+}
+
+.user-actions {
+  margin-left: 50px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+.user-actions > * {
+  margin-right: 10px;
+}
+.user-actions .user-actions-home {
+  color: white;
+  font-size: 15px;
+}
+
+.profile > * {
+  margin-right: 10px;
+}
