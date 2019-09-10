@@ -12,7 +12,9 @@
   align-items: center;
 }
 
-.auth_display > * {
+.auth_display > *,
+.loginForm > *,
+.registerForm > * {
   margin-bottom: 40px;
 }
 

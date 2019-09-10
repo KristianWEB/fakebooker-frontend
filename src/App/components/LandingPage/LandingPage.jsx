@@ -115,7 +115,7 @@ const Auth = props => {
             <div className="auth_display">
               <h1>Welcome Back</h1>
               <h3>Login to continue</h3>
-              <form onSubmit={onSubmit}>
+              <form onSubmit={onSubmit} className="loginForm">
                 <Input
                   type="email"
                   name="email"
@@ -142,10 +142,11 @@ const Auth = props => {
                   }}
                   style={{ alignSelf: "left" }}
                 >
-                  Rememeber Me
+                  Remember Me
                 </Checkbox>
-                <button
-                  type="submit"
+                <Button
+                  type="primary"
+                  htmlType="submit"
                   block
                   style={{
                     height: "40px",
@@ -154,7 +155,7 @@ const Auth = props => {
                   }}
                 >
                   <span style={{ fontSize: "16px" }}>Login</span>
-                </button>
+                </Button>
               </form>
               <a style={{ color: projectColor }} href="/">
                 Forgot Password?
@@ -165,39 +166,42 @@ const Auth = props => {
             <div className="auth_display">
               <h1>Create Your Account</h1>
               <h3>Register</h3>
-              <Input
-                name="email"
-                value={signUpState.email}
-                onChange={onChangeRegister}
-                placeholder="Email"
-                size="large"
-              />
-              <Input.Password
-                name="password"
-                value={signUpState.password}
-                onChange={onChangeRegister}
-                placeholder="New Password"
-                size="large"
-              />
-              <Input.Password
-                name="confirmPassword"
-                value={signUpState.confirmPassword}
-                onChange={onChangeRegister}
-                placeholder="Confirm Password"
-                size="large"
-              />
-              <Button
-                type="primary"
-                block
-                style={{
-                  height: "40px",
-                  backgroundColor: projectColor,
-                  borderColor: projectColor
-                }}
-                onClick={onSubmitRegister}
-              >
-                <span style={{ fontSize: "16px" }}>Register</span>
-              </Button>
+              <form onSubmit={onSubmitRegister} className="registerForm">
+                <Input
+                  name="email"
+                  value={signUpState.email}
+                  onChange={onChangeRegister}
+                  placeholder="Email"
+                  size="large"
+                />
+                <Input.Password
+                  name="password"
+                  value={signUpState.password}
+                  onChange={onChangeRegister}
+                  placeholder="New Password"
+                  size="large"
+                />
+                <Input.Password
+                  name="confirmPassword"
+                  value={signUpState.confirmPassword}
+                  onChange={onChangeRegister}
+                  placeholder="Confirm Password"
+                  size="large"
+                />
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  block
+                  style={{
+                    height: "40px",
+                    backgroundColor: projectColor,
+                    borderColor: projectColor
+                  }}
+                  onClick={onSubmitRegister}
+                >
+                  <span style={{ fontSize: "16px" }}>Register</span>
+                </Button>
+              </form>
             </div>
           </TabPane>
         </Tabs>
