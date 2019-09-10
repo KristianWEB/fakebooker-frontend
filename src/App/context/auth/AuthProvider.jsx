@@ -20,7 +20,7 @@ const AuthProvider = props => {
   );
 
   const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const BaseURL = "http://osd-sidekick.herokuapp.com/api/auth";
+  const BaseURL = "https://osd-sidekick.herokuapp.com/api/auth";
 
   const login = async (email, password) => {
     /*

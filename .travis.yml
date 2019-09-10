@@ -1,19 +1,20 @@
 language: node_js
 node_js:
-  - "stable"
+  - stable
 cache:
   yarn: true
   directories:
-  - node_modules
+    - node_modules
 env:
   - CI=false
 script:
   - yarn run lint
   - yarn run build
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $github_token
-  local_dir: build
+  provider: heroku
+  api_key:
+    secure: $heroku_token
+  app: osd-sidekick-app
   on:
+    repo: open-source-developers/front-end
     branch: master
