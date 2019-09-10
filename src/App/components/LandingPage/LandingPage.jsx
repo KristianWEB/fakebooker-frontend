@@ -197,7 +197,6 @@ const Auth = props => {
                     backgroundColor: projectColor,
                     borderColor: projectColor
                   }}
-                  onClick={onSubmitRegister}
                 >
                   <span style={{ fontSize: "16px" }}>Register</span>
                 </Button>
