@@ -49,7 +49,7 @@ const Auth = props => {
     const { success, token, msg } = loginResponse;
 
     if (success) {
-      message.success("Login sucessful");
+      message.success("Login successful");
       AuthContext.setState({
         isAuthenticated: true
       });
@@ -70,16 +70,26 @@ const Auth = props => {
 
     const signUpResponse = await signUp(email, password, confirmPassword);
 
-    const { success, msg } = signUpResponse;
+    const { success, token, msg } = signUpResponse;
 
     if (success) {
-      message.success("Registration sucessful");
+      message.success("Registration successful");
+
+      AuthContext.setState({
+        isAuthenticated: true
+      });
+
+      GlobalContext.setState({
+        authToken: token
+      });
 
       setSignUpState({
         email: "",
         password: "",
         confirmPassword: ""
       });
+
+      props.isLoggedIn();
     } else {
       message.error(msg);
     }
