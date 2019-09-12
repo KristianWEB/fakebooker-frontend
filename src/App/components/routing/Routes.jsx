@@ -18,7 +18,7 @@ export default function Routes() {
         <Switch>
           <PrivateRoute exact path="/" component={HomePage} />
           <Route exact path="/login" component={LandingPage} />
-          <Route exact path="/profile" component={ProfilePage} />
+          <Route exact path="/profile/:section?" component={ProfilePage} />
           <Route exact path="/gallery" component={Gallery} />
           <Route exact path="/navbar" component={NavBar} />
           {/* below line for testing */}
