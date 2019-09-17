@@ -23,6 +23,8 @@ const Auth = props => {
     confirmPassword: ""
   });
 
+  const [isPending, setIsPending] = useState(false);
+
   const AuthContext = useContext(authContext);
   const GlobalContext = useContext(globalContext);
 
@@ -42,11 +44,18 @@ const Auth = props => {
   const onSubmit = async e => {
     e.preventDefault();
 
+    if (isPending) {
+      return;
+    }
+    setIsPending(true);
+
     const { email, password, remember } = loginState;
 
     const loginResponse = await login(email, password);
 
     const { success, token, msg } = loginResponse;
+
+    setIsPending(false);
 
     if (success) {
       message.success("Login successful");
@@ -66,11 +75,18 @@ const Auth = props => {
   const onSubmitRegister = async e => {
     e.preventDefault();
 
+    if (isPending) {
+      return;
+    }
+    setIsPending(true);
+
     const { email, password, confirmPassword } = signUpState;
 
     const signUpResponse = await signUp(email, password, confirmPassword);
 
     const { success, token, msg } = signUpResponse;
+
+    setIsPending(false);
 
     if (success) {
       message.success("Registration successful");
@@ -153,6 +169,7 @@ const Auth = props => {
                     backgroundColor: projectColor,
                     borderColor: projectColor
                   }}
+                  loading={isPending}
                 >
                   <span style={{ fontSize: "16px" }}>Login</span>
                 </Button>
@@ -197,6 +214,7 @@ const Auth = props => {
                     backgroundColor: projectColor,
                     borderColor: projectColor
                   }}
+                  loading={isPending}
                 >
                   <span style={{ fontSize: "16px" }}>Register</span>
                 </Button>
@@ -220,7 +238,7 @@ const LandingContent = () => (
 
 const LandingPage = props => {
   const isLoggedIn = () => {
-    props.history.push("/");
+    props.history.replace("/");
   };
   return (
     <AuthProvider>
