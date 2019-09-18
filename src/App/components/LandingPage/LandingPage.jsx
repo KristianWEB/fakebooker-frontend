@@ -1,15 +1,20 @@
 import React, { useContext, useState } from "react";
-import { Button, Checkbox, Col, Input, message, Row, Tabs } from "antd";
+import { Checkbox, Col, Input, message, Row, Tabs } from "antd";
 import logo from "../../../assets/logo.svg";
 
 import AuthProvider from "../../context/auth/AuthProvider";
 import authContext from "../../context/auth/authContext";
 import globalContext from "../../context/global/globalContext";
 
-import "./LandingPage.css";
+import {
+  AuthContainer,
+  AuthDisplay,
+  ProjectLogo,
+  StyledButton,
+  StyledCol
+} from "./LandingPage.styles";
 
 const { TabPane } = Tabs;
-const projectColor = "#3B5999";
 
 const Auth = props => {
   const [loginState, setLoginState] = useState({
@@ -112,26 +117,16 @@ const Auth = props => {
   };
 
   return (
-    <div
-      className="authentication"
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%"
-      }}
-    >
+    <AuthContainer>
       <Col span={20} offset={2}>
-        <div id="project-logo">
-          {/* TEMPORARY PLACEHOLDER FOR LOGO */}
-          <img src={logo} alt="" />
-        </div>
+        {/* TEMPORARY PLACEHOLDER FOR LOGO */}
+        <ProjectLogo src={logo} alt="" />
         <Tabs tabPosition="top">
           <TabPane tab="Login" key="1">
-            <div className="auth_display">
+            <AuthDisplay>
               <h1>Welcome Back</h1>
-              <h3>Login to continue</h3>
-              <form onSubmit={onSubmit} className="loginForm">
+              <h3 style={{ color: "#808080" }}>Login to continue</h3>
+              <form onSubmit={onSubmit}>
                 <Input
                   type="email"
                   name="email"
@@ -139,6 +134,7 @@ const Auth = props => {
                   onChange={onChange}
                   placeholder="Email"
                   size="large"
+                  style={{ marginBottom: "40px" }}
                 />
                 <Input.Password
                   type="password"
@@ -147,6 +143,7 @@ const Auth = props => {
                   onChange={onChange}
                   placeholder="Password"
                   size="large"
+                  style={{ marginBottom: "40px" }}
                 />
                 <Checkbox
                   checked={loginState.remember}
@@ -156,40 +153,36 @@ const Auth = props => {
                       remember: event.target.checked
                     });
                   }}
-                  style={{ alignSelf: "left" }}
+                  style={{ marginBottom: "40px" }}
                 >
                   Remember Me
                 </Checkbox>
-                <Button
+                <StyledButton
                   type="primary"
                   htmlType="submit"
                   block
-                  style={{
-                    height: "40px",
-                    backgroundColor: projectColor,
-                    borderColor: projectColor
-                  }}
                   loading={isPending}
                 >
                   <span style={{ fontSize: "16px" }}>Login</span>
-                </Button>
+                </StyledButton>
               </form>
-              <a style={{ color: projectColor }} href="/">
+              <a style={{ color: "#3b5999", marginBottom: "40px" }} href="/">
                 Forgot Password?
               </a>
-            </div>
+            </AuthDisplay>
           </TabPane>
           <TabPane tab="Register" key="2">
-            <div className="auth_display">
+            <AuthDisplay>
               <h1>Create Your Account</h1>
-              <h3>Register</h3>
-              <form onSubmit={onSubmitRegister} className="registerForm">
+              <h3 style={{ color: "#808080" }}>Register</h3>
+              <form onSubmit={onSubmitRegister}>
                 <Input
                   name="email"
                   value={signUpState.email}
                   onChange={onChangeRegister}
                   placeholder="Email"
                   size="large"
+                  style={{ marginBottom: "40px" }}
                 />
                 <Input.Password
                   name="password"
@@ -197,6 +190,7 @@ const Auth = props => {
                   onChange={onChangeRegister}
                   placeholder="New Password"
                   size="large"
+                  style={{ marginBottom: "40px" }}
                 />
                 <Input.Password
                   name="confirmPassword"
@@ -204,31 +198,27 @@ const Auth = props => {
                   onChange={onChangeRegister}
                   placeholder="Confirm Password"
                   size="large"
+                  style={{ marginBottom: "40px" }}
                 />
-                <Button
+                <StyledButton
                   type="primary"
                   htmlType="submit"
                   block
-                  style={{
-                    height: "40px",
-                    backgroundColor: projectColor,
-                    borderColor: projectColor
-                  }}
                   loading={isPending}
                 >
                   <span style={{ fontSize: "16px" }}>Register</span>
-                </Button>
+                </StyledButton>
               </form>
-            </div>
+            </AuthDisplay>
           </TabPane>
         </Tabs>
       </Col>
-    </div>
+    </AuthContainer>
   );
 };
 
 const LandingContent = () => (
-  <div className="container">
+  <div style={{ backgroundColor: "#f5f5f5" }}>
     <img
       src="https://www.123freevectors.com/wp-content/original/131220-dark-blue-polygon-background-graphic-design.jpg"
       alt="logo"
@@ -243,22 +233,12 @@ const LandingPage = props => {
   return (
     <AuthProvider>
       <Row>
-        <Col
-          xs={0}
-          md={12}
-          lg={16}
-          style={{ backgroundColor: projectColor, height: "100vh" }}
-        >
+        <StyledCol xs={0} md={12} lg={16} background="#3b5999">
           <LandingContent />
-        </Col>
-        <Col
-          xs={24}
-          md={12}
-          lg={8}
-          style={{ backgroundColor: "#FEFDF9", height: "100vh" }}
-        >
+        </StyledCol>
+        <StyledCol xs={24} md={12} lg={8} background="#fefdf9">
           <Auth isLoggedIn={isLoggedIn} />
-        </Col>
+        </StyledCol>
       </Row>
     </AuthProvider>
   );

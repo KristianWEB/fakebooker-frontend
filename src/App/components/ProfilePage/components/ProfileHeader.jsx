@@ -11,7 +11,7 @@ import {
   ButtonContainer,
   StyleButton,
   PopText
-} from "./ProfileHeader.style";
+} from "./ProfileHeader.styles";
 
 import MessageIconSvg from "../../../../assets/chat---messages-icon.svg";
 import GearIconSvg from "../../../../assets/gear-option.svg";
