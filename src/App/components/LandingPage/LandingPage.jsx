@@ -1,12 +1,15 @@
 import React, { useContext, useState } from "react";
 import { Checkbox, Col, Input, message, Row, Tabs } from "antd";
+
 import logo from "../../../assets/logo.svg";
+import backgroundImg from "../../../assets/images/landing-page-background.jpg";
 
 import AuthProvider from "../../context/auth/AuthProvider";
 import authContext from "../../context/auth/authContext";
 import globalContext from "../../context/global/globalContext";
 
 import {
+  LandingContentContainer,
   AuthContainer,
   AuthDisplay,
   ProjectLogo,
@@ -166,7 +169,7 @@ const Auth = props => {
                   <span style={{ fontSize: "16px" }}>Login</span>
                 </StyledButton>
               </form>
-              <a style={{ color: "#3b5999", marginBottom: "40px" }} href="/">
+              <a style={{ color: "#3b5999" }} href="/">
                 Forgot Password?
               </a>
             </AuthDisplay>
@@ -218,12 +221,9 @@ const Auth = props => {
 };
 
 const LandingContent = () => (
-  <div style={{ backgroundColor: "#f5f5f5" }}>
-    <img
-      src="https://www.123freevectors.com/wp-content/original/131220-dark-blue-polygon-background-graphic-design.jpg"
-      alt="logo"
-    />
-  </div>
+  <LandingContentContainer>
+    <img src={backgroundImg} alt="logo" />
+  </LandingContentContainer>
 );
 
 const LandingPage = props => {
@@ -232,7 +232,7 @@ const LandingPage = props => {
   };
   return (
     <AuthProvider>
-      <Row>
+      <Row style={{ position: "relative" }}>
         <StyledCol xs={0} md={12} lg={16} background="#3b5999">
           <LandingContent />
         </StyledCol>
