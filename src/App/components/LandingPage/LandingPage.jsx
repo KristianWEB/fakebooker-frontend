@@ -98,8 +98,7 @@ const Auth = props => {
       confirmPassword
     );
 
-    const { success, token, msg } = signUpResponse;
-
+    const { success, token, msg, errors } = signUpResponse;
     setIsPending(false);
 
     if (success) {
@@ -122,8 +121,9 @@ const Auth = props => {
 
       props.isLoggedIn();
     } else {
-      message.error(msg);
-      console.log(msg);
+      Object.keys(errors).forEach(key => {
+        message.error(errors[key]);
+      });
     }
   };
 
