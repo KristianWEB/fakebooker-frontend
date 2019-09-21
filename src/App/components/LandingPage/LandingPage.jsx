@@ -24,6 +24,7 @@ const Auth = props => {
   });
   const [signUpState, setSignUpState] = useState({
     email: "",
+    username: "",
     password: "",
     confirmPassword: ""
   });
@@ -85,9 +86,14 @@ const Auth = props => {
     }
     setIsPending(true);
 
-    const { email, password, confirmPassword } = signUpState;
+    const { email, username, password, confirmPassword } = signUpState;
 
-    const signUpResponse = await signUp(email, password, confirmPassword);
+    const signUpResponse = await signUp(
+      email,
+      username,
+      password,
+      confirmPassword
+    );
 
     const { success, token, msg } = signUpResponse;
 
@@ -106,6 +112,7 @@ const Auth = props => {
 
       setSignUpState({
         email: "",
+        username: "",
         password: "",
         confirmPassword: ""
       });
@@ -113,6 +120,7 @@ const Auth = props => {
       props.isLoggedIn();
     } else {
       message.error(msg);
+      console.log(msg);
     }
   };
 
@@ -176,6 +184,14 @@ const Auth = props => {
               <h1>Create Your Account</h1>
               <h3 style={{ color: "#808080" }}>Register</h3>
               <form onSubmit={onSubmitRegister}>
+                <Input
+                  name="username"
+                  value={signUpState.username}
+                  onChange={onChangeRegister}
+                  placeholder="Username"
+                  size="large"
+                  style={{ marginBottom: "40px" }}
+                />
                 <Input
                   name="email"
                   value={signUpState.email}
