@@ -51,7 +51,7 @@ const AuthProvider = props => {
     return json;
   };
 
-  const signUp = async (email, password, confirmPassword) => {
+  const signUp = async (email, username, password, confirmPassword) => {
     /*
     http://osd-sidekick.herokuapp.com
     email, password
@@ -72,6 +72,7 @@ const AuthProvider = props => {
       method: "POST",
       body: JSON.stringify({
         email,
+        username,
         password
       }),
       headers: {
