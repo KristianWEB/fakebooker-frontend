@@ -15,15 +15,16 @@ const ProfilePage = props => {
   const BaseURL = "https://osd-sidekick.herokuapp.com/api/profile";
 
   useEffect(() => {
-    fetch(`${BaseURL}/${username}`, {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(_data => {
-        setProfileInfo(_data);
+    async function fetchProfileInfo() {
+      const res = await fetch(`${BaseURL}/${username}`, {
+        headers: {
+          "Content-Type": "application/json"
+        }
       });
+      const data = await res.json();
+      setProfileInfo(data);
+    }
+    fetchProfileInfo();
   }, []);
 
   const condition = profileInfo ? profileInfo.success : undefined;
