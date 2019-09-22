@@ -21,6 +21,7 @@ export default function Routes() {
           <Route exact path="/gallery" component={Gallery} />
           <Route exact path="/navbar" component={NavBar} />
           {/* below line for testing */}
+          <Route exact path="/error" component={NotFoundPage} />
           <Route component={NotFoundPage} />
         </Switch>
       </Router>
