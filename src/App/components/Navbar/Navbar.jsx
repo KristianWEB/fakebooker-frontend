@@ -17,7 +17,7 @@ import {
 import logo from "../../../assets/logo.svg";
 import ProfilePictureSample from "../../../assets/images/ProfilePictureSample.jpg";
 
-export default function Navbar() {
+export default function Navbar({ displayName }) {
   return (
     <NavContainer>
       <Col span={4}>
@@ -42,7 +42,9 @@ export default function Navbar() {
       <Col span={6}>
         <ProfileContainer>
           <ProfileAvatar src={ProfilePictureSample} alt="Profile" />
-          <ProfileHeader className="profile-header">Kristian</ProfileHeader>
+          <ProfileHeader className="profile-header">
+            {displayName}
+          </ProfileHeader>
           <Arrow type="down" />
         </ProfileContainer>
       </Col>
