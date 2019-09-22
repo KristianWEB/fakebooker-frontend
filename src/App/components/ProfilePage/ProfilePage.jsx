@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import { Spin } from "antd";
 import Post from "./components/Post";
 import ProfileHeader from "./components/ProfileHeader";
 import globalContext from "../../context/global/globalContext";
 import getCurrentUserName from "../../util/jwtUtil";
-import { Fragment } from "react";
 
 const ProfilePage = props => {
   const { state } = useContext(globalContext);
