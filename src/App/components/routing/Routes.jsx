@@ -8,22 +8,25 @@ import Gallery from "../Gallery/Gallery";
 import NavBar from "../Navbar/Navbar";
 import PrivateRoute from "./PrivateRoute";
 import GlobalProvider from "../../context/global/GlobalProvider";
+import PostProvider from "../../context/post/PostProvider";
 
 export default function Routes() {
   return (
     <GlobalProvider>
-      <Router>
-        <Switch>
-          <PrivateRoute exact path="/" component={HomePage} />
-          <Route exact path="/login" component={LandingPage} />
-          <PrivateRoute exact path="/profile" component={ProfilePage} />
-          <Route exact path="/profile/:username" component={ProfilePage} />
-          <Route exact path="/gallery" component={Gallery} />
-          <Route exact path="/navbar" component={NavBar} />
-          {/* below line for testing */}
-          <Route component={NotFoundPage} />
-        </Switch>
-      </Router>
+      <PostProvider>
+        <Router>
+          <Switch>
+            <PrivateRoute exact path="/" component={HomePage} />
+            <Route exact path="/login" component={LandingPage} />
+            <PrivateRoute exact path="/profile" component={ProfilePage} />
+            <Route exact path="/profile/:username" component={ProfilePage} />
+            <Route exact path="/gallery" component={Gallery} />
+            <Route exact path="/navbar" component={NavBar} />
+            {/* below line for testing */}
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Router>
+      </PostProvider>
     </GlobalProvider>
   );
 }

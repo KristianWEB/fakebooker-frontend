@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { withRouter } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import ProfileHeader from "./components/ProfileHeader";
+import MockupForm from "./components/MockupForm";
 import Post from "./components/Post";
 import globalContext from "../../context/global/globalContext";
 import getCurrentUserName from "../../util/jwtUtil";
@@ -21,6 +22,7 @@ const ProfilePage = props => {
         profileImage="https://www.w3schools.com/w3images/avatar2.png"
         displayName={username}
       />
+      <MockupForm />
       <Post />
     </div>
   );
