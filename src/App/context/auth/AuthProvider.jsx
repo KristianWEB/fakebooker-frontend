@@ -3,6 +3,7 @@ import React, { useReducer, useCallback } from "react";
 import AuthContext from "./authContext";
 import authReducer from "./authReducer";
 import { LOGIN } from "../types";
+import useStateApi from "../../api/useStateApi";
 
 const AuthProvider = props => {
   const initialState = {
@@ -21,7 +22,14 @@ const AuthProvider = props => {
 
   const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const BaseURL = "https://osd-sidekick.herokuapp.com/api/auth";
+  const url = `${BaseURL}/login`;
+  const { data, error, doSend } = useStateApi(url, "", true);
 
+  // const login = (email, password) => {
+  //   console.log(doSend, "dosend");
+
+  // };
+  console.log(data, "data");
   const login = async (email, password) => {
     /*
     http://osd-sidekick.herokuapp.com
@@ -37,18 +45,7 @@ const AuthProvider = props => {
       return { success: false, msg: "Password can't be empty!" };
     }
 
-    const res = await fetch(`${BaseURL}/login`, {
-      method: "POST",
-      body: JSON.stringify({
-        email,
-        password
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    const json = await res.json();
-    return json;
+    return doSend(url, { email, password });
   };
 
   const signUp = async (email, username, password, confirmPassword) => {

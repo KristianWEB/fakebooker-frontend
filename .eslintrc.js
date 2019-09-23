@@ -16,7 +16,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module"
   },
-  plugins: ["react", "prettier"],
+  plugins: ["react", "prettier", "react-hooks"],
   rules: {
     "prettier/prettier": "error",
     "no-console": "off",
@@ -30,6 +30,6 @@ module.exports = {
     "react/jsx-props-no-spreading": "off",
     "prettier/prettier": ["error"],
     "react/jsx-curly-newline": "off",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
   }
 };
