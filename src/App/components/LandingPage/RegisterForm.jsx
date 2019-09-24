@@ -35,6 +35,24 @@ const RegisterForm = props => {
 
     const { email, username, password, confirmPassword } = signUpState;
 
+    if (!password.match(/(?=.*[A-Z])/)) {
+      message.error("password must contain at least one upppercase character");
+      setIsPending(false);
+      return;
+    }
+
+    if (!password.match(/(?=.*\d)/)) {
+      message.error("password must contain at least one number");
+      setIsPending(false);
+      return;
+    }
+
+    if (password.length < 8) {
+      message.error("password must be atleast 8 characters");
+      setIsPending(false);
+      return;
+    }
+
     const signUpResponse = await signUp(
       email,
       username,
@@ -82,6 +100,7 @@ const RegisterForm = props => {
           placeholder="Username"
           size="large"
           style={{ marginBottom: "40px" }}
+          required
         />
         <Input
           name="email"
@@ -90,6 +109,7 @@ const RegisterForm = props => {
           placeholder="Email"
           size="large"
           style={{ marginBottom: "40px" }}
+          required
         />
         <Input.Password
           name="password"
@@ -97,8 +117,19 @@ const RegisterForm = props => {
           onChange={onChangeRegister}
           placeholder="New Password"
           size="large"
-          style={{ marginBottom: "40px" }}
+          required
         />
+        <p
+          style={{
+            fontSize: "12px",
+            color: "grey",
+            marginBottom: "40px",
+            marginTop: "5px"
+          }}
+        >
+          Password should have atleast 1 lowercase letter, 1 uppercase letter, 1
+          number
+        </p>
         <Input.Password
           name="confirmPassword"
           value={signUpState.confirmPassword}
@@ -106,6 +137,7 @@ const RegisterForm = props => {
           placeholder="Confirm Password"
           size="large"
           style={{ marginBottom: "40px" }}
+          required
         />
         <StyledButton
           type="primary"

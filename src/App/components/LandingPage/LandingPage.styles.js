@@ -28,6 +28,13 @@ export const StyledButton = styled(Button)`
   background-color: #3b5999;
   border: 1px solid #3b5999;
   margin-bottom: 40px;
+
+  &:hover,
+  &:focus {
+    background-color: #3b5999;
+    outline: none;
+    border-color: #3b5999;
+  }
 `;
 
 export const StyledCol = styled(Col)`
