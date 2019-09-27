@@ -1,53 +1,49 @@
 import React from "react";
-import { Col, Input } from "antd";
+import { Row, Col, Input } from "antd";
 import {
   NavContainer,
   LogoContainer,
-  LogoImg,
-  LogoHeader,
-  SearchBarContainer,
-  ProfileContainer,
-  ProfileHeader,
-  ProfileAvatar,
-  ActionsRoute,
+  AppLogo,
   ActionsContainer,
-  ActionsIcon,
-  Arrow
+  FRContainer,
+  FriendRequests,
+  MessagesContainer,
+  Messages,
+  NotificationsContainer,
+  Notifications,
+  SearchContainer,
+  Search
 } from "./Navbar.styles";
-import logo from "../../../assets/logo.svg";
+import Logo from "../../../assets/logo.svg";
+import FriendReqIcon from "../../../assets/icons/happy-face-icon.svg";
+import MessagesIcon from "../../../assets/icons/chat---messages-icon.svg";
+import NotifyIcon from "../../../assets/icons/thunder-icon.svg";
+import SearchIcon from "../../../assets/icons/magnifying-glass-icon.svg";
 import ProfilePictureSample from "../../../assets/images/ProfilePictureSample.jpg";
 
 export default function Navbar({ displayName }) {
   return (
     <NavContainer>
-      <Col span={4}>
-        <LogoContainer>
-          <LogoImg src={logo} alt="logo" />
-          <LogoHeader>Sidekick</LogoHeader>
-        </LogoContainer>
-      </Col>
-      <Col span={6}>
-        <SearchBarContainer>
-          <Input placeholder="Search friends,photos,videos" />
-        </SearchBarContainer>
-      </Col>
-      <Col span={5}>
-        <ActionsContainer>
-          <ActionsRoute href="/">Home</ActionsRoute>
-          <ActionsIcon type="user-add" />
-          <ActionsIcon type="message" />
-          <ActionsIcon type="notification" />
-        </ActionsContainer>
-      </Col>
-      <Col span={6}>
-        <ProfileContainer>
-          <ProfileAvatar src={ProfilePictureSample} alt="Profile" />
-          <ProfileHeader className="profile-header">
-            {displayName}
-          </ProfileHeader>
-          <Arrow type="down" />
-        </ProfileContainer>
-      </Col>
+      <LogoContainer>
+        <AppLogo src={Logo} />
+      </LogoContainer>
+      <ActionsContainer>
+        <FRContainer>
+          <FriendRequests src={FriendReqIcon} />
+        </FRContainer>
+        <MessagesContainer>
+          <Messages src={MessagesIcon} />
+        </MessagesContainer>
+        <NotificationsContainer>
+          <Notifications src={NotifyIcon} />
+        </NotificationsContainer>
+        <SearchContainer>
+          <Search src={SearchIcon} />
+        </SearchContainer>
+      </ActionsContainer>
+      {/* <NavMenu>
+        <NavBurger />
+      </NavMenu> */}
     </NavContainer>
   );
 }
