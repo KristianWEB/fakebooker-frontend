@@ -51,27 +51,40 @@ const AuthProvider = props => {
     return json;
   };
 
-  const signUp = async (email, password, confirmPassword) => {
+  const signUp = async (email, username, password, confirmPassword) => {
     /*
     http://osd-sidekick.herokuapp.com
     email, password
   */
+    if (!username) {
+      return {
+        success: false,
+        errors: { username: "Username can't be empty!" }
+      };
+    }
     if (!email) {
-      return { success: false, msg: "Email can't be empty!" };
+      return { success: false, errors: { email: "Email can't be empty!" } };
     }
     if (!emailRegex.test(email)) {
-      return { success: false, msg: "Email isn't valid!" };
+      return { success: false, errors: { email: "Email isn't valid!" } };
     }
     if (!password) {
-      return { success: false, msg: "Password can't be empty!" };
+      return {
+        success: false,
+        errors: { password: "Password can't be empty!" }
+      };
     }
     if (password !== confirmPassword) {
-      return { success: false, msg: "Passwords must be same!" };
+      return {
+        success: false,
+        errors: { password: "Passwords must be same!" }
+      };
     }
     const res = await fetch(`${BaseURL}/register`, {
       method: "POST",
       body: JSON.stringify({
         email,
+        username,
         password
       }),
       headers: {

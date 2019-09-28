@@ -29,6 +29,7 @@ module.exports = {
     "react/destructuring-assignment": "off",
     "react/jsx-props-no-spreading": "off",
     "prettier/prettier": ["error"],
-    "react/jsx-curly-newline": "off"
+    "react/jsx-curly-newline": "off",
+    "react/jsx-one-expression-per-line": "off"
   }
 };
