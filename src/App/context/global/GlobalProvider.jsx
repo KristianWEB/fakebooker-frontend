@@ -4,7 +4,7 @@ import { message } from "antd";
 
 import globalContext from "./globalContext";
 import globalReducer from "./globalReducer";
-import { LOGIN, LOG_OUT } from "../types";
+import { LOGIN, LOG_OUT, REGISTER } from "../types";
 
 const GlobalProvider = props => {
   const initialState = {
@@ -16,7 +16,7 @@ const GlobalProvider = props => {
 
   const setData = useCallback(data => {
     setState({
-      type: data.signOut ? LOG_OUT : LOGIN,
+      type: LOGIN,
       data
     });
   }, []);
@@ -29,6 +29,14 @@ const GlobalProvider = props => {
     message.success("Logout successful");
   }, []);
 
+  const register = useCallback(() => {
+    setState({
+      type: REGISTER
+    });
+
+    message.success("Register successful");
+  }, []);
+
   const { Provider } = globalContext;
 
   return (
@@ -36,7 +44,8 @@ const GlobalProvider = props => {
       value={{
         state,
         setState: setData,
-        logout
+        logout,
+        register
       }}
     >
       {props.children}

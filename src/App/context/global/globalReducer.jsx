@@ -1,8 +1,9 @@
-import { LOGIN, LOG_OUT } from "../types";
+import { LOGIN, LOG_OUT, REGISTER } from "../types";
 
 export default (state, action) => {
   switch (action.type) {
     case LOGIN:
+    case REGISTER:
       if (action.data.remember) {
         localStorage.setItem("authToken", action.data.authToken);
       } else {

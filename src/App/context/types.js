@@ -2,3 +2,5 @@
 export const EXAMPLE_TYPE = "EXAMPLE_TYPE";
 export const LOGIN = "LOGIN";
 export const LOG_OUT = "LOG_OUT";
+export const REGISTER = "REGISTER";
+

@@ -1,12 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState} from "react";
+import { connect } from 'react-redux';
 import { Input, message } from "antd";
+import PropTypes from 'prop-types';
 
-import authContext from "../../context/auth/authContext";
-import globalContext from "../../context/global/globalContext";
+
+// import authContext from "../../context/auth/authContext";
+// import globalContext from "../../context/global/globalContext";
+// Redux
+import { register } from '../../actions/auth';
 
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
-const RegisterForm = props => {
+const RegisterForm = ({register}) => {
   const [signUpState, setSignUpState] = useState({
     email: "",
     username: "",
@@ -16,11 +21,11 @@ const RegisterForm = props => {
 
   const [isPending, setIsPending] = useState(false);
 
-  const AuthContext = useContext(authContext);
-  const GlobalContext = useContext(globalContext);
+  // const AuthContext = useContext(authContext);
+  // const GlobalContext = useContext(globalContext);
 
   // Actual functions from auth provider
-  const { signUp } = AuthContext;
+  // const { signUp } = AuthContext;
 
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
@@ -35,56 +40,58 @@ const RegisterForm = props => {
 
     const { email, username, password, confirmPassword } = signUpState;
 
-    if (!password.match(/(?=.*[A-Z])/)) {
-      message.error("password must contain at least one upppercase character");
-      setIsPending(false);
-      return;
-    }
+    // if (!password.match(/(?=.*[A-Z])/)) {
+    //   message.error("password must contain at least one upppercase character");
+    //   setIsPending(false);
+    //   return;
+    // }
 
-    if (!password.match(/(?=.*\d)/)) {
-      message.error("password must contain at least one number");
-      setIsPending(false);
-      return;
-    }
+    // if (!password.match(/(?=.*\d)/)) {
+    //   message.error("password must contain at least one number");
+    //   setIsPending(false);
+    //   return;
+    // }
 
-    if (password.length < 8) {
-      message.error("password must be atleast 8 characters");
-      setIsPending(false);
-      return;
-    }
+    // if (password.length < 8) {
+    //   message.error("password must be at least 8 characters");
+    //   setIsPending(false);
+    //   return;
+    // }
 
-    const signUpResponse = await signUp(
-      email,
-      username,
-      password,
-      confirmPassword
-    );
+    // const signUpResponse = await signUp(
+    //   email,
+    //   username,
+    //   password,
+    //   confirmPassword
+    // );
 
-    const { success, token, errors } = signUpResponse;
+    // const { success, token, errors } = signUpResponse;
     setIsPending(false);
 
-    if (success) {
+    if (password !== confirmPassword) {
+
+      // AuthContext.setState({
+      //   isAuthenticated: true
+      // });
+
+      // GlobalContext.setState({
+      //   authToken: token
+      // });
+
+
+    } else {
+      // Object.keys(errors).forEach(key => {
+      //   message.error(errors[key]);
+      // });
       message.success("Registration successful");
 
-      AuthContext.setState({
-        isAuthenticated: true
-      });
-
-      GlobalContext.setState({
-        authToken: token
-      });
+      register({username, email, password});
 
       setSignUpState({
         email: "",
         username: "",
         password: "",
         confirmPassword: ""
-      });
-
-      props.isLoggedIn();
-    } else {
-      Object.keys(errors).forEach(key => {
-        message.error(errors[key]);
       });
     }
   };
@@ -152,4 +159,11 @@ const RegisterForm = props => {
   );
 };
 
-export default RegisterForm;
+RegisterForm.propTypes = {
+  register: PropTypes.func.isRequired,
+}
+
+export default  connect(
+  null,
+  {register}
+) (RegisterForm);

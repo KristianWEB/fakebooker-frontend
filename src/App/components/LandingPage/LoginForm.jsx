@@ -1,13 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 import { Checkbox, Input, message } from "antd";
 
-import authContext from "../../context/auth/authContext";
-import globalContext from "../../context/global/globalContext";
-
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
-const LoginForm = props => {
+const LoginForm = () => {
   const [loginState, setLoginState] = useState({
     email: "",
     password: "",
@@ -16,10 +13,10 @@ const LoginForm = props => {
 
   const [isPending, setIsPending] = useState(false);
 
-  const AuthContext = useContext(authContext);
-  const GlobalContext = useContext(globalContext);
+  // const AuthContext = useContext(authContext);
+  // const GlobalContext = useContext(globalContext);
 
-  const { login } = AuthContext;
+  // const { login } = AuthContext;
 
   const onChange = e =>
     setLoginState({ ...loginState, [e.target.name]: e.target.value });
@@ -32,27 +29,27 @@ const LoginForm = props => {
     }
     setIsPending(true);
 
-    const { email, password, remember } = loginState;
+    // const { email, password, remember } = loginState;
 
-    const loginResponse = await login(email, password);
+    // const loginResponse = await login(email, password);
 
-    const { success, token, msg } = loginResponse;
+    // const { success, token, msg } = loginResponse;
 
     setIsPending(false);
 
-    if (success) {
-      message.success("Login successful");
-      AuthContext.setState({
-        isAuthenticated: true
-      });
-      GlobalContext.setState({
-        authToken: token,
-        remember
-      });
-      props.isLoggedIn();
-    } else {
-      message.error(msg);
-    }
+    // if (success) {
+    //   message.success("Login successful");
+    //   AuthContext.setState({
+    //     isAuthenticated: true
+    //   });
+    //   GlobalContext.setState({
+    //     authToken: token,
+    //     remember
+    //   });
+    //   props.isLoggedIn();
+    // } else {
+    //   message.error(msg);
+    // }
   };
 
   return (
