@@ -13,7 +13,7 @@ export const NavContainer = styled(Row)`
 export const LogoContainer = styled.div`
   padding-left: 5px;
 `;
-export const CurrentPage = styled.h3`
+export const CurrentPage = styled.p`
   display: none;
 
   @media (min-width: 1000px) {
@@ -83,7 +83,7 @@ export const FriendRequests = styled.img`
   height: 1.875rem;
 `;
 
-export const FriendRequestsCount = styled.h5`
+export const FriendRequestsCount = styled.p`
   color: white;
   align-self: flex-start;
   padding: 0.1rem 0.4rem;
@@ -115,7 +115,7 @@ export const Messages = styled.img`
   height: 2.18rem;
 `;
 
-export const MessagesCount = styled.h5`
+export const MessagesCount = styled.p`
   color: white;
   align-self: flex-start;
   padding: 0.1rem 0.4rem;
@@ -139,7 +139,7 @@ export const Notifications = styled.img`
   height: 1.875rem;
 `;
 
-export const NotificationsCount = styled.h5`
+export const NotificationsCount = styled.p`
   color: white;
   align-self: flex-start;
   padding: 0.1rem 0.4rem;
@@ -233,7 +233,7 @@ export const NameContainer = styled(Row)`
   margin-left: 0.5rem;
 `;
 
-export const Name = styled.h3`
+export const Name = styled.p`
   font-size: 1rem;
   font-weight: bold;
   line-height: 1;
@@ -241,7 +241,7 @@ export const Name = styled.h3`
   margin: 0;
 `;
 
-export const Prefix = styled.h3`
+export const Prefix = styled.p`
   font-size: 0.7rem;
   color: #8185a2;
   margin: 0;

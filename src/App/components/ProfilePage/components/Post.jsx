@@ -47,7 +47,7 @@ export default function Post() {
         <PostCard bodyStyle={{ padding: "0" }}>
           <PostHeader>
             <ProfileWrapper>
-              <ProfileAvatar shape="circle" src={ProfileSVG} />
+              <ProfileAvatar size="large" shape="circle" src={ProfileSVG} />
               <NameWrapper>
                 <ProfileName>James Spiegel</ProfileName>
                 <PostCreation>19 hours ago</PostCreation>
