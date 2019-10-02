@@ -43,16 +43,8 @@ export const ProfileName = styled.h3`
 export const ProfileAvatar = styled(Avatar)`
   object-fit: contain;
   border: 1px solid #444444;
-
-  @media (max-width: 400px) {
-    width: 50px;
-    height: 50px;
-  }
-  @media (min-width: 400px) {
-    width: 55px;
-    height: 55px;
-  }
 `;
+
 export const PostCreation = styled.p`
   font-size: 0.812rem;
   font-family: "Roboto";
