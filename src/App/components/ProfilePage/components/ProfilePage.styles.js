@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import { Row } from "antd";
 
-export const ProfileContainer = styled(Row)`
+const InfoContainer = styled(Row)`
   display: flex;
-  flex-direction: column;
+  max-width: 1250px;
+  margin: 0 auto;
 `;
 
-export const InfoContainer = styled(Row)`
-  display: flex;
-  flex-direction: row;
-`;
+export default InfoContainer;

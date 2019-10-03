@@ -1,10 +1,7 @@
 import React, { useContext } from "react";
 import { withRouter } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import {
-  ProfileContainer,
-  InfoContainer
-} from "./components/ProfilePage.styles";
+import InfoContainer from "./components/ProfilePage.styles";
 import ProfileHeader from "./components/ProfileHeader";
 import MockupForm from "./components/MockupForm";
 import Post from "./components/Post";
@@ -22,18 +19,16 @@ const ProfilePage = props => {
     <div>
       {/* TODO: Connect ProfileHeader to user */}
       <Navbar displayName={username} />
-      <ProfileContainer>
-        <ProfileHeader
-          coverImage="https://www.w3schools.com/w3images/avatar2.png"
-          profileImage="https://www.w3schools.com/w3images/avatar2.png"
-          displayName={username}
-        />
-        {/* <MockupForm /> */}
-        <InfoContainer>
-          <About />
-          <Post />
-        </InfoContainer>
-      </ProfileContainer>
+      <ProfileHeader
+        coverImage="https://www.w3schools.com/w3images/avatar2.png"
+        profileImage="https://www.w3schools.com/w3images/avatar2.png"
+        displayName={username}
+      />
+      {/* <MockupForm /> */}
+      <InfoContainer>
+        <About />
+        <Post />
+      </InfoContainer>
     </div>
   );
 };
