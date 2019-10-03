@@ -42,7 +42,7 @@ import FourthLikeAvatar from "../../../../assets/images/like4-image.jpg";
 
 export default function Post() {
   return (
-    <Row type="flex" style={{ justifyContent: "center" }}>
+    <Row type="flex">
       <Col xs={24} md={16} lg={14} xl={12} xxl={16}>
         <PostCard bodyStyle={{ padding: "0" }}>
           <PostHeader>
