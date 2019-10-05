@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import { Row, Col, Popover, Avatar } from "antd";
 import {
   Container,
@@ -41,9 +40,7 @@ export default function ProfileHeader({
   return (
     <Flex>
       <Container>
-        <div
-          style={{ width: "100%", paddingTop: "33.33%", position: "relative" }}
-        >
+        <div style={{ paddingTop: "33.33%", position: "relative" }}>
           {" "}
           {/* Aspect Ratio of 3:1 */}
           <ProfileHeaderPhoto src={coverImage} alt="Profile Header" />

@@ -1,6 +1,13 @@
 import styled from "styled-components";
-import { Card, Avatar } from "antd";
+import { Row, Card, Avatar } from "antd";
 
+export const PostContainer = styled(Row)`
+  max-width: 100%;
+  margin: 0 0.93rem;
+  @media (min-width: 1200px) {
+    max-width: 38.62rem;
+  }
+`;
 export const PostHeader = styled.div`
   display: flex;
   justify-items: between;
@@ -9,9 +16,10 @@ export const PostHeader = styled.div`
 `;
 
 export const PostCard = styled(Card)`
-  border: 1px solid #f6f6f6;
+  border: none;
   margin: 1rem;
   border-radius: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
 
   @media (max-width: 365px) {
     margin: 0;
