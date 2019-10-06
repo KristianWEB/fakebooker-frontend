@@ -18,7 +18,9 @@ export const PostHeader = styled.div`
 export const PostCard = styled(Card)`
   border: none;
   margin: 1rem;
-  border-radius: 8px;
+
+  /** ant-design adds its own border-radius: 3px and somehow I can't change that value so I had to put !important to make it work. Please let me know if you have any ideas to prevent this kind of collision with antd. */
+  border-radius: 8px !important;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
 
   @media (max-width: 365px) {
