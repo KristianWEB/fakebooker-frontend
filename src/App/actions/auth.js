@@ -2,8 +2,11 @@ import axios from "axios";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
   USER_LOADED,
-  AUTH_ERROR
+  AUTH_ERROR,
+  LOGOUT
 } from "./types";
 
 import setAuthToken from "../utils/setAuthToken";
@@ -20,7 +23,7 @@ export const loadUser = () => async dispatch => {
   }
 
   try {
-    const res = await axios.get(`${LocalURL}`);
+    const res = await axios.get(`${BaseURL}`);
 
     dispatch({
       type: USER_LOADED,
@@ -45,11 +48,13 @@ export const register = ({ username, email, password }) => async dispatch => {
   const body = JSON.stringify({ username, email, password });
 
   try {
-    const res = await axios.post(`${LocalURL}/register`, body, config);
+    const res = await axios.post(`${BaseURL}/register`, body, config);
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data
     });
+
+    dispatch(loadUser());
   } catch (err) {
     if (err) {
       console.error(err);
@@ -59,3 +64,36 @@ export const register = ({ username, email, password }) => async dispatch => {
     });
   }
 };
+
+// Login User
+export const login = (email, password) => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  const body = JSON.stringify({ email, password });
+
+  try {
+    const res = await axios.post(`${BaseURL}/login`, body, config);
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data
+    });
+
+    dispatch(loadUser());
+  } catch (err) {
+    if (err) {
+      console.error(err);
+    }
+    dispatch({
+      type: LOGIN_FAIL
+    });
+  }
+};
+
+// Logout user
+export const logout = () => dispatch => {
+  dispatch({type: LOGOUT });
+}

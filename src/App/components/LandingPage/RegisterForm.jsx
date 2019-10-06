@@ -2,6 +2,7 @@ import React, { useState} from "react";
 import { connect } from 'react-redux';
 import { Input, message } from "antd";
 import PropTypes from 'prop-types';
+import { Redirect } from "react-router-dom";
 
 
 // import authContext from "../../context/auth/authContext";
@@ -11,7 +12,7 @@ import { register } from '../../actions/auth';
 
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
-const RegisterForm = ({register}) => {
+const RegisterForm = ({ register, isAuthenticated }) => {
   const [signUpState, setSignUpState] = useState({
     email: "",
     username: "",
@@ -95,6 +96,11 @@ const RegisterForm = ({register}) => {
       });
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <AuthDisplay>
       <h1>Create Your Account</h1>
@@ -163,7 +169,11 @@ RegisterForm.propTypes = {
   register: PropTypes.func.isRequired,
 }
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
 export default  connect(
-  null,
+  mapStateToProps,
   {register}
 ) (RegisterForm);

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+import { Redirect } from "react-router-dom";
+import { login } from '../../actions/auth';
 
 import { Checkbox, Input, message } from "antd";
 
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
-const LoginForm = () => {
+const LoginForm = ({ login, isAuthenticated }) => {
   const [loginState, setLoginState] = useState({
     email: "",
     password: "",
@@ -29,7 +33,7 @@ const LoginForm = () => {
     }
     setIsPending(true);
 
-    // const { email, password, remember } = loginState;
+    const { email, password, remember } = loginState;
 
     // const loginResponse = await login(email, password);
 
@@ -50,7 +54,12 @@ const LoginForm = () => {
     // } else {
     //   message.error(msg);
     // }
+    login (email, password);
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <AuthDisplay>
@@ -103,4 +112,12 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+LoginForm.propTypes = {
+  login: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(LoginForm);

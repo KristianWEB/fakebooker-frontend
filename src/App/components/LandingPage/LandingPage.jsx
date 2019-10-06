@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from 'prop-types'
 import { Redirect } from "react-router-dom";
 import { Col, Row, Tabs } from "antd";
+
 
 import logo from "../../../assets/logo.svg";
 import backgroundImg from "../../../assets/images/landing-page-background.jpg";
@@ -26,6 +28,7 @@ const Auth = ({ isAuthenticated }) => {
   if (isAuthenticated) {
     return <Redirect to="/" />;
   }
+
   return (
     <AuthContainer>
       <Col span={20} offset={2}>
@@ -62,6 +65,12 @@ const LandingPage = () => {
     </Row>
   );
 };
+
+
+Auth.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+}
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
