@@ -6,6 +6,7 @@ import ProfileHeader from "./components/ProfileHeader";
 import MockupForm from "./components/MockupForm";
 import Post from "./components/Post";
 import About from "./components/About";
+import LastPhotos from "./components/LastPhotos";
 import globalContext from "../../context/global/globalContext";
 import getCurrentUserName from "../../util/jwtUtil";
 
@@ -28,6 +29,7 @@ const ProfilePage = props => {
       <InfoContainer>
         <About />
         <Post />
+        <LastPhotos />
       </InfoContainer>
     </div>
   );
