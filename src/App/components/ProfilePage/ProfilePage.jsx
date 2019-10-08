@@ -1,11 +1,14 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import InfoContainer from "./components/ProfilePage.styles";
 import ProfileHeader from "./components/ProfileHeader";
 import MockupForm from "./components/MockupForm";
 import Post from "./components/Post";
+import About from "./components/About";
+import LastPhotos from "./components/LastPhotos";
 
-const ProfilePage = props => {
+const ProfilePage = () => {
 
   return (
     <div>
@@ -16,8 +19,12 @@ const ProfilePage = props => {
         profileImage="https://www.w3schools.com/w3images/avatar2.png"
         displayName={"Static username"}
       />
-      <MockupForm />
-      <Post />
+      {/* <MockupForm /> */}
+      <InfoContainer>
+        <About />
+        <Post />
+        <LastPhotos />
+      </InfoContainer>
     </div>
   );
 };

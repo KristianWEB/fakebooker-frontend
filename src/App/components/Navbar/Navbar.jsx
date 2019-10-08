@@ -1,53 +1,78 @@
 import React from "react";
-import { Col, Input } from "antd";
 import {
   NavContainer,
   LogoContainer,
-  LogoImg,
-  LogoHeader,
-  SearchBarContainer,
-  ProfileContainer,
-  ProfileHeader,
-  ProfileAvatar,
-  ActionsRoute,
+  CurrentPage,
+  AppLogo,
   ActionsContainer,
-  ActionsIcon,
-  Arrow
+  FRContainer,
+  FriendRequests,
+  FriendRequestsCount,
+  MessagesContainer,
+  Messages,
+  MessagesCount,
+  NotificationsContainer,
+  Notifications,
+  NotificationsCount,
+  SearchContainer,
+  Search,
+  SearchBar,
+  NavMenu,
+  ProfileContainer,
+  UserContainer,
+  UserAvatar,
+  UserStatus,
+  NameContainer,
+  Name,
+  Prefix,
+  UserSettings
 } from "./Navbar.styles";
-import logo from "../../../assets/logo.svg";
-import ProfilePictureSample from "../../../assets/images/ProfilePictureSample.jpg";
+import Logo from "../../../assets/logo.svg";
+import FriendReqIcon from "../../../assets/icons/happy-face-icon.svg";
+import MessagesIcon from "../../../assets/icons/chat---messages-icon.svg";
+import NotifyIcon from "../../../assets/icons/thunder-icon.svg";
+import SearchIcon from "../../../assets/icons/magnifying-glass-icon.svg";
+import NavMenuBurger from "../../../assets/icons/menu-icon.svg";
+import UserPictureSample from "../../../assets/images/Post-profile1.jpg";
+import DropDownArrow from "../../../assets/icons/dropdown-arrow-icon.svg";
 
 export default function Navbar({ displayName }) {
   return (
     <NavContainer>
-      <Col span={4}>
-        <LogoContainer>
-          <LogoImg src={logo} alt="logo" />
-          <LogoHeader>Sidekick</LogoHeader>
-        </LogoContainer>
-      </Col>
-      <Col span={6}>
-        <SearchBarContainer>
-          <Input placeholder="Search friends,photos,videos" />
-        </SearchBarContainer>
-      </Col>
-      <Col span={5}>
-        <ActionsContainer>
-          <ActionsRoute href="/">Home</ActionsRoute>
-          <ActionsIcon type="user-add" />
-          <ActionsIcon type="message" />
-          <ActionsIcon type="notification" />
-        </ActionsContainer>
-      </Col>
-      <Col span={6}>
-        <ProfileContainer>
-          <ProfileAvatar src={ProfilePictureSample} alt="Profile" />
-          <ProfileHeader className="profile-header">
-            {displayName}
-          </ProfileHeader>
-          <Arrow type="down" />
-        </ProfileContainer>
-      </Col>
+      <LogoContainer>
+        <AppLogo src={Logo} />
+      </LogoContainer>
+      <CurrentPage>PROFILE PAGE</CurrentPage>
+      <SearchBar placeholder="Search" />
+      <ActionsContainer>
+        <FRContainer>
+          <FriendRequests src={FriendReqIcon} />
+          <FriendRequestsCount> 1 </FriendRequestsCount>
+        </FRContainer>
+        <MessagesContainer>
+          <Messages src={MessagesIcon} />
+          <MessagesCount> 3 </MessagesCount>
+        </MessagesContainer>
+        <NotificationsContainer>
+          <Notifications src={NotifyIcon} />
+          <NotificationsCount> 7 </NotificationsCount>
+        </NotificationsContainer>
+        <SearchContainer>
+          <Search src={SearchIcon} />
+        </SearchContainer>
+      </ActionsContainer>
+      <NavMenu src={NavMenuBurger} />
+      <ProfileContainer>
+        <UserContainer>
+          <UserAvatar size={42} src={UserPictureSample} />
+          <UserStatus online="on" />
+          <NameContainer>
+            <Name>{displayName}</Name>
+            <Prefix>SPACE COWBOY</Prefix>
+          </NameContainer>
+        </UserContainer>
+        <UserSettings src={DropDownArrow} />
+      </ProfileContainer>
     </NavContainer>
   );
 }

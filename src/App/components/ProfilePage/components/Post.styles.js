@@ -1,6 +1,13 @@
 import styled from "styled-components";
-import { Card, Avatar } from "antd";
+import { Row, Card, Avatar } from "antd";
 
+export const PostContainer = styled(Row)`
+  max-width: 100%;
+  margin: 0 0.93rem;
+  @media (min-width: 1200px) {
+    max-width: 38.62rem;
+  }
+`;
 export const PostHeader = styled.div`
   display: flex;
   justify-items: between;
@@ -9,9 +16,12 @@ export const PostHeader = styled.div`
 `;
 
 export const PostCard = styled(Card)`
-  border: 1px solid #f6f6f6;
+  border: none;
   margin: 1rem;
-  border-radius: 8px;
+
+  /** ant-design adds its own border-radius: 3px and somehow I can't change that value so I had to put !important to make it work. Please let me know if you have any ideas to prevent this kind of collision with antd. */
+  border-radius: 8px !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
 
   @media (max-width: 365px) {
     margin: 0;
@@ -43,16 +53,8 @@ export const ProfileName = styled.h3`
 export const ProfileAvatar = styled(Avatar)`
   object-fit: contain;
   border: 1px solid #444444;
-
-  @media (max-width: 400px) {
-    width: 50px;
-    height: 50px;
-  }
-  @media (min-width: 400px) {
-    width: 55px;
-    height: 55px;
-  }
 `;
+
 export const PostCreation = styled.p`
   font-size: 0.812rem;
   font-family: "Roboto";

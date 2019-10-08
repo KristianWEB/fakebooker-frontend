@@ -4,6 +4,11 @@ import styled from "styled-components";
 
 import { Button } from "antd";
 
+export const Flex = styled.div`
+  display: flex;
+  align-content: center;
+  justify-content: center;
+`;
 export const Container = styled.div`
   position: relative;
   width: 100%;
@@ -16,6 +21,20 @@ export const Container = styled.div`
 
   @media (min-width: 1981px) {
     max-width: 1500px;
+  }
+`;
+export const ButtonContainer = styled(Flex)`
+  width: 200px;
+  justify-content: space-between;
+  position: absolute;
+  right: 80px;
+  z-index: 5;
+  transform: translateY(-50%);
+
+  @media (max-width: 991px) {
+    right: 0px;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 export const ProfileHeaderPhoto = styled.img`
@@ -50,25 +69,6 @@ export const StyleNavLink = styled(NavLink)`
   }
   &.active {
     color: #515365;
-  }
-`;
-export const Flex = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: center;
-`;
-export const ButtonContainer = styled(Flex)`
-  width: 200px;
-  justify-content: space-between;
-  position: absolute;
-  right: 80px;
-  z-index: 5;
-  transform: translateY(-50%);
-
-  @media (max-width: 991px) {
-    right: 0px;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 `;
 export const StyleButton = styled(Button)`
