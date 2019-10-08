@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
-import { login } from '../../actions/auth';
-
-import { Checkbox, Input, message } from "antd";
+import { Checkbox, Input } from "antd";
+import { login as loginUser } from "../../actions/auth";
 
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
@@ -54,7 +53,7 @@ const LoginForm = ({ login, isAuthenticated }) => {
     // } else {
     //   message.error(msg);
     // }
-    login (email, password);
+    login(email, password);
   };
 
   if (isAuthenticated) {
@@ -113,11 +112,14 @@ const LoginForm = ({ login, isAuthenticated }) => {
 };
 
 LoginForm.propTypes = {
-  login: PropTypes.func.isRequired,
-}
+  login: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { login })(LoginForm);
+export default connect(
+  mapStateToProps,
+  { login: loginUser }
+)(LoginForm);

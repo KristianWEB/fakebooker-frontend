@@ -1,8 +1,8 @@
 import React from "react";
 
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
-import { logout } from '../../actions/auth';
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout as logoutUser } from "../../actions/auth";
 
 import HomeContainer from "./HomePage.styles";
 
@@ -20,6 +20,9 @@ const Home = ({ logout }) => {
 
 Home.propTypes = {
   logout: PropTypes.func.isRequired
-}
+};
 
-export default connect(null,{ logout })(Home);
+export default connect(
+  null,
+  { logout: logoutUser }
+)(Home);

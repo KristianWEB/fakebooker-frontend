@@ -1,14 +1,13 @@
-import React, { useState} from "react";
-import { connect } from 'react-redux';
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Input, message } from "antd";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
-
 
 // import authContext from "../../context/auth/authContext";
 // import globalContext from "../../context/global/globalContext";
 // Redux
-import { register } from '../../actions/auth';
+import { register as registerUser } from "../../actions/auth";
 
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
@@ -70,23 +69,19 @@ const RegisterForm = ({ register, isAuthenticated }) => {
     setIsPending(false);
 
     if (password !== confirmPassword) {
-
       // AuthContext.setState({
       //   isAuthenticated: true
       // });
-
       // GlobalContext.setState({
       //   authToken: token
       // });
-
-
     } else {
       // Object.keys(errors).forEach(key => {
       //   message.error(errors[key]);
       // });
       message.success("Registration successful");
 
-      register({username, email, password});
+      register({ username, email, password });
 
       setSignUpState({
         email: "",
@@ -166,14 +161,14 @@ const RegisterForm = ({ register, isAuthenticated }) => {
 };
 
 RegisterForm.propTypes = {
-  register: PropTypes.func.isRequired,
-}
+  register: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default  connect(
+export default connect(
   mapStateToProps,
-  {register}
-) (RegisterForm);
+  { register: registerUser }
+)(RegisterForm);

@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import { Col, Row, Tabs } from "antd";
-
 
 import logo from "../../../assets/logo.svg";
 import backgroundImg from "../../../assets/images/landing-page-background.jpg";
@@ -11,9 +11,6 @@ import RegisterForm from "./RegisterForm";
 
 // import AuthProvider from "../../context/auth/AuthProvider";
 // import globalContext from "../../context/global/globalContext";
-
-// Redux
-import { connect } from "react-redux";
 
 import {
   LandingContentContainer,
@@ -24,7 +21,7 @@ import {
 
 const { TabPane } = Tabs;
 
-const Auth = ({ isAuthenticated }) => {
+const Auth = ({ isAuthenticated = null }) => {
   if (isAuthenticated) {
     return <Redirect to="/" />;
   }
@@ -66,11 +63,10 @@ const LandingPage = () => {
   );
 };
 
-
+Auth.defaultProps = null;
 Auth.propTypes = {
-  login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
-}
+  isAuthenticated: PropTypes.bool
+};
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated

@@ -13,7 +13,7 @@ import setAuthToken from "../utils/setAuthToken";
 
 const BaseURL = "https://osd-sidekick.herokuapp.com/api/auth";
 
-const LocalURL = "http://localhost:8080/api/auth";
+// const LocalURL = "http://localhost:8080/api/auth";
 
 // Load User
 
@@ -30,13 +30,11 @@ export const loadUser = () => async dispatch => {
       payload: res.data
     });
   } catch (err) {
-    console.error(err)
     dispatch({
       type: AUTH_ERROR
     });
   }
 };
-
 // Register User
 export const register = ({ username, email, password }) => async dispatch => {
   const config = {
@@ -95,5 +93,5 @@ export const login = (email, password) => async dispatch => {
 
 // Logout user
 export const logout = () => dispatch => {
-  dispatch({type: LOGOUT });
-}
+  dispatch({ type: LOGOUT });
+};

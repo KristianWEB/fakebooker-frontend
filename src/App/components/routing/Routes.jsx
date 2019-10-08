@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
 import LandingPage from "../LandingPage/LandingPage";
 import HomePage from "../HomePage/HomePage";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
@@ -11,10 +12,9 @@ import PrivateRoute from "./PrivateRoute";
 // import PostProvider from "../../context/post/PostProvider";
 
 // Redux
-import { Provider } from "react-redux";
 import store from "../../store";
-import { loadUser } from '../../actions/auth';
-import setAuthToken from '../../utils/setAuthToken';
+import { loadUser } from "../../actions/auth";
+import setAuthToken from "../../utils/setAuthToken";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
