@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
-import { Checkbox, Input } from "antd";
+import { Checkbox, Input, message } from "antd";
 import { login as loginUser } from "../../actions/auth";
 
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
@@ -34,12 +34,24 @@ const LoginForm = ({ login, isAuthenticated }) => {
 
     const { email, password, remember } = loginState;
 
-    // const loginResponse = await login(email, password);
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    // const { success, token, msg } = loginResponse;
-
+    if (!email) {
+      message.error("Email can't be empty!");
+      setIsPending(false);
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      message.error("Email isn't valid!");
+      setIsPending(false);
+      return;
+    }
+    if (!password) {
+      message.error("Password can't be empty!");
+      setIsPending(false);
+      return;
+    }
     setIsPending(false);
-
     // if (success) {
     //   message.success("Login successful");
     //   AuthContext.setState({
@@ -53,6 +65,7 @@ const LoginForm = ({ login, isAuthenticated }) => {
     // } else {
     //   message.error(msg);
     // }
+
     login(email, password);
   };
 

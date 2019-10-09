@@ -40,56 +40,63 @@ const RegisterForm = ({ register, isAuthenticated }) => {
 
     const { email, username, password, confirmPassword } = signUpState;
 
-    // if (!password.match(/(?=.*[A-Z])/)) {
-    //   message.error("password must contain at least one upppercase character");
-    //   setIsPending(false);
-    //   return;
-    // }
+    if (!password.match(/(?=.*[A-Z])/)) {
+      message.error("password must contain at least one upppercase character");
+      setIsPending(false);
+      return;
+    }
 
-    // if (!password.match(/(?=.*\d)/)) {
-    //   message.error("password must contain at least one number");
-    //   setIsPending(false);
-    //   return;
-    // }
+    if (!password.match(/(?=.*\d)/)) {
+      message.error("password must contain at least one number");
+      setIsPending(false);
+      return;
+    }
 
-    // if (password.length < 8) {
-    //   message.error("password must be at least 8 characters");
-    //   setIsPending(false);
-    //   return;
-    // }
-
-    // const signUpResponse = await signUp(
-    //   email,
-    //   username,
-    //   password,
-    //   confirmPassword
-    // );
-
-    // const { success, token, errors } = signUpResponse;
-    setIsPending(false);
+    if (password.length < 8) {
+      message.error("password must be at least 8 characters");
+      setIsPending(false);
+      return;
+    }
 
     if (password !== confirmPassword) {
-      // AuthContext.setState({
-      //   isAuthenticated: true
-      // });
-      // GlobalContext.setState({
-      //   authToken: token
-      // });
-    } else {
-      // Object.keys(errors).forEach(key => {
-      //   message.error(errors[key]);
-      // });
-      message.success("Registration successful");
-
-      register({ username, email, password });
-
-      setSignUpState({
-        email: "",
-        username: "",
-        password: "",
-        confirmPassword: ""
-      });
+      message.error("passwords must be the same");
+      setIsPending(false);
+      return;
     }
+
+    message.success("Registration successful");
+
+    register({ username, email, password });
+
+    setSignUpState({
+      email: "",
+      username: "",
+      password: "",
+      confirmPassword: ""
+    });
+
+    // if (password !== confirmPassword) {
+    //   // AuthContext.setState({
+    //   //   isAuthenticated: true
+    //   // });
+    //   // GlobalContext.setState({
+    //   //   authToken: token
+    //   // });
+    // } else {
+    //   // Object.keys(errors).forEach(key => {
+    //   //   message.error(errors[key]);
+    //   // });
+    //   message.success("Registration successful");
+
+    //   register({ username, email, password });
+
+    //   setSignUpState({
+    //     email: "",
+    //     username: "",
+    //     password: "",
+    //     confirmPassword: ""
+    //   });
+    // }
   };
 
   if (isAuthenticated) {
