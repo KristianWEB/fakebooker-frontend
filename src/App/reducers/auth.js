@@ -1,3 +1,4 @@
+import { message } from "antd";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -29,14 +30,26 @@ export default function(state = initialState, action) {
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
+      message.success("Logged in successfully");
       return {
         ...state,
         ...payload,
         isAuthenticated: true,
         loading: false
       };
-    case LOGOUT:
     case LOGIN_FAIL:
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
+      message.error(payload.msg);
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        user: null
+      };
+
+    case LOGOUT:
     case REGISTER_FAIL:
     case AUTH_ERROR:
       localStorage.removeItem("token");

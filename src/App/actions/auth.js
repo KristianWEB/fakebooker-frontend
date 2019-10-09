@@ -1,4 +1,5 @@
 import axios from "axios";
+import { message } from "antd";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -73,8 +74,8 @@ export const login = (email, password) => async dispatch => {
 
   const body = JSON.stringify({ email, password });
 
+  const res = await axios.post(`${BaseURL}/login`, body, config);
   try {
-    const res = await axios.post(`${BaseURL}/login`, body, config);
     if (res.data.success) {
       dispatch({
         type: LOGIN_SUCCESS,
