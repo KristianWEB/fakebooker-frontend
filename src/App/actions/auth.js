@@ -55,9 +55,7 @@ export const register = ({ username, email, password }) => async dispatch => {
 
     dispatch(loadUser());
   } catch (err) {
-    if (err) {
-      console.error(err);
-    }
+    message.error(err);
     dispatch({
       type: REGISTER_FAIL
     });
@@ -88,9 +86,7 @@ export const login = (email, password) => async dispatch => {
       });
     }
   } catch (err) {
-    if (err) {
-      console.error(err);
-    }
+    message.error(err);
     dispatch({
       type: LOGIN_FAIL
     });
