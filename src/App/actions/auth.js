@@ -75,12 +75,18 @@ export const login = (email, password) => async dispatch => {
 
   try {
     const res = await axios.post(`${BaseURL}/login`, body, config);
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res.data
-    });
-
-    dispatch(loadUser());
+    if (res.data.success) {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      });
+      dispatch(loadUser());
+    } else {
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: res.data
+      });
+    }
   } catch (err) {
     if (err) {
       console.error(err);
