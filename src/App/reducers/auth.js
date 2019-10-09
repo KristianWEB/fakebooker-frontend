@@ -12,7 +12,6 @@ const initialState = {
   token: localStorage.getItem("token") || sessionStorage.getItem("token"),
   isAuthenticated: null,
   loading: true,
-  success: false,
   user: null
 };
 
@@ -46,7 +45,8 @@ export default function(state = initialState, action) {
         ...state,
         token: null,
         isAuthenticated: false,
-        loading: false
+        loading: false,
+        user: null
       };
     default:
       return state;
