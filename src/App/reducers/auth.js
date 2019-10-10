@@ -27,10 +27,23 @@ export default function(state = initialState, action) {
         isAuthenticated: true,
         loading: false
       };
-    case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      localStorage.setItem("token", payload.token);
       message.success("Logged in successfully");
+      if (!payload.remember) {
+        sessionStorage.setItem("token", payload.data.token);
+      } else {
+        localStorage.setItem("token", payload.data.token);
+      }
+      return {
+        ...state,
+        ...payload,
+        isAuthenticated: true,
+        loading: false
+      };
+
+    case REGISTER_SUCCESS:
+      message.success("Logged in successfully");
+      localStorage.setItem("token", payload.token);
       return {
         ...state,
         ...payload,

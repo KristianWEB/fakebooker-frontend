@@ -21,6 +21,8 @@ const BaseURL = "https://osd-sidekick.herokuapp.com/api/auth";
 export const loadUser = () => async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
+  } else if (sessionStorage.token) {
+    setAuthToken(sessionStorage.token);
   }
 
   try {
@@ -63,7 +65,7 @@ export const register = ({ username, email, password }) => async dispatch => {
 };
 
 // Login User
-export const login = (email, password) => async dispatch => {
+export const login = (email, password, remember) => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -76,7 +78,10 @@ export const login = (email, password) => async dispatch => {
     if (res.data.success) {
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data
+        payload: {
+          data: res.data,
+          remember
+        }
       });
       dispatch(loadUser());
     } else {

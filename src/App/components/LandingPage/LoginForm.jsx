@@ -66,7 +66,7 @@ const LoginForm = ({ login, isAuthenticated }) => {
     //   message.error(msg);
     // }
 
-    login(email, password);
+    login(email, password, remember);
   };
 
   if (isAuthenticated) {
