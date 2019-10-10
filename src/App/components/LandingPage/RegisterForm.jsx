@@ -4,8 +4,6 @@ import { Input, message } from "antd";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 
-// import authContext from "../../context/auth/authContext";
-// import globalContext from "../../context/global/globalContext";
 // Redux
 import { register as registerUser } from "../../actions/auth";
 
@@ -20,12 +18,6 @@ const RegisterForm = ({ register, isAuthenticated }) => {
   });
 
   const [isPending, setIsPending] = useState(false);
-
-  // const AuthContext = useContext(authContext);
-  // const GlobalContext = useContext(globalContext);
-
-  // Actual functions from auth provider
-  // const { signUp } = AuthContext;
 
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
@@ -59,7 +51,7 @@ const RegisterForm = ({ register, isAuthenticated }) => {
     }
 
     if (password !== confirmPassword) {
-      message.error("passwords must be the same");
+      message.error("Passwords must be the same");
       setIsPending(false);
       return;
     }
@@ -74,29 +66,6 @@ const RegisterForm = ({ register, isAuthenticated }) => {
       password: "",
       confirmPassword: ""
     });
-
-    // if (password !== confirmPassword) {
-    //   // AuthContext.setState({
-    //   //   isAuthenticated: true
-    //   // });
-    //   // GlobalContext.setState({
-    //   //   authToken: token
-    //   // });
-    // } else {
-    //   // Object.keys(errors).forEach(key => {
-    //   //   message.error(errors[key]);
-    //   // });
-    //   message.success("Registration successful");
-
-    //   register({ username, email, password });
-
-    //   setSignUpState({
-    //     email: "",
-    //     username: "",
-    //     password: "",
-    //     confirmPassword: ""
-    //   });
-    // }
   };
 
   if (isAuthenticated) {

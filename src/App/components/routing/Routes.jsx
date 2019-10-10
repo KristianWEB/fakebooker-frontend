@@ -8,8 +8,6 @@ import ProfilePage from "../ProfilePage/ProfilePage";
 import Gallery from "../Gallery/Gallery";
 import NavBar from "../Navbar/Navbar";
 import PrivateRoute from "./PrivateRoute";
-// import GlobalProvider from "../../context/global/GlobalProvider";
-// import PostProvider from "../../context/post/PostProvider";
 
 // Redux
 import store from "../../store";

@@ -9,9 +9,6 @@ import backgroundImg from "../../../assets/images/landing-page-background.jpg";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
-// import AuthProvider from "../../context/auth/AuthProvider";
-// import globalContext from "../../context/global/globalContext";
-
 import {
   LandingContentContainer,
   AuthContainer,

@@ -16,11 +16,6 @@ const LoginForm = ({ login, isAuthenticated }) => {
 
   const [isPending, setIsPending] = useState(false);
 
-  // const AuthContext = useContext(authContext);
-  // const GlobalContext = useContext(globalContext);
-
-  // const { login } = AuthContext;
-
   const onChange = e =>
     setLoginState({ ...loginState, [e.target.name]: e.target.value });
 
@@ -52,19 +47,6 @@ const LoginForm = ({ login, isAuthenticated }) => {
       return;
     }
     setIsPending(false);
-    // if (success) {
-    //   message.success("Login successful");
-    //   AuthContext.setState({
-    //     isAuthenticated: true
-    //   });
-    //   GlobalContext.setState({
-    //     authToken: token,
-    //     remember
-    //   });
-    //   props.isLoggedIn();
-    // } else {
-    //   message.error(msg);
-    // }
 
     login(email, password, remember);
   };
