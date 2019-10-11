@@ -13,7 +13,8 @@ const initialState = {
   token: localStorage.getItem("token") || sessionStorage.getItem("token"),
   isAuthenticated: null,
   loading: true,
-  user: null
+  user: null,
+  remember: false
 };
 
 export default function(state = initialState, action) {
@@ -29,10 +30,10 @@ export default function(state = initialState, action) {
       };
     case LOGIN_SUCCESS:
       message.success("Logged in successfully");
-      if (!payload.remember) {
-        sessionStorage.setItem("token", payload.data.token);
-      } else {
+      if (payload.remember) {
         localStorage.setItem("token", payload.data.token);
+      } else {
+        sessionStorage.setItem("token", payload.data.token);
       }
       return {
         ...state,
