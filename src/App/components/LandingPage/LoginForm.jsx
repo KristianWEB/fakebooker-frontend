@@ -46,8 +46,8 @@ const LoginForm = ({ login, isAuthenticated }) => {
       setIsPending(false);
       return;
     }
-    setIsPending(false);
 
+    setIsPending(false);
     login(email, password, remember);
   };
 

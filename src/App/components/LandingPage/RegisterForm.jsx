@@ -28,6 +28,7 @@ const RegisterForm = ({ register, isAuthenticated }) => {
     if (isPending) {
       return;
     }
+
     setIsPending(true);
 
     const { email, username, password, confirmPassword } = signUpState;
@@ -56,10 +57,8 @@ const RegisterForm = ({ register, isAuthenticated }) => {
       return;
     }
 
-    message.success("Registration successful");
-
     register({ username, email, password });
-
+    setIsPending(false);
     setSignUpState({
       email: "",
       username: "",

@@ -62,8 +62,23 @@ export default function(state = initialState, action) {
         user: null
       };
 
-    case LOGOUT:
     case REGISTER_FAIL:
+      Object.keys(payload.errors).forEach(error => {
+        message.error(payload.errors[error]);
+      });
+
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
+      return {
+        ...state,
+        ...payload,
+        token: null,
+        isAuthenticated: false,
+        loading: false,
+        user: null
+      };
+
+    case LOGOUT:
     case AUTH_ERROR:
       localStorage.removeItem("token");
       sessionStorage.removeItem("token");
