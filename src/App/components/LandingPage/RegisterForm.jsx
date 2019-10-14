@@ -1,12 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Input, message } from "antd";
+import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 
-import authContext from "../../context/auth/authContext";
-import globalContext from "../../context/global/globalContext";
+// Redux
+import { register as registerUser } from "../../actions/auth";
 
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
-const RegisterForm = props => {
+const RegisterForm = ({ register, isAuthenticated }) => {
   const [signUpState, setSignUpState] = useState({
     email: "",
     username: "",
@@ -15,12 +18,6 @@ const RegisterForm = props => {
   });
 
   const [isPending, setIsPending] = useState(false);
-
-  const AuthContext = useContext(authContext);
-  const GlobalContext = useContext(globalContext);
-
-  // Actual functions from auth provider
-  const { signUp } = AuthContext;
 
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
@@ -31,6 +28,7 @@ const RegisterForm = props => {
     if (isPending) {
       return;
     }
+
     setIsPending(true);
 
     const { email, username, password, confirmPassword } = signUpState;
@@ -48,46 +46,31 @@ const RegisterForm = props => {
     }
 
     if (password.length < 8) {
-      message.error("password must be atleast 8 characters");
+      message.error("password must be at least 8 characters");
       setIsPending(false);
       return;
     }
 
-    const signUpResponse = await signUp(
-      email,
-      username,
-      password,
-      confirmPassword
-    );
-
-    const { success, token, errors } = signUpResponse;
-    setIsPending(false);
-
-    if (success) {
-      message.success("Registration successful");
-
-      AuthContext.setState({
-        isAuthenticated: true
-      });
-
-      GlobalContext.setState({
-        authToken: token
-      });
-
-      setSignUpState({
-        email: "",
-        username: "",
-        password: "",
-        confirmPassword: ""
-      });
-
-      props.isLoggedIn();
-    } else {
-      Object.keys(errors).forEach(key => {
-        message.error(errors[key]);
-      });
+    if (password !== confirmPassword) {
+      message.error("Passwords must be the same");
+      setIsPending(false);
+      return;
     }
+
+    register({ username, email, password });
+    setIsPending(false);
+    setSignUpState({
+      email: "",
+      username: "",
+      password: "",
+      confirmPassword: ""
+    });
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <AuthDisplay>
       <h1>Create Your Account</h1>
@@ -152,4 +135,15 @@ const RegisterForm = props => {
   );
 };
 
-export default RegisterForm;
+RegisterForm.propTypes = {
+  register: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { register: registerUser }
+)(RegisterForm);

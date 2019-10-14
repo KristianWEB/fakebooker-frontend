@@ -1,13 +1,13 @@
-import React, { useState, useContext } from "react";
-
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 import { Checkbox, Input, message } from "antd";
-
-import authContext from "../../context/auth/authContext";
-import globalContext from "../../context/global/globalContext";
+import { login as loginUser } from "../../actions/auth";
 
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
-const LoginForm = props => {
+const LoginForm = ({ login, isAuthenticated }) => {
   const [loginState, setLoginState] = useState({
     email: "",
     password: "",
@@ -15,11 +15,6 @@ const LoginForm = props => {
   });
 
   const [isPending, setIsPending] = useState(false);
-
-  const AuthContext = useContext(authContext);
-  const GlobalContext = useContext(globalContext);
-
-  const { login } = AuthContext;
 
   const onChange = e =>
     setLoginState({ ...loginState, [e.target.name]: e.target.value });
@@ -34,26 +29,31 @@ const LoginForm = props => {
 
     const { email, password, remember } = loginState;
 
-    const loginResponse = await login(email, password);
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    const { success, token, msg } = loginResponse;
+    if (!email) {
+      message.error("Email can't be empty!");
+      setIsPending(false);
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      message.error("Email isn't valid!");
+      setIsPending(false);
+      return;
+    }
+    if (!password) {
+      message.error("Password can't be empty!");
+      setIsPending(false);
+      return;
+    }
 
     setIsPending(false);
-
-    if (success) {
-      message.success("Login successful");
-      AuthContext.setState({
-        isAuthenticated: true
-      });
-      GlobalContext.setState({
-        authToken: token,
-        remember
-      });
-      props.isLoggedIn();
-    } else {
-      message.error(msg);
-    }
+    login(email, password, remember);
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <AuthDisplay>
@@ -106,4 +106,15 @@ const LoginForm = props => {
   );
 };
 
-export default LoginForm;
+LoginForm.propTypes = {
+  login: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { login: loginUser }
+)(LoginForm);

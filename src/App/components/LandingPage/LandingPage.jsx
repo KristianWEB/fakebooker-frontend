@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
+import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import { Col, Row, Tabs } from "antd";
 
 import logo from "../../../assets/logo.svg";
 import backgroundImg from "../../../assets/images/landing-page-background.jpg";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-
-import AuthProvider from "../../context/auth/AuthProvider";
-import globalContext from "../../context/global/globalContext";
 
 import {
   LandingContentContainer,
@@ -18,11 +18,9 @@ import {
 
 const { TabPane } = Tabs;
 
-const Auth = props => {
-  const GlobalContext = useContext(globalContext);
-
-  if (GlobalContext.state.authToken) {
-    props.isLoggedIn();
+const Auth = ({ isAuthenticated = null }) => {
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
   }
 
   return (
@@ -32,10 +30,10 @@ const Auth = props => {
         <ProjectLogo src={logo} alt="" />
         <Tabs tabPosition="top">
           <TabPane tab="Login" key="1">
-            <LoginForm isLoggedIn={props.isLoggedIn} />
+            <LoginForm />
           </TabPane>
           <TabPane tab="Register" key="2">
-            <RegisterForm isLoggedIn={props.isLoggedIn} />
+            <RegisterForm />
           </TabPane>
         </Tabs>
       </Col>
@@ -49,22 +47,29 @@ const LandingContent = () => (
   </LandingContentContainer>
 );
 
-const LandingPage = props => {
-  const isLoggedIn = () => {
-    props.history.replace("/");
-  };
+const LandingPage = () => {
   return (
-    <AuthProvider>
-      <Row style={{ position: "relative" }}>
-        <StyledCol xs={0} md={12} lg={16} background="#3b5999">
-          <LandingContent />
-        </StyledCol>
-        <StyledCol xs={24} md={12} lg={8} background="#fefdf9">
-          <Auth isLoggedIn={isLoggedIn} />
-        </StyledCol>
-      </Row>
-    </AuthProvider>
+    <Row style={{ position: "relative" }}>
+      <StyledCol xs={0} md={12} lg={16} background="#3b5999">
+        <LandingContent />
+      </StyledCol>
+      <StyledCol xs={24} md={12} lg={8} background="#fefdf9">
+        <Auth />
+      </StyledCol>
+    </Row>
   );
 };
 
-export default LandingPage;
+Auth.defaultProps = null;
+Auth.propTypes = {
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)(LandingPage);

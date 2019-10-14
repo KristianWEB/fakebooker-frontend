@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import globalContext from "../../context/global/globalContext";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout as logoutUser } from "../../actions/auth";
 
 import HomeContainer from "./HomePage.styles";
 
-const Home = () => {
-  const GlobalContext = useContext(globalContext);
-
-  const { logout } = GlobalContext;
-
+const Home = ({ logout }) => {
   return (
     <HomeContainer>
       <p>Welcome to home page!</p>
@@ -20,4 +18,11 @@ const Home = () => {
   );
 };
 
-export default Home;
+Home.propTypes = {
+  logout: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { logout: logoutUser }
+)(Home);
