@@ -8,4 +8,11 @@ const InfoContainer = styled(Row)`
   margin: 0 auto;
 `;
 
+export const PostsSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export default InfoContainer;
