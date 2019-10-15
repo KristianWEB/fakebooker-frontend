@@ -1,9 +1,9 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import InfoContainer from "./components/ProfilePage.styles";
+import InfoContainer, { PostsSection } from "./components/ProfilePage.styles";
 import ProfileHeader from "./components/ProfileHeader";
-// import MockupForm from "./components/MockupForm";
+import CreatePost from "./components/CreatePost";
 import Post from "./components/Post";
 import About from "./components/About";
 import LastPhotos from "./components/LastPhotos";
@@ -18,10 +18,15 @@ const ProfilePage = () => {
         profileImage="https://www.w3schools.com/w3images/avatar2.png"
         displayName="Static username"
       />
-      {/* <MockupForm /> */}
       <InfoContainer>
         <About />
-        <Post />
+        <PostsSection>
+          <CreatePost
+            name="Static username"
+            profileImage="https://www.w3schools.com/w3images/avatar2.png"
+          />
+          <Post />
+        </PostsSection>
         <LastPhotos />
       </InfoContainer>
     </div>
