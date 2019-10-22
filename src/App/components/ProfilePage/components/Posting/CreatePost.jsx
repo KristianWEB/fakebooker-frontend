@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addPost as addingPost } from "../../../../actions/post";
+import { addPost } from "../../../../actions/post";
 
 import {
   AvatarImage,
@@ -17,7 +17,7 @@ import {
   PublishPostButtonMobile
 } from "./CreatePost.styles";
 
-const CreatePost = ({ addPost, name, profileImage }) => {
+const CreatePost = ({ addPostConnect, name, profileImage }) => {
   const [post, setPost] = useState({
     content: ""
   });
@@ -31,7 +31,7 @@ const CreatePost = ({ addPost, name, profileImage }) => {
 
     const { content } = post;
 
-    addPost({ content });
+    addPostConnect({ content });
   };
 
   return (
@@ -76,6 +76,6 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    addPost: addingPost
+    addPostConnect: addPost
   }
 )(CreatePost);

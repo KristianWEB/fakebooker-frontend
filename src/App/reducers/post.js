@@ -1,9 +1,7 @@
 import { message } from "antd";
 import { ADD_POST, POST_ERROR } from "../actions/types";
 
-const initialState = {
-  content: null
-};
+const initialState = {};
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
@@ -18,6 +16,7 @@ export default function(state = initialState, action) {
     case POST_ERROR:
       message.error("Error");
       return {
+        ...state,
         ...payload
       };
 
