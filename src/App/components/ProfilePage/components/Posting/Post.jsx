@@ -36,76 +36,68 @@ import CommentsSVG from "../../../../../assets/icons/comments-post-icon.svg";
 import LikesSVG from "../../../../../assets/icons/like-post-icon.svg";
 import SharesSVG from "../../../../../assets/icons/share-post-icon.svg";
 import FirstLikeAvatar from "../../../../../assets/images/like1-image.jpg";
-import SecondLikeAvatar from "../../../../../assets/images/like2-image.jpg";
-import ThirdLikeAvatar from "../../../../../assets/images/like3-image.jpg";
-import FourthLikeAvatar from "../../../../../assets/images/like4-image.jpg";
 
-export default function Post() {
+export default function Post({ post }) {
   return (
     <PostContainer>
       <PostCard bodyStyle={{ padding: "0" }} bordered={false}>
         <PostHeader>
           <ProfileWrapper>
-            <ProfileAvatar size="large" shape="circle" src={ProfileSVG} />
+            <ProfileAvatar
+              size="large"
+              shape="circle"
+              src={post.user.profileImage}
+            />
             <NameWrapper>
-              <ProfileName>James Spiegel</ProfileName>
-              <PostCreation>19 hours ago</PostCreation>
+              <ProfileName>{post.user.username}</ProfileName>
+              <PostCreation>
+                {new Date(post.creationDate).toLocaleDateString("en-US")}
+              </PostCreation>
             </NameWrapper>
           </ProfileWrapper>
           <Settings src={SettingsSVG} alt="settings_logo" />
         </PostHeader>
-        <PostContent>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est
-          laborum. Sed ut perspiciatis unde omnis iste natus error sit
-          voluptatem accusantium doloremque.
-        </PostContent>
+        <PostContent>{post.content}</PostContent>
         <PostFooter>
           <LikesWrapper>
             <LikesDisplay>
               <LikesLogo src={LikesSVG} alt="likes_logo" />
-              <LikesCount>8</LikesCount>
+              <LikesCount>
+                {post.likedBy.count === undefined ? "0" : post.likedBy.count}
+              </LikesCount>
               <LikesHeading>Like</LikesHeading>
             </LikesDisplay>
-            <Likes>
-              <LikesAvatar
-                shape="circle"
-                src={FirstLikeAvatar}
-                alt="FirstLikeAvatar"
-              />
-              <LikesAvatar
-                shape="circle"
-                src={SecondLikeAvatar}
-                alt="SecondLikeAvatar"
-              />
-              <LikesAvatar
-                shape="circle"
-                src={ThirdLikeAvatar}
-                alt="ThirdLikeAvatar"
-              />
-              <LikesAvatar
-                shape="circle"
-                src={FourthLikeAvatar}
-                alt="FourthLikeAvatar"
-              />
-            </Likes>
-            <LikesNames>
-              <StyledStrong>Jenny, </StyledStrong>
-              <StyledStrong>Robert</StyledStrong>
-              <br />
-              and 6 more liked this
-            </LikesNames>
+            {post.likedBy.count > 0 && (
+              <Likes>
+                <LikesAvatar
+                  shape="circle"
+                  src={FirstLikeAvatar}
+                  alt="FirstLikeAvatar"
+                />
+              </Likes>
+            )}
+            {post.likedBy.count > 0 && (
+              <LikesNames>
+                <StyledStrong>Jenny, </StyledStrong>
+                <StyledStrong>Robert</StyledStrong>
+                <br />
+                and 6 more liked this
+              </LikesNames>
+            )}
           </LikesWrapper>
           <FeedbackWrapper>
             <CommentsWrapper>
               <CommentsLogo src={CommentsSVG} alt="CommentsLogo" />
-              <CommentsCount>17</CommentsCount>
+              <CommentsCount>
+                {post.likedBy.count === undefined ? "0" : post.likedBy.count}
+              </CommentsCount>
               <CommentsHeading>Comment</CommentsHeading>
             </CommentsWrapper>
             <SharesWrapper>
               <SharesLogo src={SharesSVG} alt="SharesLogo" />
-              <SharesCount>24</SharesCount>
+              <SharesCount>
+                {post.likedBy.count === undefined ? "0" : post.likedBy.count}
+              </SharesCount>
               <SharesHeading>Share</SharesHeading>
             </SharesWrapper>
           </FeedbackWrapper>

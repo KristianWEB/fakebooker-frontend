@@ -1,34 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import axios from "axios";
 import { getPosts } from "../../../../actions/post";
+import Post from "./Post";
 
-const PostList = ({ getPostsConnect }) => {
-  const [posts, setPosts] = useState([]);
-
+const PostList = ({ getPostsConnect, posts = [] }) => {
   useEffect(() => {
     const fetchData = async () => {
-      const postsResponse = await axios.get(
-        "https://osd-sidekick.herokuapp.com/api/posts/kristian"
-      );
-      const { data } = postsResponse;
-      setPosts(data.posts);
+      await getPostsConnect();
     };
     fetchData();
-  }, [getPostsConnect, posts]);
+  }, [getPostsConnect]);
+
   return (
     <>
-      <ul>
-        {posts.map((post, index) => (
-          <li key={index}>{post.content}</li>
-        ))}
-      </ul>
+      {posts.map(post => (
+        <Post key={post._id} post={post} />
+      ))}
     </>
   );
 };
 
+const mapStateToProps = state => ({
+  posts: state.post.posts
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   {
     getPostsConnect: getPosts
   }

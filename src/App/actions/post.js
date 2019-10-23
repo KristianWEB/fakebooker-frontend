@@ -14,7 +14,7 @@ export const getPosts = () => async dispatch => {
   }
 
   try {
-    const res = await axios.get(`${BaseURL}/kristian`);
+    const res = await axios.get(`${BaseURL}/`);
     dispatch({
       type: GET_POST,
       payload: res.data
