@@ -3,8 +3,8 @@ import { withRouter } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import InfoContainer, { PostsSection } from "./components/ProfilePage.styles";
 import ProfileHeader from "./components/ProfileHeader";
-import CreatePost from "./components/CreatePost";
-import Post from "./components/Post";
+import CreatePost from "./components/Posting/CreatePost";
+import Post from "./components/Posting/Post";
 import About from "./components/About";
 import LastPhotos from "./components/LastPhotos";
 

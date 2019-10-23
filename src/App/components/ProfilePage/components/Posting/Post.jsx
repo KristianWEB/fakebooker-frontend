@@ -30,15 +30,15 @@ import {
   SharesHeading,
   StyledStrong
 } from "./Post.styles";
-import ProfileSVG from "../../../../assets/images/Post-profile1.jpg";
-import SettingsSVG from "../../../../assets/icons/three-dots-icon.svg";
-import CommentsSVG from "../../../../assets/icons/comments-post-icon.svg";
-import LikesSVG from "../../../../assets/icons/like-post-icon.svg";
-import SharesSVG from "../../../../assets/icons/share-post-icon.svg";
-import FirstLikeAvatar from "../../../../assets/images/like1-image.jpg";
-import SecondLikeAvatar from "../../../../assets/images/like2-image.jpg";
-import ThirdLikeAvatar from "../../../../assets/images/like3-image.jpg";
-import FourthLikeAvatar from "../../../../assets/images/like4-image.jpg";
+import ProfileSVG from "../../../../../assets/images/Post-profile1.jpg";
+import SettingsSVG from "../../../../../assets/icons/three-dots-icon.svg";
+import CommentsSVG from "../../../../../assets/icons/comments-post-icon.svg";
+import LikesSVG from "../../../../../assets/icons/like-post-icon.svg";
+import SharesSVG from "../../../../../assets/icons/share-post-icon.svg";
+import FirstLikeAvatar from "../../../../../assets/images/like1-image.jpg";
+import SecondLikeAvatar from "../../../../../assets/images/like2-image.jpg";
+import ThirdLikeAvatar from "../../../../../assets/images/like3-image.jpg";
+import FourthLikeAvatar from "../../../../../assets/images/like4-image.jpg";
 
 export default function Post() {
   return (
