@@ -4,7 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import InfoContainer, { PostsSection } from "./components/ProfilePage.styles";
 import ProfileHeader from "./components/ProfileHeader";
 import CreatePost from "./components/Posting/CreatePost";
-import Post from "./components/Posting/Post";
+import PostList from "./components/Posting/PostList.jsx";
 import About from "./components/About";
 import LastPhotos from "./components/LastPhotos";
 
@@ -25,7 +25,7 @@ const ProfilePage = () => {
             name="Static username"
             profileImage="https://www.w3schools.com/w3images/avatar2.png"
           />
-          <Post />
+          <PostList />
         </PostsSection>
         <LastPhotos />
       </InfoContainer>

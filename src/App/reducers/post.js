@@ -1,5 +1,5 @@
 import { message } from "antd";
-import { ADD_POST, POST_ERROR } from "../actions/types";
+import { ADD_POST, POST_ERROR, GET_POST } from "../actions/types";
 
 const initialState = {};
 
@@ -9,6 +9,11 @@ export default function(state = initialState, action) {
   switch (type) {
     case ADD_POST:
       message.success("Posted successfully");
+      return {
+        ...state,
+        ...payload
+      };
+    case GET_POST:
       return {
         ...state,
         ...payload
