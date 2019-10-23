@@ -4,7 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import InfoContainer, { PostsSection } from "./components/ProfilePage.styles";
 import ProfileHeader from "./components/ProfileHeader";
 import CreatePost from "./components/Posting/CreatePost";
-import PostList from "./components/Posting/PostList.jsx";
+import PostList from "./components/Posting/PostList";
 import About from "./components/About";
 import LastPhotos from "./components/LastPhotos";
 
