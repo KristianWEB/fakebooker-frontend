@@ -4,7 +4,6 @@ import setAuthToken from "../utils/setAuthToken";
 
 const BaseURL = "https://osd-sidekick.herokuapp.com/api/posts";
 
-// eslint-disable-next-line import/prefer-default-export
 export const getPosts = () => async dispatch => {
   // this will be refactored later
   if (localStorage.token) {
