@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { Button, Input, Typography } from "antd";
 
 export const PostFormContainer = styled.div`
-  width: 90%;
+  width: 100%;
   @media screen and (min-width: 1200px) {
-    width: 95.5%;
+    width: 100%;
   }
 `;
 

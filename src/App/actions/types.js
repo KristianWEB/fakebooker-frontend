@@ -6,4 +6,5 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const ADD_POST = "ADD_POST";
+export const GET_POST = "GET_POST";
 export const POST_ERROR = "POST_ERROR";

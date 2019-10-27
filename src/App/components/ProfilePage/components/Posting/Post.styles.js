@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Row, Card, Avatar } from "antd";
 
 export const PostContainer = styled(Row)`
-  max-width: 100%;
-  margin: 0 0.93rem;
+  min-width: 100%;
+  margin: 0.5rem 0.93rem;
   @media (min-width: 1200px) {
     max-width: 38.62rem;
   }
