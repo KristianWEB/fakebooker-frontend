@@ -11,9 +11,10 @@ export const getPosts = () => async dispatch => {
   } else {
     setAuthToken(sessionStorage.token);
   }
+  const lastSegment = window.location.pathname.split("/").pop();
 
   try {
-    const res = await axios.get(`${BaseURL}/`);
+    const res = await axios.get(`${BaseURL}/${lastSegment}`);
     dispatch({
       type: GET_POST,
       payload: res.data
