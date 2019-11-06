@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Row, Button } from "antd";
+import { Row } from "antd";
 
 export const AboutContainer = styled(Row)`
   display: none;

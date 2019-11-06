@@ -38,31 +38,27 @@ export const loadUser = () => async dispatch => {
     });
   }
 };
+
 // Register User
-export const register = ({ username, email, password }) => async dispatch => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
+// export const register = ({
+//   username,
+//   email,
+//   password,
+//   confirmPassword
+// }) => async dispatch => {
+//   try {
+//     addUser();
+//     dispatch({
+//       type: REGISTER_SUCCESS
+//     });
 
-  const body = JSON.stringify({ username, email, password });
-
-  try {
-    const res = await axios.post(`${BaseURL}/register`, body, config);
-    dispatch({
-      type: REGISTER_SUCCESS,
-      payload: res.data
-    });
-
-    dispatch(loadUser());
-  } catch (err) {
-    dispatch({
-      type: REGISTER_FAIL,
-      payload: { errors: err.response.data.errors }
-    });
-  }
-};
+//     dispatch(loadUser());
+//   } catch (err) {
+//     dispatch({
+//       type: REGISTER_FAIL
+//     });
+//   }
+// };
 
 // Login User
 export const login = (email, password, remember) => async dispatch => {

@@ -1,15 +1,17 @@
 import React, { useState } from "react";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/react-hooks";
 import { connect } from "react-redux";
 import { Input, message } from "antd";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 
 // Redux
-import { register as registerUser } from "../../actions/auth";
+// import { register as registerUser } from "../../actions/auth";
 
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
-const RegisterForm = ({ register, isAuthenticated }) => {
+const RegisterForm = () => {
   const [signUpState, setSignUpState] = useState({
     email: "",
     username: "",
@@ -21,6 +23,46 @@ const RegisterForm = ({ register, isAuthenticated }) => {
 
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
+
+  const REGISTER_USER = gql`
+    mutation register(
+      $username: String!
+      $email: String!
+      $password: String!
+      $confirmPassword: String!
+    ) {
+      register(
+        registerInput: {
+          username: $username
+          email: $email
+          password: $password
+          confirmPassword: $confirmPassword
+        }
+      ) {
+        username
+        token
+        email
+        displayName
+        coverImage
+        status {
+          isDeactivated
+          lastActiveDate
+        }
+      }
+    }
+  `;
+
+  const [addUser, { loading }] = useMutation(REGISTER_USER, {
+    update: (proxy, result) => {
+      console.log(result);
+    },
+    variables: {
+      username: signUpState.username,
+      email: signUpState.email,
+      password: signUpState.password,
+      confirmPassword: signUpState.confirmPassword
+    }
+  });
 
   const onSubmitRegister = async e => {
     e.preventDefault();
@@ -57,8 +99,8 @@ const RegisterForm = ({ register, isAuthenticated }) => {
       return;
     }
 
-    register({ username, email, password });
     setIsPending(false);
+    addUser();
     setSignUpState({
       email: "",
       username: "",
@@ -67,9 +109,9 @@ const RegisterForm = ({ register, isAuthenticated }) => {
     });
   };
 
-  if (isAuthenticated) {
-    return <Redirect to="/" />;
-  }
+  // if (isAuthenticated) {
+  //   return <Redirect to="/" />;
+  // }
 
   return (
     <AuthDisplay>
@@ -135,15 +177,17 @@ const RegisterForm = ({ register, isAuthenticated }) => {
   );
 };
 
-RegisterForm.propTypes = {
-  register: PropTypes.func.isRequired
-};
+// RegisterForm.propTypes = {
+//   register: PropTypes.func.isRequired
+// };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-});
+// const mapStateToProps = state => ({
+//   isAuthenticated: state.auth.isAuthenticated
+// });
 
-export default connect(
-  mapStateToProps,
-  { register: registerUser }
-)(RegisterForm);
+export default RegisterForm;
+
+// export default connect(
+//   mapStateToProps,
+//   { register: registerUser }
+// )(RegisterForm);
