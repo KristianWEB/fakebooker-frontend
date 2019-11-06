@@ -1,17 +1,14 @@
-import React, { useState } from "react";
-import gql from "graphql-tag";
+import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { connect } from "react-redux";
 import { Input, message } from "antd";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
-
-// Redux
-// import { register as registerUser } from "../../actions/auth";
-
+import REGISTER_USER from "../../graphql/queries";
+import { register as registerUser } from "../../actions/auth";
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
-const RegisterForm = () => {
+const RegisterForm = ({ register, isAuthenticated }) => {
   const [signUpState, setSignUpState] = useState({
     email: "",
     username: "",
@@ -19,43 +16,16 @@ const RegisterForm = () => {
     confirmPassword: ""
   });
 
+  const [errors, setErrors] = useState({});
+
   const [isPending, setIsPending] = useState(false);
 
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
 
-  const REGISTER_USER = gql`
-    mutation register(
-      $username: String!
-      $email: String!
-      $password: String!
-      $confirmPassword: String!
-    ) {
-      register(
-        registerInput: {
-          username: $username
-          email: $email
-          password: $password
-          confirmPassword: $confirmPassword
-        }
-      ) {
-        username
-        token
-        email
-        displayName
-        coverImage
-        status {
-          isDeactivated
-          lastActiveDate
-        }
-      }
-    }
-  `;
-
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
-    update: (proxy, result) => {
-      console.log(result);
-    },
+    update: (proxy, result) => register(result.data),
+    onError: err => setErrors(err.graphQLErrors[0].extensions.exception.errors),
     variables: {
       username: signUpState.username,
       email: signUpState.email,
@@ -100,7 +70,9 @@ const RegisterForm = () => {
     }
 
     setIsPending(false);
+
     addUser();
+
     setSignUpState({
       email: "",
       username: "",
@@ -108,10 +80,15 @@ const RegisterForm = () => {
       confirmPassword: ""
     });
   };
+  useEffect(() => {
+    // I've tried for like 2-3 hours to connect this to register_fail but no success if anybody knows how to implement that please do let me know!
 
-  // if (isAuthenticated) {
-  //   return <Redirect to="/" />;
-  // }
+    Object.keys(errors).map(error => message.error(errors[error]));
+  }, [errors]);
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <AuthDisplay>
@@ -177,17 +154,15 @@ const RegisterForm = () => {
   );
 };
 
-// RegisterForm.propTypes = {
-//   register: PropTypes.func.isRequired
-// };
+RegisterForm.propTypes = {
+  register: PropTypes.func.isRequired
+};
 
-// const mapStateToProps = state => ({
-//   isAuthenticated: state.auth.isAuthenticated
-// });
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
-export default RegisterForm;
-
-// export default connect(
-//   mapStateToProps,
-//   { register: registerUser }
-// )(RegisterForm);
+export default connect(
+  mapStateToProps,
+  { register: registerUser }
+)(RegisterForm);

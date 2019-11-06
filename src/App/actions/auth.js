@@ -40,25 +40,18 @@ export const loadUser = () => async dispatch => {
 };
 
 // Register User
-// export const register = ({
-//   username,
-//   email,
-//   password,
-//   confirmPassword
-// }) => async dispatch => {
-//   try {
-//     addUser();
-//     dispatch({
-//       type: REGISTER_SUCCESS
-//     });
-
-//     dispatch(loadUser());
-//   } catch (err) {
-//     dispatch({
-//       type: REGISTER_FAIL
-//     });
-//   }
-// };
+export const register = registerData => async dispatch => {
+  try {
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: registerData
+    });
+  } catch (err) {
+    dispatch({
+      type: REGISTER_FAIL
+    });
+  }
+};
 
 // Login User
 export const login = (email, password, remember) => async dispatch => {
