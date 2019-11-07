@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-const REGISTER_USER = gql`
+export const REGISTER_USER = gql`
   mutation register(
     $username: String!
     $email: String!
@@ -28,4 +28,18 @@ const REGISTER_USER = gql`
   }
 `;
 
-export default REGISTER_USER;
+export const LOGIN_USER = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      username
+      token
+      email
+      displayName
+      coverImage
+      status {
+        isDeactivated
+        lastActiveDate
+      }
+    }
+  }
+`;

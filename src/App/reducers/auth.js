@@ -31,9 +31,9 @@ export default function(state = initialState, action) {
     case LOGIN_SUCCESS:
       message.success("Logged in successfully");
       if (payload.remember) {
-        localStorage.setItem("token", payload.data.token);
+        localStorage.setItem("token", payload.login.token);
       } else {
-        sessionStorage.setItem("token", payload.data.token);
+        sessionStorage.setItem("token", payload.login.token);
       }
       return {
         ...state,

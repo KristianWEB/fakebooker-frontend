@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useMutation } from "@apollo/react-hooks";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { Checkbox, Input, message } from "antd";
-import { login as loginUser } from "../../actions/auth";
+import { LOGIN_USER } from "../../graphql/queries";
+import { login as loginConnect } from "../../actions/auth";
 
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
@@ -14,7 +16,22 @@ const LoginForm = ({ login, isAuthenticated }) => {
     remember: false
   });
 
+  const [errors, setErrors] = useState({});
+
   const [isPending, setIsPending] = useState(false);
+
+  const [loginUser] = useMutation(LOGIN_USER, {
+    update: (proxy, result) => login(result.data, loginState.remember),
+    onError: err => setErrors(err.graphQLErrors[0].extensions.exception.errors),
+    variables: {
+      email: loginState.email,
+      password: loginState.password
+    }
+  });
+
+  useEffect(() => {
+    Object.keys(errors).map(error => message.error(errors[error]));
+  }, [errors]);
 
   const onChange = e =>
     setLoginState({ ...loginState, [e.target.name]: e.target.value });
@@ -27,7 +44,7 @@ const LoginForm = ({ login, isAuthenticated }) => {
     }
     setIsPending(true);
 
-    const { email, password, remember } = loginState;
+    const { email, password } = loginState;
 
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -47,8 +64,8 @@ const LoginForm = ({ login, isAuthenticated }) => {
       return;
     }
 
+    loginUser();
     setIsPending(false);
-    login(email, password, remember);
   };
 
   if (isAuthenticated) {
@@ -116,5 +133,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { login: loginUser }
+  { login: loginConnect }
 )(LoginForm);

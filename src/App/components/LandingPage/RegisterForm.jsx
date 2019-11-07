@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Input, message } from "antd";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
-import REGISTER_USER from "../../graphql/queries";
+import { REGISTER_USER } from "../../graphql/queries";
 import { register as registerUser } from "../../actions/auth";
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
@@ -23,8 +23,8 @@ const RegisterForm = ({ register, isAuthenticated }) => {
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
 
-  const [addUser, { loading }] = useMutation(REGISTER_USER, {
-    update: (proxy, result) => register(result.data),
+  const [addUser] = useMutation(REGISTER_USER, {
+    update: (_, result) => register(result.data),
     onError: err => setErrors(err.graphQLErrors[0].extensions.exception.errors),
     variables: {
       username: signUpState.username,
@@ -43,7 +43,7 @@ const RegisterForm = ({ register, isAuthenticated }) => {
 
     setIsPending(true);
 
-    const { email, username, password, confirmPassword } = signUpState;
+    const { password, confirmPassword } = signUpState;
 
     if (!password.match(/(?=.*[A-Z])/)) {
       message.error("password must contain at least one upppercase character");

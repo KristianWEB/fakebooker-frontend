@@ -1,5 +1,4 @@
 import axios from "axios";
-import { message } from "antd";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -54,33 +53,16 @@ export const register = registerData => async dispatch => {
 };
 
 // Login User
-export const login = (email, password, remember) => async dispatch => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-
-  const body = JSON.stringify({ email, password });
+export const login = (loginData, remember) => async dispatch => {
   try {
-    const res = await axios.post(`${BaseURL}/login`, body, config);
-    if (res.data.success) {
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: {
-          data: res.data,
-          remember
-        }
-      });
-      dispatch(loadUser());
-    } else {
-      dispatch({
-        type: LOGIN_FAIL,
-        payload: res.data
-      });
-    }
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: {
+        ...loginData,
+        remember
+      }
+    });
   } catch (err) {
-    message.error(err);
     dispatch({
       type: LOGIN_FAIL
     });
