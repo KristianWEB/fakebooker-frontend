@@ -43,3 +43,19 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const LOAD_USER = gql`
+  {
+    loadUser {
+      username
+      token
+      email
+      displayName
+      coverImage
+      status {
+        isDeactivated
+        lastActiveDate
+      }
+    }
+  }
+`;

@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -11,25 +10,16 @@ import {
 
 import setAuthToken from "../utils/setAuthToken";
 
-const BaseURL = "https://osd-sidekick.herokuapp.com/api/auth";
-
-// const LocalURL = "http://localhost:8080/api/auth";
-
-// Load User
-
-export const loadUser = () => async dispatch => {
+export const loadUser = currentUser => async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   } else if (sessionStorage.token) {
     setAuthToken(sessionStorage.token);
   }
-
   try {
-    const res = await axios.get(`${BaseURL}`);
-
     dispatch({
       type: USER_LOADED,
-      payload: res.data
+      payload: currentUser
     });
   } catch (err) {
     dispatch({
