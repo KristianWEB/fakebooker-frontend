@@ -17,10 +17,12 @@ export const loadUser = currentUser => async dispatch => {
     setAuthToken(sessionStorage.token);
   }
   try {
-    dispatch({
-      type: USER_LOADED,
-      payload: currentUser
-    });
+    if (currentUser) {
+      dispatch({
+        type: USER_LOADED,
+        payload: currentUser
+      });
+    }
   } catch (err) {
     dispatch({
       type: AUTH_ERROR
@@ -35,6 +37,7 @@ export const register = registerData => async dispatch => {
       type: REGISTER_SUCCESS,
       payload: registerData
     });
+    dispatch(loadUser(registerData));
   } catch (err) {
     dispatch({
       type: REGISTER_FAIL

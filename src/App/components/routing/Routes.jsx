@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { message } from "antd";
+import React, { useEffect } from "react";
+// import { message } from "antd";
 import { useQuery } from "@apollo/react-hooks";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -22,17 +22,11 @@ if (localStorage.token) {
 }
 
 export default function Routes() {
-  const [errors, setErrors] = useState({});
-
-  const { error, data } = useQuery(LOAD_USER, {});
-  if (error) {
-    setErrors(error.graphQLErrors[0].extensions.exception.errors);
-    console.log(error);
-  }
+  const { data } = useQuery(LOAD_USER);
 
   useEffect(() => {
     store.dispatch(loadUser(data));
-  }, [errors, data]);
+  }, [data]);
 
   return (
     <Provider store={store}>
