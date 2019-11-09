@@ -10,7 +10,7 @@ import {
 
 import setAuthToken from "../utils/setAuthToken";
 
-export const loadUser = currentUser => async dispatch => {
+export const loadUser = currentUser => dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   } else if (sessionStorage.token) {
@@ -31,7 +31,7 @@ export const loadUser = currentUser => async dispatch => {
 };
 
 // Register User
-export const register = registerData => async dispatch => {
+export const register = registerData => dispatch => {
   try {
     dispatch({
       type: REGISTER_SUCCESS,
@@ -46,7 +46,7 @@ export const register = registerData => async dispatch => {
 };
 
 // Login User
-export const login = (loginData, remember) => async dispatch => {
+export const login = (loginData, remember) => dispatch => {
   try {
     dispatch({
       type: LOGIN_SUCCESS,
