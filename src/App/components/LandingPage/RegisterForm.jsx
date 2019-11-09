@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useMutation } from "@apollo/react-hooks";
 import { connect } from "react-redux";
 import { Input, message } from "antd";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
-
-// Redux
+import { REGISTER_USER } from "../../graphql/queries";
 import { register as registerUser } from "../../actions/auth";
-
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
 const RegisterForm = ({ register, isAuthenticated }) => {
@@ -17,10 +16,23 @@ const RegisterForm = ({ register, isAuthenticated }) => {
     confirmPassword: ""
   });
 
+  const [errors, setErrors] = useState({});
+
   const [isPending, setIsPending] = useState(false);
 
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
+
+  const [addUser] = useMutation(REGISTER_USER, {
+    update: (_, result) => register(result.data),
+    onError: err => setErrors(err.graphQLErrors[0].extensions.exception.errors),
+    variables: {
+      username: signUpState.username,
+      email: signUpState.email,
+      password: signUpState.password,
+      confirmPassword: signUpState.confirmPassword
+    }
+  });
 
   const onSubmitRegister = async e => {
     e.preventDefault();
@@ -31,7 +43,7 @@ const RegisterForm = ({ register, isAuthenticated }) => {
 
     setIsPending(true);
 
-    const { email, username, password, confirmPassword } = signUpState;
+    const { password, confirmPassword } = signUpState;
 
     if (!password.match(/(?=.*[A-Z])/)) {
       message.error("password must contain at least one upppercase character");
@@ -57,8 +69,10 @@ const RegisterForm = ({ register, isAuthenticated }) => {
       return;
     }
 
-    register({ username, email, password });
     setIsPending(false);
+
+    addUser();
+
     setSignUpState({
       email: "",
       username: "",
@@ -66,6 +80,11 @@ const RegisterForm = ({ register, isAuthenticated }) => {
       confirmPassword: ""
     });
   };
+  useEffect(() => {
+    // I've tried for like 2-3 hours to connect this to register_fail but no success if anybody knows how to implement that please do let me know!
+
+    Object.keys(errors).map(error => message.error(errors[error]));
+  }, [errors]);
 
   if (isAuthenticated) {
     return <Redirect to="/" />;

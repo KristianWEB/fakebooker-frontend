@@ -1,5 +1,3 @@
-import axios from "axios";
-import { message } from "antd";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -12,86 +10,52 @@ import {
 
 import setAuthToken from "../utils/setAuthToken";
 
-const BaseURL = "https://osd-sidekick.herokuapp.com/api/auth";
-
-// const LocalURL = "http://localhost:8080/api/auth";
-
-// Load User
-
-export const loadUser = () => async dispatch => {
+export const loadUser = currentUser => dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   } else if (sessionStorage.token) {
     setAuthToken(sessionStorage.token);
   }
-
   try {
-    const res = await axios.get(`${BaseURL}`);
-
-    dispatch({
-      type: USER_LOADED,
-      payload: res.data
-    });
+    if (currentUser) {
+      dispatch({
+        type: USER_LOADED,
+        payload: currentUser
+      });
+    }
   } catch (err) {
     dispatch({
       type: AUTH_ERROR
     });
   }
 };
+
 // Register User
-export const register = ({ username, email, password }) => async dispatch => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-
-  const body = JSON.stringify({ username, email, password });
-
+export const register = registerData => dispatch => {
   try {
-    const res = await axios.post(`${BaseURL}/register`, body, config);
     dispatch({
       type: REGISTER_SUCCESS,
-      payload: res.data
+      payload: registerData
     });
-
-    dispatch(loadUser());
+    dispatch(loadUser(registerData));
   } catch (err) {
     dispatch({
-      type: REGISTER_FAIL,
-      payload: { errors: err.response.data.errors }
+      type: REGISTER_FAIL
     });
   }
 };
 
 // Login User
-export const login = (email, password, remember) => async dispatch => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-
-  const body = JSON.stringify({ email, password });
+export const login = (loginData, remember) => dispatch => {
   try {
-    const res = await axios.post(`${BaseURL}/login`, body, config);
-    if (res.data.success) {
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: {
-          data: res.data,
-          remember
-        }
-      });
-      dispatch(loadUser());
-    } else {
-      dispatch({
-        type: LOGIN_FAIL,
-        payload: res.data
-      });
-    }
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: {
+        ...loginData,
+        remember
+      }
+    });
   } catch (err) {
-    message.error(err);
     dispatch({
       type: LOGIN_FAIL
     });

@@ -31,9 +31,9 @@ export default function(state = initialState, action) {
     case LOGIN_SUCCESS:
       message.success("Logged in successfully");
       if (payload.remember) {
-        localStorage.setItem("token", payload.data.token);
+        localStorage.setItem("token", payload.login.token);
       } else {
-        sessionStorage.setItem("token", payload.data.token);
+        sessionStorage.setItem("token", payload.login.token);
       }
       return {
         ...state,
@@ -44,10 +44,10 @@ export default function(state = initialState, action) {
 
     case REGISTER_SUCCESS:
       message.success("Logged in successfully");
-      localStorage.setItem("token", payload.token);
+      localStorage.setItem("token", payload.register.token);
       return {
         ...state,
-        ...payload,
+        ...payload.register,
         isAuthenticated: true,
         loading: false
       };
@@ -64,10 +64,6 @@ export default function(state = initialState, action) {
       };
 
     case REGISTER_FAIL:
-      Object.keys(payload.errors).forEach(error => {
-        message.error(payload.errors[error]);
-      });
-
       localStorage.removeItem("token");
       sessionStorage.removeItem("token");
       return {
