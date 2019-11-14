@@ -14,10 +14,10 @@ import {
   LikesWrapper,
   LikesDisplay,
   LikesLogo,
-  LikesCount,
-  Likes,
-  LikesAvatar,
-  LikesNames,
+  // LikesCount,
+  // Likes,
+  // LikesAvatar,
+  // LikesNames,
   FeedbackWrapper,
   CommentsWrapper,
   CommentsLogo,
@@ -27,30 +27,28 @@ import {
   SharesCount,
   LikesHeading,
   CommentsHeading,
-  SharesHeading,
-  StyledStrong
+  SharesHeading
+  // StyledStrong
 } from "./Post.styles";
 import SettingsSVG from "../../../../../assets/icons/three-dots-icon.svg";
 import CommentsSVG from "../../../../../assets/icons/comments-post-icon.svg";
 import LikesSVG from "../../../../../assets/icons/like-post-icon.svg";
 import SharesSVG from "../../../../../assets/icons/share-post-icon.svg";
-import FirstLikeAvatar from "../../../../../assets/images/like1-image.jpg";
+// import FirstLikeAvatar from "../../../../../assets/images/like1-image.jpg";
 
-export default function Post({ post }) {
+export default function Post({ post, user }) {
   return (
     <PostContainer>
       <PostCard bodyStyle={{ padding: "0" }} bordered={false}>
         <PostHeader>
           <ProfileWrapper>
-            <ProfileAvatar
-              size="large"
-              shape="circle"
-              src={post.user.profileImage}
-            />
+            <ProfileAvatar size="large" shape="circle" src={user.coverImage} />
             <NameWrapper>
-              <ProfileName>{post.user.username}</ProfileName>
+              <ProfileName>{user.displayName}</ProfileName>
               <PostCreation>
-                {new Date(post.creationDate).toLocaleDateString("en-US")}
+                {new Date(Number(post.creationDate)).toLocaleDateString(
+                  "en-US"
+                )}
               </PostCreation>
             </NameWrapper>
           </ProfileWrapper>
@@ -61,12 +59,12 @@ export default function Post({ post }) {
           <LikesWrapper>
             <LikesDisplay>
               <LikesLogo src={LikesSVG} alt="likes_logo" />
-              <LikesCount>
+              {/* <LikesCount>
                 {post.likedBy.count === undefined ? "0" : post.likedBy.count}
-              </LikesCount>
+              </LikesCount> */}
               <LikesHeading>Like</LikesHeading>
             </LikesDisplay>
-            {post.likedBy.count > 0 && (
+            {/* {post.likedBy.count > 0 && (
               <Likes>
                 <LikesAvatar
                   shape="circle"
@@ -74,28 +72,28 @@ export default function Post({ post }) {
                   alt="FirstLikeAvatar"
                 />
               </Likes>
-            )}
-            {post.likedBy.count > 0 && (
+            )} */}
+            {/* {post.likedBy.count > 0 && (
               <LikesNames>
                 <StyledStrong>Jenny, </StyledStrong>
                 <StyledStrong>Robert</StyledStrong>
                 <br />
                 and 6 more liked this
               </LikesNames>
-            )}
+            )} */}
           </LikesWrapper>
           <FeedbackWrapper>
             <CommentsWrapper>
               <CommentsLogo src={CommentsSVG} alt="CommentsLogo" />
               <CommentsCount>
-                {post.likedBy.count === undefined ? "0" : post.likedBy.count}
+                {/* {post.likedBy.count === undefined ? "0" : post.likedBy.count} */}
               </CommentsCount>
               <CommentsHeading>Comment</CommentsHeading>
             </CommentsWrapper>
             <SharesWrapper>
               <SharesLogo src={SharesSVG} alt="SharesLogo" />
               <SharesCount>
-                {post.likedBy.count === undefined ? "0" : post.likedBy.count}
+                {/* {post.likedBy.count === undefined ? "0" : post.likedBy.count} */}
               </SharesCount>
               <SharesHeading>Share</SharesHeading>
             </SharesWrapper>
