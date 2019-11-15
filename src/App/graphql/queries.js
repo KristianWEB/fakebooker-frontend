@@ -59,3 +59,19 @@ export const LOAD_USER = gql`
     }
   }
 `;
+
+export const GET_POSTS_BY_USERNAME = gql`
+  query getPosts($username: String!) {
+    getPosts(username: $username) {
+      posts {
+        id
+        content
+        creationDate
+      }
+      author {
+        displayName
+        coverImage
+      }
+    }
+  }
+`;

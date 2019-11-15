@@ -4,27 +4,21 @@ import setAuthToken from "../utils/setAuthToken";
 
 const BaseURL = "https://osd-sidekick.herokuapp.com/api/posts";
 
-export const getPosts = () => async dispatch => {
+export const getPosts = postsData => async dispatch => {
   // this will be refactored later
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   } else {
     setAuthToken(sessionStorage.token);
   }
-  const lastSegment = window.location.pathname.split("/").pop();
-
   try {
-    const res = await axios.get(`${BaseURL}/${lastSegment}`);
     dispatch({
       type: GET_POST,
-      payload: res.data
+      payload: postsData
     });
   } catch (err) {
     dispatch({
-      type: POST_ERROR,
-      payload: {
-        errors: err.response.data.errors
-      }
+      type: POST_ERROR
     });
   }
 };
