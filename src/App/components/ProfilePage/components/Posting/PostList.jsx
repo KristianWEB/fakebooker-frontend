@@ -18,7 +18,6 @@ const PostList = ({ getPostsConnect, getPosts = {}, username }) => {
     fetchData();
   }, [getPostsConnect, data]);
   const { posts = [], author = {} } = getPosts;
-
   return (
     <>
       {posts.map(post => (

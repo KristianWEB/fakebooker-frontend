@@ -75,3 +75,13 @@ export const GET_POSTS_BY_USERNAME = gql`
     }
   }
 `;
+
+export const CREATE_POST = gql`
+  mutation createPost($content: String!) {
+    createPost(content: $content) {
+      id
+      content
+      creationDate
+    }
+  }
+`;
