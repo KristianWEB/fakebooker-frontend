@@ -5,7 +5,7 @@ import { GET_POSTS_BY_USERNAME } from "../../../../graphql/queries";
 import { getPosts as getPostsAction } from "../../../../actions/post";
 import Post from "./Post";
 
-const PostList = ({ getPostsConnect, getPosts = {}, username }) => {
+const PostList = ({ getPostsConnect, username, getPosts }) => {
   const { data } = useQuery(GET_POSTS_BY_USERNAME, {
     variables: {
       username
@@ -17,12 +17,12 @@ const PostList = ({ getPostsConnect, getPosts = {}, username }) => {
     };
     fetchData();
   }, [getPostsConnect, data]);
-  const { posts = [], author = {} } = getPosts;
   return (
     <>
-      {posts.map(post => (
-        <Post key={post.id} post={post} user={author} />
-      ))}
+      {getPosts &&
+        getPosts.posts.map(post => (
+          <Post key={post.id} post={post} user={getPosts.author} />
+        ))}
     </>
   );
 };

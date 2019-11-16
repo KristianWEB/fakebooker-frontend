@@ -50,7 +50,8 @@ const CreatePost = ({
           username: user.username
         }
       });
-      data.getPosts.posts = [result.data.createPost, ...data.getPosts.posts];
+
+      data.getPosts.posts = [...data.getPosts.posts, result.data.createPost];
       proxy.writeQuery({
         query: GET_POSTS_BY_USERNAME,
         variables: { username: user.username },
@@ -60,7 +61,7 @@ const CreatePost = ({
     }
   });
 
-  const onSubmit = async e => {
+  const onSubmit = e => {
     e.preventDefault();
     createPost();
   };
