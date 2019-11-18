@@ -41,7 +41,8 @@ const CreatePost = ({
 
   const [createPost, { error }] = useMutation(CREATE_POST, {
     variables: {
-      content
+      content,
+      username: "kristian"
     },
     update: async (proxy, result) => {
       const data = proxy.readQuery({
@@ -51,7 +52,7 @@ const CreatePost = ({
         }
       });
 
-      data.getPosts.posts = [...data.getPosts.posts, result.data.createPost];
+      data.getPosts = [result.data.createPost, ...data.getPosts];
       proxy.writeQuery({
         query: GET_POSTS_BY_USERNAME,
         variables: { username: user.username },
