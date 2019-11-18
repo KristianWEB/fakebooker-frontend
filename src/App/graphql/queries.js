@@ -65,7 +65,10 @@ export const GET_POSTS_BY_USERNAME = gql`
     getPosts(username: $username) {
       id
       user
-      username
+      author {
+        username
+        coverImage
+      }
       content
       creationDate
     }
@@ -73,11 +76,14 @@ export const GET_POSTS_BY_USERNAME = gql`
 `;
 
 export const CREATE_POST = gql`
-  mutation createPost($content: String!, $username: String!) {
-    createPost(content: $content, username: $username) {
+  mutation createPost($content: String!) {
+    createPost(content: $content) {
       id
       user
-      username
+      author {
+        username
+        coverImage
+      }
       content
       creationDate
     }

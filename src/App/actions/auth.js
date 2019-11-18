@@ -55,6 +55,7 @@ export const login = (loginData, remember) => dispatch => {
         remember
       }
     });
+    dispatch(loadUser(loginData));
   } catch (err) {
     dispatch({
       type: LOGIN_FAIL

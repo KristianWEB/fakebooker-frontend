@@ -22,13 +22,7 @@ import {
   PublishPostButtonMobile
 } from "./CreatePost.styles";
 
-const CreatePost = ({
-  addPostConnect,
-  getPostsConnect,
-  user,
-  name,
-  profileImage
-}) => {
+const CreatePost = ({ getPostsConnect, name, user, profileImage }) => {
   const [post, setPost] = useState({
     content: ""
   });
@@ -39,10 +33,9 @@ const CreatePost = ({
 
   const { content } = post;
 
-  const [createPost, { error }] = useMutation(CREATE_POST, {
+  const [createPost] = useMutation(CREATE_POST, {
     variables: {
-      content,
-      username: "kristian"
+      content
     },
     update: async (proxy, result) => {
       const data = proxy.readQuery({

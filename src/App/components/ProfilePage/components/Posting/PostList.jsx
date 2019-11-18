@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { connect } from "react-redux";
 import { GET_POSTS_BY_USERNAME } from "../../../../graphql/queries";
@@ -18,7 +18,7 @@ const PostList = ({ username }) => {
       ) : (
         data &&
         data.getPosts.map(post => (
-          <Post key={post.id} post={post} user={post.username} />
+          <Post key={post.id} post={post} user={post.author} />
         ))
       )}
     </>

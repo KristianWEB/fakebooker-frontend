@@ -1,12 +1,11 @@
 import React from "react";
-
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout as logoutUser } from "../../actions/auth";
 
 import HomeContainer from "./HomePage.styles";
 
-const Home = ({ logout }) => {
+const Home = ({ logout, user }) => {
   return (
     <HomeContainer>
       <p>Welcome to home page!</p>
@@ -22,7 +21,11 @@ Home.propTypes = {
   logout: PropTypes.func.isRequired
 };
 
+const mapStateToProps = state => ({
+  user: state.auth.loadUser
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { logout: logoutUser }
 )(Home);
