@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useMutation } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addPost, getPosts } from "../../../../actions/post";
+import {
+  CREATE_POST,
+  GET_POSTS_BY_USERNAME
+} from "../../../../graphql/queries";
 
 import {
   AvatarImage,
@@ -17,12 +22,7 @@ import {
   PublishPostButtonMobile
 } from "./CreatePost.styles";
 
-const CreatePost = ({
-  addPostConnect,
-  getPostsConnect,
-  name,
-  profileImage
-}) => {
+const CreatePost = ({ getPostsConnect, name, user, profileImage }) => {
   const [post, setPost] = useState({
     content: ""
   });
@@ -31,14 +31,33 @@ const CreatePost = ({
     setPost({ ...post, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = async e => {
+  const { content } = post;
+
+  const [createPost] = useMutation(CREATE_POST, {
+    variables: {
+      content
+    },
+    update: async (proxy, result) => {
+      const data = proxy.readQuery({
+        query: GET_POSTS_BY_USERNAME,
+        variables: {
+          username: user.username
+        }
+      });
+
+      data.getPosts = [result.data.createPost, ...data.getPosts];
+      proxy.writeQuery({
+        query: GET_POSTS_BY_USERNAME,
+        variables: { username: user.username },
+        data
+      });
+      await getPostsConnect(data);
+    }
+  });
+
+  const onSubmit = e => {
     e.preventDefault();
-
-    const { content } = post;
-
-    await addPostConnect({ content });
-
-    getPostsConnect();
+    createPost();
   };
 
   return (
@@ -77,7 +96,7 @@ CreatePost.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  content: state.post.body
+  user: state.auth.loadUser
 });
 
 export default connect(

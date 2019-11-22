@@ -63,15 +63,29 @@ export const LOAD_USER = gql`
 export const GET_POSTS_BY_USERNAME = gql`
   query getPosts($username: String!) {
     getPosts(username: $username) {
-      posts {
-        id
-        content
-        creationDate
-      }
+      id
+      user
       author {
-        displayName
+        username
         coverImage
       }
+      content
+      creationDate
+    }
+  }
+`;
+
+export const CREATE_POST = gql`
+  mutation createPost($content: String!) {
+    createPost(content: $content) {
+      id
+      user
+      author {
+        username
+        coverImage
+      }
+      content
+      creationDate
     }
   }
 `;

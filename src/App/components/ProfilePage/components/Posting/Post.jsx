@@ -44,7 +44,7 @@ export default function Post({ post, user }) {
           <ProfileWrapper>
             <ProfileAvatar size="large" shape="circle" src={user.coverImage} />
             <NameWrapper>
-              <ProfileName>{user.displayName}</ProfileName>
+              <ProfileName>{user.username}</ProfileName>
               <PostCreation>
                 {new Date(Number(post.creationDate)).toLocaleDateString(
                   "en-US"
