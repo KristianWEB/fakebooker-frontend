@@ -13,6 +13,7 @@ const ProfilePage = history => {
   const match = matchPath(history.location.pathname, {
     path: "/profile/:username"
   });
+
   return (
     <div>
       {/* TODO: Connect ProfileHeader to user */}

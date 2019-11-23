@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { addPost, getPosts } from "../../../../actions/post";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   CREATE_POST,
-  GET_POSTS_BY_USERNAME
+  GET_POSTS_BY_USERNAME,
+  LOAD_USER
 } from "../../../../graphql/queries";
 
 import {
@@ -22,7 +20,7 @@ import {
   PublishPostButtonMobile
 } from "./CreatePost.styles";
 
-const CreatePost = ({ getPostsConnect, name, user, profileImage }) => {
+const CreatePost = () => {
   const [post, setPost] = useState({
     content: ""
   });
@@ -33,6 +31,8 @@ const CreatePost = ({ getPostsConnect, name, user, profileImage }) => {
 
   const { content } = post;
 
+  const { data: userData } = useQuery(LOAD_USER);
+
   const [createPost] = useMutation(CREATE_POST, {
     variables: {
       content
@@ -41,17 +41,16 @@ const CreatePost = ({ getPostsConnect, name, user, profileImage }) => {
       const data = proxy.readQuery({
         query: GET_POSTS_BY_USERNAME,
         variables: {
-          username: user.username
+          username: userData.loadUser.username
         }
       });
 
       data.getPosts = [result.data.createPost, ...data.getPosts];
       proxy.writeQuery({
         query: GET_POSTS_BY_USERNAME,
-        variables: { username: user.username },
+        variables: { username: userData.loadUser.username },
         data
       });
-      await getPostsConnect(data);
     }
   });
 
@@ -61,48 +60,41 @@ const CreatePost = ({ getPostsConnect, name, user, profileImage }) => {
   };
 
   return (
-    <PostFormContainer>
-      <PostForm onSubmit={onSubmit}>
-        <Header>Create a post</Header>
-        <PostFormBody>
-          <AvatarImage src={profileImage} alt="profile" />
-          <PostTextArea
-            rows={1}
-            name="content"
-            placeholder={`What are you thinking, ${name}?`}
-            onChange={onChange}
-          />
-        </PostFormBody>
+    <>
+      {userData && (
+        <PostFormContainer>
+          <PostForm onSubmit={onSubmit}>
+            <Header>Create a post</Header>
+            <PostFormBody>
+              <AvatarImage src={userData.loadUser.coverImage} alt="profile" />
+              <PostTextArea
+                rows={1}
+                name="content"
+                placeholder={`What are you thinking, ${userData.loadUser.username}`}
+                onChange={onChange}
+              />
+            </PostFormBody>
 
-        <PostFormBodyMobile>
-          <AvatarImageMobile src={profileImage} alt="profile" />
-          <PostInput placeholder={`What are you thinking, ${name}?`} />
-          <PublishPostButtonMobile type="primary">
-            Publish
-          </PublishPostButtonMobile>
-        </PostFormBodyMobile>
+            <PostFormBodyMobile>
+              <AvatarImageMobile
+                src={`${userData.loadUser.coverImage}`}
+                alt="profile"
+              />
+              <PostInput
+                placeholder={`What are you thinking, ${userData.loadUser.username}`}
+              />
+              <PublishPostButtonMobile type="primary">
+                Publish
+              </PublishPostButtonMobile>
+            </PostFormBodyMobile>
 
-        <PublishPostButton type="primary" htmlType="submit">
-          Publish
-        </PublishPostButton>
-      </PostForm>
-    </PostFormContainer>
+            <PublishPostButton type="primary" htmlType="submit">
+              Publish
+            </PublishPostButton>
+          </PostForm>
+        </PostFormContainer>
+      )}
+    </>
   );
 };
-
-CreatePost.propTypes = {
-  name: PropTypes.string.isRequired,
-  profileImage: PropTypes.string.isRequired
-};
-
-const mapStateToProps = state => ({
-  user: state.auth.loadUser
-});
-
-export default connect(
-  mapStateToProps,
-  {
-    addPostConnect: addPost,
-    getPostsConnect: getPosts
-  }
-)(CreatePost);
+export default CreatePost;

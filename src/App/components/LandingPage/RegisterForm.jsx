@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { connect } from "react-redux";
 import { Input, message } from "antd";
-import PropTypes from "prop-types";
-import { Redirect } from "react-router-dom";
 import { REGISTER_USER } from "../../graphql/queries";
-import { register as registerUser } from "../../actions/auth";
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
-const RegisterForm = ({ register, isAuthenticated }) => {
+const RegisterForm = ({ history }) => {
   const [signUpState, setSignUpState] = useState({
     email: "",
     username: "",
@@ -18,13 +14,16 @@ const RegisterForm = ({ register, isAuthenticated }) => {
 
   const [errors, setErrors] = useState({});
 
-  const [isPending, setIsPending] = useState(false);
-
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
 
-  const [addUser] = useMutation(REGISTER_USER, {
-    update: (_, result) => register(result.data),
+  const [registerUser] = useMutation(REGISTER_USER, {
+    onCompleted: result => {
+      const { token } = result.register;
+      localStorage.setItem("token", token);
+      message.success("Registered successfully");
+      history.push("/");
+    },
     onError: err => setErrors(err.graphQLErrors[0].extensions.exception.errors),
     variables: {
       username: signUpState.username,
@@ -36,42 +35,29 @@ const RegisterForm = ({ register, isAuthenticated }) => {
 
   const onSubmitRegister = async e => {
     e.preventDefault();
-
-    if (isPending) {
-      return;
-    }
-
-    setIsPending(true);
-
     const { password, confirmPassword } = signUpState;
 
     if (!password.match(/(?=.*[A-Z])/)) {
       message.error("password must contain at least one upppercase character");
-      setIsPending(false);
       return;
     }
 
     if (!password.match(/(?=.*\d)/)) {
       message.error("password must contain at least one number");
-      setIsPending(false);
       return;
     }
 
     if (password.length < 8) {
       message.error("password must be at least 8 characters");
-      setIsPending(false);
       return;
     }
 
     if (password !== confirmPassword) {
       message.error("Passwords must be the same");
-      setIsPending(false);
       return;
     }
 
-    setIsPending(false);
-
-    addUser();
+    registerUser();
 
     setSignUpState({
       email: "",
@@ -80,16 +66,6 @@ const RegisterForm = ({ register, isAuthenticated }) => {
       confirmPassword: ""
     });
   };
-  useEffect(() => {
-    // I've tried for like 2-3 hours to connect this to register_fail but no success if anybody knows how to implement that please do let me know!
-
-    Object.keys(errors).map(error => message.error(errors[error]));
-  }, [errors]);
-
-  if (isAuthenticated) {
-    return <Redirect to="/" />;
-  }
-
   return (
     <AuthDisplay>
       <h1>Create Your Account</h1>
@@ -141,28 +117,21 @@ const RegisterForm = ({ register, isAuthenticated }) => {
           style={{ marginBottom: "40px" }}
           required
         />
-        <StyledButton
-          type="primary"
-          htmlType="submit"
-          block
-          loading={isPending}
-        >
+        <StyledButton type="primary" htmlType="submit" block>
           <span style={{ fontSize: "16px" }}>Register</span>
         </StyledButton>
       </form>
+      {Object.keys(errors).length > 0 && (
+        <div className="ui error message">
+          <ul className="list">
+            {Object.values(errors).map(value => (
+              <li key={value}>{value}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </AuthDisplay>
   );
 };
 
-RegisterForm.propTypes = {
-  register: PropTypes.func.isRequired
-};
-
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-});
-
-export default connect(
-  mapStateToProps,
-  { register: registerUser }
-)(RegisterForm);
+export default RegisterForm;

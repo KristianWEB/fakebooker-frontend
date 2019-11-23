@@ -1,9 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 import { Col, Row, Tabs } from "antd";
-
 import logo from "../../../assets/logo.svg";
 import backgroundImg from "../../../assets/images/landing-page-background.jpg";
 import LoginForm from "./LoginForm";
@@ -18,8 +15,9 @@ import {
 
 const { TabPane } = Tabs;
 
-const Auth = ({ isAuthenticated = null }) => {
-  if (isAuthenticated) {
+const Auth = ({ history }) => {
+  const token = localStorage.getItem("token");
+  if (token) {
     return <Redirect to="/" />;
   }
 
@@ -30,10 +28,10 @@ const Auth = ({ isAuthenticated = null }) => {
         <ProjectLogo src={logo} alt="" />
         <Tabs tabPosition="top">
           <TabPane tab="Login" key="1">
-            <LoginForm />
+            <LoginForm history={history} />
           </TabPane>
           <TabPane tab="Register" key="2">
-            <RegisterForm />
+            <RegisterForm history={history} />
           </TabPane>
         </Tabs>
       </Col>
@@ -47,29 +45,17 @@ const LandingContent = () => (
   </LandingContentContainer>
 );
 
-const LandingPage = () => {
+const LandingPage = props => {
   return (
     <Row style={{ position: "relative" }}>
       <StyledCol xs={0} md={12} lg={16} background="#3b5999">
         <LandingContent />
       </StyledCol>
       <StyledCol xs={24} md={12} lg={8} background="#fefdf9">
-        <Auth />
+        <Auth history={props.history} />
       </StyledCol>
     </Row>
   );
 };
 
-Auth.defaultProps = null;
-Auth.propTypes = {
-  isAuthenticated: PropTypes.bool
-};
-
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-});
-
-export default connect(
-  mapStateToProps,
-  {}
-)(LandingPage);
+export default LandingPage;
