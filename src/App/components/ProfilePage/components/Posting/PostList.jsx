@@ -9,15 +9,20 @@ const PostList = ({ username }) => {
       username
     }
   });
+
+  if (!data) {
+    return null;
+  }
+
+  const { getPosts: posts } = data;
+
   return (
     <>
       {loading ? (
         <h1>Loading posts..</h1>
       ) : (
-        data &&
-        data.getPosts.map(post => (
-          <Post key={post.id} post={post} user={post.author} />
-        ))
+        posts &&
+        posts.map(post => <Post key={post.id} post={post} user={post.author} />)
       )}
     </>
   );
