@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { Redirect } from "react-router-dom";
 import { Checkbox, Input, message } from "antd";
 import { LOGIN_USER } from "../../graphql/queries";
-import { login as loginConnect } from "../../actions/auth";
 
 import { AuthDisplay, StyledButton } from "./LandingPage.styles";
 
-const LoginForm = ({ login, isAuthenticated }) => {
+const LoginForm = ({ history }) => {
   const [loginState, setLoginState] = useState({
     email: "",
     password: "",
@@ -21,18 +17,18 @@ const LoginForm = ({ login, isAuthenticated }) => {
   const [isPending, setIsPending] = useState(false);
 
   const [loginUser] = useMutation(LOGIN_USER, {
-    update: (proxy, result) => login(result.data, loginState.remember),
+    onCompleted: result => {
+      const { token } = result.login;
+      localStorage.setItem("token", token);
+      message.success("Logged in successfully");
+      history.push("/");
+    },
     onError: err => setErrors(err.graphQLErrors[0].extensions.exception.errors),
     variables: {
       email: loginState.email,
       password: loginState.password
     }
   });
-
-  useEffect(() => {
-    Object.keys(errors).map(error => message.error(errors[error]));
-  }, [errors]);
-
   const onChange = e =>
     setLoginState({ ...loginState, [e.target.name]: e.target.value });
 
@@ -67,10 +63,6 @@ const LoginForm = ({ login, isAuthenticated }) => {
     loginUser();
     setIsPending(false);
   };
-
-  if (isAuthenticated) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <AuthDisplay>
@@ -116,6 +108,15 @@ const LoginForm = ({ login, isAuthenticated }) => {
           <span style={{ fontSize: "16px" }}>Login</span>
         </StyledButton>
       </form>
+      {Object.keys(errors).length > 0 && (
+        <div className="ui error message">
+          <ul className="list">
+            {Object.values(errors).map(value => (
+              <li key={value}>{value}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       <a style={{ color: "#3b5999" }} href="/">
         Forgot Password?
       </a>
@@ -123,15 +124,4 @@ const LoginForm = ({ login, isAuthenticated }) => {
   );
 };
 
-LoginForm.propTypes = {
-  login: PropTypes.func.isRequired
-};
-
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-});
-
-export default connect(
-  mapStateToProps,
-  { login: loginConnect }
-)(LoginForm);
+export default LoginForm;
