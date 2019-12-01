@@ -41,10 +41,9 @@ const CreatePost = () => {
       const data = proxy.readQuery({
         query: GET_POSTS_BY_USERNAME,
         variables: {
-          username: "kristian"
+          username: userData.loadUser.username
         }
       });
-
       const newData = { getPosts: [result.data.createPost, ...data.getPosts] };
 
       proxy.writeQuery({

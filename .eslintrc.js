@@ -30,6 +30,7 @@ module.exports = {
     "react/jsx-props-no-spreading": "off",
     "prettier/prettier": ["error"],
     "react/jsx-curly-newline": "off",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }]
   }
 };

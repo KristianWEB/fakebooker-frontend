@@ -64,7 +64,7 @@ export const GET_POSTS_BY_USERNAME = gql`
   query getPosts($username: String!) {
     getPosts(username: $username) {
       id
-      user
+      userId
       author {
         username
         coverImage
@@ -79,7 +79,7 @@ export const CREATE_POST = gql`
   mutation createPost($content: String!) {
     createPost(content: $content) {
       id
-      user
+      userId
       author {
         username
         coverImage
