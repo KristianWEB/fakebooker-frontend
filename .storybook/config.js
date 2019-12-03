@@ -1,4 +1,13 @@
-import { configure } from "@storybook/react";
+// .storybook/config.js
 
-// automatically import all files ending in *.stories.js
-configure(require.context("../src/stories", true, /\.stories\.js$/), module);
+import { configure } from "@storybook/react";
+import "antd/dist/antd.css";
+import "../src/App/App.css";
+
+const req = require.context("../src", true, /\.stories.js$/);
+
+function loadStories() {
+  req.keys().forEach(filename => req(filename));
+}
+
+configure(loadStories, module);
