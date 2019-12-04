@@ -6,6 +6,7 @@ const CreateComment = ({ userAvatar, focused }) => {
   return (
     <>
       <Avatar src={userAvatar} />
+      asldfkj
       <CommentInput placeholder="Write in a comment.." autoFocus={focused} />
     </>
   );
