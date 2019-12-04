@@ -5,7 +5,8 @@ const CommentList = ({ comments = [] }) => {
   return (
     <>
       {comments.map((_, index) => (
-        <Comment comment={comments[index]} />
+        // eslint-disable-next-line react/no-array-index-key
+        <Comment key={index} comment={comments[index]} />
       ))}
     </>
   );

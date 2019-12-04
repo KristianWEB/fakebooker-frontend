@@ -14,23 +14,37 @@ const comment = {
   body: "thats a nice tshirt you got dude"
 };
 
-const comments = [
+// eslint-disable-next-line import/prefer-default-export
+export const comments = [
   {
     userAvatar: UserAvatar4,
     userName: "Elaine Dreyfuss",
     body:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium."
+      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.",
+    date: 1558095132
   },
   {
     userAvatar: UserAvatar3,
     userName: "Green Goo Rock",
     body:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    date: 1573819932
   },
   {
     userAvatar: UserAvatar2,
     userName: "Nicholas Grisom",
-    body: "Excepteur sint occaecat cupidatat non proident."
+    body: "Excepteur sint occaecat cupidatat non proident.",
+    date: 1575386115
+  }
+];
+
+export const withLastComment = [
+  ...comments.slice(0, 3),
+  {
+    userAvatar: UserAvatar,
+    userName: "James Charles",
+    body: "(Last Comment)",
+    date: 1575461532
   }
 ];
 
@@ -43,4 +57,7 @@ storiesOf("Comment", module)
   .add("focused", () => <CreateComment userAvatar={UserAvatar} focused />)
   .add("view", () => <Comment comment={comment} />)
   .add("long body", () => <Comment comment={{ ...comment, body: longBody }} />)
-  .add("list", () => <CommentList comments={comments} />);
+  .add("list", () => <CommentList comments={comments} />)
+  .add("list with last comment", () => (
+    <CommentList comments={withLastComment} />
+  ));
