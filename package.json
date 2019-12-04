@@ -87,6 +87,7 @@
     "react-testing-library": "^8.0.1",
     "regenerator-runtime": "^0.13.2",
     "semver": "6.3.0",
+    "storybook-chromatic": "^3.4.1",
     "style-loader": "1.0.1",
     "svg-sprite-loader": "^4.1.6",
     "svgo-loader": "^2.2.1",
@@ -104,7 +105,8 @@
     "lint": "eslint --ext .jsx,.js ./",
     "lint-fix": "eslint --ext .jsx,.js --fix ./",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "chromatic": "CHROMATIC_APP_CODE=r1hqy22n4yo chromatic"
   },
   "eslintConfig": {
     "extends": "react-app"
