@@ -27,7 +27,8 @@ import {
   SharesCount,
   LikesHeading,
   CommentsHeading,
-  SharesHeading
+  SharesHeading,
+  CommentsContainer
   // StyledStrong
 } from "./Post.styles";
 import SettingsSVG from "../../../../../assets/icons/three-dots-icon.svg";
@@ -35,6 +36,8 @@ import CommentsSVG from "../../../../../assets/icons/comments-post-icon.svg";
 import LikesSVG from "../../../../../assets/icons/like-post-icon.svg";
 import SharesSVG from "../../../../../assets/icons/share-post-icon.svg";
 // import FirstLikeAvatar from "../../../../../assets/images/like1-image.jpg";
+import CreateComment from "./CreateComment";
+import CommentList from "./CommentList";
 
 export default function Post({ post, user }) {
   return (
@@ -100,6 +103,10 @@ export default function Post({ post, user }) {
           </FeedbackWrapper>
         </PostFooter>
       </PostCard>
+      <CommentsContainer>
+        <CommentList post={post} />
+        <CreateComment userAvatar={user.coverImage} postId={post.id} />
+      </CommentsContainer>
     </PostContainer>
   );
 }

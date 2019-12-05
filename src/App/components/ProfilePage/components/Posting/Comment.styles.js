@@ -1,9 +1,17 @@
 import styled from "styled-components";
+import { Button } from "antd";
 
 export const CommentContainer = styled.div`
   display: flex;
   align-items: center;
   margin: 10px 0;
+`;
+
+export const PopButton = styled(Button)`
+  text-align: center;
+  font-weight: bold;
+  margin: 0;
+  color: #444;
 `;
 
 export const BodyContainer = styled.div`

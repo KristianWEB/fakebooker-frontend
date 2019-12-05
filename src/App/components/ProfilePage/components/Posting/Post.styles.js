@@ -8,6 +8,18 @@ export const PostContainer = styled(Row)`
     max-width: 38.62rem;
   }
 `;
+
+export const CommentsContainer = styled(Row)`
+  min-width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 0 0 8px 8px !important;
+
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
+  @media (min-width: 1200px) {
+    max-width: 38.62rem;
+  }
+`;
+
 export const PostHeader = styled.div`
   display: flex;
   justify-items: between;
@@ -20,7 +32,7 @@ export const PostCard = styled(Card)`
   margin: 1rem;
 
   /** ant-design adds its own border-radius: 3px and somehow I can't change that value so I had to put !important to make it work. Please let me know if you have any ideas to prevent this kind of collision with antd. */
-  border-radius: 8px !important;
+  border-radius: 8px 8px 0 0 !important;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
 
   @media (max-width: 365px) {

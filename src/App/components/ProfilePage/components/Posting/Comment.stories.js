@@ -15,36 +15,24 @@ const comment = {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export const comments = [
+export const post = [
   {
-    userAvatar: UserAvatar4,
-    userName: "Elaine Dreyfuss",
-    body:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.",
-    date: 1558095132
-  },
-  {
-    userAvatar: UserAvatar3,
-    userName: "Green Goo Rock",
-    body:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    date: 1573819932
-  },
-  {
-    userAvatar: UserAvatar2,
-    userName: "Nicholas Grisom",
-    body: "Excepteur sint occaecat cupidatat non proident.",
-    date: 1575386115
-  }
-];
-
-export const withLastComment = [
-  ...comments.slice(0, 3),
-  {
-    userAvatar: UserAvatar,
-    userName: "James Charles",
-    body: "(Last Comment)",
-    date: 1575461532
+    author: {
+      username: "kristian",
+      coverImage: "https://www.w3schools.com/w3images/avatar2.png"
+    },
+    comments: [
+      {
+        author: {
+          username: "kristian",
+          coverImage: "https://www.w3schools.com/w3images/avatar2.png"
+        },
+        id: "5de986aa690a694488f3eddd",
+        body: "wassup dude"
+      }
+    ],
+    content: "hey dude",
+    id: "5de974796989803394934f3f"
   }
 ];
 
@@ -54,10 +42,6 @@ const longBody =
 storiesOf("Comment", module)
   .addDecorator(story => <div style={{ padding: "3rem" }}>{story()}</div>)
   .add("create", () => <CreateComment userAvatar={UserAvatar} />)
-  .add("focused", () => <CreateComment userAvatar={UserAvatar} focused />)
   .add("view", () => <Comment comment={comment} />)
   .add("long body", () => <Comment comment={{ ...comment, body: longBody }} />)
-  .add("list", () => <CommentList comments={comments} />)
-  .add("list with last comment", () => (
-    <CommentList comments={withLastComment} />
-  ));
+  .add("list", () => <CommentList post={post} />);
