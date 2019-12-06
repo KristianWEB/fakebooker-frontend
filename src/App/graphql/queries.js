@@ -96,6 +96,16 @@ export const CREATE_POST = gql`
       }
       content
       creationDate
+      comments {
+        id
+        userId
+        body
+        createdAt
+        author {
+          username
+          coverImage
+        }
+      }
     }
   }
 `;
