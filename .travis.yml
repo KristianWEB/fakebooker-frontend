@@ -10,7 +10,6 @@ env:
 script:
   - yarn run lint
   - yarn run build
-  - yarn run test
   - npx chromatic --app-code=k0vojgr31ss
 
 deploy:
