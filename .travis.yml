@@ -10,6 +10,8 @@ env:
 script:
   - yarn run lint
   - yarn run build
+  - npx chromatic --app-code=k0vojgr31ss
+
 deploy:
   provider: heroku
   api_key:

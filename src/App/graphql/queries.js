@@ -71,6 +71,16 @@ export const GET_POSTS_BY_USERNAME = gql`
       }
       content
       creationDate
+      comments {
+        id
+        userId
+        body
+        createdAt
+        author {
+          username
+          coverImage
+        }
+      }
     }
   }
 `;
@@ -86,6 +96,66 @@ export const CREATE_POST = gql`
       }
       content
       creationDate
+      comments {
+        id
+        userId
+        body
+        createdAt
+        author {
+          username
+          coverImage
+        }
+      }
+    }
+  }
+`;
+
+export const CREATE_COMMENT = gql`
+  mutation createComment($postId: ID!, $body: String!) {
+    createComment(postId: $postId, body: $body) {
+      id
+      userId
+      author {
+        username
+        coverImage
+      }
+      content
+      creationDate
+      comments {
+        id
+        userId
+        body
+        createdAt
+        author {
+          username
+          coverImage
+        }
+      }
+    }
+  }
+`;
+
+export const DELETE_COMMENT = gql`
+  mutation deleteComment($postId: ID!, $commentId: ID!) {
+    deleteComment(postId: $postId, commentId: $commentId) {
+      id
+      userId
+      author {
+        username
+        coverImage
+      }
+      content
+      creationDate
+      comments {
+        id
+        userId
+        body
+        createdAt
+        author {
+          username
+          coverImage
+        }
+      }
     }
   }
 `;
