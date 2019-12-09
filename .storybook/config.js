@@ -2,7 +2,7 @@
 
 import { configure } from "@storybook/react";
 import "antd/dist/antd.css";
-import "../src/App/App.css";
+import "../src/App.css";
 
 const req = require.context("../src", true, /\.stories.js$/);
 

@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
-import ApolloProvider from "./App/apollosetup/ApolloProvider";
+import ApolloProvider from "./ApolloProvider";
 
 ReactDOM.render(ApolloProvider, document.getElementById("root"));
 
