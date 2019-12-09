@@ -24,11 +24,11 @@ import {
   RelationshipHeading,
   RelationshipInfo
 } from "./About.styles";
-import NewsFeedIcon from "../../../../assets/icons/newsfeed-icon.svg";
-import BadgeIcon from "../../../../assets/icons/badge-icon.svg";
-import StarIcon from "../../../../assets/icons/star-icon.svg";
-import CupcakeIcon from "../../../../assets/icons/cupcake-icon.svg";
-import HeartIcon from "../../../../assets/icons/heart-icon.svg";
+import NewsFeedIcon from "../../assets/icons/newsfeed-icon.svg";
+import BadgeIcon from "../../assets/icons/badge-icon.svg";
+import StarIcon from "../../assets/icons/star-icon.svg";
+import CupcakeIcon from "../../assets/icons/cupcake-icon.svg";
+import HeartIcon from "../../assets/icons/heart-icon.svg";
 
 const About = () => {
   return (

@@ -4,10 +4,10 @@ import { MockedProvider } from "@apollo/react-testing";
 import {
   CREATE_COMMENT,
   GET_POSTS_BY_USERNAME
-} from "../../../../graphql/queries";
-import UserAvatar from "../../../../../assets/images/n4Ngwvi7.jpg";
-import UserAvatar2 from "../../../../../assets/images/avatar5-sm.jpg";
-import UserAvatar3 from "../../../../../assets/images/avatar8-sm.jpg";
+} from "../../utils/graphql/queries";
+import UserAvatar from "../../assets/images/n4Ngwvi7.jpg";
+import UserAvatar2 from "../../assets/images/avatar5-sm.jpg";
+import UserAvatar3 from "../../assets/images/avatar8-sm.jpg";
 import CreateComment from "./CreateComment";
 import Comment from "./Comment";
 import CommentList from "./CommentList";
