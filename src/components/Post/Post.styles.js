@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Row, Card, Avatar } from "antd";
+import { Row, Card, Avatar, Button } from "antd";
 
 export const PostContainer = styled(Row)`
   min-width: 100%;
@@ -7,6 +7,13 @@ export const PostContainer = styled(Row)`
   @media (min-width: 1200px) {
     max-width: 38.62rem;
   }
+`;
+
+export const PopButton = styled(Button)`
+  text-align: center;
+  font-weight: bold;
+  margin: 0;
+  color: #444;
 `;
 
 export const CommentsContainer = styled(Row)`
@@ -75,11 +82,7 @@ export const PostCreation = styled.p`
     font-size: 1rem;
   }
 `;
-export const Settings = styled.img`
-  width: 1.7rem;
-  margin-top: 0.5rem;
-  align-self: flex-start;
-`;
+
 export const PostContent = styled.div`
   margin: 1.56rem;
   color: #444444;
