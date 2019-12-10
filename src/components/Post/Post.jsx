@@ -1,4 +1,6 @@
 import React from "react";
+import { useMutation } from "@apollo/react-hooks";
+import { Popover } from "antd";
 import {
   PostContainer,
   PostHeader,
@@ -8,12 +10,12 @@ import {
   ProfileName,
   ProfileAvatar,
   PostCreation,
-  Settings,
   PostContent,
   PostFooter,
   LikesWrapper,
   LikesDisplay,
   LikesLogo,
+  PopButton,
   // LikesCount,
   // Likes,
   // LikesAvatar,
@@ -31,15 +33,52 @@ import {
   CommentsContainer
   // StyledStrong
 } from "./Post.styles";
-import SettingsSVG from "../../assets/icons/three-dots-icon.svg";
 import CommentsSVG from "../../assets/icons/comments-post-icon.svg";
 import LikesSVG from "../../assets/icons/like-post-icon.svg";
 import SharesSVG from "../../assets/icons/share-post-icon.svg";
 // import FirstLikeAvatar from "../../../../../assets/images/like1-image.jpg";
+import ThreeDotsSvg from "../../assets/icons/three-dots-icon.svg";
 import CreateComment from "../Comment/CreateComment";
 import CommentList from "../Comment/CommentList";
+import {
+  DELETE_POST,
+  GET_POSTS_BY_USERNAME
+} from "../../utils/graphql/queries";
 
 export default function Post({ post, user }) {
+  const [deletePost] = useMutation(DELETE_POST, {
+    variables: {
+      postId: post.id
+    },
+    update: proxy => {
+      const data = proxy.readQuery({
+        query: GET_POSTS_BY_USERNAME,
+        variables: {
+          username: user.username
+        }
+      });
+
+      const newPostList = data.getPosts.filter(p => p.id !== post.id);
+
+      const newData = { getPosts: [...newPostList] };
+
+      proxy.writeQuery({
+        query: GET_POSTS_BY_USERNAME,
+        variables: {
+          username: user.username
+        },
+        data: newData
+      });
+    }
+  });
+
+  const SettingsPopup = (
+    <div>
+      <PopButton type="link" onClick={deletePost}>
+        Delete Post
+      </PopButton>
+    </div>
+  );
   return (
     <PostContainer>
       <PostCard bodyStyle={{ padding: "0" }} bordered={false}>
@@ -55,7 +94,17 @@ export default function Post({ post, user }) {
               </PostCreation>
             </NameWrapper>
           </ProfileWrapper>
-          <Settings src={SettingsSVG} alt="settings_logo" />
+          <Popover content={SettingsPopup} placement="bottomRight">
+            <img
+              style={{
+                marginLeft: "20px",
+                width: "22px",
+                cursor: "pointer"
+              }}
+              src={ThreeDotsSvg}
+              alt="Settings Icon"
+            />
+          </Popover>
         </PostHeader>
         <PostContent>{post.content}</PostContent>
         <PostFooter>
