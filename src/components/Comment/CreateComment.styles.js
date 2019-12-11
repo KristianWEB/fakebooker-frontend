@@ -13,8 +13,4 @@ export const CommentInput = styled(Input)`
     color: #444444;
     opacity: 0.8;
   }
-  &:focus {
-    border: none;
-    outline: none;
-  }
 `;

@@ -1,18 +1,13 @@
-const {
-  override,
-  fixBabelImports,
-  useBabelRc,
-  addLessLoader
-} = require("customize-cra");
+const { override, useBabelRc, addLessLoader } = require("customize-cra");
+const modifyVars = require("./antd-customizations");
 
-module.exports = override(
-  fixBabelImports("import", {
-    libraryName: "antd",
-    libraryDirectory: "es",
-    style: "css"
-  }),
-  useBabelRc(),
-  addLessLoader({
-    javascriptEnabled: true
-  })
-);
+module.exports = {
+  webpack: override(
+    useBabelRc(),
+
+    addLessLoader({
+      javascriptEnabled: true,
+      modifyVars
+    })
+  )
+};

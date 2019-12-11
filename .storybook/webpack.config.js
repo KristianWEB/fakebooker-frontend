@@ -1,10 +1,13 @@
 const path = require("path");
+const modifyVars = require("../antd-customizations");
+
 module.exports = ({ config }) => {
   config.module.rules.unshift({
     test: /\.stories\.js?$/,
     loaders: [require.resolve("@storybook/source-loader")],
     enforce: "pre"
   });
+
   config.module.rules.push({
     loader: require.resolve("babel-loader"),
     test: /\.(jsx?)$/,
@@ -12,6 +15,7 @@ module.exports = ({ config }) => {
       babelrc: true
     }
   });
+
   config.module.rules.push({
     test: /\.less$/,
     loaders: [
@@ -20,7 +24,8 @@ module.exports = ({ config }) => {
       {
         loader: require.resolve("less-loader"),
         options: {
-          javascriptEnabled: true
+          javascriptEnabled: true,
+          modifyVars
         }
       }
     ],
