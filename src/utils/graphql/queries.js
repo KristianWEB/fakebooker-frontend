@@ -75,7 +75,7 @@ export const GET_POSTS_BY_USERNAME = gql`
         id
         userId
         body
-        createdAt
+        creationDate
         author {
           username
           coverImage
@@ -100,7 +100,7 @@ export const CREATE_POST = gql`
         id
         userId
         body
-        createdAt
+        creationDate
         author {
           username
           coverImage
@@ -125,7 +125,7 @@ export const CREATE_COMMENT = gql`
         id
         userId
         body
-        createdAt
+        creationDate
         author {
           username
           coverImage
@@ -150,7 +150,7 @@ export const DELETE_COMMENT = gql`
         id
         userId
         body
-        createdAt
+        creationDate
         author {
           username
           coverImage

@@ -1,8 +1,7 @@
 // .storybook/config.js
 
 import { configure } from "@storybook/react";
-import "antd/dist/antd.css";
-import "../src/App.css";
+import "antd/es/style/index.less";
 
 const req = require.context("../src", true, /\.stories.js$/);
 
