@@ -13,8 +13,8 @@ export const CommentInput = styled(Input)`
     color: #444444;
     opacity: 0.8;
   }
+
   &:focus {
-    border: none;
-    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 94, 58, 0.3);
   }
 `;
