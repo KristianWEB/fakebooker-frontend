@@ -21,8 +21,7 @@ const PostList = ({ username }) => {
       {loading ? (
         <h1>Loading posts..</h1>
       ) : (
-        posts &&
-        posts.map(post => <Post key={post.id} post={post} user={post.author} />)
+        posts && posts.map(post => <Post key={post.id} post={post} />)
       )}
     </>
   );
