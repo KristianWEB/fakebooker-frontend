@@ -124,7 +124,7 @@ export const LikesDisplay = styled.div`
 
 export const LikesLogo = styled.img`
   width: 1.5rem;
-  color: #444444;
+  fill: #444444;
 `;
 export const LikesCount = styled.h3`
   font-size: 1rem;

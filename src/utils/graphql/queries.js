@@ -81,6 +81,12 @@ export const GET_POSTS_BY_USERNAME = gql`
           coverImage
         }
       }
+      likes {
+        username
+        creationDate
+      }
+      likeCount
+      commentCount
     }
   }
 `;
@@ -131,6 +137,7 @@ export const CREATE_COMMENT = gql`
           coverImage
         }
       }
+      commentCount
     }
   }
 `;
@@ -156,6 +163,7 @@ export const DELETE_COMMENT = gql`
           coverImage
         }
       }
+      commentCount
     }
   }
 `;
@@ -163,5 +171,18 @@ export const DELETE_COMMENT = gql`
 export const DELETE_POST = gql`
   mutation deletePost($postId: ID!) {
     deletePost(postId: $postId)
+  }
+`;
+
+export const LIKE_POST = gql`
+  mutation likePost($postId: ID!) {
+    likePost(postId: $postId) {
+      id
+      likes {
+        creationDate
+        username
+      }
+      likeCount
+    }
   }
 `;
