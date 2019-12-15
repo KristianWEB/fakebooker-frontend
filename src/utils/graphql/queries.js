@@ -112,6 +112,12 @@ export const CREATE_POST = gql`
           coverImage
         }
       }
+      likes {
+        username
+        creationDate
+      }
+      commentCount
+      likeCount
     }
   }
 `;
