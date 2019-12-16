@@ -1,7 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useQuery } from "@apollo/react-hooks";
-import { LOAD_USER } from "../utils/graphql/queries";
 import LandingPage from "../pages/LandingPage/LandingPage";
 import HomePage from "../pages/HomePage/HomePage";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
@@ -10,7 +8,6 @@ import NavBar from "../components/Navbar/Navbar";
 import PrivateRoute from "./PrivateRoute";
 
 export default function Routes() {
-  useQuery(LOAD_USER);
   return (
     <Router>
       <Switch>

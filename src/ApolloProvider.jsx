@@ -5,6 +5,10 @@ import { createHttpLink } from "apollo-link-http";
 import { setContext } from "apollo-link-context";
 import { ApolloProvider } from "@apollo/react-hooks";
 import App from "./App";
+import resolvers from "./utils/graphql/resolvers";
+import typeDefs from "./utils/graphql/typeDefs";
+
+const cache = new InMemoryCache();
 
 const httpLink = createHttpLink({
   uri: "http://localhost:8080/graphql"
@@ -21,9 +25,17 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+cache.writeData({
+  data: {
+    isLoggedIn: !!localStorage.getItem("token")
+  }
+});
+
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
+  cache,
+  typeDefs,
+  resolvers
 });
 export default (
   <ApolloProvider client={client}>

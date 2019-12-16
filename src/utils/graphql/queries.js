@@ -192,3 +192,9 @@ export const LIKE_POST = gql`
     }
   }
 `;
+
+export const IS_LOGGED_IN = gql`
+  query IsUserLoggedIn {
+    isLoggedIn @client
+  }
+`;
