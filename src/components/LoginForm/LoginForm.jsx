@@ -1,20 +1,21 @@
+import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { Checkbox, Input, message } from "antd";
-import { LOGIN_USER } from "../../utils/graphql/queries";
+import { LOGIN_USER, IS_LOGGED_IN } from "../../utils/graphql/queries";
 
 import { AuthDisplay, StyledButton } from "./LoginForm.styles";
 
-const LoginForm = ({ history }) => {
+const LoginForm = () => {
   const [loginState, setLoginState] = useState({
     email: "",
     password: "",
     remember: false
   });
 
-  const [errors, setErrors] = useState({});
+  const history = useHistory();
 
-  const [isPending, setIsPending] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const [loginUser] = useMutation(LOGIN_USER, {
     onCompleted: result => {
@@ -27,6 +28,10 @@ const LoginForm = ({ history }) => {
     variables: {
       email: loginState.email,
       password: loginState.password
+    },
+    update: async (proxy, result) => {
+      const newData = { isLoggedIn: true };
+      proxy.writeQuery({ query: IS_LOGGED_IN, data: newData });
     }
   });
   const onChange = e =>
@@ -35,33 +40,24 @@ const LoginForm = ({ history }) => {
   const onSubmit = async e => {
     e.preventDefault();
 
-    if (isPending) {
-      return;
-    }
-    setIsPending(true);
-
     const { email, password } = loginState;
 
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (!email) {
       message.error("Email can't be empty!");
-      setIsPending(false);
       return;
     }
     if (!emailRegex.test(email)) {
       message.error("Email isn't valid!");
-      setIsPending(false);
       return;
     }
     if (!password) {
       message.error("Password can't be empty!");
-      setIsPending(false);
       return;
     }
 
     loginUser();
-    setIsPending(false);
   };
 
   return (
@@ -99,12 +95,7 @@ const LoginForm = ({ history }) => {
         >
           Remember Me
         </Checkbox>
-        <StyledButton
-          type="primary"
-          htmlType="submit"
-          block
-          loading={isPending}
-        >
+        <StyledButton type="primary" htmlType="submit" block>
           <span style={{ fontSize: "16px" }}>Login</span>
         </StyledButton>
       </form>
