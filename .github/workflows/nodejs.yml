@@ -18,11 +18,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Chromatic Action
-        uses: chromaui/action@v1
-        with:
-          appCode: mjh42s87odq
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: yarn install, build, and test
         run: |
           yarn run lint
