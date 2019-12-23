@@ -19,7 +19,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: yarn install, build, and test
-        run: yarn run lint
+        run: |
+          yarn run lint
           yarn run build
           npx chromatic --app-code=k0vojgr31ss
         env:
