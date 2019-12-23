@@ -22,6 +22,6 @@ jobs:
         run: |
           yarn run lint
           yarn run build
-          npx chromatic --app-code=k0vojgr31ss
+          npx chromatic --app-code=mjh42s87odq
         env:
           CI: true
