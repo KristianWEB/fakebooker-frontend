@@ -8,7 +8,7 @@ export const NavContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: "Open Sans";
+  font-family: "Open Sans", sans-serif;
 `;
 
 export const LogoContainer = styled.div`
@@ -40,7 +40,6 @@ export const SearchBar = styled(Input)`
   border-radius: 1.375rem;
   background-color: #f0f2f5;
   border: none;
-  font-family: "Open Sans";
   margin-left: 0.5rem;
 
   ::placeholder {
