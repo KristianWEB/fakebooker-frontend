@@ -1,78 +1,42 @@
 import React from "react";
+import { Avatar } from "antd";
 import {
   NavContainer,
   LogoContainer,
-  CurrentPage,
-  AppLogo,
-  ActionsContainer,
-  FRContainer,
-  FriendRequests,
-  FriendRequestsCount,
-  MessagesContainer,
-  Messages,
-  MessagesCount,
-  NotificationsContainer,
-  Notifications,
-  NotificationsCount,
-  SearchContainer,
-  Search,
   SearchBar,
-  NavMenu,
   ProfileContainer,
-  UserContainer,
-  UserAvatar,
-  UserStatus,
-  NameContainer,
-  Name,
-  Prefix,
-  UserSettings
+  NewsFeedContainer,
+  NewsFeedHeading,
+  MessageContainer,
+  NotificationContainer
 } from "./Navbar.styles";
 import Logo from "../../assets/icons/logo.svg";
-import FriendReqIcon from "../../assets/icons/happy-face-icon.svg";
-import MessagesIcon from "../../assets/icons/chat---messages-icon.svg";
-import NotifyIcon from "../../assets/icons/thunder-icon.svg";
-import SearchIcon from "../../assets/icons/magnifying-glass-icon.svg";
-import NavMenuBurger from "../../assets/icons/menu-icon.svg";
 import UserPictureSample from "../../assets/images/Post-profile1.jpg";
-import DropDownArrow from "../../assets/icons/dropdown-arrow-icon.svg";
+import HomeIcon from "../../assets/icons/_ionicons_svg_md-home.svg";
+import ChatIcon from "../../assets/icons/_ionicons_svg_md-chatbubbles.svg";
+import BellIcon from "../../assets/icons/_ionicons_svg_md-notifications.svg";
 
-export default function Navbar({ displayName }) {
+const Navbar = ({ displayName }) => {
   return (
     <NavContainer>
       <LogoContainer>
-        <AppLogo src={Logo} />
+        <Avatar size={41} src={Logo} />
+        <SearchBar placeholder="Search in Sidekick" />
       </LogoContainer>
-      <CurrentPage>PROFILE PAGE</CurrentPage>
-      <SearchBar placeholder="Search" />
-      <ActionsContainer>
-        <FRContainer>
-          <FriendRequests src={FriendReqIcon} />
-          <FriendRequestsCount> 1 </FriendRequestsCount>
-        </FRContainer>
-        <MessagesContainer>
-          <Messages src={MessagesIcon} />
-          <MessagesCount> 3 </MessagesCount>
-        </MessagesContainer>
-        <NotificationsContainer>
-          <Notifications src={NotifyIcon} />
-          <NotificationsCount> 7 </NotificationsCount>
-        </NotificationsContainer>
-        <SearchContainer>
-          <Search src={SearchIcon} />
-        </SearchContainer>
-      </ActionsContainer>
-      <NavMenu src={NavMenuBurger} />
+      <NewsFeedContainer>
+        <Avatar size={25} src={HomeIcon} />
+        <NewsFeedHeading> Newsfeed </NewsFeedHeading>
+      </NewsFeedContainer>
       <ProfileContainer>
-        <UserContainer>
-          <UserAvatar size={42} src={UserPictureSample} />
-          <UserStatus online="on" />
-          <NameContainer>
-            <Name>{displayName}</Name>
-            <Prefix>SPACE COWBOY</Prefix>
-          </NameContainer>
-        </UserContainer>
-        <UserSettings src={DropDownArrow} />
+        <MessageContainer>
+          <Avatar size={25} src={ChatIcon} />
+        </MessageContainer>
+        <NotificationContainer>
+          <Avatar size={25} src={BellIcon} />
+        </NotificationContainer>
+        <Avatar size={41} src={UserPictureSample} />
       </ProfileContainer>
     </NavContainer>
   );
-}
+};
+export default Navbar;
