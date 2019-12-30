@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Input } from "antd";
+import { Input, Avatar } from "antd";
 
 export const NavContainer = styled.div`
   background-color: #ffffff;
@@ -16,6 +16,16 @@ export const LogoContainer = styled.div`
   padding: 0.5rem 0.5rem 0.5rem 1rem;
 `;
 
+export const InputContainer = styled.div`
+  position: relative;
+`;
+export const InputSearchIcon = styled(Avatar)`
+  position: absolute;
+  left: 0;
+  top: 8px;
+  margin: 3px 18px;
+`;
+
 export const NewsFeedContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,10 +33,10 @@ export const NewsFeedContainer = styled.div`
   height: 100%;
   margin-top: 6px;
   margin-right: 10rem;
-  padding-top: 15px;
   background-color: #e7f3ff;
   border-radius: 6%;
   align-items: center;
+  justify-content: center;
 `;
 export const NewsFeedHeading = styled.h3`
   color: #1877f2;
