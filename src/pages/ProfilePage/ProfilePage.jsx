@@ -17,7 +17,7 @@ const ProfilePage = history => {
   return (
     <div>
       {/* TODO: Connect ProfileHeader to user */}
-      <Navbar displayName="Static username" />
+      <Navbar onProfile />
       <ProfileHeader
         coverImage="https://www.w3schools.com/w3images/avatar2.png"
         profileImage="https://www.w3schools.com/w3images/avatar2.png"
