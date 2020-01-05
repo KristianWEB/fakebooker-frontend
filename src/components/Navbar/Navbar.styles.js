@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Input } from "antd";
 
 export const NavContainer = styled.div`
-  background-color: #ffffff;
+  background-color: ${props => props.bgColor};
   width: 100%;
   height: 3.65rem;
   display: flex;
@@ -72,6 +72,16 @@ export const ProfileContainer = styled.div`
   .ant-avatar:not(:last-child) {
     margin-right: 8px;
   }
+`;
+
+export const BackArrowContainer = styled.div`
+  background-color: #f0f2f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
 `;
 
 export const MessageContainer = styled.div`
