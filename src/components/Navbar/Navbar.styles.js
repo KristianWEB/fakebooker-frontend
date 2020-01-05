@@ -9,6 +9,9 @@ export const NavContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   font-family: "Open Sans", sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 200;
 `;
 
 export const LogoContainer = styled.div`

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar } from "antd";
 import {
   NavContainer,
@@ -22,10 +22,27 @@ import BellIcon from "../../assets/icons/_ionicons_svg_md-notifications.svg";
 import BackArrowIcon from "../../assets/icons/_ionicons_svg_md-arrow-round-back.svg";
 
 const Navbar = ({ onProfile }) => {
+  const [navbarBgColor, setNavbarBgColor] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setNavbarBgColor(true);
+      } else {
+        setNavbarBgColor(false);
+      }
+    };
+
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, [setNavbarBgColor]);
+
   return (
     <>
       {onProfile ? (
-        <NavContainer bgColor="transparent">
+        <NavContainer bgColor={navbarBgColor ? "white" : "transparent"}>
           <LogoContainer>
             <BackArrowContainer>
               <Avatar size={25} src={BackArrowIcon} />
