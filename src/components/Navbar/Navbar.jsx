@@ -4,7 +4,7 @@ import {
   NavContainer,
   LogoContainer,
   InputContainer,
-  InputSearchIcon,
+  // InputSearchIcon,
   SearchBar,
   ProfileContainer,
   NewsFeedContainer,
@@ -17,7 +17,7 @@ import UserPictureSample from "../../assets/images/Post-profile1.jpg";
 import HomeIcon from "../../assets/icons/_ionicons_svg_md-home.svg";
 import ChatIcon from "../../assets/icons/_ionicons_svg_md-chatbubbles.svg";
 import BellIcon from "../../assets/icons/_ionicons_svg_md-notifications.svg";
-import SearchIcon from "../../assets/icons/_ionicons_svg_md-search.svg";
+// import SearchIcon from "../../assets/icons/_ionicons_svg_md-search.svg";
 
 const Navbar = ({ displayName }) => {
   return (
@@ -25,11 +25,8 @@ const Navbar = ({ displayName }) => {
       <LogoContainer>
         <Avatar size={41} src={Logo} />
         <InputContainer>
-          <SearchBar
-            placeholder="Search in Sidekick"
-            style={{ paddingLeft: "35px" }}
-          />
-          <InputSearchIcon size={20} src={SearchIcon} />
+          {/* <InputSearchIcon size={20} src={SearchIcon} /> */}
+          <SearchBar placeholder="Search in Sidekick" />
         </InputContainer>
       </LogoContainer>
       <NewsFeedContainer>
