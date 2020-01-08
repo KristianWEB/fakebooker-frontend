@@ -1,89 +1,89 @@
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
-
 import { Button } from "antd";
 
-export const Flex = styled.div`
+export const ProfileHeaderContainer = styled.div`
+  max-width: 1042px;
+  height: 351px;
+  background-image: url(${props => props.coverImage});
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0 0 6px 6px;
   display: flex;
-  align-content: center;
   justify-content: center;
+  align-items: flex-end;
 `;
-export const Container = styled.div`
+
+export const ProfileContainer = styled.div`
+  width: 100%;
+`;
+
+export const UserContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  width: 100%;
-  max-width: 1250px;
-  margin: 20px;
-  border-radius: 5px;
-  box-shadow: 0 3px 6px #b7b7b7;
-  font-size: 16px;
-  overflow: hidden;
-
-  @media (min-width: 1981px) {
-    max-width: 1500px;
-  }
-`;
-export const ButtonContainer = styled(Flex)`
-  width: 200px;
-  justify-content: space-between;
-  position: absolute;
-  right: 80px;
-  z-index: 5;
-  transform: translateY(-50%);
-
-  @media (max-width: 991px) {
-    right: 0px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-`;
-export const ProfileHeaderPhoto = styled.img`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-`;
-export const Profile = styled.div`
-  position: absolute;
-  top: -137px;
-
-  p {
-    font-size: 1.7rem;
-    text-align: center;
-    font-weight: bold;
-  }
-
-  @media (max-width: 991px) {
-    position: relative;
-    top: 0px;
-  }
-`;
-export const StyleNavLink = styled(NavLink)`
-  color: #9a9fbf;
-  font-weight: bold;
-  margin: 40px 0px;
-  :hover,
-  :active,
-  :focus {
-    color: #515365;
-  }
-  &.active {
-    color: #515365;
-  }
-`;
-export const StyleButton = styled(Button)`
-  background-color: ${props => props.color || "white"};
-  border: 0;
-  width: 50px;
-  height: 50px;
-  :hover,
-  :active,
-  :focus {
-    background-color: ${props => props.color || "white"};
-  }
+  top: 100px;
 `;
 
-export const PopText = styled.p`
-  text-align: center;
-  font-weight: bold;
+export const User = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 25px;
+`;
+
+export const UserAvatar = styled.img`
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+`;
+
+export const UserName = styled.h3``;
+
+export const ChangeAvatarContainer = styled(Button)`
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: relative;
+  top: 40px;
+  left: -35px;
+`;
+
+export const ChangeAvatar = styled.img`
+  height: 20px;
+`;
+
+export const ChangePhotoContainer = styled(Button)`
+  background-color: #f0f2f5;
+  width: 72px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  margin-right: 40px;
+  margin-bottom: 15px;
+  cursor: pointer;
+`;
+
+export const PhotoContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const ChangeBackgroundPhoto = styled.img`
+  height: 20px;
+`;
+
+export const ChangeBackgroundHeading = styled.h3`
+  margin-left: 4px;
+  margin-bottom: 0;
 `;
