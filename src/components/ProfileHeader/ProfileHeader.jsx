@@ -1,8 +1,8 @@
 import React from "react";
 import {
   ProfileHeaderContainer,
-  ProfileContainer,
-  PhotoContainer,
+  // ProfileContainer,
+  // PhotoContainer,
   UserContainer,
   User,
   UserAvatar,
@@ -30,43 +30,39 @@ import CameraIcon from "../../assets/icons/_ionicons_svg_md-camera.svg";
 
 const ProfileHeader = () => {
   return (
-    <ProfileHeaderContainer coverImage={ImageExample}>
-      <ProfileContainer>
-        <UserContainer>
-          <User>
-            <UserAvatar src={UserAvatarExample} />
-            <ChangeAvatarContainer>
-              <ChangeAvatar src={CameraIcon} />
-            </ChangeAvatarContainer>
-          </User>
-          <UserName>James Spiegel</UserName>
-          <UserDescription>Short description about myself</UserDescription>
-          <UserDescriptionEdit type="link">Edit</UserDescriptionEdit>
-          <UserActionsContainer>
-            <TimelineContainer>
-              <TimelineContainerLink type="link">
-                Timeline
-              </TimelineContainerLink>
-            </TimelineContainer>
-            <AboutContainer>
-              <AboutContainerLink type="link">About</AboutContainerLink>
-            </AboutContainer>
-            <FriendsContainer>
-              <FriendsContainerLink type="link">Friends</FriendsContainerLink>
-            </FriendsContainer>
-            <PhotosContainer>
-              <PhotosContainerLink type="link">Photos</PhotosContainerLink>
-            </PhotosContainer>
-          </UserActionsContainer>
-        </UserContainer>
-        <PhotoContainer>
-          <ChangePhotoContainer>
-            <ChangeBackgroundPhoto src={CameraIcon} />
-            <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
-          </ChangePhotoContainer>
-        </PhotoContainer>
-      </ProfileContainer>
-    </ProfileHeaderContainer>
+    <>
+      <ProfileHeaderContainer coverImage={ImageExample}>
+        <ChangePhotoContainer>
+          <ChangeBackgroundPhoto src={CameraIcon} />
+          <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
+        </ChangePhotoContainer>
+      </ProfileHeaderContainer>
+      <UserContainer>
+        <User>
+          <UserAvatar src={UserAvatarExample} />
+          <ChangeAvatarContainer>
+            <ChangeAvatar src={CameraIcon} />
+          </ChangeAvatarContainer>
+        </User>
+        <UserName>James Spiegel</UserName>
+        <UserDescription>Short description about myself</UserDescription>
+        <UserDescriptionEdit type="link">Edit</UserDescriptionEdit>
+      </UserContainer>
+      <UserActionsContainer>
+        <TimelineContainer>
+          <TimelineContainerLink type="link">Timeline</TimelineContainerLink>
+        </TimelineContainer>
+        <AboutContainer>
+          <AboutContainerLink type="link">About</AboutContainerLink>
+        </AboutContainer>
+        <FriendsContainer>
+          <FriendsContainerLink type="link">Friends</FriendsContainerLink>
+        </FriendsContainer>
+        <PhotosContainer>
+          <PhotosContainerLink type="link">Photos</PhotosContainerLink>
+        </PhotosContainer>
+      </UserActionsContainer>
+    </>
   );
 };
 

@@ -15,10 +15,7 @@ export const ProfileHeaderContainer = styled.div`
   align-items: flex-end;
   position: relative;
   font-family: "Open Sans", sans-serif;
-`;
-
-export const ProfileContainer = styled.div`
-  width: 100%;
+  margin-bottom: -85px;
 `;
 
 export const UserContainer = styled.div`
@@ -26,8 +23,7 @@ export const UserContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  top: 260px;
+  width: 1042px;
 `;
 
 export const User = styled.div`
@@ -59,13 +55,16 @@ export const UserDescription = styled.h3`
   position: relative;
 `;
 
-export const UserDescriptionEdit = styled(Button)`
+export const UserDescriptionEdit = styled.button`
   font-size: 1rem;
   color: #1877f2;
   font-weight: bold;
+  border-radius: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0;
   margin-top: 5px;
-  margin-bottom: 0;
-  position: relative;
 `;
 
 export const UserActionsContainer = styled.div`
@@ -73,6 +72,7 @@ export const UserActionsContainer = styled.div`
   width: 962px;
   border-top: 1px solid rgba(151, 153, 155, 0.75);
   margin-top: 28px;
+  margin-left: 40px;
 `;
 export const UserActionsContainerLink = styled(Button)``;
 
@@ -170,19 +170,16 @@ export const ChangeAvatar = styled.img`
 export const ChangePhotoContainer = styled(Button)`
   background-color: #f0f2f5;
   width: 72px;
-  height: 36px;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   border-radius: 6px;
   margin-right: 40px;
   margin-bottom: 15px;
   cursor: pointer;
-`;
-
-export const PhotoContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  right: 0;
+  top: 300px;
 `;
 
 export const ChangeBackgroundPhoto = styled.img`
