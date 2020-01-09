@@ -13,6 +13,8 @@ export const ProfileHeaderContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  position: relative;
+  font-family: "Open Sans", sans-serif;
 `;
 
 export const ProfileContainer = styled.div`
@@ -25,14 +27,14 @@ export const UserContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  top: 100px;
+  top: 260px;
 `;
 
 export const User = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 25px;
+  position: relative;
 `;
 
 export const UserAvatar = styled.img`
@@ -42,7 +44,109 @@ export const UserAvatar = styled.img`
   border: 3px solid #ffffff;
 `;
 
-export const UserName = styled.h3``;
+export const UserName = styled.h3`
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 0;
+`;
+
+export const UserDescription = styled.h3`
+  font-size: 1rem;
+  color: #97999b;
+  margin-top: 5px;
+  margin-bottom: 0;
+  position: relative;
+`;
+
+export const UserDescriptionEdit = styled(Button)`
+  font-size: 1rem;
+  color: #1877f2;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 0;
+  position: relative;
+`;
+
+export const UserActionsContainer = styled.div`
+  display: flex;
+  width: 962px;
+  border-top: 1px solid rgba(151, 153, 155, 0.75);
+  margin-top: 28px;
+`;
+export const UserActionsContainerLink = styled(Button)``;
+
+export const TimelineContainer = styled.div`
+  margin-right: 25px;
+  margin-top: 10px;
+`;
+export const TimelineContainerLink = styled.button`
+  color: #1877f2;
+  font-size: 1rem;
+  font-weight: bold;
+  display: inline;
+  border-radius: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0;
+
+  &::after {
+    margin-top: 10px;
+    width: 75px;
+    height: 2px;
+    display: block;
+    background: #1877f2;
+    content: "";
+  }
+`;
+
+export const AboutContainer = styled.div`
+  margin-right: 25px;
+  margin-top: 10px;
+`;
+export const AboutContainerLink = styled.button`
+  color: #97999b;
+  font-size: 1rem;
+  font-weight: bold;
+  display: inline;
+  border-radius: 0;
+  border: 0;
+  margin: 0;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+export const FriendsContainer = styled.div`
+  margin-right: 25px;
+  margin-top: 10px;
+`;
+export const FriendsContainerLink = styled.button`
+  color: #97999b;
+  font-size: 1rem;
+  font-weight: bold;
+  display: inline;
+  border-radius: 0;
+  border: 0;
+  margin: 0;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+export const PhotosContainer = styled.div`
+  margin-top: 10px;
+`;
+export const PhotosContainerLink = styled.button`
+  color: #97999b;
+  font-size: 1rem;
+  font-weight: bold;
+  display: inline;
+  border-radius: 0;
+  border: 0;
+  margin: 0;
+  background-color: transparent;
+  cursor: pointer;
+`;
 
 export const ChangeAvatarContainer = styled(Button)`
   background-color: #f0f2f5;
@@ -52,9 +156,11 @@ export const ChangeAvatarContainer = styled(Button)`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  position: relative;
-  top: 40px;
-  left: -35px;
+  position: absolute;
+  height: 36px;
+  top: 70px;
+  right: 0;
+  border: 0;
 `;
 
 export const ChangeAvatar = styled.img`

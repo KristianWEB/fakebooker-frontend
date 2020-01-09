@@ -7,6 +7,17 @@ import {
   User,
   UserAvatar,
   UserName,
+  UserDescription,
+  UserDescriptionEdit,
+  UserActionsContainer,
+  TimelineContainer,
+  TimelineContainerLink,
+  AboutContainer,
+  AboutContainerLink,
+  FriendsContainer,
+  FriendsContainerLink,
+  PhotosContainer,
+  PhotosContainerLink,
   ChangePhotoContainer,
   ChangeBackgroundPhoto,
   ChangeBackgroundHeading,
@@ -29,6 +40,24 @@ const ProfileHeader = () => {
             </ChangeAvatarContainer>
           </User>
           <UserName>James Spiegel</UserName>
+          <UserDescription>Short description about myself</UserDescription>
+          <UserDescriptionEdit type="link">Edit</UserDescriptionEdit>
+          <UserActionsContainer>
+            <TimelineContainer>
+              <TimelineContainerLink type="link">
+                Timeline
+              </TimelineContainerLink>
+            </TimelineContainer>
+            <AboutContainer>
+              <AboutContainerLink type="link">About</AboutContainerLink>
+            </AboutContainer>
+            <FriendsContainer>
+              <FriendsContainerLink type="link">Friends</FriendsContainerLink>
+            </FriendsContainer>
+            <PhotosContainer>
+              <PhotosContainerLink type="link">Photos</PhotosContainerLink>
+            </PhotosContainer>
+          </UserActionsContainer>
         </UserContainer>
         <PhotoContainer>
           <ChangePhotoContainer>
