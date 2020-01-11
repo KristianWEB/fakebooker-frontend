@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Input } from "antd";
 
 export const NavContainer = styled.div`
   background-color: ${props => props.bgColor};
@@ -24,11 +23,6 @@ export const LogoContainer = styled.div`
 export const InputContainer = styled.div`
   position: relative;
 `;
-// export const InputSearchIcon = styled(Avatar)`
-//   position: absolute;
-//   top: 30px;
-//   z-index: 20;
-// `;
 
 export const NewsFeedContainer = styled.div`
   display: flex;
@@ -47,20 +41,16 @@ export const NewsFeedHeading = styled.h3`
   font-weight: 600;
   margin-bottom: 0;
 `;
-export const SearchBar = styled(Input)`
+
+export const SearchBar = styled.input`
   display: block;
   width: 281px;
   height: 41px;
   border-radius: 1.375rem;
   background-color: #f0f2f5;
-  /* the icon is not working and I've wasted a lot of time trying to make it so it will be kept as an issue since there are more important things to implement */
-
-  /* background-image: url("../../assets/icons/_ionicons_svg_md-search.svg");
-  background-repeat: no-repeat;
-  background-position: 2px 3px;
-  text-indent: 17px; */
   border: none;
   margin-left: 0.5rem;
+  padding: 0 15px;
 
   ::placeholder {
     color: #8f9296;

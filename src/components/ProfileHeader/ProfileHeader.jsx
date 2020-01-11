@@ -1,8 +1,6 @@
 import React from "react";
 import {
   ProfileHeaderContainer,
-  // ProfileContainer,
-  // PhotoContainer,
   UserContainer,
   User,
   UserAvatar,
@@ -19,10 +17,8 @@ import {
   PhotosContainer,
   PhotosContainerLink,
   ChangePhotoContainer,
-  ChangeBackgroundPhoto,
   ChangeBackgroundHeading,
-  ChangeAvatarContainer,
-  ChangeAvatar
+  ChangeAvatarContainer
 } from "./ProfileHeader.styles";
 import ImageExample from "../../assets/images/photo-1419332552192-47d29e59b1e0.jpg";
 import UserAvatarExample from "../../assets/images/36.jpg";
@@ -33,7 +29,7 @@ const ProfileHeader = () => {
     <>
       <ProfileHeaderContainer coverImage={ImageExample}>
         <ChangePhotoContainer>
-          <ChangeBackgroundPhoto src={CameraIcon} />
+          <CameraIcon width="20" height="20" />
           <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
         </ChangePhotoContainer>
       </ProfileHeaderContainer>
@@ -41,7 +37,7 @@ const ProfileHeader = () => {
         <User>
           <UserAvatar src={UserAvatarExample} />
           <ChangeAvatarContainer>
-            <ChangeAvatar src={CameraIcon} />
+            <CameraIcon width="20" height="20" />
           </ChangeAvatarContainer>
         </User>
         <UserName>James Spiegel</UserName>

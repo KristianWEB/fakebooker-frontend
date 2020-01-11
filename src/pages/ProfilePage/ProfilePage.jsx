@@ -6,7 +6,7 @@ import { InfoContainer, PostsSection } from "./ProfilePage.styles";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import CreatePost from "../../components/Post/CreatePost";
 import PostList from "../../components/Post/PostList";
-import AboutNew from "../../components/AboutForm/AboutNew";
+import About from "../../components/AboutForm/About";
 import LastPhotos from "../../components/LastPhotos/LastPhotos";
 
 const ProfilePage = history => {
@@ -24,7 +24,7 @@ const ProfilePage = history => {
         displayName="Static username"
       />
       <InfoContainer>
-        <AboutNew />
+        <About />
         <PostsSection>
           <CreatePost
             name="Static username"
