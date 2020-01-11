@@ -4,7 +4,6 @@ import {
   NavContainer,
   LogoContainer,
   InputContainer,
-  // InputSearchIcon,
   SearchBar,
   ProfileContainer,
   NewsFeedContainer,
@@ -18,7 +17,6 @@ import UserPictureSample from "../../assets/images/Post-profile1.jpg";
 import HomeIcon from "../../assets/icons/_ionicons_svg_md-home.svg";
 import ChatIcon from "../../assets/icons/_ionicons_svg_md-chatbubbles.svg";
 import BellIcon from "../../assets/icons/_ionicons_svg_md-notifications.svg";
-// import SearchIcon from "../../assets/icons/_ionicons_svg_md-search.svg";
 import BackArrowIcon from "../../assets/icons/_ionicons_svg_md-arrow-round-back.svg";
 
 const Navbar = ({ onProfile }) => {
@@ -45,16 +43,23 @@ const Navbar = ({ onProfile }) => {
         <NavContainer bgColor={navbarBgColor ? "white" : "transparent"}>
           <LogoContainer>
             <BackArrowContainer>
-              <Avatar size={25} src={BackArrowIcon} />
+              <BackArrowIcon width="25" height="25" />
             </BackArrowContainer>
-            <Avatar size={41} src={Logo} />
+            {/* <Avatar size={41} src={Logo} /> */}
+            <Logo
+              width="41"
+              height="41"
+              style={{
+                borderRadius: "100%"
+              }}
+            />
           </LogoContainer>
           <ProfileContainer>
             <MessageContainer>
-              <Avatar size={25} src={ChatIcon} />
+              <ChatIcon width="25" height="25" />
             </MessageContainer>
             <NotificationContainer>
-              <Avatar size={25} src={BellIcon} />
+              <BellIcon width="25" height="25" />
             </NotificationContainer>
             <Avatar size={41} src={UserPictureSample} />
           </ProfileContainer>

@@ -148,7 +148,7 @@ export const PhotosContainerLink = styled.button`
   cursor: pointer;
 `;
 
-export const ChangeAvatarContainer = styled(Button)`
+export const ChangeAvatarContainer = styled.button`
   background-color: #f0f2f5;
   display: flex;
   justify-content: center;
@@ -161,13 +161,10 @@ export const ChangeAvatarContainer = styled(Button)`
   top: 70px;
   right: 0;
   border: 0;
+  cursor: pointer;
 `;
 
-export const ChangeAvatar = styled.img`
-  height: 20px;
-`;
-
-export const ChangePhotoContainer = styled(Button)`
+export const ChangePhotoContainer = styled.button`
   background-color: #f0f2f5;
   width: 72px;
   display: inline-flex;
@@ -180,10 +177,8 @@ export const ChangePhotoContainer = styled(Button)`
   position: absolute;
   right: 0;
   top: 300px;
-`;
-
-export const ChangeBackgroundPhoto = styled.img`
-  height: 20px;
+  border: 0;
+  padding: 5px 8px;
 `;
 
 export const ChangeBackgroundHeading = styled.h3`
