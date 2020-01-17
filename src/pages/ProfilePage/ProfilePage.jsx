@@ -6,7 +6,7 @@ import { InfoContainer, PostsSection } from "./ProfilePage.styles";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import CreatePost from "../../components/Post/CreatePost";
 import PostList from "../../components/Post/PostList";
-import About from "../../components/AboutForm/About";
+import About from "../../components/About/About";
 import LastPhotos from "../../components/LastPhotos/LastPhotos";
 
 const ProfilePage = history => {
