@@ -67,22 +67,21 @@ const Navbar = ({ onProfile }) => {
       ) : (
         <NavContainer bgColor="#ffffff">
           <LogoContainer>
-            <Avatar size={41} src={Logo} />
+            <Logo width={41} height={41} style={{ borderRadius: "50%" }} />
             <InputContainer>
-              {/* <InputSearchIcon size={20} src={SearchIcon} /> */}
               <SearchBar placeholder="Search in Sidekick" />
             </InputContainer>
           </LogoContainer>
           <NewsFeedContainer>
-            <Avatar size={25} src={HomeIcon} />
+            <HomeIcon width={25} height={25} fill="#1877f2" />
             <NewsFeedHeading> Newsfeed </NewsFeedHeading>
           </NewsFeedContainer>
           <ProfileContainer>
             <MessageContainer>
-              <Avatar size={25} src={ChatIcon} />
+              <ChatIcon width={25} height={25} />
             </MessageContainer>
             <NotificationContainer>
-              <Avatar size={25} src={BellIcon} />
+              <BellIcon width={25} height={25} />
             </NotificationContainer>
             <Avatar size={41} src={UserPictureSample} />
           </ProfileContainer>
