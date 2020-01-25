@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Row, Avatar, Button, Input } from "antd";
+
 const { TextArea } = Input;
 
 export const CreatePostNewContainer = styled(Row)`
