@@ -3,8 +3,9 @@ import { Button } from "antd";
 
 export const CommentContainer = styled.div`
   display: flex;
-  align-items: center;
   margin: 10px 0;
+  font-family: Roboto;
+  align-items: center;
 `;
 
 export const PopButton = styled(Button)`
@@ -15,6 +16,8 @@ export const PopButton = styled(Button)`
 `;
 
 export const BodyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   border: none;
   opacity: 0.8;
   border-radius: 18px;
@@ -26,13 +29,16 @@ export const BodyContainer = styled.div`
 `;
 
 export const Username = styled.span`
-  color: #ff5e3a;
-  font-weight: 600;
+  color: #050505;
+  font-weight: 500;
   padding-left: 13px;
+  padding-bottom: 1px;
 `;
 
 export const Body = styled.span`
   color: #444444;
-  padding-left: 5px;
+  padding-left: 13px;
   padding-right: 13px;
+  line-height: 1;
+  padding-bottom: 5px;
 `;

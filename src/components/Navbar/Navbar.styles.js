@@ -7,7 +7,7 @@ export const NavContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: "Open Sans", sans-serif;
+  font-family: Roboto;
   position: sticky;
   top: 0;
   z-index: 200;

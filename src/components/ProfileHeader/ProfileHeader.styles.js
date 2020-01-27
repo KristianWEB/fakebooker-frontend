@@ -14,7 +14,7 @@ export const ProfileHeaderContainer = styled.div`
   justify-content: center;
   align-items: flex-end;
   position: relative;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto";
   margin-bottom: -85px;
 `;
 

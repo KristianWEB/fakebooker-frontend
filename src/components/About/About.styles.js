@@ -8,7 +8,7 @@ export const AboutContainer = styled.div`
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.161);
   border-radius: 6px;
   padding: 0 14px;
-  font-family: "Open Sans", sans-serif;
+  font-family: Roboto;
 `;
 
 export const AboutHeading = styled.h1`
