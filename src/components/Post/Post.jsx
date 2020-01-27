@@ -14,30 +14,20 @@ import {
   PostFooter,
   LikesWrapper,
   LikesDisplay,
-  LikesLogo,
   PopButton,
   LikesCount,
-  // Likes,
-  // LikesAvatar,
-  // LikesNames,
-  FeedbackWrapper,
   CommentsWrapper,
-  CommentsLogo,
   CommentsCount,
   SharesWrapper,
-  SharesLogo,
   SharesCount,
   LikesHeading,
   CommentsHeading,
   SharesHeading,
   CommentsContainer
-  // StyledStrong
 } from "./Post.styles";
-import CommentsSVG from "../../assets/icons/comments-post-icon.svg";
-import LikesSVG from "../../assets/icons/like-post-icon.svg";
-import LikesSVGActive from "../../assets/icons/like-post-icon-active.svg";
-import SharesSVG from "../../assets/icons/share-post-icon.svg";
-// import FirstLikeAvatar from "../../../../../assets/images/like1-image.jpg";
+import CommentsSVG from "../../assets/icons/_ionicons_svg_md-chatbubbles.svg";
+import LikesSVG from "../../assets/icons/_ionicons_svg_md-thumbs-up.svg";
+import SharesSVG from "../../assets/icons/_ionicons_svg_md-share-alt.svg";
 import ThreeDotsSvg from "../../assets/icons/three-dots-icon.svg";
 import CreateComment from "../Comment/CreateComment";
 import CommentList from "../Comment/CommentList";
@@ -120,14 +110,12 @@ export default function Post({ post }) {
             </NameWrapper>
           </ProfileWrapper>
           <Popover content={SettingsPopup} placement="bottomRight">
-            <img
+            <ThreeDotsSvg
               style={{
-                marginLeft: "20px",
-                width: "22px",
-                cursor: "pointer"
+                cursor: "pointer",
+                width: "30px",
+                height: "30px"
               }}
-              src={ThreeDotsSvg}
-              alt="Settings Icon"
             />
           </Popover>
         </PostHeader>
@@ -136,49 +124,46 @@ export default function Post({ post }) {
           <LikesWrapper>
             <LikesDisplay>
               {liked ? (
-                <Button type="link" onClick={likePost} style={{ padding: 0 }}>
-                  <LikesLogo src={LikesSVGActive} alt="likes_logo" />
+                <Button
+                  type="link"
+                  onClick={likePost}
+                  style={{ padding: 0, display: "flex" }}
+                >
+                  <LikesSVG fill="#1877f2" width="25px" height="25px" />
+                  <LikesCount>{post.likeCount}</LikesCount>
                 </Button>
               ) : (
-                <Button type="link" onClick={likePost} style={{ padding: 0 }}>
-                  <LikesLogo src={LikesSVG} alt="likes_logo" />
+                <Button
+                  type="link"
+                  onClick={likePost}
+                  style={{
+                    padding: 0,
+                    display: "flex"
+                  }}
+                >
+                  <LikesSVG fill="#606770" width="25px" height="25px" />
+                  <LikesHeading>Like</LikesHeading>
                 </Button>
               )}
-              <LikesCount>{post.likeCount}</LikesCount>
-              <LikesHeading>Like</LikesHeading>
             </LikesDisplay>
-            {/* {post.likedBy.count > 0 && (
-              <Likes>
-                <LikesAvatar
-                  shape="circle"
-                  src={FirstLikeAvatar}
-                  alt="FirstLikeAvatar"
-                />
-              </Likes>
-            )} */}
-            {/* {post.likedBy.count > 0 && (
-              <LikesNames>
-                <StyledStrong>Jenny, </StyledStrong>
-                <StyledStrong>Robert</StyledStrong>
-                <br />
-                and 6 more liked this
-              </LikesNames>
-            )} */}
           </LikesWrapper>
-          <FeedbackWrapper>
-            <CommentsWrapper>
-              <CommentsLogo src={CommentsSVG} alt="CommentsLogo" />
-              <CommentsCount>{post.commentCount}</CommentsCount>
-              <CommentsHeading>Comment</CommentsHeading>
-            </CommentsWrapper>
-            <SharesWrapper>
-              <SharesLogo src={SharesSVG} alt="SharesLogo" />
-              <SharesCount>
-                {/* {post.likedBy.count === undefined ? "0" : post.likedBy.count} */}
-              </SharesCount>
+          <CommentsWrapper>
+            <CommentsSVG fill="#606770" width="25px" height="25px" />
+            <CommentsCount>
+              {post.commentCount === 0 ? (
+                <CommentsHeading>Comment</CommentsHeading>
+              ) : (
+                post.commentCount
+              )}
+            </CommentsCount>
+          </CommentsWrapper>
+          <SharesWrapper>
+            <SharesSVG fill="#606770" width="25px" height="25px" />
+            <SharesCount>
+              {/* {post.likedBy.count === undefined ? "0" : post.likedBy.count} */}
               <SharesHeading>Share</SharesHeading>
-            </SharesWrapper>
-          </FeedbackWrapper>
+            </SharesCount>
+          </SharesWrapper>
         </PostFooter>
       </PostCard>
       <CommentsContainer>
