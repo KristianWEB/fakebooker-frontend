@@ -36,21 +36,15 @@ const Comment = ({ comment: { author, body, id }, postId }) => {
         onMouseEnter={() => handleMouseHover()}
         onMouseLeave={() => handleMouseHover()}
       >
-        <Avatar src={author.coverImage} />
+        <Avatar src={author.coverImage} style={{ alignSelf: "flex-start" }} />
         <BodyContainer>
           <Username>{author.username}</Username>
           <Body>{body}</Body>
         </BodyContainer>
         {isHovering && (
           <Popover content={SettingsPopup} placement="bottomRight">
-            <img
-              style={{
-                marginLeft: "20px",
-                width: "22px",
-                cursor: "pointer"
-              }}
-              src={ThreeDotsSvg}
-              alt="Settings Icon"
+            <ThreeDotsSvg
+              style={{ marginLeft: "20px", width: "22px", cursor: "pointer" }}
             />
           </Popover>
         )}

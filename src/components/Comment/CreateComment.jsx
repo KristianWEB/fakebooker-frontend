@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Avatar } from "antd";
 import { useMutation } from "@apollo/react-hooks";
-import { CommentInput } from "./CreateComment.styles";
+import { CommentInput, CommentForm } from "./CreateComment.styles";
 import { CREATE_COMMENT } from "../../utils/graphql/queries";
 
 const CreateComment = ({ userAvatar, postId }) => {
@@ -29,14 +29,14 @@ const CreateComment = ({ userAvatar, postId }) => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <Avatar src={userAvatar} />
+      <CommentForm onSubmit={onSubmit}>
+        <Avatar src={userAvatar} size={32} />
         <CommentInput
           name="content"
           placeholder="Write in a comment.."
           onChange={onChange}
         />
-      </form>
+      </CommentForm>
     </>
   );
 };

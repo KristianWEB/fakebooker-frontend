@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const AboutFormContainer = styled.div`
   width: 500px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
-  font-family: "Open Sans", sans-serif;
+  font-family: Roboto;
   border-radius: 6px;
 `;
 

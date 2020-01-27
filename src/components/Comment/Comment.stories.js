@@ -5,7 +5,7 @@ import {
   CREATE_COMMENT,
   GET_POSTS_BY_USERNAME
 } from "../../utils/graphql/queries";
-import UserAvatar from "../../assets/images/n4Ngwvi7.jpg";
+import UserAvatar from "../../assets/images/36.jpg";
 import UserAvatar2 from "../../assets/images/avatar5-sm.jpg";
 import UserAvatar3 from "../../assets/images/avatar8-sm.jpg";
 import CreateComment from "./CreateComment";
