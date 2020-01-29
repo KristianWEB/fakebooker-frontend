@@ -19,7 +19,7 @@ import ChatIcon from "../../assets/icons/_ionicons_svg_md-chatbubbles.svg";
 import BellIcon from "../../assets/icons/_ionicons_svg_md-notifications.svg";
 import BackArrowIcon from "../../assets/icons/_ionicons_svg_md-arrow-round-back.svg";
 
-const Navbar = ({ onProfile }) => {
+const Navbar = ({ onProfile, user }) => {
   const [navbarBgColor, setNavbarBgColor] = useState(false);
 
   useEffect(() => {
@@ -45,7 +45,6 @@ const Navbar = ({ onProfile }) => {
             <BackArrowContainer>
               <BackArrowIcon width="25" height="25" />
             </BackArrowContainer>
-            {/* <Avatar size={41} src={Logo} /> */}
             <Logo
               width="41"
               height="41"
@@ -61,7 +60,7 @@ const Navbar = ({ onProfile }) => {
             <NotificationContainer>
               <BellIcon width="25" height="25" />
             </NotificationContainer>
-            <Avatar size={41} src={UserPictureSample} />
+            <Avatar size={41} src={user.coverImage} />
           </ProfileContainer>
         </NavContainer>
       ) : (

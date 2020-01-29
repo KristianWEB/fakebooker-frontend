@@ -41,15 +41,17 @@ import {
 export default function Post({ post }) {
   const [liked, setLiked] = useState(false);
 
-  const {
-    data: { loadUser: user }
-  } = useQuery(LOAD_USER);
-
+  const { data: userData } = useQuery(LOAD_USER);
   useEffect(() => {
-    if (user && post.likes.find(like => like.username === user.username)) {
-      setLiked(true);
-    } else setLiked(false);
-  }, [user, post]);
+    if (userData) {
+      if (
+        userData.loadUser.user &&
+        post.likes.find(like => like.username === userData.user.username)
+      ) {
+        setLiked(true);
+      } else setLiked(false);
+    }
+  }, [userData, post]);
 
   const [deletePost] = useMutation(DELETE_POST, {
     variables: {
@@ -59,7 +61,7 @@ export default function Post({ post }) {
       const data = proxy.readQuery({
         query: GET_POSTS_BY_USERNAME,
         variables: {
-          username: user.username
+          username: userData.loadUser.username
         }
       });
 
@@ -70,7 +72,7 @@ export default function Post({ post }) {
       proxy.writeQuery({
         query: GET_POSTS_BY_USERNAME,
         variables: {
-          username: user.username
+          username: userData.loadUser.username
         },
         data: newData
       });

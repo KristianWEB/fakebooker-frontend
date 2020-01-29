@@ -3,7 +3,7 @@
 import styled from "styled-components";
 import { Button } from "antd";
 
-export const ProfileHeaderContainer = styled.div`
+export const ProfileBackgroundContainer = styled.div`
   max-width: 1042px;
   height: 351px;
   background-image: url(${props => props.coverImage});
@@ -11,6 +11,7 @@ export const ProfileHeaderContainer = styled.div`
   background-size: cover;
   border-radius: 0 0 6px 6px;
   display: flex;
+  margin: 0 auto;
   justify-content: center;
   align-items: flex-end;
   position: relative;
@@ -24,6 +25,7 @@ export const UserContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 1042px;
+  margin: 0 auto;
 `;
 
 export const User = styled.div`
@@ -69,11 +71,11 @@ export const UserDescriptionEdit = styled.button`
 
 export const UserActionsContainer = styled.div`
   display: flex;
-  width: 962px;
+  width: 866px;
   border-top: 1px solid rgba(151, 153, 155, 0.75);
-  margin-top: 28px;
-  margin-left: 40px;
+  margin: 28px auto;
 `;
+
 export const UserActionsContainerLink = styled(Button)``;
 
 export const TimelineContainer = styled.div`

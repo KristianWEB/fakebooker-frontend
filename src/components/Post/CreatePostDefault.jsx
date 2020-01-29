@@ -1,16 +1,15 @@
 import React from "react";
-import UserAvatarExample from "../../assets/images/36.jpg";
 import {
   CreatePostContainer,
   UserAvatar,
   CreatePostButton
 } from "./CreatePostDefault.styles";
 
-const CreatePostDefault = () => {
+const CreatePostDefault = ({ user }) => {
   return (
     <>
       <CreatePostContainer>
-        <UserAvatar src={UserAvatarExample} />
+        <UserAvatar src={user.coverImage} />
         <CreatePostButton>Add a Post</CreatePostButton>
       </CreatePostContainer>
     </>
