@@ -2,11 +2,10 @@ import styled from "styled-components";
 import { Row, Card, Avatar, Button } from "antd";
 
 export const PostContainer = styled(Row)`
-  min-width: 100%;
   margin: 0.5rem 0.93rem;
-  @media (min-width: 1200px) {
-    max-width: 38.62rem;
-  }
+  width: 500px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
+  border-radius: 6px;
 `;
 
 export const PopButton = styled(Button)`
@@ -17,20 +16,14 @@ export const PopButton = styled(Button)`
 `;
 
 export const CommentsContainer = styled(Row)`
-  min-width: 100%;
-  padding: 1rem 1.5rem;
+  margin: 13px;
   border-radius: 0 0 8px 8px !important;
-
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
-  @media (min-width: 1200px) {
-    max-width: 38.62rem;
-  }
 `;
 
 export const PostHeader = styled.div`
   display: flex;
   justify-items: between;
-  margin: 1.56rem;
+  margin: 13px;
   margin-bottom: 0;
 `;
 
@@ -40,7 +33,7 @@ export const PostCard = styled(Card)`
 
   /** ant-design adds its own border-radius: 3px and somehow I can't change that value so I had to put !important to make it work. Please let me know if you have any ideas to prevent this kind of collision with antd. */
   border-radius: 8px 8px 0 0 !important;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
+  /* box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16); */
 
   @media (max-width: 365px) {
     margin: 0;
@@ -84,7 +77,7 @@ export const PostCreation = styled.p`
 `;
 
 export const PostContent = styled.div`
-  margin: 1.56rem;
+  margin: 13px;
   color: #444444;
   font-size: 1rem;
 
@@ -94,23 +87,18 @@ export const PostContent = styled.div`
 `;
 
 export const PostFooter = styled.div`
-  width: 100%;
-  height: 3.75rem;
+  /* height: 3.75rem; */
   display: flex;
-  background-color: #f6f6f6;
-  padding: 0 1.56rem;
-  @media (max-width: 400px) {
-    justify-content: space-around;
-    padding: 0;
-  }
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  margin: 0 13px;
+  padding: 5px 35px;
 `;
 export const LikesWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin: 0;
-  @media (max-width: 400px) {
-    /* width: 100%; */
-  }
 `;
 export const LikesDisplay = styled.div`
   display: flex;
@@ -126,7 +114,7 @@ export const LikesLogo = styled.img`
   width: 1.5rem;
   fill: #444444;
 `;
-export const LikesCount = styled.h3`
+export const LikesCount = styled.p`
   font-size: 1rem;
   margin-left: 0.35rem;
   color: #444444;
@@ -173,16 +161,11 @@ export const FeedbackWrapper = styled.div`
 export const CommentsWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 1rem;
-
-  @media (max-width: 400px) {
-    margin-left: -2.5rem;
-  }
 `;
 export const CommentsLogo = styled.img`
   width: 1.5rem;
 `;
-export const CommentsCount = styled.h4`
+export const CommentsCount = styled.p`
   font-size: 1rem;
   margin: 0;
   margin-left: 0.35rem;
@@ -202,7 +185,7 @@ export const SharesWrapper = styled.div`
 export const SharesLogo = styled.img`
   width: 1.5rem;
 `;
-export const SharesCount = styled.h4`
+export const SharesCount = styled.p`
   font-size: 1rem;
   margin: 0;
   margin-left: 0.35rem;
@@ -213,37 +196,20 @@ export const SharesCount = styled.h4`
   }
 `;
 
-export const LikesHeading = styled.p`
+export const LikesHeading = styled.span`
+  font-size: 1rem;
+  margin-left: 5px;
+  color: #606770;
+  margin-top: 1px;
+`;
+export const CommentsHeading = styled.span`
   font-size: 1rem;
   margin: 0;
-  margin-left: 0.35rem;
-  color: #444444;
-
-  @media (min-width: 400px) {
-    display: none;
-  }
+  color: #606770;
 `;
-export const CommentsHeading = styled.p`
+
+export const SharesHeading = styled.span`
   font-size: 1rem;
   margin: 0;
-  margin-left: 0.35rem;
-  color: #444444;
-
-  @media (min-width: 400px) {
-    display: none;
-  }
-`;
-
-export const SharesHeading = styled.p`
-  font-size: 1rem;
-  margin: 0;
-  margin-left: 0.35rem;
-  color: #444444;
-
-  @media (min-width: 400px) {
-    display: none;
-  }
-`;
-export const StyledStrong = styled.strong`
-  font-weight: 500;
+  color: #606770;
 `;

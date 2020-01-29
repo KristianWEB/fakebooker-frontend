@@ -4,7 +4,7 @@ import { Input } from "antd";
 export const CommentForm = styled.form`
   display: flex;
   font-family: Roboto;
-  width: 476px;
+  width: 100%;
 `;
 
 export const CommentInput = styled(Input)`

@@ -5,19 +5,11 @@ import { CommentInput, CommentForm } from "./CreateComment.styles";
 import { CREATE_COMMENT } from "../../utils/graphql/queries";
 
 const CreateComment = ({ userAvatar, postId }) => {
-  const [comment, setComment] = useState({
-    content: ""
-  });
-
-  const onChange = e => {
-    setComment({ ...comment, [e.target.name]: e.target.value });
-  };
-
-  const { content } = comment;
+  const [comment, setComment] = useState("");
 
   const [createComment] = useMutation(CREATE_COMMENT, {
     variables: {
-      body: content,
+      body: comment,
       postId
     }
   });
@@ -25,6 +17,7 @@ const CreateComment = ({ userAvatar, postId }) => {
   const onSubmit = e => {
     e.preventDefault();
     createComment();
+    setComment("");
   };
 
   return (
@@ -34,7 +27,8 @@ const CreateComment = ({ userAvatar, postId }) => {
         <CommentInput
           name="content"
           placeholder="Write in a comment.."
-          onChange={onChange}
+          onChange={e => setComment(e.target.value)}
+          value={comment}
         />
       </CommentForm>
     </>
