@@ -1,4 +1,5 @@
 import React from "react";
+import { useQuery } from "@apollo/react-hooks";
 import {
   CreatePostNewContainer,
   CreatePostHeader,
@@ -15,8 +16,11 @@ import {
 } from "./CreatePostNew.styles";
 import CloseBtn from "../../assets/icons/_ionicons_svg_md-close.svg";
 import UserAvatarExample from "../../assets/images/36.jpg";
+import { LOAD_USER } from "../../utils/graphql/queries";
 
 const CreatePostNew = () => {
+  const { data: userData } = useQuery(LOAD_USER);
+
   return (
     <CreatePostNewContainer>
       <CreatePostHeader type="flex" justify="center" align="middle">
@@ -27,7 +31,7 @@ const CreatePostNew = () => {
       </CreatePostHeader>
       <CreatePostBody>
         <User type="flex" align="middle">
-          <UserAvatar src={UserAvatarExample} size={46}>
+          <UserAvatar src={userData.loadUser.coverImage} size={46}>
             Image
           </UserAvatar>
           <UserName>James Spiegel</UserName>

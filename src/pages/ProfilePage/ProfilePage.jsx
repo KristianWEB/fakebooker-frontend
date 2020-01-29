@@ -1,41 +1,43 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import { matchPath } from "react-router";
+import { useQuery } from "@apollo/react-hooks";
 import Navbar from "../../components/Navbar/Navbar";
-import { InfoContainer, PostsSection } from "./ProfilePage.styles";
+import {
+  InfoContainer,
+  PostsSection,
+  ProfilePageContainer
+} from "./ProfilePage.styles";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
-import CreatePost from "../../components/Post/CreatePost";
+import CreatePostDefault from "../../components/Post/CreatePostDefault";
 import PostList from "../../components/Post/PostList";
 import About from "../../components/About/About";
-import LastPhotos from "../../components/LastPhotos/LastPhotos";
+import { LOAD_USER } from "../../utils/graphql/queries";
 
 const ProfilePage = history => {
+  const { data: userData } = useQuery(LOAD_USER);
+
   const match = matchPath(history.location.pathname, {
     path: "/profile/:username"
   });
 
   return (
-    <div>
-      {/* TODO: Connect ProfileHeader to user */}
-      <Navbar onProfile />
-      <ProfileHeader
-        coverImage="https://www.w3schools.com/w3images/avatar2.png"
-        profileImage="https://www.w3schools.com/w3images/avatar2.png"
-        displayName="Static username"
-      />
-      <InfoContainer>
-        <About />
-        <PostsSection>
-          <CreatePost
-            name="Static username"
-            profileImage="https://www.w3schools.com/w3images/avatar2.png"
-          />
-          <PostList username={match.params.username} />
-        </PostsSection>
-        <LastPhotos />
-      </InfoContainer>
-    </div>
+    <>
+      {userData && (
+        <ProfilePageContainer>
+          {/* TODO: Connect ProfileHeader to user */}
+          <Navbar onProfile user={userData.loadUser} />
+          <ProfileHeader user={userData.loadUser} />
+          <InfoContainer>
+            <About />
+            <PostsSection>
+              <CreatePostDefault user={userData.loadUser} />
+              <PostList username={match.params.username} />
+            </PostsSection>
+          </InfoContainer>
+        </ProfilePageContainer>
+      )}
+    </>
   );
 };
 
-export default withRouter(ProfilePage);
+export default ProfilePage;

@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  ProfileHeaderContainer,
+  ProfileBackgroundContainer,
   UserContainer,
   User,
   UserAvatar,
@@ -24,18 +24,18 @@ import ImageExample from "../../assets/images/photo-1419332552192-47d29e59b1e0.j
 import UserAvatarExample from "../../assets/images/36.jpg";
 import CameraIcon from "../../assets/icons/_ionicons_svg_md-camera.svg";
 
-const ProfileHeader = () => {
+const ProfileHeader = ({ user }) => {
   return (
     <>
-      <ProfileHeaderContainer coverImage={ImageExample}>
+      <ProfileBackgroundContainer coverImage={ImageExample}>
         <ChangePhotoContainer>
           <CameraIcon width="20" height="20" />
           <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
         </ChangePhotoContainer>
-      </ProfileHeaderContainer>
+      </ProfileBackgroundContainer>
       <UserContainer>
         <User>
-          <UserAvatar src={UserAvatarExample} />
+          <UserAvatar src={user.coverImage} />
           <ChangeAvatarContainer>
             <CameraIcon width="20" height="20" />
           </ChangeAvatarContainer>
