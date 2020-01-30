@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import { Row, Avatar, Button, Input } from "antd";
+import { Row, Avatar, Button, Input, Form } from "antd";
 
 const { TextArea } = Input;
-
-export const CreatePostNewContainer = styled(Row)`
-  width: 500px;
+export const CreatePostNewContainer = styled(Form)`
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
   font-family: Roboto;
   border-radius: 6px;
