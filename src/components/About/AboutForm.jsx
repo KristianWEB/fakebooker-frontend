@@ -20,7 +20,7 @@ import {
 import FormCloseIcon from "../../assets/icons/_ionicons_svg_md-close.svg";
 import AddIcon from "../../assets/icons/_ionicons_svg_md-add-circle-outline.svg";
 
-const AboutForm = () => {
+const AboutForm = ({ showModal }) => {
   return (
     <>
       <AboutFormContainer>
