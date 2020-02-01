@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const NavContainer = styled.div`
   background-color: ${props => props.bgColor};
   width: 100%;
-  height: 3.65rem;
+  height: 5.8rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

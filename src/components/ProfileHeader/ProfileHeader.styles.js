@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Button } from "antd";
 
 export const ProfileBackgroundContainer = styled.div`
-  max-width: 1042px;
+  max-width: 94rem;
   height: 351px;
   background-image: url(${props => props.coverImage});
   background-repeat: no-repeat;
@@ -50,7 +50,7 @@ export const UserName = styled.h3`
 `;
 
 export const UserDescription = styled.h3`
-  font-size: 1rem;
+  font-size: 1.6rem;
   color: #97999b;
   margin-top: 5px;
   margin-bottom: 0;
@@ -58,7 +58,7 @@ export const UserDescription = styled.h3`
 `;
 
 export const UserDescriptionEdit = styled.button`
-  font-size: 1rem;
+  font-size: 1.6rem;
   color: #1877f2;
   font-weight: bold;
   border-radius: 0;
@@ -84,7 +84,7 @@ export const TimelineContainer = styled.div`
 `;
 export const TimelineContainerLink = styled.button`
   color: #1877f2;
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: bold;
   display: inline;
   border-radius: 0;
@@ -109,7 +109,7 @@ export const AboutContainer = styled.div`
 `;
 export const AboutContainerLink = styled.button`
   color: #97999b;
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: bold;
   display: inline;
   border-radius: 0;
@@ -125,7 +125,7 @@ export const FriendsContainer = styled.div`
 `;
 export const FriendsContainerLink = styled.button`
   color: #97999b;
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: bold;
   display: inline;
   border-radius: 0;
@@ -140,7 +140,7 @@ export const PhotosContainer = styled.div`
 `;
 export const PhotosContainerLink = styled.button`
   color: #97999b;
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: bold;
   display: inline;
   border-radius: 0;
@@ -150,15 +150,15 @@ export const PhotosContainerLink = styled.button`
   cursor: pointer;
 `;
 
-export const ChangeAvatarContainer = styled.button`
+export const ChangeAvatarContainer = styled(Button)`
   background-color: #f0f2f5;
   display: flex;
   justify-content: center;
-  padding: 0.5rem;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
   position: absolute;
+  padding: 0.5rem 0.8rem;
   height: 36px;
   top: 70px;
   right: 0;
@@ -186,4 +186,5 @@ export const ChangePhotoContainer = styled.button`
 export const ChangeBackgroundHeading = styled.h3`
   margin-left: 4px;
   margin-bottom: 0;
+  font-size: 1.4rem;
 `;
