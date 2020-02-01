@@ -11,8 +11,6 @@ import CloseIconSVG from "../../assets/icons/_ionicons_svg_md-close.svg";
 const CreatePostDefault = ({ user }) => {
   const [visible, setVisible] = useState(false);
 
-  const showModal = () => setVisible(true);
-
   const handleOk = () => setVisible(false);
 
   const handleCancel = () => setVisible(false);
@@ -21,7 +19,9 @@ const CreatePostDefault = ({ user }) => {
     <>
       <CreatePostContainer>
         <UserAvatar src={user.coverImage} />
-        <CreatePostButton onClick={showModal}>Add a Post</CreatePostButton>
+        <CreatePostButton onClick={() => setVisible(true)}>
+          Add a Post
+        </CreatePostButton>
         <Modal
           visible={visible}
           onOk={handleOk}
