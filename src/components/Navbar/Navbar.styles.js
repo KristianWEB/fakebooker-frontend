@@ -37,7 +37,7 @@ export const NewsFeedContainer = styled.div`
   justify-content: center;
 `;
 export const NewsFeedHeading = styled.h3`
-  color: #1877f2;
+  color: ${props => props.theme.appTextColor};
   font-weight: 600;
   margin-bottom: 0;
 `;
@@ -83,7 +83,7 @@ export const MessageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
+  padding: 1rem;
   margin-right: 0.5rem;
 `;
 
@@ -93,6 +93,6 @@ export const NotificationContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
+  padding: 1rem;
   margin-right: 0.5rem;
 `;

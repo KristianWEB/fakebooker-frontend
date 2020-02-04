@@ -15,12 +15,5 @@ export const InfoContainer = styled(Row)`
 `;
 
 export const PostsSection = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  @media (max-width: 1200px) {
-    min-width: 100%;
-  } */
   margin-left: 16px;
 `;

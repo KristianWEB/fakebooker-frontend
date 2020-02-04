@@ -3,13 +3,13 @@ import { Row, Avatar, Button, Input, Form } from "antd";
 
 const { TextArea } = Input;
 export const CreatePostNewContainer = styled(Form)`
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 1px 3px ${props => props.theme.boxShadow};
   font-family: Roboto;
   border-radius: 6px;
 `;
 
 export const CreatePostHeader = styled(Row)`
-  border-bottom: 1px solid #e7e7e7;
+  border-bottom: 1px solid ${props => props.theme.lightBorder};
 `;
 
 export const CreatePostHeading = styled.h1`
@@ -42,7 +42,7 @@ export const UserAvatar = styled(Avatar)`
 `;
 
 export const UserName = styled.h3`
-  color: #050505;
+  color: 1px solid ${props => props.theme.primaryTextColor};
   font-size: 16px;
   font-weight: bold;
   padding-left: 10px;
@@ -81,8 +81,8 @@ export const PublishBtn = styled(Button)`
     width: 100%;
     margin: 16px 13px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #fff;
-    background-color: #1977f3;
+    background-color: ${props => props.theme.appTextColor};
   }
 `;

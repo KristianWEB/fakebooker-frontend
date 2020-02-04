@@ -1,12 +1,13 @@
 import styled from "styled-components";
+import { Button } from "antd";
 
 export const AboutContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 360px;
-  height: 173px;
+  height: 100%;
   background-color: #fff;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.161);
+  box-shadow: ${props => props.theme.boxShadow};
   border-radius: 6px;
   padding: 0 14px;
   font-family: Roboto;
@@ -14,9 +15,10 @@ export const AboutContainer = styled.div`
 
 export const AboutHeading = styled.h1`
   margin-top: 12px;
-  font-size: 15px;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #050505;
+  color: ${props => props.theme.primaryTextColor};
+  margin-bottom: 12px;
 `;
 
 export const HomeContainer = styled.div`
@@ -40,14 +42,13 @@ export const HomeContainerHeading = styled.h2`
   font-weight: 600;
 `;
 
-export const StyledButton = styled.button`
+export const StyledButton = styled(Button)`
   background-color: #e4e6eb;
   border-radius: 4px;
   border: 0;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: #050505;
-  padding: 5px 0;
-  margin-bottom: 10px;
+  color: ${props => props.theme.primaryTextColor};
   cursor: pointer;
+  margin: 12px 0;
 `;

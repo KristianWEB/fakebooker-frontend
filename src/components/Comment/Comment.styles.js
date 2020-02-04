@@ -12,7 +12,7 @@ export const PopButton = styled(Button)`
   text-align: center;
   font-weight: bold;
   margin: 0;
-  color: #444;
+  color: ${props => props.theme.secondaryTextColor};
 `;
 
 export const BodyContainer = styled.div`
@@ -29,14 +29,16 @@ export const BodyContainer = styled.div`
 `;
 
 export const Username = styled.span`
-  color: #050505;
+  color: ${props => props.theme.primaryTextColor};
   font-weight: 500;
+  font-size: 1.4rem;
   padding-left: 13px;
   padding-bottom: 1px;
 `;
 
 export const Body = styled.span`
-  color: #444444;
+  color: ${props => props.theme.secondaryTextColor};
+  font-size: 1.4rem;
   padding-left: 13px;
   padding-right: 13px;
   line-height: 1;
