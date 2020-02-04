@@ -25,18 +25,13 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-cache.writeData({
-  data: {
-    isLoggedIn: !!localStorage.getItem("token")
-  }
-});
-
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache,
   typeDefs,
   resolvers
 });
+
 export default (
   <ApolloProvider client={client}>
     <App />

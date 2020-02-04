@@ -6,7 +6,7 @@ export const CreatePostContainer = styled.div`
   background-color: #fff;
   padding: 8px 12px;
   width: 500px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.161);
+  box-shadow: ${props => props.theme.boxShadow};
   border-radius: 6px;
 `;
 
@@ -19,11 +19,12 @@ export const UserAvatar = styled.img`
 
 export const CreatePostButton = styled.button`
   border: none;
-  color: #050505;
+  color: ${props => props.theme.primaryTextColor};
   font-weight: 600;
-  font-size: 14px;
+  font-size: 1.4rem;
   background-color: #e4e6eb;
   border-radius: 4px;
   width: 100%;
   cursor: pointer;
+  line-height: 1;
 `;

@@ -47,6 +47,7 @@ export const UserName = styled.h3`
   font-weight: bold;
   margin-top: 5px;
   margin-bottom: 0;
+  color: ${props => props.theme.primaryTextColor};
 `;
 
 export const UserDescription = styled.h3`
@@ -59,7 +60,7 @@ export const UserDescription = styled.h3`
 
 export const UserDescriptionEdit = styled.button`
   font-size: 1.6rem;
-  color: #1877f2;
+  color: ${props => props.theme.appTextColor};
   font-weight: bold;
   border-radius: 0;
   border: 0;
@@ -72,7 +73,7 @@ export const UserDescriptionEdit = styled.button`
 export const UserActionsContainer = styled.div`
   display: flex;
   width: 866px;
-  border-top: 1px solid rgba(151, 153, 155, 0.75);
+  border-top: 1px solid ${props => props.theme.lightBorder};
   margin: 28px auto;
 `;
 
@@ -83,7 +84,7 @@ export const TimelineContainer = styled.div`
   margin-top: 10px;
 `;
 export const TimelineContainerLink = styled.button`
-  color: #1877f2;
+  color: ${props => props.theme.appTextColor};
   font-size: 1.6rem;
   font-weight: bold;
   display: inline;
@@ -98,7 +99,7 @@ export const TimelineContainerLink = styled.button`
     width: 75px;
     height: 2px;
     display: block;
-    background: #1877f2;
+    background: ${props => props.theme.appTextColor};
     content: "";
   }
 `;

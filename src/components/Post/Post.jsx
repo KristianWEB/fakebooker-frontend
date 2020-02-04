@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { Popover, Button } from "antd";
+import { withTheme } from "styled-components";
+import { Popover, Button, Avatar } from "antd";
 import {
   PostContainer,
   PostHeader,
@@ -8,7 +9,6 @@ import {
   ProfileWrapper,
   NameWrapper,
   ProfileName,
-  ProfileAvatar,
   PostCreation,
   PostContent,
   PostFooter,
@@ -38,20 +38,17 @@ import {
   LOAD_USER
 } from "../../utils/graphql/queries";
 
-export default function Post({ post }) {
+const Post = ({ post, theme }) => {
   const [liked, setLiked] = useState(false);
 
-  const { data: userData } = useQuery(LOAD_USER);
+  const {
+    data: { loadUser: user }
+  } = useQuery(LOAD_USER);
   useEffect(() => {
-    if (userData) {
-      if (
-        userData.loadUser.user &&
-        post.likes.find(like => like.username === userData.user.username)
-      ) {
-        setLiked(true);
-      } else setLiked(false);
-    }
-  }, [userData, post]);
+    if (user && post.likes.find(like => like.username === user.username)) {
+      setLiked(true);
+    } else setLiked(false);
+  }, [user, post]);
 
   const [deletePost] = useMutation(DELETE_POST, {
     variables: {
@@ -61,7 +58,7 @@ export default function Post({ post }) {
       const data = proxy.readQuery({
         query: GET_POSTS_BY_USERNAME,
         variables: {
-          username: userData.loadUser.username
+          username: user.username
         }
       });
 
@@ -72,7 +69,7 @@ export default function Post({ post }) {
       proxy.writeQuery({
         query: GET_POSTS_BY_USERNAME,
         variables: {
-          username: userData.loadUser.username
+          username: user.username
         },
         data: newData
       });
@@ -97,11 +94,7 @@ export default function Post({ post }) {
       <PostCard bodyStyle={{ padding: "0" }} bordered={false}>
         <PostHeader>
           <ProfileWrapper>
-            <ProfileAvatar
-              size="large"
-              shape="circle"
-              src={post.author.coverImage}
-            />
+            <Avatar size={40} shape="circle" src={post.author.coverImage} />
             <NameWrapper>
               <ProfileName>{post.author.username}</ProfileName>
               <PostCreation>
@@ -115,8 +108,8 @@ export default function Post({ post }) {
             <ThreeDotsSvg
               style={{
                 cursor: "pointer",
-                width: "30px",
-                height: "30px"
+                width: "25px",
+                height: "25px"
               }}
             />
           </Popover>
@@ -129,9 +122,13 @@ export default function Post({ post }) {
                 <Button
                   type="link"
                   onClick={likePost}
-                  style={{ padding: 0, display: "flex" }}
+                  style={{ padding: 0, display: "flex", alignItems: "center" }}
                 >
-                  <LikesSVG fill="#1877f2" width="25px" height="25px" />
+                  <LikesSVG
+                    fill={theme.appTextColor}
+                    width="25px"
+                    height="25px"
+                  />
                   <LikesCount>{post.likeCount}</LikesCount>
                 </Button>
               ) : (
@@ -140,17 +137,26 @@ export default function Post({ post }) {
                   onClick={likePost}
                   style={{
                     padding: 0,
-                    display: "flex"
+                    display: "flex",
+                    alignItems: "center"
                   }}
                 >
-                  <LikesSVG fill="#606770" width="25px" height="25px" />
+                  <LikesSVG
+                    fill={theme.tertiaryTextColor}
+                    width="25px"
+                    height="25px"
+                  />
                   <LikesHeading>Like</LikesHeading>
                 </Button>
               )}
             </LikesDisplay>
           </LikesWrapper>
           <CommentsWrapper>
-            <CommentsSVG fill="#606770" width="25px" height="25px" />
+            <CommentsSVG
+              fill={theme.tertiaryTextColor}
+              width="25px"
+              height="25px"
+            />
             <CommentsCount>
               {post.commentCount === 0 ? (
                 <CommentsHeading>Comment</CommentsHeading>
@@ -160,9 +166,12 @@ export default function Post({ post }) {
             </CommentsCount>
           </CommentsWrapper>
           <SharesWrapper>
-            <SharesSVG fill="#606770" width="25px" height="25px" />
+            <SharesSVG
+              fill={theme.tertiaryTextColor}
+              width="25px"
+              height="25px"
+            />
             <SharesCount>
-              {/* {post.likedBy.count === undefined ? "0" : post.likedBy.count} */}
               <SharesHeading>Share</SharesHeading>
             </SharesCount>
           </SharesWrapper>
@@ -174,4 +183,6 @@ export default function Post({ post }) {
       </CommentsContainer>
     </PostContainer>
   );
-}
+};
+
+export default withTheme(Post);

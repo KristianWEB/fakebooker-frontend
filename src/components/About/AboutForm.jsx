@@ -1,4 +1,5 @@
 import React from "react";
+import { withTheme } from "styled-components";
 import {
   AboutFormContainer,
   HeadingContainer,
@@ -20,7 +21,7 @@ import {
 import FormCloseIcon from "../../assets/icons/_ionicons_svg_md-close.svg";
 import AddIcon from "../../assets/icons/_ionicons_svg_md-add-circle-outline.svg";
 
-const AboutForm = ({ showModal }) => {
+const AboutForm = ({ theme }) => {
   return (
     <>
       <AboutFormContainer>
@@ -38,32 +39,32 @@ const AboutForm = ({ showModal }) => {
           <WorkContainer>
             <WorkHeading>Work</WorkHeading>
             <WorkActionBtn>
-              <AddIcon width="35" height="35" fill="#1977F3" />
+              <AddIcon width="35" height="35" fill={theme.appTextColor} />
               <ButtonActionHeading>Add Jobs</ButtonActionHeading>
             </WorkActionBtn>
           </WorkContainer>
           <WorkContainer>
             <WorkHeading>Education</WorkHeading>
             <WorkActionBtn>
-              <AddIcon width="35" height="35" fill="#1977F3" />
+              <AddIcon width="35" height="35" fill={theme.appTextColor} />
               <ButtonActionHeading>Add high-school</ButtonActionHeading>
             </WorkActionBtn>
             <WorkActionBtn>
-              <AddIcon width="35" height="35" fill="#1977F3" />
+              <AddIcon width="35" height="35" fill={theme.appTextColor} />
               <ButtonActionHeading>Add college</ButtonActionHeading>
             </WorkActionBtn>
           </WorkContainer>
           <WorkContainer>
             <WorkHeading>Current city</WorkHeading>
             <WorkActionBtn>
-              <AddIcon width="35" height="35" fill="#1977F3" />
+              <AddIcon width="35" height="35" fill={theme.appTextColor} />
               <ButtonActionHeading>Add Current city</ButtonActionHeading>
             </WorkActionBtn>
           </WorkContainer>
           <WorkContainer>
             <WorkHeading>Home city</WorkHeading>
             <WorkActionBtn>
-              <AddIcon width="35" height="35" fill="#1977F3" />
+              <AddIcon width="35" height="35" fill={theme.appTextColor} />
               <ButtonActionHeading>Add Home city</ButtonActionHeading>
             </WorkActionBtn>
           </WorkContainer>
@@ -80,4 +81,4 @@ const AboutForm = ({ showModal }) => {
   );
 };
 
-export default AboutForm;
+export default withTheme(AboutForm);
