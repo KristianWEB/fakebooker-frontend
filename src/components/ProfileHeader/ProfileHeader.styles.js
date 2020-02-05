@@ -1,11 +1,21 @@
 // import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
-import { Button } from "antd";
+import { Button, Row } from "antd";
 
+export const ProfileHeaderContainer = styled(Row)`
+  margin-top: -60px;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 1) 50%
+    ),
+    url(${props => props.coverImage});
+  background-size: cover;
+`;
 export const ProfileBackgroundContainer = styled.div`
   max-width: 94rem;
-  height: 351px;
+  height: 35rem;
   background-image: url(${props => props.coverImage});
   background-repeat: no-repeat;
   background-size: cover;
@@ -17,6 +27,17 @@ export const ProfileBackgroundContainer = styled.div`
   position: relative;
   font-family: "Roboto";
   margin-bottom: -85px;
+
+  @media only screen and (max-width: 1000px) {
+    max-width: 90%;
+    max-height: 30rem;
+  }
+
+  @media only screen and (max-width: 700px) {
+    max-width: 100%;
+    max-height: 30rem;
+    border-radius: 0;
+  }
 `;
 
 export const UserContainer = styled.div`
@@ -24,7 +45,7 @@ export const UserContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1042px;
+  /* width: 1042px; */
   margin: 0 auto;
 `;
 
@@ -169,7 +190,6 @@ export const ChangeAvatarContainer = styled(Button)`
 
 export const ChangePhotoContainer = styled.button`
   background-color: #f0f2f5;
-  width: 72px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -179,7 +199,6 @@ export const ChangePhotoContainer = styled.button`
   cursor: pointer;
   position: absolute;
   right: 0;
-  top: 300px;
   border: 0;
   padding: 5px 8px;
 `;

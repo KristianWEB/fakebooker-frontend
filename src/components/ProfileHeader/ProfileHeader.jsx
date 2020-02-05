@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  ProfileHeaderContainer,
   ProfileBackgroundContainer,
   UserContainer,
   User,
@@ -25,7 +26,7 @@ import CameraIcon from "../../assets/icons/_ionicons_svg_md-camera.svg";
 
 const ProfileHeader = ({ user }) => {
   return (
-    <>
+    <ProfileHeaderContainer coverImage={ImageExample}>
       <ProfileBackgroundContainer coverImage={ImageExample}>
         <ChangePhotoContainer>
           <CameraIcon width="20" height="20" />
@@ -57,7 +58,7 @@ const ProfileHeader = ({ user }) => {
           <PhotosContainerLink type="link">Photos</PhotosContainerLink>
         </PhotosContainer>
       </UserActionsContainer>
-    </>
+    </ProfileHeaderContainer>
   );
 };
 
