@@ -26,8 +26,8 @@ import CameraIcon from "../../assets/icons/_ionicons_svg_md-camera.svg";
 
 const ProfileHeader = ({ user }) => {
   return (
-    <ProfileHeaderContainer coverImage={ImageExample}>
-      <ProfileBackgroundContainer coverImage={ImageExample}>
+    <ProfileHeaderContainer img={ImageExample}>
+      <ProfileBackgroundContainer img={ImageExample}>
         <ChangePhotoContainer>
           <CameraIcon width="20" height="20" />
           <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>

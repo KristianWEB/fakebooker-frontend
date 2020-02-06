@@ -7,6 +7,7 @@ export const PostContainer = styled(Row)`
   box-shadow: ${props => props.theme.boxShadow};
   border-radius: 6px;
   font-family: "Roboto";
+  background-color: #fff;
 `;
 
 export const PopButton = styled(Button)`

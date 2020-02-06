@@ -10,13 +10,13 @@ export const ProfileHeaderContainer = styled(Row)`
       rgba(255, 255, 255, 0.5) 0%,
       rgba(255, 255, 255, 1) 50%
     ),
-    url(${props => props.coverImage});
+    url(${props => props.img});
   background-size: cover;
 `;
 export const ProfileBackgroundContainer = styled.div`
   max-width: 94rem;
   height: 35rem;
-  background-image: url(${props => props.coverImage});
+  background-image: url(${props => props.img});
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 0 0 6px 6px;
@@ -94,8 +94,10 @@ export const UserDescriptionEdit = styled.button`
 export const UserActionsContainer = styled.div`
   display: flex;
   width: 866px;
+  /* width: 100%; */
   border-top: 1px solid ${props => props.theme.lightBorder};
-  margin: 28px auto;
+  margin: 0 auto;
+  margin-top: 28px;
 `;
 
 export const UserActionsContainerLink = styled(Button)``;
@@ -199,6 +201,7 @@ export const ChangePhotoContainer = styled.button`
   cursor: pointer;
   position: absolute;
   right: 0;
+  top: 85%;
   border: 0;
   padding: 5px 8px;
 `;
