@@ -8,6 +8,9 @@ export const PostContainer = styled(Row)`
   border-radius: 6px;
   font-family: "Roboto";
   background-color: #fff;
+  @media only screen and (max-width: 575px) {
+    width: 100%;
+  }
 `;
 
 export const PopButton = styled(Button)`

@@ -11,6 +11,9 @@ export const AboutContainer = styled.div`
   border-radius: 6px;
   padding: 0 14px;
   font-family: Roboto;
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const AboutHeading = styled.h1`

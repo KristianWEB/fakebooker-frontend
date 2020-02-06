@@ -98,6 +98,10 @@ export const UserActionsContainer = styled.div`
   border-top: 1px solid ${props => props.theme.lightBorder};
   margin: 0 auto;
   margin-top: 28px;
+  @media only screen and (max-width: 991px) {
+    justify-content: center;
+    width: 100%;
+  }
 `;
 
 export const UserActionsContainerLink = styled(Button)``;

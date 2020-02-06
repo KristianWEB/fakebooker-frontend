@@ -1,13 +1,17 @@
 import styled from "styled-components";
 
 export const CreatePostContainer = styled.div`
-  display: inline-flex;
+  display: flex;
   font-family: "Roboto";
   background-color: #fff;
   padding: 8px 12px;
   width: 500px;
   box-shadow: ${props => props.theme.boxShadow};
   border-radius: 6px;
+  @media only screen and (max-width: 575px) {
+    width: 100%;
+    margin: 0 auto;
+  }
 `;
 
 export const UserAvatar = styled.img`
