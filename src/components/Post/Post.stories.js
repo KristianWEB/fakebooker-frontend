@@ -1,40 +1,80 @@
-// import React from "react";
-// import { storiesOf } from "@storybook/react";
-// import { MockedProvider } from "@apollo/react-testing";
-// import CreatePostDefault from "./CreatePostDefault";
-// import CreatePostNew from "./CreatePostNew";
-// import Post from "./Post";
-// import { LOAD_USER } from "../../utils/graphql/queries";
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import { MockedProvider } from "@apollo/react-testing";
+import { ThemeProvider } from "styled-components";
+import CreatePostDefault from "./CreatePostDefault";
+import { GlobalStyle } from "../../globalStyles/index";
+import theme from "../../globalStyles/theme";
+import {
+  LOAD_USER,
+  CREATE_POST,
+  GET_POSTS_BY_USERNAME
+} from "../../utils/graphql/queries";
+import post from "../Comment/Comment.stories";
+import Post from "./Post";
 
-// const mocks = [
-//   {
-//     request: {
-//       query: LOAD_USER
-//     },
-//     result: {
-//       data: {
-//         loadUser: {
-//           username: "kristian",
-//           token:
-//             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlcyI6WyJ1c2VyIl0sIl9pZCI6IjVkZTQxODcxNjlkNDBjNWZhMDU0Yzg0YiIsImVtYWlsIjoia3Jpc3RpYW5Aa3Jpc3RpYW4uY29tIiwidXNlcm5hbWUiOiJrcmlzdGlhbiIsImRpc3BsYXlOYW1lIjoia3Jpc3RpYW4iLCJjb3ZlckltYWdlIjoiaHR0cHM6Ly93d3cudzNzY2hvb2xzLmNvbS93M2ltYWdlcy9hdmF0YXIyLnBuZyIsInN0YXR1cyI6eyJpc0RlYWN0aXZhdGVkIjpmYWxzZSwibGFzdEFjdGl2ZURhdGUiOjE1NzUyMjk0MTY1NTB9LCJpYXQiOjE1ODAxMjY5NjgsImV4cCI6MTU4MDczMTc2OH0.lOZ5kg0in8e1oNCG1SQErwuPyvV-lJrkOYa82ugzud0",
-//           email: "kristian@kristian.com",
-//           displayName: "kristian",
-//           coverImage: "https://www.w3schools.com/w3images/avatar2.png",
-//           status: {
-//             isDeactivated: false,
-//             lastActiveDate: "1575229416550"
-//           }
-//         }
-//       }
-//     }
-//   }
-// ];
+const user = {
+  username: "kristian",
+  token: "JWT token230835",
+  email: "kristian@kristian.com",
+  displayName: "kristian",
+  coverImage: "https://www.w3schools.com/w3images/avatar2.png",
+  status: {
+    isDeactivated: false,
+    lastActiveDate: "1575229416550"
+  }
+};
 
-// storiesOf("Post", module)
-//   .addDecorator(story => <div style={{ margin: "3rem" }}>{story()}</div>)
-//   .add("Create Post Default", () => <CreatePostDefault />)
-//   .add("Create Post Active", () => (
-//     <MockedProvider>
-//       <CreatePostNew />
-//     </MockedProvider>
-//   ));
+const loadUserMocks = [
+  {
+    request: {
+      query: LOAD_USER
+    },
+    result: {
+      data: {
+        loadUser: user
+      }
+    }
+  }
+];
+
+const createPostMocks = [
+  {
+    request: {
+      query: CREATE_POST,
+      variables: {
+        content: ""
+      }
+    },
+    result: {
+      data: {
+        createPost: {
+          author: {
+            username: user.username,
+            coverImage: user.coverImage
+          },
+          comments: null,
+          creationDate: "1575231234746",
+          id: "5de41f028c0f4b32e87674cf"
+        }
+      }
+    }
+  }
+];
+
+storiesOf("Post", module)
+  .addDecorator(story => (
+    <>
+      <GlobalStyle />
+      {story()}
+    </>
+  ))
+  .addDecorator(story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>)
+  .addDecorator(story => (
+    <div style={{ margin: "3rem", width: "500px" }}>{story()}</div>
+  ))
+  .add("Create Post", () => (
+    <MockedProvider mocks={createPostMocks} addTypename={false}>
+      <CreatePostDefault user={user} />
+    </MockedProvider>
+  ));
