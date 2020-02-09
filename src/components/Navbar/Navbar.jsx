@@ -45,13 +45,7 @@ const Navbar = ({ onProfile, user }) => {
             <BackArrowContainer>
               <BackArrowIcon width="25" height="25" />
             </BackArrowContainer>
-            <Logo
-              width="41"
-              height="41"
-              style={{
-                borderRadius: "100%"
-              }}
-            />
+            <Avatar icon={<Logo />} size={41} />
           </LogoContainer>
           <ProfileContainer>
             <MessageContainer>
