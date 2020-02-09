@@ -30,7 +30,7 @@ export const BodyContainer = styled.div`
 
 export const Username = styled.span`
   color: ${props => props.theme.primaryTextColor};
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.4rem;
   padding-left: 13px;
   padding-bottom: 1px;

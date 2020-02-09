@@ -40,6 +40,7 @@ export const NewsFeedHeading = styled.h3`
   color: ${props => props.theme.appTextColor};
   font-weight: 600;
   margin-bottom: 0;
+  font-size: 1.4rem;
 `;
 
 export const SearchBar = styled.input`
@@ -51,10 +52,10 @@ export const SearchBar = styled.input`
   border: none;
   margin-left: 0.5rem;
   padding: 0 15px;
+  font-size: 1.4rem;
 
   ::placeholder {
     color: #8f9296;
-    font-size: 14px;
   }
 `;
 

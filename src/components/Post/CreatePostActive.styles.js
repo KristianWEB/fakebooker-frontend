@@ -3,7 +3,7 @@ import { Row, Avatar, Button, Input, Form } from "antd";
 
 const { TextArea } = Input;
 export const CreatePostNewContainer = styled(Form)`
-  box-shadow: 0px 1px 3px ${props => props.theme.boxShadow};
+  box-shadow: ${props => props.theme.boxShadow};
   font-family: Roboto;
   border-radius: 6px;
 `;

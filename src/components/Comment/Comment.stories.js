@@ -1,10 +1,13 @@
 import React from "react";
+import { ThemeProvider } from "styled-components";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/react-testing";
 import {
   CREATE_COMMENT,
   GET_POSTS_BY_USERNAME
 } from "../../utils/graphql/queries";
+import theme from "../../globalStyles/theme";
+import { GlobalStyle } from "../../globalStyles/index";
 import UserAvatar from "../../assets/images/36.jpg";
 import UserAvatar2 from "../../assets/images/avatar5-sm.jpg";
 import UserAvatar3 from "../../assets/images/avatar8-sm.jpg";
@@ -107,7 +110,16 @@ const longBody =
   "This is a really really really long comment and it should expand its container with it and create a perfect comment. This has to be fixed so if the comment is too long it should drop below on a new file. Not now tho lets implement it first and then go refactor.";
 
 storiesOf("Comment", module)
-  .addDecorator(story => <div style={{ padding: "3rem" }}>{story()}</div>)
+  .addDecorator(story => (
+    <>
+      <GlobalStyle />
+      {story()}
+    </>
+  ))
+  .addDecorator(story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>)
+  .addDecorator(story => (
+    <div style={{ padding: "2rem", width: "466px" }}>{story()}</div>
+  ))
   .add("create", () => (
     <MockedProvider mocks={createCommentMocks} addTypename={false}>
       <CreateComment userAvatar={UserAvatar} />
