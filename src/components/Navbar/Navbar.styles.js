@@ -73,7 +73,8 @@ export const BackArrowContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
+  width: 41px;
+  height: 41px;
   margin-right: 0.5rem;
 `;
 
@@ -83,8 +84,9 @@ export const MessageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
   margin-right: 0.5rem;
+  width: 41px;
+  height: 41px;
 `;
 
 export const NotificationContainer = styled.div`
@@ -93,6 +95,7 @@ export const NotificationContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
   margin-right: 0.5rem;
+  width: 41px;
+  height: 41px;
 `;

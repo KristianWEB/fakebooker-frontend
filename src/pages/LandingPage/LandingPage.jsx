@@ -18,7 +18,7 @@ const { TabPane } = Tabs;
 const Auth = ({ history }) => {
   const token = localStorage.getItem("token");
   if (token) {
-    return <Redirect to="/" />;
+    return <Redirect to="/profile" />;
   }
 
   return (

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import {
   NotFoundContainer,
@@ -21,7 +22,7 @@ export default function NotFoundPage() {
           The page you are looking for might have been removed had its name
           changed or is temporarily unavailable.
         </p>
-        <a href="/">Go To Homepage</a>
+        <Link to="/profile">Go To Homepage</Link>
       </NotFound>
     </NotFoundContainer>
   );

@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { Checkbox, Input, message } from "antd";
-import { LOGIN_USER, IS_LOGGED_IN } from "../../utils/graphql/queries";
+import { LOGIN_USER } from "../../utils/graphql/queries";
 
 import { AuthDisplay, StyledButton } from "./LoginForm.styles";
 
@@ -22,16 +22,12 @@ const LoginForm = () => {
       const { token } = result.login;
       localStorage.setItem("token", token);
       message.success("Logged in successfully");
-      history.push("/");
+      history.push("/profile");
     },
     onError: err => setErrors(err.graphQLErrors[0].extensions.exception.errors),
     variables: {
       email: loginState.email,
       password: loginState.password
-    },
-    update: async (proxy, result) => {
-      const newData = { isLoggedIn: true };
-      proxy.writeQuery({ query: IS_LOGGED_IN, data: newData });
     }
   });
   const onChange = e =>
