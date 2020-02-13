@@ -1,16 +1,15 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { Col, Row, Tabs } from "antd";
-import logo from "../../assets/icons/logo.svg";
-import backgroundImg from "../../assets/images/landing-page-background.jpg";
+import { Tabs, Col } from "antd";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import LandingPageBackground from "../../assets/svg/undraw_processing_qj6a.svg";
 
 import {
   LandingContentContainer,
   AuthContainer,
-  ProjectLogo,
-  StyledCol
+  StyledCol,
+  LandingPageContainer
 } from "./LandingPage.styles";
 
 const { TabPane } = Tabs;
@@ -24,13 +23,15 @@ const Auth = ({ history }) => {
   return (
     <AuthContainer>
       <Col span={20} offset={2}>
-        {/* TEMPORARY PLACEHOLDER FOR LOGO */}
-        <ProjectLogo src={logo} alt="" />
         <Tabs tabPosition="top">
           <TabPane tab="Login" key="1">
             <LoginForm history={history} />
           </TabPane>
-          <TabPane tab="Register" key="2">
+          <TabPane
+            tab="Register"
+            key="2"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
             <RegisterForm history={history} />
           </TabPane>
         </Tabs>
@@ -39,22 +40,14 @@ const Auth = ({ history }) => {
   );
 };
 
-const LandingContent = () => (
-  <LandingContentContainer>
-    <img src={backgroundImg} alt="logo" />
-  </LandingContentContainer>
-);
-
 const LandingPage = props => {
   return (
-    <Row style={{ position: "relative" }}>
-      <StyledCol xs={0} md={12} lg={16} background="#3b5999">
-        <LandingContent />
-      </StyledCol>
-      <StyledCol xs={24} md={12} lg={8} background="#fefdf9">
+    <LandingPageContainer>
+      <LandingPageBackground />
+      <StyledCol>
         <Auth history={props.history} />
       </StyledCol>
-    </Row>
+    </LandingPageContainer>
   );
 };
 

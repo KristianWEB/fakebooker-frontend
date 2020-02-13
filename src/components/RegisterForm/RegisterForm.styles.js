@@ -6,7 +6,6 @@ export const RegisterFormContainer = styled.div`
   /* flex-direction: column; */
   /* align-items: center; */
   width: 500px;
-  margin-bottom: 40px;
   font-family: "Roboto";
 `;
 
