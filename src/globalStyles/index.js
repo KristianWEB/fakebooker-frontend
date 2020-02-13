@@ -12,11 +12,4 @@ export const GlobalStyle = createGlobalStyle`
    html, body {
     font-size: 62.5%;
    } 
-
-   .svgBackground {
-       display: none;
-       @media only screen and (min-width: 1100px) {
-           display: block;
-       }
-   }
 `;
