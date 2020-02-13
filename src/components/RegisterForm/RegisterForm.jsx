@@ -1,8 +1,22 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { Input, message } from "antd";
+import { message, Form } from "antd";
 import { REGISTER_USER } from "../../utils/graphql/queries";
-import { AuthDisplay, StyledButton } from "./RegisterForm.styles";
+import {
+  RegisterFormContainer,
+  StyledButton,
+  RegisterHeading,
+  FirstNameLabel,
+  FirstNameInput,
+  LastNameInput,
+  EmailInput,
+  PasswordInput,
+  NameContainer,
+  BirthdayLabel,
+  BirthdayInput,
+  MaleGender,
+  FemaleGender
+} from "./RegisterForm.styles";
 
 const RegisterForm = ({ history }) => {
   const [signUpState, setSignUpState] = useState({
@@ -12,8 +26,6 @@ const RegisterForm = ({ history }) => {
     confirmPassword: ""
   });
 
-  const [errors, setErrors] = useState({});
-
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
 
@@ -22,9 +34,8 @@ const RegisterForm = ({ history }) => {
       const { token } = result.register;
       localStorage.setItem("token", token);
       message.success("Registered successfully");
-      history.push("/");
+      history.push("/profile");
     },
-    onError: err => setErrors(err.graphQLErrors[0].extensions.exception.errors),
     variables: {
       username: signUpState.username,
       email: signUpState.email,
@@ -35,27 +46,6 @@ const RegisterForm = ({ history }) => {
 
   const onSubmitRegister = async e => {
     e.preventDefault();
-    const { password, confirmPassword } = signUpState;
-
-    if (!password.match(/(?=.*[A-Z])/)) {
-      message.error("password must contain at least one upppercase character");
-      return;
-    }
-
-    if (!password.match(/(?=.*\d)/)) {
-      message.error("password must contain at least one number");
-      return;
-    }
-
-    if (password.length < 8) {
-      message.error("password must be at least 8 characters");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      message.error("Passwords must be the same");
-      return;
-    }
 
     registerUser();
 
@@ -67,70 +57,76 @@ const RegisterForm = ({ history }) => {
     });
   };
   return (
-    <AuthDisplay>
-      <h1>Create Your Account</h1>
-      <h3 style={{ color: "#808080" }}>Register</h3>
-      <form onSubmit={onSubmitRegister}>
-        <Input
-          name="username"
-          value={signUpState.username}
-          onChange={onChangeRegister}
-          placeholder="Username"
-          size="large"
-          style={{ marginBottom: "40px" }}
-          required
-        />
-        <Input
-          name="email"
-          value={signUpState.email}
-          onChange={onChangeRegister}
-          placeholder="Email"
-          size="large"
-          style={{ marginBottom: "40px" }}
-          required
-        />
-        <Input.Password
-          name="password"
-          value={signUpState.password}
-          onChange={onChangeRegister}
-          placeholder="New Password"
-          size="large"
-          required
-        />
-        <p
-          style={{
-            fontSize: "12px",
-            color: "grey",
-            marginBottom: "40px",
-            marginTop: "5px"
-          }}
-        >
-          Password should have atleast 1 lowercase letter, 1 uppercase letter, 1
-          number
-        </p>
-        <Input.Password
-          name="confirmPassword"
-          value={signUpState.confirmPassword}
-          onChange={onChangeRegister}
-          placeholder="Confirm Password"
-          size="large"
-          style={{ marginBottom: "40px" }}
-          required
-        />
+    <RegisterFormContainer>
+      <RegisterHeading>Sign Up to Fakebooker</RegisterHeading>
+      <Form onSubmit={onSubmitRegister}>
+        <NameContainer>
+          <Form.Item
+            style={{ marginBottom: "15px", width: "50%", marginRight: "16px" }}
+          >
+            <FirstNameLabel>First name</FirstNameLabel>
+            <FirstNameInput
+              name="firstName"
+              value={signUpState.firstName}
+              onChange={onChangeRegister}
+              size="large"
+              required
+            />
+          </Form.Item>
+          <Form.Item style={{ marginBottom: "15px", width: "50%" }}>
+            <FirstNameLabel>Last name</FirstNameLabel>
+            <LastNameInput
+              name="lastName"
+              value={signUpState.lastName}
+              onChange={onChangeRegister}
+              size="large"
+              required
+            />
+          </Form.Item>
+        </NameContainer>
+        <Form.Item style={{ marginBottom: "15px" }}>
+          <FirstNameLabel>Email</FirstNameLabel>
+          <EmailInput
+            name="email"
+            value={signUpState.email}
+            onChange={onChangeRegister}
+            size="large"
+            required
+          />
+        </Form.Item>
+        <Form.Item style={{ marginBottom: "15px" }}>
+          <FirstNameLabel>Password</FirstNameLabel>
+          <PasswordInput
+            name="password"
+            value={signUpState.password}
+            onChange={onChangeRegister}
+            size="large"
+            required
+          />
+        </Form.Item>
+        <Form.Item style={{ marginBottom: "15px" }}>
+          <BirthdayLabel>Birthday</BirthdayLabel>
+          <BirthdayInput
+            format="DD-MM-YY"
+            placeholder=""
+            value={signUpState.birthday}
+            onChange={onChangeRegister}
+          />
+        </Form.Item>
+        <Form.Item style={{ marginBottom: "15px" }}>
+          <BirthdayLabel>Gender</BirthdayLabel>
+          <FemaleGender value={signUpState.gender} onChange={onChangeRegister}>
+            Female
+          </FemaleGender>
+          <MaleGender value={signUpState.gender} onChange={onChangeRegister}>
+            Male
+          </MaleGender>
+        </Form.Item>
         <StyledButton type="primary" htmlType="submit" block>
-          <span style={{ fontSize: "16px" }}>Register</span>
+          Create Account
         </StyledButton>
-      </form>
-      {Object.keys(errors).length > 0 && (
-        <div className="ui error message">
-          <ul className="list">
-            {Object.values(errors).map(value => (
-              <li key={value}>{value}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </AuthDisplay>
+      </Form>
+    </RegisterFormContainer>
   );
 };
 

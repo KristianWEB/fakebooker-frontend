@@ -5,12 +5,8 @@ import { ThemeProvider } from "styled-components";
 import CreatePostDefault from "./CreatePostDefault";
 import { GlobalStyle } from "../../globalStyles/index";
 import theme from "../../globalStyles/theme";
-import {
-  LOAD_USER,
-  CREATE_POST,
-  GET_POSTS_BY_USERNAME
-} from "../../utils/graphql/queries";
-import post from "../Comment/Comment.stories";
+import { LOAD_USER, CREATE_POST } from "../../utils/graphql/queries";
+import { post } from "../Comment/Comment.stories";
 import Post from "./Post";
 
 const user = {
@@ -76,5 +72,10 @@ storiesOf("Post", module)
   .add("Create Post", () => (
     <MockedProvider mocks={createPostMocks} addTypename={false}>
       <CreatePostDefault user={user} />
+    </MockedProvider>
+  ))
+  .add("Post Display", () => (
+    <MockedProvider mocks={loadUserMocks} addTypename={false}>
+      <Post post={post} />
     </MockedProvider>
   ));
