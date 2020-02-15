@@ -8,11 +8,6 @@ const modifyVars = require("./antd-customizations");
 
 module.exports = {
   webpack: override(
-    addWebpackModuleRule({
-      test: /\.svg$/,
-      use: ["@svgr/webpack"]
-    }),
-
     useBabelRc(),
 
     addLessLoader({

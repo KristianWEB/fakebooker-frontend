@@ -6,7 +6,10 @@ import {
   RegisterPageContainer,
   RegisterPageBackground,
   FormContainer,
-  SVGImgBackground
+  SVGImgBackground,
+  SignInContainer,
+  SignInButton,
+  ActionsContainer
 } from "./RegisterPage.styles";
 
 const RegisterPage = () => {
@@ -21,9 +24,14 @@ const RegisterPage = () => {
       <RegisterPageBackground>
         <SVGImgBackground />
       </RegisterPageBackground>
-      <FormContainer>
-        <RegisterForm />
-      </FormContainer>
+      <ActionsContainer>
+        <SignInContainer>
+          Already a member?<SignInButton type="link">Sign in</SignInButton>
+        </SignInContainer>
+        <FormContainer>
+          <RegisterForm />
+        </FormContainer>
+      </ActionsContainer>
     </RegisterPageContainer>
   );
 };

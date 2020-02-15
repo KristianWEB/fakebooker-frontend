@@ -21,7 +21,7 @@ export const StyledButton = styled(Button)`
 
 export const RegisterHeading = styled.p`
   font-size: 2.4rem;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 30px;
   color: #050505;
 `;
@@ -30,7 +30,7 @@ export const FirstNameLabel = styled.p`
   display: inline-block;
   margin-bottom: 7px;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
   color: #050505;
 `;
@@ -72,7 +72,7 @@ export const BirthdayLabel = styled.p`
   display: block;
   margin-bottom: 7px;
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
   color: #050505;
 `;

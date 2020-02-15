@@ -8,10 +8,10 @@ import {
   HomeContainerParagraph,
   StyledButton
 } from "./About.styles";
-import HomeIcon from "../../assets/icons/_ionicons_svg_md-home.svg";
-import JobIcon from "../../assets/icons/_ionicons_svg_md-briefcase.svg";
-import LocationIcon from "../../assets/icons/_ionicons_svg_md-pin.svg";
-import CloseIconSVG from "../../assets/icons/_ionicons_svg_md-close.svg";
+import { ReactComponent as HomeIcon } from "../../assets/icons/_ionicons_svg_md-home.svg";
+import { ReactComponent as JobIcon } from "../../assets/icons/_ionicons_svg_md-briefcase.svg";
+import { ReactComponent as LocationIcon } from "../../assets/icons/_ionicons_svg_md-pin.svg";
+import { ReactComponent as CloseIconSVG } from "../../assets/icons/_ionicons_svg_md-close.svg";
 import AboutForm from "./AboutForm";
 
 const About = () => {
