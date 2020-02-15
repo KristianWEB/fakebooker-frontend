@@ -6,7 +6,7 @@ import {
   CreatePostButton
 } from "./CreatePostDefault.styles";
 import CreatePostActive from "./CreatePostActive";
-import CloseIconSVG from "../../assets/icons/_ionicons_svg_md-close.svg";
+import { ReactComponent as CloseIconSVG } from "../../assets/icons/_ionicons_svg_md-close.svg";
 
 const CreatePostDefault = ({ user }) => {
   const [visible, setVisible] = useState(false);

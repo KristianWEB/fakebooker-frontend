@@ -9,7 +9,7 @@ import {
   Username,
   PopButton
 } from "./Comment.styles";
-import ThreeDotsSvg from "../../assets/icons/three-dots-icon.svg";
+import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/three-dots-icon.svg";
 
 const Comment = ({ comment: { author, body, id }, postId }) => {
   const [isHovering, setIsHovering] = useState(false);

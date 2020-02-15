@@ -18,8 +18,8 @@ import {
   FooterCloseBtn,
   FooterSaveBtn
 } from "./AboutForm.styles";
-import FormCloseIcon from "../../assets/icons/_ionicons_svg_md-close.svg";
-import AddIcon from "../../assets/icons/_ionicons_svg_md-add-circle-outline.svg";
+import { ReactComponent as FormCloseIcon } from "../../assets/icons/_ionicons_svg_md-close.svg";
+import { ReactComponent as AddIcon } from "../../assets/icons/_ionicons_svg_md-add-circle-outline.svg";
 
 const AboutForm = ({ theme }) => {
   return (
@@ -57,14 +57,14 @@ const AboutForm = ({ theme }) => {
           <WorkContainer>
             <WorkHeading>Current city</WorkHeading>
             <WorkActionBtn>
-              <AddIcon width="35" height="35" fill={theme.appTextColor} />
+              {/* <AddIcon width="35" height="35" fill={theme.appTextColor} /> */}
               <ButtonActionHeading>Add Current city</ButtonActionHeading>
             </WorkActionBtn>
           </WorkContainer>
           <WorkContainer>
             <WorkHeading>Home city</WorkHeading>
             <WorkActionBtn>
-              <AddIcon width="35" height="35" fill={theme.appTextColor} />
+              {/* <AddIcon width="35" height="35" fill={theme.appTextColor} /> */}
               <ButtonActionHeading>Add Home city</ButtonActionHeading>
             </WorkActionBtn>
           </WorkContainer>

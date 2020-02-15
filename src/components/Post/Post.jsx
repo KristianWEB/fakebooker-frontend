@@ -25,10 +25,10 @@ import {
   SharesHeading,
   CommentsContainer
 } from "./Post.styles";
-import CommentsSVG from "../../assets/icons/_ionicons_svg_md-chatbubbles.svg";
-import LikesSVG from "../../assets/icons/_ionicons_svg_md-thumbs-up.svg";
-import SharesSVG from "../../assets/icons/_ionicons_svg_md-share-alt.svg";
-import ThreeDotsSvg from "../../assets/icons/three-dots-icon.svg";
+import { ReactComponent as CommentsSVG } from "../../assets/icons/_ionicons_svg_md-chatbubbles.svg";
+import { ReactComponent as LikesSVG } from "../../assets/icons/_ionicons_svg_md-thumbs-up.svg";
+import { ReactComponent as SharesSVG } from "../../assets/icons/_ionicons_svg_md-share-alt.svg";
+import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/three-dots-icon.svg";
 import CreateComment from "../Comment/CreateComment";
 import CommentList from "../Comment/CommentList";
 import {

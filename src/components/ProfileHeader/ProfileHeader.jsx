@@ -22,7 +22,7 @@ import {
   ChangeAvatarContainer
 } from "./ProfileHeader.styles";
 import ImageExample from "../../assets/images/photo-1419332552192-47d29e59b1e0.jpg";
-import CameraIcon from "../../assets/icons/_ionicons_svg_md-camera.svg";
+import { ReactComponent as CameraIcon } from "../../assets/icons/_ionicons_svg_md-camera.svg";
 
 const ProfileHeader = ({ user }) => {
   return (

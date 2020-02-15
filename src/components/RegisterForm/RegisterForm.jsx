@@ -20,7 +20,7 @@ import {
 
 const RegisterForm = ({ history }) => {
   const [signUpState, setSignUpState] = useState({
-    email: "",
+    fiUu: "",
     username: "",
     password: "",
     confirmPassword: ""
