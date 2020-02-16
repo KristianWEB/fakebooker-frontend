@@ -41,7 +41,7 @@ export const SVGImgBackground = styled(BgImg)`
     display: block;
   }
   .gear1 {
-    animation: ${inverseRotate} infinite 2s linear;
+    animation: ${inverseRotate} infinite 5s linear;
     transform-origin: center;
     transform-box: fill-box;
     height: 25rem;
@@ -50,7 +50,7 @@ export const SVGImgBackground = styled(BgImg)`
     margin: auto;
   }
   .gear3 {
-    animation: ${rotate} infinite 2s linear;
+    animation: ${rotate} infinite 5s linear;
     transform-origin: center;
     transform-box: fill-box;
     height: 25rem;
