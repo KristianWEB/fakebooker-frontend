@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { message, Form } from "antd";
+import { message, Form, Radio } from "antd";
 import { REGISTER_USER } from "../../utils/graphql/queries";
 import {
   RegisterFormContainer,
@@ -13,21 +13,24 @@ import {
   PasswordInput,
   NameContainer,
   BirthdayLabel,
-  BirthdayInput,
-  MaleGender,
-  FemaleGender
+  BirthdayInput
 } from "./RegisterForm.styles";
 
 const RegisterForm = ({ history }) => {
   const [signUpState, setSignUpState] = useState({
-    fiUu: "",
-    username: "",
+    firstName: "",
+    lastName: "",
+    email: "",
     password: "",
-    confirmPassword: ""
+    gender: ""
   });
+
+  const [birthday, setBirthday] = useState(null);
 
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
+
+  const onChangeBirthday = e => setBirthday(e.format("x"));
 
   const [registerUser] = useMutation(REGISTER_USER, {
     onCompleted: result => {
@@ -109,18 +112,20 @@ const RegisterForm = ({ history }) => {
           <BirthdayInput
             format="DD-MM-YY"
             placeholder=""
-            value={signUpState.birthday}
-            onChange={onChangeRegister}
+            name="birthday"
+            onChange={onChangeBirthday}
           />
         </Form.Item>
         <Form.Item style={{ marginBottom: "15px" }}>
           <BirthdayLabel>Gender</BirthdayLabel>
-          <FemaleGender value={signUpState.gender} onChange={onChangeRegister}>
-            Female
-          </FemaleGender>
-          <MaleGender value={signUpState.gender} onChange={onChangeRegister}>
-            Male
-          </MaleGender>
+          <Radio.Group
+            onChange={onChangeRegister}
+            value={signUpState.gender}
+            name="gender"
+          >
+            <Radio value={1}>Female</Radio>
+            <Radio value={2}>Male</Radio>
+          </Radio.Group>
         </Form.Item>
         <StyledButton type="primary" htmlType="submit" block>
           Create Account
