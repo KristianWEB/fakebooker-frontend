@@ -1,15 +1,15 @@
 {
-  "name": "side-kick",
+  "name": "fakebooker",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/open-source-developers/front-end.git"
+    "url": "https://github.com/KristianWEB/fakebooker-frontend.git"
   },
-  "description": "side-kick Social Network App",
-  "author": "Open Source Developers",
+  "description": "Social Network",
+  "author": "KristianWEB",
   "license": "",
   "private": true,
-  "homepage": "https://open-source-developers.github.io/front-end/",
+  "homepage": "https://fakebooker.com",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
     "@apollo/react-testing": "^3.1.3",
