@@ -30,7 +30,7 @@ const RegisterForm = ({ history }) => {
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
 
-  const onChangeBirthday = e => setBirthday(e.format("x"));
+  const onChangeBirthday = e => setBirthday(Number(e.format()));
 
   const [registerUser] = useMutation(REGISTER_USER, {
     onCompleted: result => {
@@ -40,16 +40,19 @@ const RegisterForm = ({ history }) => {
       history.push("/profile");
     },
     variables: {
-      username: signUpState.username,
+      firstName: signUpState.firstName,
+      lastName: signUpState.lastName,
       email: signUpState.email,
       password: signUpState.password,
-      confirmPassword: signUpState.confirmPassword
+      gender: signUpState.gender,
+      birthday
     }
   });
 
   const onSubmitRegister = async e => {
     e.preventDefault();
 
+    // console.log(birthday);
     registerUser();
 
     setSignUpState({
@@ -123,8 +126,8 @@ const RegisterForm = ({ history }) => {
             value={signUpState.gender}
             name="gender"
           >
-            <Radio value={1}>Female</Radio>
-            <Radio value={2}>Male</Radio>
+            <Radio value="female">Female</Radio>
+            <Radio value="male">Male</Radio>
           </Radio.Group>
         </Form.Item>
         <StyledButton type="primary" htmlType="submit" block>
