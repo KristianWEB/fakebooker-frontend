@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
+import { useHistory } from "react-router-dom";
 import { message, Form, Radio } from "antd";
 import { REGISTER_USER } from "../../utils/graphql/queries";
 import {
@@ -16,7 +17,7 @@ import {
   BirthdayInput
 } from "./RegisterForm.styles";
 
-const RegisterForm = ({ history }) => {
+const RegisterForm = () => {
   const [signUpState, setSignUpState] = useState({
     firstName: "",
     lastName: "",
@@ -30,8 +31,9 @@ const RegisterForm = ({ history }) => {
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
 
-  const onChangeBirthday = e => setBirthday(Number(e.format()));
+  const onChangeBirthday = e => setBirthday(e.format("MM-DD-YYYY"));
 
+  const history = useHistory();
   const [registerUser] = useMutation(REGISTER_USER, {
     onCompleted: result => {
       const { token } = result.register;
@@ -113,7 +115,7 @@ const RegisterForm = ({ history }) => {
         <Form.Item style={{ marginBottom: "15px" }}>
           <BirthdayLabel>Birthday</BirthdayLabel>
           <BirthdayInput
-            format="DD-MM-YY"
+            format="MMMM DD YYYY"
             placeholder=""
             name="birthday"
             onChange={onChangeBirthday}

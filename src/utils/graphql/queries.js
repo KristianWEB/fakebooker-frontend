@@ -5,7 +5,7 @@ export const REGISTER_USER = gql`
     $firstName: String!
     $lastName: String!
     $email: String!
-    $birthday: Int!
+    $birthday: Date!
     $gender: String!
     $password: String!
   ) {
@@ -48,22 +48,21 @@ export const LOGIN_USER = gql`
 export const LOAD_USER = gql`
   {
     loadUser {
-      username
-      token
+      firstName
+      lastName
       email
-      displayName
+      birthday
+      gender
+      token
+      avatarImage
       coverImage
-      status {
-        isDeactivated
-        lastActiveDate
-      }
     }
   }
 `;
 
-export const GET_POSTS_BY_USERNAME = gql`
-  query getPosts($username: String!) {
-    getPosts(username: $username) {
+export const GET_POSTS = gql`
+    {
+    getPosts {
       id
       userId
       author {
@@ -90,6 +89,7 @@ export const GET_POSTS_BY_USERNAME = gql`
       commentCount
     }
   }
+    }
 `;
 
 export const CREATE_POST = gql`
