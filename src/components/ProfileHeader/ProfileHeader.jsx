@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
   ProfileHeaderContainer,
   ProfileBackgroundContainer,
@@ -63,3 +64,13 @@ const ProfileHeader = ({ user }) => {
 };
 
 export default ProfileHeader;
+
+ProfileHeader.propTypes = {
+  user: PropTypes.shape({
+    coverImage: PropTypes.string
+  })
+};
+
+ProfileHeader.defaultProps = {
+  user: null
+};

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Avatar } from "antd";
 import { useMutation } from "@apollo/react-hooks";
 import { CommentInput, CommentForm } from "./CreateComment.styles";
@@ -36,3 +37,13 @@ const CreateComment = ({ userAvatar, postId }) => {
 };
 
 export default CreateComment;
+
+CreateComment.propTypes = {
+  userAvatar: PropTypes.string,
+  postId: PropTypes.string
+};
+
+CreateComment.defaultProps = {
+  userAvatar: null,
+  postId: null
+};

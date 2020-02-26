@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Comment from "./Comment";
 
-const CommentList = ({ post: { comments = [], id } }) => {
+const CommentList = ({ post: { comments, id } }) => {
   return (
     <>
       {comments.map((_, index) => (
@@ -13,3 +14,14 @@ const CommentList = ({ post: { comments = [], id } }) => {
 };
 
 export default CommentList;
+
+CommentList.propTypes = {
+  post: PropTypes.shape({
+    comments: PropTypes.array,
+    id: PropTypes.string
+  })
+};
+
+CommentList.defaultProps = {
+  post: null
+};

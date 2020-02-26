@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withTheme } from "styled-components";
 import {
   AboutFormContainer,
@@ -22,6 +23,7 @@ import { ReactComponent as FormCloseIcon } from "../../assets/icons/_ionicons_sv
 import { ReactComponent as AddIcon } from "../../assets/icons/_ionicons_svg_md-add-circle-outline.svg";
 
 const AboutForm = ({ theme }) => {
+  console.log(theme);
   return (
     <>
       <AboutFormContainer>
@@ -82,3 +84,13 @@ const AboutForm = ({ theme }) => {
 };
 
 export default withTheme(AboutForm);
+
+AboutForm.propTypes = {
+  theme: PropTypes.shape({
+    appTextColor: PropTypes.string
+  })
+};
+
+AboutForm.defaultProps = {
+  theme: null
+};
