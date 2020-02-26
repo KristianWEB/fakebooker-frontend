@@ -61,7 +61,7 @@ export const LOAD_USER = gql`
 `;
 
 export const GET_POSTS = gql`
-    {
+  {
     getPosts {
       id
       userId
@@ -89,7 +89,6 @@ export const GET_POSTS = gql`
       commentCount
     }
   }
-    }
 `;
 
 export const CREATE_POST = gql`

@@ -1,10 +1,10 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { GET_POSTS_BY_USERNAME } from "../../utils/graphql/queries";
+import { GET_POSTS } from "../../utils/graphql/queries";
 import Post from "./Post";
 
 const PostList = ({ user }) => {
-  const { loading, data } = useQuery(GET_POSTS_BY_USERNAME, {
+  const { loading, data } = useQuery(GET_POSTS, {
     variables: {
       username: user.username
     }

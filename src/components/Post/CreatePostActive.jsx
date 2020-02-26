@@ -15,10 +15,7 @@ import {
   PublishBtnContainer
 } from "./CreatePostActive.styles";
 import { ReactComponent as CloseBtn } from "../../assets/icons/_ionicons_svg_md-close.svg";
-import {
-  CREATE_POST,
-  GET_POSTS_BY_USERNAME
-} from "../../utils/graphql/queries";
+import { CREATE_POST, GET_POSTS } from "../../utils/graphql/queries";
 
 const CreatePostActive = ({ user, showModal }) => {
   const [content, setContent] = useState("");
@@ -29,7 +26,7 @@ const CreatePostActive = ({ user, showModal }) => {
     },
     update: async (proxy, result) => {
       const data = proxy.readQuery({
-        query: GET_POSTS_BY_USERNAME,
+        query: GET_POSTS,
         variables: {
           username: user.username
         }
@@ -37,7 +34,7 @@ const CreatePostActive = ({ user, showModal }) => {
       const newData = { getPosts: [result.data.createPost, ...data.getPosts] };
 
       proxy.writeQuery({
-        query: GET_POSTS_BY_USERNAME,
+        query: GET_POSTS,
         variables: { username: user.username },
         data: newData
       });
