@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Avatar, Popover } from "antd";
 import { useMutation } from "@apollo/react-hooks";
 import { DELETE_COMMENT } from "../../utils/graphql/queries";
@@ -54,3 +55,20 @@ const Comment = ({ comment: { author, body, id }, postId }) => {
 };
 
 export default Comment;
+
+Comment.propTypes = {
+  comment: PropTypes.shape({
+    author: PropTypes.shape({
+      coverImage: PropTypes.string,
+      username: PropTypes.string
+    }),
+    body: PropTypes.string,
+    id: PropTypes.string
+  }),
+  postId: PropTypes.string
+};
+
+Comment.defaultProps = {
+  comment: null,
+  postId: null
+};
