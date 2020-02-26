@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import { Button, Input, Row, DatePicker, Checkbox } from "antd";
+import { Button, Input, Row, DatePicker } from "antd";
 
 export const RegisterFormContainer = styled.div`
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: center; */
   width: 500px;
   font-family: "Roboto";
 `;
@@ -92,29 +89,5 @@ export const BirthdayInput = styled(DatePicker)`
 export const NameContainer = styled(Row)`
   && {
     display: flex;
-  }
-`;
-
-export const MaleGender = styled(Checkbox)`
-  && {
-    .ant-checkbox-inner {
-      background-color: #f5f6f6;
-      border: none;
-    }
-    .ant-checkbox-checked .ant-checkbox-inner {
-      background-color: #1890ff;
-    }
-  }
-`;
-
-export const FemaleGender = styled(Checkbox)`
-  && {
-    .ant-checkbox-inner {
-      background-color: #f5f6f6;
-      border: none;
-    }
-    .ant-checkbox-checked .ant-checkbox-inner {
-      background-color: #1890ff;
-    }
   }
 `;

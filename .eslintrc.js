@@ -16,13 +16,12 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module"
   },
-  plugins: ["react", "prettier"],
+  plugins: ["react", "prettier", "react-hooks"],
   rules: {
     "prettier/prettier": "error",
     "no-console": "off",
     "no-underscore-dangle": "off",
     "no-param-reassign": 0,
-    "react/prop-types": 0,
     "no-use-before-define": "off",
     "linebreak-style": 0,
     "no-unused-vars": "off",
@@ -31,6 +30,8 @@ module.exports = {
     "prettier/prettier": ["error"],
     "react/jsx-curly-newline": "off",
     "react/jsx-one-expression-per-line": "off",
-    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 };

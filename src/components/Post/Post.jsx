@@ -34,7 +34,7 @@ import CommentList from "../Comment/CommentList";
 import {
   DELETE_POST,
   LIKE_POST,
-  GET_POSTS_BY_USERNAME,
+  GET_POSTS,
   LOAD_USER
 } from "../../utils/graphql/queries";
 
@@ -56,7 +56,7 @@ const Post = ({ post, theme }) => {
     },
     update: proxy => {
       const data = proxy.readQuery({
-        query: GET_POSTS_BY_USERNAME,
+        query: GET_POSTS,
         variables: {
           username: user.username
         }
@@ -67,7 +67,7 @@ const Post = ({ post, theme }) => {
       const newData = { getPosts: [...newPostList] };
 
       proxy.writeQuery({
-        query: GET_POSTS_BY_USERNAME,
+        query: GET_POSTS,
         variables: {
           username: user.username
         },

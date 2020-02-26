@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { message, Form } from "antd";
+import { useHistory } from "react-router-dom";
+import { message, Form, Radio } from "antd";
 import { REGISTER_USER } from "../../utils/graphql/queries";
 import {
   RegisterFormContainer,
@@ -13,22 +14,26 @@ import {
   PasswordInput,
   NameContainer,
   BirthdayLabel,
-  BirthdayInput,
-  MaleGender,
-  FemaleGender
+  BirthdayInput
 } from "./RegisterForm.styles";
 
-const RegisterForm = ({ history }) => {
+const RegisterForm = () => {
   const [signUpState, setSignUpState] = useState({
-    fiUu: "",
-    username: "",
+    firstName: "",
+    lastName: "",
+    email: "",
     password: "",
-    confirmPassword: ""
+    gender: ""
   });
+
+  const [birthday, setBirthday] = useState(null);
 
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
 
+  const onChangeBirthday = e => setBirthday(e.format("MM-DD-YYYY"));
+
+  const history = useHistory();
   const [registerUser] = useMutation(REGISTER_USER, {
     onCompleted: result => {
       const { token } = result.register;
@@ -37,16 +42,19 @@ const RegisterForm = ({ history }) => {
       history.push("/profile");
     },
     variables: {
-      username: signUpState.username,
+      firstName: signUpState.firstName,
+      lastName: signUpState.lastName,
       email: signUpState.email,
       password: signUpState.password,
-      confirmPassword: signUpState.confirmPassword
+      gender: signUpState.gender,
+      birthday
     }
   });
 
   const onSubmitRegister = async e => {
     e.preventDefault();
 
+    // console.log(birthday);
     registerUser();
 
     setSignUpState({
@@ -107,20 +115,22 @@ const RegisterForm = ({ history }) => {
         <Form.Item style={{ marginBottom: "15px" }}>
           <BirthdayLabel>Birthday</BirthdayLabel>
           <BirthdayInput
-            format="DD-MM-YY"
+            format="MMMM DD YYYY"
             placeholder=""
-            value={signUpState.birthday}
-            onChange={onChangeRegister}
+            name="birthday"
+            onChange={onChangeBirthday}
           />
         </Form.Item>
         <Form.Item style={{ marginBottom: "15px" }}>
           <BirthdayLabel>Gender</BirthdayLabel>
-          <FemaleGender value={signUpState.gender} onChange={onChangeRegister}>
-            Female
-          </FemaleGender>
-          <MaleGender value={signUpState.gender} onChange={onChangeRegister}>
-            Male
-          </MaleGender>
+          <Radio.Group
+            onChange={onChangeRegister}
+            value={signUpState.gender}
+            name="gender"
+          >
+            <Radio value="female">Female</Radio>
+            <Radio value="male">Male</Radio>
+          </Radio.Group>
         </Form.Item>
         <StyledButton type="primary" htmlType="submit" block>
           Create Account

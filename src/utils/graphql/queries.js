@@ -2,28 +2,29 @@ import gql from "graphql-tag";
 
 export const REGISTER_USER = gql`
   mutation register(
-    $username: String!
+    $firstName: String!
+    $lastName: String!
     $email: String!
+    $birthday: Date!
+    $gender: String!
     $password: String!
-    $confirmPassword: String!
   ) {
     register(
       registerInput: {
-        username: $username
+        firstName: $firstName
+        lastName: $lastName
         email: $email
+        birthday: $birthday
+        gender: $gender
         password: $password
-        confirmPassword: $confirmPassword
       }
     ) {
-      username
-      token
+      firstName
+      lastName
       email
-      displayName
-      coverImage
-      status {
-        isDeactivated
-        lastActiveDate
-      }
+      birthday
+      gender
+      token
     }
   }
 `;
@@ -47,22 +48,21 @@ export const LOGIN_USER = gql`
 export const LOAD_USER = gql`
   {
     loadUser {
-      username
-      token
+      firstName
+      lastName
       email
-      displayName
+      birthday
+      gender
+      token
+      avatarImage
       coverImage
-      status {
-        isDeactivated
-        lastActiveDate
-      }
     }
   }
 `;
 
-export const GET_POSTS_BY_USERNAME = gql`
-  query getPosts($username: String!) {
-    getPosts(username: $username) {
+export const GET_POSTS = gql`
+  {
+    getPosts {
       id
       userId
       author {
