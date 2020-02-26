@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { withTheme } from "styled-components";
 import { Popover, Button, Avatar } from "antd";
@@ -186,3 +187,27 @@ const Post = ({ post, theme }) => {
 };
 
 export default withTheme(Post);
+
+Post.propTypes = {
+  post: PropTypes.shape({
+    likes: PropTypes.array,
+    id: PropTypes.string,
+    author: PropTypes.shape({
+      coverImage: PropTypes.string,
+      username: PropTypes.string
+    }),
+    creationDate: PropTypes.string,
+    content: PropTypes.string,
+    likeCount: PropTypes.array,
+    commentCount: PropTypes.array
+  }),
+  theme: PropTypes.shape({
+    appTextColor: PropTypes.string,
+    tertiaryTextColor: PropTypes.string
+  })
+};
+
+Post.defaultProps = {
+  post: null,
+  theme: null
+};

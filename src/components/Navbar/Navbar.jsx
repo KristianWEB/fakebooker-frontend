@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Avatar } from "antd";
 import {
   NavContainer,
@@ -84,3 +85,15 @@ const Navbar = ({ onProfile, user }) => {
   );
 };
 export default Navbar;
+
+Navbar.propTypes = {
+  onProfile: PropTypes.bool,
+  user: PropTypes.shape({
+    coverImage: PropTypes.string
+  })
+};
+
+Navbar.defaultProps = {
+  onProfile: null,
+  user: null
+};

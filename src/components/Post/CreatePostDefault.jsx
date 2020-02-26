@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Modal } from "antd";
 import {
   CreatePostContainer,
@@ -45,3 +46,13 @@ const CreatePostDefault = ({ user }) => {
   );
 };
 export default CreatePostDefault;
+
+CreatePostDefault.propTypes = {
+  user: PropTypes.shape({
+    coverImage: PropTypes.string
+  })
+};
+
+CreatePostDefault.defaultProps = {
+  user: null
+};

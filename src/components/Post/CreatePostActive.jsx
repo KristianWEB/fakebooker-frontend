@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
 import {
   CreatePostNewContainer,
@@ -83,3 +84,16 @@ const CreatePostActive = ({ user, showModal }) => {
 };
 
 export default CreatePostActive;
+
+CreatePostActive.propTypes = {
+  showModal: PropTypes.func,
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    coverImage: PropTypes.string
+  })
+};
+
+CreatePostActive.defaultProps = {
+  user: null,
+  showModal: () => null
+};
