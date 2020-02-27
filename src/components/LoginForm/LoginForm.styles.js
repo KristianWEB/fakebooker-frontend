@@ -1,23 +1,61 @@
 import styled from "styled-components";
-import { Button } from "antd";
+import { Button, Input, Row } from "antd";
 
-export const AuthDisplay = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 40px;
+export const LoginFormContainer = styled(Row)`
+  width: 500px;
+  font-family: "Roboto";
 `;
 
 export const StyledButton = styled(Button)`
-  height: 40px;
-  background-color: #3b5999;
-  border: 1px solid #3b5999;
-  margin-bottom: 40px;
+  && {
+    background-color: #1977f3;
+    width: 50%;
+    height: auto;
+    padding: 8px 0;
+    font-size: 1.6rem;
+  }
+`;
 
-  &:hover,
-  &:focus {
-    background-color: #3b5999;
-    outline: none;
-    border-color: #3b5999;
+export const LoginHeading = styled.p`
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #050505;
+`;
+
+export const EmailLabel = styled.p`
+  display: inline-block;
+  margin-bottom: 7px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #050505;
+`;
+
+export const PasswordLabel = styled.p`
+  display: inline-block;
+  margin-bottom: 7px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #050505;
+`;
+
+export const EmailInput = styled(Input)`
+  && {
+    background-color: #f5f6f6;
+    border: none;
+    border-radius: 6px;
+  }
+`;
+export const PasswordInput = styled(Input.Password)`
+  && {
+    .ant-input.ant-input-lg {
+      background-color: #f5f6f6;
+      border: none;
+    }
+    background-color: #f5f6f6;
+    border: none;
+    border-radius: 6px;
   }
 `;

@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { Row, Button } from "antd";
+import { Row } from "antd";
 import { ReactComponent as BgImg } from "../../assets/icons/undraw_processing_qj6a.svg";
 
 const inverseRotate = keyframes`
@@ -83,27 +83,6 @@ export const FormContainer = styled(Row)`
     height: 100%;
     justify-content: center;
     align-items: center;
-  }
-`;
-
-export const SignInContainer = styled(Row)`
-  && {
-    display: flex;
-    width: 100%;
-    height: auto;
-    justify-content: flex-end;
-    font-size: 14px;
-    margin: 30px 60px 0 0;
-  }
-`;
-export const SignInButton = styled(Button)`
-  && {
-    color: #1877f2;
-    padding: 0;
-    margin-left: 2px;
-    height: auto;
-    font-weight: 500;
-    line-height: 1;
   }
 `;
 

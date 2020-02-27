@@ -8,6 +8,10 @@ import {
   StyledButton,
   RegisterHeading,
   FirstNameLabel,
+  LastNameLabel,
+  EmailLabel,
+  PasswordLabel,
+  GenderLabel,
   FirstNameInput,
   LastNameInput,
   EmailInput,
@@ -67,7 +71,7 @@ const RegisterForm = () => {
   return (
     <RegisterFormContainer>
       <RegisterHeading>Sign Up to Fakebooker</RegisterHeading>
-      <Form onSubmit={onSubmitRegister}>
+      <Form onSubmit={onSubmitRegister} style={{ padding: "3px" }}>
         <NameContainer>
           <Form.Item
             style={{ marginBottom: "15px", width: "50%", marginRight: "16px" }}
@@ -82,7 +86,7 @@ const RegisterForm = () => {
             />
           </Form.Item>
           <Form.Item style={{ marginBottom: "15px", width: "50%" }}>
-            <FirstNameLabel>Last name</FirstNameLabel>
+            <LastNameLabel>Last name</LastNameLabel>
             <LastNameInput
               name="lastName"
               value={signUpState.lastName}
@@ -93,7 +97,7 @@ const RegisterForm = () => {
           </Form.Item>
         </NameContainer>
         <Form.Item style={{ marginBottom: "15px" }}>
-          <FirstNameLabel>Email</FirstNameLabel>
+          <EmailLabel>Email</EmailLabel>
           <EmailInput
             name="email"
             value={signUpState.email}
@@ -103,7 +107,7 @@ const RegisterForm = () => {
           />
         </Form.Item>
         <Form.Item style={{ marginBottom: "15px" }}>
-          <FirstNameLabel>Password</FirstNameLabel>
+          <PasswordLabel>Password</PasswordLabel>
           <PasswordInput
             name="password"
             value={signUpState.password}
@@ -122,7 +126,7 @@ const RegisterForm = () => {
           />
         </Form.Item>
         <Form.Item style={{ marginBottom: "15px" }}>
-          <BirthdayLabel>Gender</BirthdayLabel>
+          <GenderLabel>Gender</GenderLabel>
           <Radio.Group
             onChange={onChangeRegister}
             value={signUpState.gender}

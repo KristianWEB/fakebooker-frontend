@@ -25,6 +25,8 @@ export const REGISTER_USER = gql`
       birthday
       gender
       token
+      avatarImage
+      coverImage
     }
   }
 `;
@@ -32,15 +34,14 @@ export const REGISTER_USER = gql`
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
-      username
-      token
+      firstName
+      lastName
       email
-      displayName
+      birthday
+      gender
+      token
+      avatarImage
       coverImage
-      status {
-        isDeactivated
-        lastActiveDate
-      }
     }
   }
 `;
