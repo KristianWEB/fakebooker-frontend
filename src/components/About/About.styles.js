@@ -5,7 +5,6 @@ export const AboutContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 360px;
-  height: 100%;
   background-color: #fff;
   box-shadow: ${props => props.theme.boxShadow};
   border-radius: 6px;

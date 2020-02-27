@@ -32,6 +32,42 @@ export const FirstNameLabel = styled.p`
   color: #050505;
 `;
 
+export const LastNameLabel = styled.p`
+  display: inline-block;
+  margin-bottom: 7px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #050505;
+`;
+
+export const EmailLabel = styled.p`
+  display: inline-block;
+  margin-bottom: 7px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #050505;
+`;
+
+export const PasswordLabel = styled.p`
+  display: inline-block;
+  margin-bottom: 7px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #050505;
+`;
+
+export const GenderLabel = styled.p`
+  display: block;
+  margin-bottom: 7px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #050505;
+`;
+
 export const FirstNameInput = styled(Input)`
   && {
     background-color: #f5f6f6;
