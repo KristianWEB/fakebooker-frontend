@@ -35,7 +35,7 @@ const RegisterForm = () => {
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
 
-  const onChangeBirthday = e => setBirthday(e.format("MM-DD-YYYY"));
+  const onChangeBirthday = e => setBirthday(e && e.format());
 
   const history = useHistory();
   const [registerUser] = useMutation(REGISTER_USER, {
@@ -58,7 +58,6 @@ const RegisterForm = () => {
   const onSubmitRegister = async e => {
     e.preventDefault();
 
-    // console.log(birthday);
     registerUser();
 
     setSignUpState({
