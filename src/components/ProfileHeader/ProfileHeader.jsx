@@ -22,26 +22,29 @@ import {
   ChangeBackgroundHeading,
   ChangeAvatarContainer
 } from "./ProfileHeader.styles";
-import ImageExample from "../../assets/images/photo-1419332552192-47d29e59b1e0.jpg";
 import { ReactComponent as CameraIcon } from "../../assets/icons/_ionicons_svg_md-camera.svg";
 
 const ProfileHeader = ({ user }) => {
   return (
-    <ProfileHeaderContainer img={ImageExample}>
-      <ProfileBackgroundContainer img={ImageExample}>
-        <ChangePhotoContainer>
-          <CameraIcon width="20" height="20" />
-          <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
-        </ChangePhotoContainer>
+    <ProfileHeaderContainer img={user.coverImage}>
+      <ProfileBackgroundContainer img={user.coverImage}>
+        {user.coverImage && (
+          <ChangePhotoContainer>
+            <CameraIcon width="20" height="20" />
+            <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
+          </ChangePhotoContainer>
+        )}
       </ProfileBackgroundContainer>
       <UserContainer>
         <User>
-          <UserAvatar src={user.coverImage} />
+          <UserAvatar src={user.avatarImage} />
           <ChangeAvatarContainer>
             <CameraIcon width="20" height="20" />
           </ChangeAvatarContainer>
         </User>
-        <UserName>James Spiegel</UserName>
+        <UserName>
+          {user.firstName} {user.lastName}
+        </UserName>
         <UserDescription>Short description about myself</UserDescription>
         <UserDescriptionEdit type="link">Edit</UserDescriptionEdit>
       </UserContainer>
@@ -67,7 +70,10 @@ export default ProfileHeader;
 
 ProfileHeader.propTypes = {
   user: PropTypes.shape({
-    coverImage: PropTypes.string
+    coverImage: PropTypes.string,
+    avatarImage: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string
   })
 };
 

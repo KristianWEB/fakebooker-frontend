@@ -37,7 +37,7 @@ const Comment = ({ comment: { userId, body, id }, postId }) => {
         onMouseEnter={() => handleMouseHover()}
         onMouseLeave={() => handleMouseHover()}
       >
-        <Avatar src={userId.coverImage} style={{ alignSelf: "flex-start" }} />
+        <Avatar src={userId.avatarImage} style={{ alignSelf: "flex-start" }} />
         <BodyContainer>
           <Username>
             {userId.firstName} {userId.lastName}
@@ -61,7 +61,7 @@ export default Comment;
 Comment.propTypes = {
   comment: PropTypes.shape({
     userId: PropTypes.shape({
-      coverImage: PropTypes.string,
+      avatarImage: PropTypes.string,
       firstName: PropTypes.string,
       lastName: PropTypes.string
     }),

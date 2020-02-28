@@ -89,7 +89,7 @@ const Post = ({ post, theme }) => {
       <PostCard bodyStyle={{ padding: "0" }} bordered={false}>
         <PostHeader>
           <ProfileWrapper>
-            <Avatar size={40} shape="circle" src={post.userId.coverImage} />
+            <Avatar size={40} shape="circle" src={post.userId.avatarImage} />
             <NameWrapper>
               <ProfileName>
                 {post.userId.firstName} {post.userId.lastName}
@@ -174,7 +174,7 @@ const Post = ({ post, theme }) => {
       </PostCard>
       <CommentsContainer>
         <CommentList post={post} />
-        <CreateComment userAvatar={post.userId.coverImage} postId={post.id} />
+        <CreateComment userAvatar={post.userId.avatarImage} postId={post.id} />
       </CommentsContainer>
     </PostContainer>
   );
@@ -186,7 +186,7 @@ Post.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.string,
     userId: PropTypes.shape({
-      coverImage: PropTypes.string,
+      avatarImage: PropTypes.string,
       firstName: PropTypes.string,
       lastName: PropTypes.string
     }),

@@ -19,7 +19,7 @@ const CreatePostDefault = ({ user }) => {
   return (
     <>
       <CreatePostContainer>
-        <UserAvatar src={user.coverImage} />
+        <UserAvatar src={user.avatarImage} />
         <CreatePostButton onClick={() => setVisible(true)}>
           Add a Post
         </CreatePostButton>
@@ -49,7 +49,7 @@ export default CreatePostDefault;
 
 CreatePostDefault.propTypes = {
   user: PropTypes.shape({
-    coverImage: PropTypes.string
+    avatarImage: PropTypes.string
   })
 };
 

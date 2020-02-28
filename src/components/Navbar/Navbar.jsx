@@ -55,7 +55,7 @@ const Navbar = ({ onProfile, user }) => {
             <NotificationContainer>
               <BellIcon width="25" height="25" />
             </NotificationContainer>
-            <Avatar size={41} src={user.coverImage} />
+            <Avatar size={41} src={user.avatarImage} />
           </ProfileContainer>
         </NavContainer>
       ) : (
@@ -89,7 +89,7 @@ export default Navbar;
 Navbar.propTypes = {
   onProfile: PropTypes.bool,
   user: PropTypes.shape({
-    coverImage: PropTypes.string
+    avatarImage: PropTypes.string
   })
 };
 

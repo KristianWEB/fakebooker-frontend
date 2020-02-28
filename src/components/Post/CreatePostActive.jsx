@@ -59,10 +59,12 @@ const CreatePostActive = ({ user, showModal }) => {
       </CreatePostHeader>
       <CreatePostBody>
         <User type="flex" align="middle">
-          <UserAvatar src={user.coverImage} size={46}>
+          <UserAvatar src={user.avatarImage} size={46}>
             Image
           </UserAvatar>
-          <UserName>{user.username}</UserName>
+          <UserName>
+            {user.firstName} {user.lastName}
+          </UserName>
         </User>
         <CreatePostInputContainer>
           <CreatePostInput
@@ -88,8 +90,9 @@ export default CreatePostActive;
 CreatePostActive.propTypes = {
   showModal: PropTypes.func,
   user: PropTypes.shape({
-    username: PropTypes.string,
-    coverImage: PropTypes.string
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    avatarImage: PropTypes.string
   })
 };
 

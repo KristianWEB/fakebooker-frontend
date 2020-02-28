@@ -69,7 +69,7 @@ export const GET_POSTS = gql`
       userId {
         firstName
         lastName
-        coverImage
+        avatarImage
       }
       body
       createdAt
@@ -78,7 +78,7 @@ export const GET_POSTS = gql`
         userId {
           firstName
           lastName
-          coverImage
+          avatarImage
         }
         postId
         body
@@ -102,7 +102,7 @@ export const CREATE_POST = gql`
       userId {
         firstName
         lastName
-        coverImage
+        avatarImage
       }
       body
       createdAt
@@ -111,7 +111,7 @@ export const CREATE_POST = gql`
         userId {
           firstName
           lastName
-          coverImage
+          avatarImage
         }
         postId
         body
@@ -135,7 +135,7 @@ export const CREATE_COMMENT = gql`
       userId {
         firstName
         lastName
-        coverImage
+        avatarImage
       }
       body
       createdAt
@@ -144,7 +144,7 @@ export const CREATE_COMMENT = gql`
         userId {
           firstName
           lastName
-          coverImage
+          avatarImage
         }
         postId
         body
@@ -168,7 +168,7 @@ export const DELETE_COMMENT = gql`
       userId {
         firstName
         lastName
-        coverImage
+        avatarImage
       }
       body
       createdAt
@@ -177,7 +177,7 @@ export const DELETE_COMMENT = gql`
         userId {
           firstName
           lastName
-          coverImage
+          avatarImage
         }
         postId
         body
