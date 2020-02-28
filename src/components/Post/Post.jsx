@@ -46,7 +46,7 @@ const Post = ({ post, theme }) => {
     data: { loadUser: user }
   } = useQuery(LOAD_USER);
   useEffect(() => {
-    if (user && post.likes.find(like => like.username === user.username)) {
+    if (user && post.likes.find(like => like.userId === user.id)) {
       setLiked(true);
     } else setLiked(false);
   }, [user, post]);
@@ -57,10 +57,7 @@ const Post = ({ post, theme }) => {
     },
     update: proxy => {
       const data = proxy.readQuery({
-        query: GET_POSTS,
-        variables: {
-          username: user.username
-        }
+        query: GET_POSTS
       });
 
       const newPostList = data.getPosts.filter(p => p.id !== post.id);
@@ -69,9 +66,6 @@ const Post = ({ post, theme }) => {
 
       proxy.writeQuery({
         query: GET_POSTS,
-        variables: {
-          username: user.username
-        },
         data: newData
       });
     }
@@ -95,13 +89,13 @@ const Post = ({ post, theme }) => {
       <PostCard bodyStyle={{ padding: "0" }} bordered={false}>
         <PostHeader>
           <ProfileWrapper>
-            <Avatar size={40} shape="circle" src={post.author.coverImage} />
+            <Avatar size={40} shape="circle" src={post.userId.coverImage} />
             <NameWrapper>
-              <ProfileName>{post.author.username}</ProfileName>
+              <ProfileName>
+                {post.userId.firstName} {post.userId.lastName}
+              </ProfileName>
               <PostCreation>
-                {new Date(Number(post.creationDate)).toLocaleDateString(
-                  "en-US"
-                )}
+                {new Date(Number(post.createdAt)).toLocaleDateString("en-US")}
               </PostCreation>
             </NameWrapper>
           </ProfileWrapper>
@@ -115,7 +109,7 @@ const Post = ({ post, theme }) => {
             />
           </Popover>
         </PostHeader>
-        <PostContent>{post.content}</PostContent>
+        <PostContent>{post.body}</PostContent>
         <PostFooter>
           <LikesWrapper>
             <LikesDisplay>
@@ -180,7 +174,7 @@ const Post = ({ post, theme }) => {
       </PostCard>
       <CommentsContainer>
         <CommentList post={post} />
-        <CreateComment userAvatar={post.author.coverImage} postId={post.id} />
+        <CreateComment userAvatar={post.userId.coverImage} postId={post.id} />
       </CommentsContainer>
     </PostContainer>
   );
@@ -190,16 +184,17 @@ export default withTheme(Post);
 
 Post.propTypes = {
   post: PropTypes.shape({
-    likes: PropTypes.array,
     id: PropTypes.string,
-    author: PropTypes.shape({
+    userId: PropTypes.shape({
       coverImage: PropTypes.string,
-      username: PropTypes.string
+      firstName: PropTypes.string,
+      lastName: PropTypes.string
     }),
-    creationDate: PropTypes.string,
-    content: PropTypes.string,
-    likeCount: PropTypes.array,
-    commentCount: PropTypes.array
+    createdAt: PropTypes.string,
+    body: PropTypes.string,
+    likeCount: PropTypes.number,
+    commentCount: PropTypes.number,
+    likes: PropTypes.array
   }),
   theme: PropTypes.shape({
     appTextColor: PropTypes.string,

@@ -19,11 +19,11 @@ import { ReactComponent as CloseBtn } from "../../assets/icons/_ionicons_svg_md-
 import { CREATE_POST, GET_POSTS } from "../../utils/graphql/queries";
 
 const CreatePostActive = ({ user, showModal }) => {
-  const [content, setContent] = useState("");
+  const [body, setBody] = useState("");
 
   const [createPost] = useMutation(CREATE_POST, {
     variables: {
-      content
+      body
     },
     update: async (proxy, result) => {
       const data = proxy.readQuery({
@@ -46,7 +46,7 @@ const CreatePostActive = ({ user, showModal }) => {
     e.preventDefault();
     createPost();
     showModal(false);
-    setContent("");
+    setBody("");
   };
 
   return (
@@ -68,9 +68,9 @@ const CreatePostActive = ({ user, showModal }) => {
           <CreatePostInput
             placeholder="What do you think?"
             rows={5}
-            value={content}
+            value={body}
             name="content"
-            onChange={e => setContent(e.target.value)}
+            onChange={e => setBody(e.target.value)}
           />
         </CreatePostInputContainer>
       </CreatePostBody>

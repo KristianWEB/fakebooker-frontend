@@ -49,6 +49,7 @@ export const LOGIN_USER = gql`
 export const LOAD_USER = gql`
   {
     loadUser {
+      id
       firstName
       lastName
       email
@@ -65,26 +66,28 @@ export const GET_POSTS = gql`
   {
     getPosts {
       id
-      userId
-      author {
-        username
+      userId {
+        firstName
+        lastName
         coverImage
       }
-      content
-      creationDate
+      body
+      createdAt
       comments {
         id
-        userId
-        body
-        creationDate
-        author {
-          username
+        userId {
+          firstName
+          lastName
           coverImage
         }
+        postId
+        body
+        createdAt
       }
       likes {
-        username
-        creationDate
+        userId
+        postId
+        createdAt
       }
       likeCount
       commentCount
@@ -93,32 +96,34 @@ export const GET_POSTS = gql`
 `;
 
 export const CREATE_POST = gql`
-  mutation createPost($content: String!) {
-    createPost(content: $content) {
+  mutation createPost($body: String!) {
+    createPost(body: $body) {
       id
-      userId
-      author {
-        username
+      userId {
+        firstName
+        lastName
         coverImage
       }
-      content
-      creationDate
+      body
+      createdAt
       comments {
         id
-        userId
-        body
-        creationDate
-        author {
-          username
+        userId {
+          firstName
+          lastName
           coverImage
         }
+        postId
+        body
+        createdAt
       }
       likes {
-        username
-        creationDate
+        userId
+        postId
+        createdAt
       }
-      commentCount
       likeCount
+      commentCount
     }
   }
 `;
@@ -127,23 +132,30 @@ export const CREATE_COMMENT = gql`
   mutation createComment($postId: ID!, $body: String!) {
     createComment(postId: $postId, body: $body) {
       id
-      userId
-      author {
-        username
+      userId {
+        firstName
+        lastName
         coverImage
       }
-      content
-      creationDate
+      body
+      createdAt
       comments {
         id
-        userId
-        body
-        creationDate
-        author {
-          username
+        userId {
+          firstName
+          lastName
           coverImage
         }
+        postId
+        body
+        createdAt
       }
+      likes {
+        userId
+        postId
+        createdAt
+      }
+      likeCount
       commentCount
     }
   }
@@ -153,23 +165,30 @@ export const DELETE_COMMENT = gql`
   mutation deleteComment($postId: ID!, $commentId: ID!) {
     deleteComment(postId: $postId, commentId: $commentId) {
       id
-      userId
-      author {
-        username
+      userId {
+        firstName
+        lastName
         coverImage
       }
-      content
-      creationDate
+      body
+      createdAt
       comments {
         id
-        userId
-        body
-        creationDate
-        author {
-          username
+        userId {
+          firstName
+          lastName
           coverImage
         }
+        postId
+        body
+        createdAt
       }
+      likes {
+        userId
+        postId
+        createdAt
+      }
+      likeCount
       commentCount
     }
   }
@@ -186,16 +205,11 @@ export const LIKE_POST = gql`
     likePost(postId: $postId) {
       id
       likes {
-        creationDate
-        username
+        userId
+        postId
+        createdAt
       }
       likeCount
     }
-  }
-`;
-
-export const IS_LOGGED_IN = gql`
-  query IsUserLoggedIn {
-    isLoggedIn @client
   }
 `;
