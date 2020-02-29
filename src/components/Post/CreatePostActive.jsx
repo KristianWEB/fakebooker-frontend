@@ -27,16 +27,12 @@ const CreatePostActive = ({ user, showModal }) => {
     },
     update: async (proxy, result) => {
       const data = proxy.readQuery({
-        query: GET_POSTS,
-        variables: {
-          username: user.username
-        }
+        query: GET_POSTS
       });
       const newData = { getPosts: [result.data.createPost, ...data.getPosts] };
 
       proxy.writeQuery({
         query: GET_POSTS,
-        variables: { username: user.username },
         data: newData
       });
     }
