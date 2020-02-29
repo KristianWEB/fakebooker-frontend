@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "antd";
 
 export const CreatePostContainer = styled.div`
   display: flex;
@@ -8,6 +9,7 @@ export const CreatePostContainer = styled.div`
   width: 500px;
   box-shadow: ${props => props.theme.boxShadow};
   border-radius: 6px;
+  align-items: center;
   @media only screen and (max-width: 575px) {
     width: 100%;
     margin: 0 auto;
@@ -21,7 +23,7 @@ export const UserAvatar = styled.img`
   margin-right: 8px;
 `;
 
-export const CreatePostButton = styled.button`
+export const CreatePostButton = styled(Button)`
   border: none;
   color: ${props => props.theme.primaryTextColor};
   font-weight: 600;
@@ -31,4 +33,16 @@ export const CreatePostButton = styled.button`
   width: 100%;
   cursor: pointer;
   line-height: 1;
+  transition: 0.1s;
+  height: 3.5rem;
+
+  &&:focus,
+  &&:active {
+    background-color: #e4e6eb;
+    color: ${props => props.theme.primaryTextColor};
+  }
+  &&:hover {
+    background-color: #d8dadf;
+    color: ${props => props.theme.primaryTextColor};
+  }
 `;

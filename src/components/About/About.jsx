@@ -3,14 +3,14 @@ import { Modal } from "antd";
 import {
   AboutContainer,
   AboutHeading,
-  HomeContainer,
-  HomeContainerHeading,
-  HomeContainerParagraph,
+  // HomeContainer,
+  // HomeContainerHeading,
+  // HomeContainerParagraph,
   StyledButton
 } from "./About.styles";
-import { ReactComponent as HomeIcon } from "../../assets/icons/_ionicons_svg_md-home.svg";
-import { ReactComponent as JobIcon } from "../../assets/icons/_ionicons_svg_md-briefcase.svg";
-import { ReactComponent as LocationIcon } from "../../assets/icons/_ionicons_svg_md-pin.svg";
+// import { ReactComponent as HomeIcon } from "../../assets/icons/_ionicons_svg_md-home.svg";
+// import { ReactComponent as JobIcon } from "../../assets/icons/_ionicons_svg_md-briefcase.svg";
+// import { ReactComponent as LocationIcon } from "../../assets/icons/_ionicons_svg_md-pin.svg";
 import { ReactComponent as CloseIconSVG } from "../../assets/icons/_ionicons_svg_md-close.svg";
 import AboutForm from "./AboutForm";
 
@@ -24,7 +24,7 @@ const About = () => {
   return (
     <AboutContainer>
       <AboutHeading>About</AboutHeading>
-      <HomeContainer>
+      {/* <HomeContainer>
         <JobIcon width="20" height="20" fill="#8C939D" />
         <HomeContainerParagraph>Blogger at</HomeContainerParagraph>
         <HomeContainerHeading>Josephine Williams</HomeContainerHeading>
@@ -38,8 +38,8 @@ const About = () => {
         <LocationIcon width="20" height="20" fill="#8C939D" />
         <HomeContainerParagraph>From</HomeContainerParagraph>
         <HomeContainerHeading>New York, New York</HomeContainerHeading>
-      </HomeContainer>
-      <StyledButton type="button" onClick={() => setVisible(true)}>
+      </HomeContainer> */}
+      <StyledButton type="primary" onClick={() => setVisible(true)}>
         Edit Details
       </StyledButton>
       <Modal

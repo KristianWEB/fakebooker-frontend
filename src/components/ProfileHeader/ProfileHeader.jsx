@@ -28,12 +28,10 @@ const ProfileHeader = ({ user }) => {
   return (
     <ProfileHeaderContainer img={user.coverImage}>
       <ProfileBackgroundContainer img={user.coverImage}>
-        {user.coverImage && (
-          <ChangePhotoContainer>
-            <CameraIcon width="20" height="20" />
-            <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
-          </ChangePhotoContainer>
-        )}
+        <ChangePhotoContainer>
+          <CameraIcon width="20" height="20" />
+          <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
+        </ChangePhotoContainer>
       </ProfileBackgroundContainer>
       <UserContainer>
         <User>

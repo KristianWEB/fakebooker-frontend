@@ -25,6 +25,7 @@ export const ProfileBackgroundContainer = styled.div`
   position: relative;
   font-family: "Roboto";
   margin-bottom: -85px;
+  box-shadow: ${props => props.theme.boxShadow};
 
   @media only screen and (max-width: 1000px) {
     max-width: 90%;
@@ -43,7 +44,6 @@ export const UserContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* width: 1042px; */
   margin: 0 auto;
 `;
 
@@ -55,8 +55,8 @@ export const User = styled.div`
 `;
 
 export const UserAvatar = styled.img`
-  width: 118px;
-  height: 118px;
+  width: 168px;
+  height: 168px;
   border-radius: 50%;
   border: 3px solid #ffffff;
 `;
@@ -186,7 +186,7 @@ export const ChangeAvatarContainer = styled(Button)`
   position: absolute;
   padding: 0.5rem 0.8rem;
   height: 36px;
-  top: 70px;
+  top: 110px;
   right: 0;
   border: 0;
   cursor: pointer;
