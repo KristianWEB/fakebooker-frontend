@@ -19,24 +19,20 @@ import { ReactComponent as CloseBtn } from "../../assets/icons/_ionicons_svg_md-
 import { CREATE_POST, GET_POSTS } from "../../utils/graphql/queries";
 
 const CreatePostActive = ({ user, showModal }) => {
-  const [content, setContent] = useState("");
+  const [body, setBody] = useState("");
 
   const [createPost] = useMutation(CREATE_POST, {
     variables: {
-      content
+      body
     },
     update: async (proxy, result) => {
       const data = proxy.readQuery({
-        query: GET_POSTS,
-        variables: {
-          username: user.username
-        }
+        query: GET_POSTS
       });
       const newData = { getPosts: [result.data.createPost, ...data.getPosts] };
 
       proxy.writeQuery({
         query: GET_POSTS,
-        variables: { username: user.username },
         data: newData
       });
     }
@@ -46,7 +42,7 @@ const CreatePostActive = ({ user, showModal }) => {
     e.preventDefault();
     createPost();
     showModal(false);
-    setContent("");
+    setBody("");
   };
 
   return (
@@ -59,18 +55,20 @@ const CreatePostActive = ({ user, showModal }) => {
       </CreatePostHeader>
       <CreatePostBody>
         <User type="flex" align="middle">
-          <UserAvatar src={user.coverImage} size={46}>
+          <UserAvatar src={user.avatarImage} size={46}>
             Image
           </UserAvatar>
-          <UserName>{user.username}</UserName>
+          <UserName>
+            {user.firstName} {user.lastName}
+          </UserName>
         </User>
         <CreatePostInputContainer>
           <CreatePostInput
             placeholder="What do you think?"
             rows={5}
-            value={content}
+            value={body}
             name="content"
-            onChange={e => setContent(e.target.value)}
+            onChange={e => setBody(e.target.value)}
           />
         </CreatePostInputContainer>
       </CreatePostBody>
@@ -88,8 +86,9 @@ export default CreatePostActive;
 CreatePostActive.propTypes = {
   showModal: PropTypes.func,
   user: PropTypes.shape({
-    username: PropTypes.string,
-    coverImage: PropTypes.string
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    avatarImage: PropTypes.string
   })
 };
 

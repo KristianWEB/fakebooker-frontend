@@ -35,6 +35,7 @@ export const PostHeader = styled.div`
 export const PostCard = styled(Card)`
   && {
     border: none;
+    border-radius: 6px;
   }
 `;
 

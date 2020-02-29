@@ -5,9 +5,9 @@ import Comment from "./Comment";
 const CommentList = ({ post: { comments, id } }) => {
   return (
     <>
-      {comments.map((_, index) => (
+      {comments.map((comment, index) => (
         // eslint-disable-next-line react/no-array-index-key
-        <Comment key={index} comment={comments[index]} postId={id} />
+        <Comment key={index} comment={comment} postId={id} />
       ))}
     </>
   );

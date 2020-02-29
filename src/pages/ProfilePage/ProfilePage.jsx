@@ -26,7 +26,7 @@ const ProfilePage = () => {
             <About />
             <PostsSection>
               <CreatePostDefault user={userData.loadUser} />
-              <PostList user={userData.loadUser} />
+              <PostList />
             </PostsSection>
           </InfoContainer>
         </ProfilePageContainer>

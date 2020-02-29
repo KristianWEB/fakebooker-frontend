@@ -23,7 +23,6 @@ import { ReactComponent as FormCloseIcon } from "../../assets/icons/_ionicons_sv
 import { ReactComponent as AddIcon } from "../../assets/icons/_ionicons_svg_md-add-circle-outline.svg";
 
 const AboutForm = ({ theme }) => {
-  console.log(theme);
   return (
     <>
       <AboutFormContainer>

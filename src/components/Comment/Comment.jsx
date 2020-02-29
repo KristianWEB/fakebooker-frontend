@@ -12,7 +12,7 @@ import {
 } from "./Comment.styles";
 import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/three-dots-icon.svg";
 
-const Comment = ({ comment: { author, body, id }, postId }) => {
+const Comment = ({ comment: { userId, body, id }, postId }) => {
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseHover = () => setIsHovering(!isHovering);
@@ -37,9 +37,11 @@ const Comment = ({ comment: { author, body, id }, postId }) => {
         onMouseEnter={() => handleMouseHover()}
         onMouseLeave={() => handleMouseHover()}
       >
-        <Avatar src={author.coverImage} style={{ alignSelf: "flex-start" }} />
+        <Avatar src={userId.avatarImage} style={{ alignSelf: "flex-start" }} />
         <BodyContainer>
-          <Username>{author.username}</Username>
+          <Username>
+            {userId.firstName} {userId.lastName}
+          </Username>
           <Body>{body}</Body>
         </BodyContainer>
         {isHovering && (
@@ -58,9 +60,10 @@ export default Comment;
 
 Comment.propTypes = {
   comment: PropTypes.shape({
-    author: PropTypes.shape({
-      coverImage: PropTypes.string,
-      username: PropTypes.string
+    userId: PropTypes.shape({
+      avatarImage: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string
     }),
     body: PropTypes.string,
     id: PropTypes.string
