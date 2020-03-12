@@ -11,7 +11,7 @@ import typeDefs from "./utils/graphql/typeDefs";
 const cache = new InMemoryCache();
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:8080/graphql"
+  uri: "https://damp-forest-43324.herokuapp.com/"
 });
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
