@@ -5,7 +5,7 @@ import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import CreatePostDefault from "../../components/Post/CreatePostDefault";
 import PostList from "../../components/Post/PostList";
 import About from "../../components/About/About";
-import { LOAD_USER } from "../../utils/graphql/queries";
+import { LOAD_USER } from "../../utils/queries";
 import {
   InfoContainer,
   PostsSection,

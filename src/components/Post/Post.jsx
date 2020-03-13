@@ -37,7 +37,7 @@ import {
   LIKE_POST,
   GET_POSTS,
   LOAD_USER
-} from "../../utils/graphql/queries";
+} from "../../utils/queries";
 
 const Post = ({ post, theme }) => {
   const [liked, setLiked] = useState(false);

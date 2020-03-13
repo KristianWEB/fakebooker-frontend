@@ -5,14 +5,12 @@ import { createHttpLink } from "apollo-link-http";
 import { setContext } from "apollo-link-context";
 import { ApolloProvider } from "@apollo/react-hooks";
 import App from "./App";
-import resolvers from "./utils/graphql/resolvers";
-import typeDefs from "./utils/graphql/typeDefs";
 
 const cache = new InMemoryCache();
-
 const httpLink = createHttpLink({
-  uri: "https://damp-forest-43324.herokuapp.com/"
+  uri: process.env.REACT_APP_BACKEND_URL || "localhost:8080"
 });
+
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = localStorage.getItem("token");
@@ -27,9 +25,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache,
-  typeDefs,
-  resolvers
+  cache
 });
 
 export default (

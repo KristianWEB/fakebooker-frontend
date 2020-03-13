@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { Form, message } from "antd";
-import { LOGIN_USER } from "../../utils/graphql/queries";
+import { LOGIN_USER } from "../../utils/queries";
 
 import {
   LoginFormContainer,

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Avatar } from "antd";
 import { useMutation } from "@apollo/react-hooks";
 import { CommentInput, CommentForm } from "./CreateComment.styles";
-import { CREATE_COMMENT } from "../../utils/graphql/queries";
+import { CREATE_COMMENT } from "../../utils/queries";
 
 const CreateComment = ({ userAvatar, postId }) => {
   const [body, setBody] = useState("");

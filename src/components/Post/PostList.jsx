@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { GET_POSTS } from "../../utils/graphql/queries";
+import { GET_POSTS } from "../../utils/queries";
 import Post from "./Post";
 
 const PostList = () => {

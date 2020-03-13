@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Avatar, Popover } from "antd";
 import { useMutation } from "@apollo/react-hooks";
-import { DELETE_COMMENT } from "../../utils/graphql/queries";
+import { DELETE_COMMENT } from "../../utils/queries";
 import {
   CommentContainer,
   BodyContainer,
