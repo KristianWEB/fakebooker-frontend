@@ -30,12 +30,12 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.0",
     "styled-components": "^5.0.1",
-    "styled-normalize": "^8.0.7"
+    "styled-normalize": "^8.0.7",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/cypress": "^6.0.0",
+    "@testing-library/react": "^10.0.1"
   },
   "devDependencies": {
-    "@testing-library/cypress": "^6.0.0",
-    "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/react": "^10.0.1",
     "cypress": "^4.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
@@ -52,8 +52,9 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "jest ./__tests__",
+    "test:watch": "jest ./__tests__ --watch",
     "lint": "eslint --ext .jsx,.js ./",
-    "lint-fix": "eslint --ext .jsx,.js --fix ./",
+    "lint:fix": "eslint --ext .jsx,.js --fix ./",
     "cy:open": "cypress open",
     "cy:run": "cypress run"
   },
