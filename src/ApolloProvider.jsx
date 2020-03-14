@@ -8,7 +8,7 @@ import App from "./App";
 
 const cache = new InMemoryCache();
 const httpLink = createHttpLink({
-  uri: process.env.REACT_APP_BACKEND_URL || "localhost:8080"
+  uri: "https://damp-forest-43324.herokuapp.com"
 });
 
 const authLink = setContext((_, { headers }) => {
