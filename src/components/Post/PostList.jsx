@@ -5,7 +5,6 @@ import Post from "./Post";
 
 const PostList = () => {
   const { data } = useQuery(GET_POSTS);
-  console.log(data);
 
   if (!data) {
     return null;

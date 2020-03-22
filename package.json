@@ -12,6 +12,9 @@
   "homepage": "https://fakebooker.com",
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
+    "@testing-library/cypress": "^6.0.0",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^10.0.1",
     "antd": "^3.26.12",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
@@ -21,6 +24,7 @@
     "customize-cra": "^0.9.1",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
+    "immer": "^6.0.2",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "prop-types": "^15.7.2",
@@ -30,10 +34,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.0",
     "styled-components": "^5.0.1",
-    "styled-normalize": "^8.0.7",
-    "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/cypress": "^6.0.0",
-    "@testing-library/react": "^10.0.1"
+    "styled-normalize": "^8.0.7"
   },
   "devDependencies": {
     "cypress": "^4.1.0",

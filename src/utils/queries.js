@@ -89,8 +89,6 @@ export const GET_POSTS = gql`
         postId
         createdAt
       }
-      likeCount
-      commentCount
     }
   }
 `;
@@ -122,8 +120,6 @@ export const CREATE_POST = gql`
         postId
         createdAt
       }
-      likeCount
-      commentCount
     }
   }
 `;
@@ -137,26 +133,9 @@ export const CREATE_COMMENT = gql`
         lastName
         avatarImage
       }
+      postId
       body
       createdAt
-      comments {
-        id
-        userId {
-          firstName
-          lastName
-          avatarImage
-        }
-        postId
-        body
-        createdAt
-      }
-      likes {
-        userId
-        postId
-        createdAt
-      }
-      likeCount
-      commentCount
     }
   }
 `;
@@ -169,27 +148,11 @@ export const DELETE_COMMENT = gql`
         firstName
         lastName
         avatarImage
+        id
       }
+      postId
       body
       createdAt
-      comments {
-        id
-        userId {
-          firstName
-          lastName
-          avatarImage
-        }
-        postId
-        body
-        createdAt
-      }
-      likes {
-        userId
-        postId
-        createdAt
-      }
-      likeCount
-      commentCount
     }
   }
 `;
@@ -209,7 +172,6 @@ export const LIKE_POST = gql`
         postId
         createdAt
       }
-      likeCount
     }
   }
 `;

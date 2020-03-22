@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Avatar, Popover } from "antd";
 import { useMutation } from "@apollo/react-hooks";
-import { DELETE_COMMENT } from "../../utils/queries";
+import { DELETE_COMMENT, GET_POSTS } from "../../utils/queries";
 import {
   CommentContainer,
   BodyContainer,
@@ -21,6 +21,26 @@ const Comment = ({ comment: { userId, body, id }, postId }) => {
     variables: {
       commentId: id,
       postId
+    },
+    update: (proxy, result) => {
+      const data = proxy.readQuery({
+        query: GET_POSTS
+      });
+
+      const getPosts = data.getPosts.map(post => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            comments: post.comments.filter(c => c.id !== id)
+          };
+        }
+        return post;
+      });
+
+      proxy.writeQuery({
+        query: GET_POSTS,
+        data: { getPosts }
+      });
     }
   });
 

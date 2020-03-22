@@ -124,7 +124,7 @@ const Post = ({ post, theme }) => {
                     width="25px"
                     height="25px"
                   />
-                  <LikesCount>{post.likeCount}</LikesCount>
+                  <LikesCount>{post.likes.length}</LikesCount>
                 </Button>
               ) : (
                 <Button
@@ -153,10 +153,10 @@ const Post = ({ post, theme }) => {
               height="25px"
             />
             <CommentsCount>
-              {post.commentCount === 0 ? (
+              {post.comments.length === 0 ? (
                 <CommentsHeading>Comment</CommentsHeading>
               ) : (
-                post.commentCount
+                post.comments.length
               )}
             </CommentsCount>
           </CommentsWrapper>
@@ -192,9 +192,8 @@ Post.propTypes = {
     }),
     createdAt: PropTypes.string,
     body: PropTypes.string,
-    likeCount: PropTypes.number,
-    commentCount: PropTypes.number,
-    likes: PropTypes.array
+    likes: PropTypes.array,
+    comments: PropTypes.array
   }),
   theme: PropTypes.shape({
     appTextColor: PropTypes.string,

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+// import produce from "immer";
 import PropTypes from "prop-types";
 import { Avatar } from "antd";
 import { useMutation } from "@apollo/react-hooks";
 import { CommentInput, CommentForm } from "./CreateComment.styles";
-import { CREATE_COMMENT } from "../../utils/queries";
+import { CREATE_COMMENT, GET_POSTS } from "../../utils/queries";
 
 const CreateComment = ({ userAvatar, postId }) => {
   const [body, setBody] = useState("");
@@ -12,6 +13,26 @@ const CreateComment = ({ userAvatar, postId }) => {
     variables: {
       body,
       postId
+    },
+    update: (proxy, result) => {
+      const data = proxy.readQuery({
+        query: GET_POSTS
+      });
+
+      const getPosts = data.getPosts.map(post => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            comments: [...post.comments, result.data.createComment]
+          };
+        }
+        return post;
+      });
+
+      proxy.writeQuery({
+        query: GET_POSTS,
+        data: { getPosts }
+      });
     }
   });
 
