@@ -54,6 +54,7 @@ const LoginForm = () => {
             onChange={onChange}
             size="large"
             required
+            data-testid="emailLogin"
           />
         </Form.Item>
         <Form.Item style={{ marginBottom: "25px" }}>
@@ -62,11 +63,17 @@ const LoginForm = () => {
             name="password"
             value={loginState.password}
             onChange={onChange}
+            data-testid="passwordLogin"
             size="large"
             required
           />
         </Form.Item>
-        <StyledButton type="primary" htmlType="submit" block>
+        <StyledButton
+          type="primary"
+          htmlType="submit"
+          block
+          data-testid="submitLogin"
+        >
           Sign in
         </StyledButton>
       </Form>

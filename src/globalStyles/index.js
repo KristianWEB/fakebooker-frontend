@@ -16,4 +16,18 @@ export const GlobalStyle = createGlobalStyle`
        width: 100%;
        height: 100%;
    }
+
+   .ant-popover-inner-content {
+    padding: 16px 8px;
+   }
+
+   .ant-popover-arrow {
+       display: none;
+   }
+
+   .ant-popover {
+       @media only screen and (max-width: 575px) {
+           width: 100% !important;
+       }
+   }
 `;

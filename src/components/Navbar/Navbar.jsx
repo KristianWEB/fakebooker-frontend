@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Avatar } from "antd";
+import { Avatar, Popover } from "antd";
+import NotificationList from "../Notification/NotificationList";
 import {
   NavContainer,
   LogoContainer,
@@ -52,9 +53,22 @@ const Navbar = ({ onProfile, user }) => {
             <MessageContainer>
               <ChatIcon width="25" height="25" />
             </MessageContainer>
-            <NotificationContainer>
-              <BellIcon width="25" height="25" />
-            </NotificationContainer>
+            <Popover
+              placement="bottomRight"
+              content={<NotificationList />}
+              trigger="click"
+              overlayStyle={{
+                width: "368px",
+                position: "fixed"
+              }}
+            >
+              <NotificationContainer
+                type="link"
+                data-testid="notificationsButton"
+              >
+                <BellIcon width="25" height="25" />
+              </NotificationContainer>
+            </Popover>
             <Avatar size={41} src={user.avatarImage} />
           </ProfileContainer>
         </NavContainer>
@@ -74,7 +88,10 @@ const Navbar = ({ onProfile, user }) => {
             <MessageContainer>
               <ChatIcon width={25} height={25} />
             </MessageContainer>
-            <NotificationContainer>
+            <NotificationContainer
+              type="link"
+              data-testid="notificationsButton"
+            >
               <BellIcon width={25} height={25} />
             </NotificationContainer>
             <Avatar size={41} src={UserPictureSample} />
