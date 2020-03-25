@@ -1,4 +1,6 @@
 describe("Notifications", () => {
+  // you should have a user in the db before doing that, I haven't figured it out yet how to target the register pane (antd) so I can register first
+
   // login user before each test
   beforeEach(() => {
     cy.visit("/");
