@@ -5,7 +5,7 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-import AuthPage from "../pages/RegisterPage/AuthPage";
+import AuthPage from "../pages/AuthPage/AuthPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import PrivateRoute from "./PrivateRoute";
 

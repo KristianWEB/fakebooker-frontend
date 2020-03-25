@@ -190,9 +190,23 @@ export const ChangeAvatarContainer = styled(Button)`
   right: 0;
   border: 0;
   cursor: pointer;
+  transition: 0.1s;
+
+  &&:focus {
+    background-color: #f0f2f5;
+  }
+  &&:active {
+    background-color: #e4e6eb;
+    color: ${props => props.theme.primarytextcolor};
+  }
+
+  &&:hover {
+    background-color: #d8dadf;
+    color: ${props => props.theme.primarytextcolor};
+  }
 `;
 
-export const ChangePhotoContainer = styled.button`
+export const ChangePhotoContainer = styled(Button)`
   background-color: #f0f2f5;
   display: inline-flex;
   justify-content: center;
@@ -206,6 +220,20 @@ export const ChangePhotoContainer = styled.button`
   top: 85%;
   border: 0;
   padding: 5px 8px;
+  transition: 0.1s;
+
+  &&:focus {
+    background-color: #f0f2f5;
+  }
+  &&:active {
+    background-color: #e4e6eb;
+    color: ${props => props.theme.primarytextcolor};
+  }
+
+  &&:hover {
+    background-color: #d8dadf;
+    color: ${props => props.theme.primarytextcolor};
+  }
 `;
 
 export const ChangeBackgroundHeading = styled.h3`

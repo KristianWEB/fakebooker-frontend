@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "antd";
 
 export const NavContainer = styled.div`
   background-color: ${props => props.bgColor};
@@ -90,7 +91,8 @@ export const MessageContainer = styled.div`
   height: 41px;
 `;
 
-export const NotificationContainer = styled.div`
+export const NotificationContainer = styled(Button)`
+  padding: 0;
   background-color: #f0f2f5;
   border-radius: 50%;
   display: flex;
@@ -99,4 +101,18 @@ export const NotificationContainer = styled.div`
   margin-right: 0.5rem;
   width: 41px;
   height: 41px;
+  border: 0;
+  transition: 0.1s;
+  top: 0;
+
+  &&:active,
+  &&:focus {
+    background-color: #d8dadf;
+    color: ${props => props.theme.primaryTextColor};
+  }
+
+  &&:hover {
+    background-color: #d8dadf;
+    color: ${props => props.theme.primaryTextColor};
+  }
 `;

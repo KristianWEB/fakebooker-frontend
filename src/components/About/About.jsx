@@ -39,7 +39,7 @@ const About = () => {
         <HomeContainerParagraph>From</HomeContainerParagraph>
         <HomeContainerHeading>New York, New York</HomeContainerHeading>
       </HomeContainer> */}
-      <StyledButton type="primary" onClick={() => setVisible(true)}>
+      <StyledButton type="link" onClick={() => setVisible(true)}>
         Edit Details
       </StyledButton>
       <Modal

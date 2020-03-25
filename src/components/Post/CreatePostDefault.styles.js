@@ -39,6 +39,7 @@ export const CreatePostButton = styled(Button)`
   &&:focus,
   &&:active {
     background-color: #e4e6eb;
+    border-color: #e4e6eb;
     color: ${props => props.theme.primaryTextColor};
   }
   &&:hover {

@@ -28,7 +28,7 @@ const ProfileHeader = ({ user }) => {
   return (
     <ProfileHeaderContainer img={user.coverImage}>
       <ProfileBackgroundContainer img={user.coverImage}>
-        <ChangePhotoContainer>
+        <ChangePhotoContainer type="link">
           <CameraIcon width="20" height="20" />
           <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
         </ChangePhotoContainer>
@@ -36,7 +36,7 @@ const ProfileHeader = ({ user }) => {
       <UserContainer>
         <User>
           <UserAvatar src={user.avatarImage} />
-          <ChangeAvatarContainer>
+          <ChangeAvatarContainer type="link">
             <CameraIcon width="20" height="20" />
           </ChangeAvatarContainer>
         </User>
