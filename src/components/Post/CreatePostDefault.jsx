@@ -20,7 +20,11 @@ const CreatePostDefault = ({ user }) => {
     <>
       <CreatePostContainer>
         <UserAvatar src={user.avatarImage} />
-        <CreatePostButton onClick={() => setVisible(true)} type="link">
+        <CreatePostButton
+          onClick={() => setVisible(true)}
+          type="link"
+          data-testid="openCreatePostModal"
+        >
           Add a Post
         </CreatePostButton>
         <Modal

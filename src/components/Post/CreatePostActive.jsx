@@ -69,11 +69,16 @@ const CreatePostActive = ({ user, showModal }) => {
             value={body}
             name="content"
             onChange={e => setBody(e.target.value)}
+            data-testid="createPostInput"
           />
         </CreatePostInputContainer>
       </CreatePostBody>
       <PublishBtnContainer>
-        <PublishBtn type="primary" htmlType="submit">
+        <PublishBtn
+          type="primary"
+          htmlType="submit"
+          data-testid="createPostBtn"
+        >
           Publish
         </PublishBtn>
       </PublishBtnContainer>
