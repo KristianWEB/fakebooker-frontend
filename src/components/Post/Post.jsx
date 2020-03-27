@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
 import { withTheme } from "styled-components";
 import { Popover, Button, Avatar } from "antd";
 import {
@@ -30,23 +30,15 @@ import { ReactComponent as CommentsSVG } from "../../assets/icons/_ionicons_svg_
 import { ReactComponent as LikesSVG } from "../../assets/icons/_ionicons_svg_md-thumbs-up.svg";
 import { ReactComponent as SharesSVG } from "../../assets/icons/_ionicons_svg_md-share-alt.svg";
 import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/three-dots-icon.svg";
+import Comment from "../Comment/Comment";
 import CreateComment from "../Comment/CreateComment";
-import CommentList from "../Comment/CommentList";
-import {
-  DELETE_POST,
-  LIKE_POST,
-  GET_POSTS,
-  LOAD_USER
-} from "../../utils/queries";
+import { DELETE_POST, LIKE_POST, GET_POSTS } from "../../utils/queries";
 
-const Post = ({ post, theme }) => {
+const Post = ({ post, theme, user, readOnly }) => {
   const [liked, setLiked] = useState(false);
 
-  const {
-    data: { loadUser: user }
-  } = useQuery(LOAD_USER);
   useEffect(() => {
-    if (user && post.likes.find(like => like.userId === user.id)) {
+    if (user && post.likes.find(like => like.userId === user.loadUser.id)) {
       setLiked(true);
     } else setLiked(false);
   }, [user, post]);
@@ -99,15 +91,17 @@ const Post = ({ post, theme }) => {
               </PostCreation>
             </NameWrapper>
           </ProfileWrapper>
-          <Popover content={SettingsPopup} placement="bottomRight">
-            <ThreeDotsSvg
-              style={{
-                cursor: "pointer",
-                width: "25px",
-                height: "25px"
-              }}
-            />
-          </Popover>
+          {!readOnly && (
+            <Popover content={SettingsPopup} placement="bottomRight">
+              <ThreeDotsSvg
+                style={{
+                  cursor: "pointer",
+                  width: "25px",
+                  height: "25px"
+                }}
+              />
+            </Popover>
+          )}
         </PostHeader>
         <PostContent>{post.body}</PostContent>
         <PostFooter>
@@ -173,8 +167,19 @@ const Post = ({ post, theme }) => {
         </PostFooter>
       </PostCard>
       <CommentsContainer>
-        <CommentList post={post} />
-        <CreateComment userAvatar={post.userId.avatarImage} postId={post.id} />
+        {post.comments.map(comment => (
+          <Comment
+            key={comment.id}
+            comment={comment}
+            postId={post.id}
+            urlProfile={readOnly}
+          />
+        ))}
+        <CreateComment
+          user={user.loadUser}
+          postId={post.id}
+          urlProfile={readOnly}
+        />
       </CommentsContainer>
     </PostContainer>
   );
@@ -198,10 +203,25 @@ Post.propTypes = {
   theme: PropTypes.shape({
     appTextColor: PropTypes.string,
     tertiaryTextColor: PropTypes.string
-  })
+  }),
+  user: PropTypes.shape({
+    loadUser: PropTypes.shape({
+      id: PropTypes.string,
+      avatarImage: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      email: PropTypes.string,
+      birthday: PropTypes.string,
+      gender: PropTypes.string,
+      coverImage: PropTypes.string
+    })
+  }),
+  readOnly: PropTypes.bool
 };
 
 Post.defaultProps = {
   post: null,
-  theme: null
+  theme: null,
+  user: null,
+  readOnly: null
 };

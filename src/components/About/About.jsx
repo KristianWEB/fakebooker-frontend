@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Modal } from "antd";
 import {
   AboutContainer,
@@ -14,7 +15,7 @@ import {
 import { ReactComponent as CloseIconSVG } from "../../assets/icons/_ionicons_svg_md-close.svg";
 import AboutForm from "./AboutForm";
 
-const About = () => {
+const About = ({ readOnly }) => {
   const [visible, setVisible] = useState(false);
 
   const handleOk = () => setVisible(false);
@@ -23,7 +24,7 @@ const About = () => {
 
   return (
     <AboutContainer>
-      <AboutHeading>About</AboutHeading>
+      <AboutHeading>Intro</AboutHeading>
       {/* <HomeContainer>
         <JobIcon width="20" height="20" fill="#8C939D" />
         <HomeContainerParagraph>Blogger at</HomeContainerParagraph>
@@ -39,29 +40,41 @@ const About = () => {
         <HomeContainerParagraph>From</HomeContainerParagraph>
         <HomeContainerHeading>New York, New York</HomeContainerHeading>
       </HomeContainer> */}
-      <StyledButton type="link" onClick={() => setVisible(true)}>
-        Edit Details
-      </StyledButton>
-      <Modal
-        visible={visible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={null}
-        closeIcon={
-          // eslint-disable-next-line react/jsx-wrap-multilines
-          <CloseIconSVG
-            width="20"
-            height="20"
-            style={{ fill: "transparent" }}
-          />
-        }
-        bodyStyle={{ padding: 0 }}
-        centered
-      >
-        <AboutForm showModal={setVisible} />
-      </Modal>
+      {!readOnly && (
+        <>
+          <StyledButton type="link" onClick={() => setVisible(true)}>
+            Edit Details
+          </StyledButton>
+          <Modal
+            visible={visible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            footer={null}
+            closeIcon={
+              // eslint-disable-next-line react/jsx-wrap-multilines
+              <CloseIconSVG
+                width="20"
+                height="20"
+                style={{ fill: "transparent" }}
+              />
+            }
+            bodyStyle={{ padding: 0 }}
+            centered
+          >
+            <AboutForm showModal={setVisible} />
+          </Modal>
+        </>
+      )}
     </AboutContainer>
   );
 };
 
 export default About;
+
+About.propTypes = {
+  readOnly: PropTypes.bool
+};
+
+About.defaultProps = {
+  readOnly: null
+};

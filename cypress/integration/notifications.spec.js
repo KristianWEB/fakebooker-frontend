@@ -18,6 +18,28 @@ describe("Notifications", () => {
     cy.get('[data-testid="notification"]').should("be.visible");
   });
 
+  // login with user A, then create a post, login with user B and then go to user a's profile page, like the post, after that login with user A and successfully receive a notification
+  it.only("successfully creates a notification when user B likes/comments user A'post ", () => {
+    cy.get('[data-testid="username"]').contains("Kristian Ivanov");
+    cy.get('[data-testid="openCreatePostModal"]').click();
+    cy.get('[data-testid="createPostInput"]').type(
+      "it was fun watching Scarface."
+    );
+    cy.get('[data-testid="createPostBtn"]').click();
+    cy.clearLocalStorage();
+    cy.visit("/");
+    cy.get('[data-testid="emailLogin"]').type("john@john.com");
+    cy.get('[data-testid="passwordLogin"]').type("John345");
+    cy.get('[data-testid="submitLogin"]').click();
+    cy.get('[data-testid="username"]').contains("John Ivanov");
+
+    // get on user A's profile page
+    cy.visit("/profile/kristian.ivanov67");
+
+    // like his post
+    // login from user A
+    // assert that you have a new notification
+  });
   // new notification should popup on the left bottom of the screen
   // https://3x.ant.design/components/notification/
 });
