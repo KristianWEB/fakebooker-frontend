@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import AuthPage from "../pages/AuthPage/AuthPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import UrlProfilePage from "../pages/ProfilePage/UrlProfilePage";
 import PrivateRoute from "./PrivateRoute";
 
 const Routes = () => {
@@ -15,6 +16,11 @@ const Routes = () => {
       <Switch>
         <Route exact path="/auth" component={AuthPage} />
         <PrivateRoute exact path="/profile" component={ProfilePage} />
+        <PrivateRoute
+          exact
+          path="/profile/:username"
+          component={UrlProfilePage}
+        />
         <Redirect from="/" to="/profile" />
       </Switch>
     </Router>

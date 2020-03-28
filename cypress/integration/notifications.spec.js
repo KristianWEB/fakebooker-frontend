@@ -10,14 +10,40 @@ describe("Notifications", () => {
   });
   // show empty notification message if there are no notifications
 
-  // display notifications when the navbar button is clicked
-  it("Displays the notifications when the notifications navbar button is clicked", () => {
+  // login with user A, then create a post, login with user B and then go to user a's profile page, like the post, after that login with user A and successfully receive a notification
+  it.only("successfully creates a notification when user B likes/comments user A'post ", () => {
+    cy.get('[data-testid="username"]').contains("Kristian Ivanov");
+    cy.get('[data-testid="openCreatePostModal"]').click();
+    cy.get('[data-testid="createPostInput"]').type(
+      "it was fun watching Scarface."
+    );
+    cy.get('[data-testid="createPostBtn"]').click();
+    cy.clearLocalStorage();
+    cy.visit("/");
+    cy.get('[data-testid="emailLogin"]').type("james@james.com");
+    cy.get('[data-testid="passwordLogin"]').type("James345");
+    cy.get('[data-testid="submitLogin"]').click();
+    cy.get('[data-testid="username"]').contains("James Brew");
+
+    // get on user A's profile page
+    cy.visit("/profile/kristian.ivanovgmsbuqthx");
+
+    // comment on his post
+    cy.get('[data-testid="createComment"]').type("nice post dude {enter}");
+
+    // login from user A
+    cy.clearLocalStorage();
+    cy.visit("/");
+    cy.get('[data-testid="emailLogin"]').type("kristian@kristian.com");
+    cy.get('[data-testid="passwordLogin"]').type("Kristian345");
+    cy.get('[data-testid="submitLogin"]').click();
+    cy.get('[data-testid="username"]').contains("Kristian Ivanov");
+
+    // assert that you have a new notification
     cy.get('[data-testid="notificationsButton"]').click();
-    cy.contains("Notifications");
     cy.get('[data-testid="notificationsRow"]').should("have.length", 1);
     cy.get('[data-testid="notification"]').should("be.visible");
   });
-
   // new notification should popup on the left bottom of the screen
   // https://3x.ant.design/components/notification/
 });

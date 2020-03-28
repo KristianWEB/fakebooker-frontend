@@ -24,27 +24,35 @@ import {
 } from "./ProfileHeader.styles";
 import { ReactComponent as CameraIcon } from "../../assets/icons/_ionicons_svg_md-camera.svg";
 
-const ProfileHeader = ({ user }) => {
+const ProfileHeader = ({ user, readOnly }) => {
   return (
     <ProfileHeaderContainer img={user.coverImage}>
       <ProfileBackgroundContainer img={user.coverImage}>
-        <ChangePhotoContainer type="link">
-          <CameraIcon width="20" height="20" />
-          <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
-        </ChangePhotoContainer>
+        {!readOnly && (
+          <ChangePhotoContainer type="link">
+            <CameraIcon width="20" height="20" />
+            <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
+          </ChangePhotoContainer>
+        )}
       </ProfileBackgroundContainer>
       <UserContainer>
         <User>
           <UserAvatar src={user.avatarImage} />
-          <ChangeAvatarContainer type="link">
-            <CameraIcon width="20" height="20" />
-          </ChangeAvatarContainer>
+          {!readOnly && (
+            <ChangeAvatarContainer type="link">
+              <CameraIcon width="20" height="20" />
+            </ChangeAvatarContainer>
+          )}
         </User>
-        <UserName>
+        <UserName data-testid="username">
           {user.firstName} {user.lastName}
         </UserName>
-        <UserDescription>Short description about myself</UserDescription>
-        <UserDescriptionEdit type="link">Edit</UserDescriptionEdit>
+        {!readOnly && (
+          <>
+            <UserDescription>Short description about myself</UserDescription>
+            <UserDescriptionEdit type="link">Edit</UserDescriptionEdit>
+          </>
+        )}
       </UserContainer>
       <UserActionsContainer>
         <TimelineContainer>
@@ -72,9 +80,11 @@ ProfileHeader.propTypes = {
     avatarImage: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string
-  })
+  }),
+  readOnly: PropTypes.bool
 };
 
 ProfileHeader.defaultProps = {
-  user: null
+  user: null,
+  readOnly: null
 };

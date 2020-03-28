@@ -27,6 +27,7 @@ export const REGISTER_USER = gql`
       token
       avatarImage
       coverImage
+      username
     }
   }
 `;
@@ -42,6 +43,7 @@ export const LOGIN_USER = gql`
       token
       avatarImage
       coverImage
+      username
     }
   }
 `;
@@ -58,6 +60,23 @@ export const LOAD_USER = gql`
       token
       avatarImage
       coverImage
+      username
+    }
+  }
+`;
+
+export const LOAD_FROM_URL_USER = gql`
+  query loadFromUrlUser($username: String!) {
+    loadFromUrlUser(username: $username) {
+      id
+      firstName
+      lastName
+      email
+      birthday
+      gender
+      avatarImage
+      coverImage
+      username
     }
   }
 `;
@@ -65,6 +84,37 @@ export const LOAD_USER = gql`
 export const GET_POSTS = gql`
   {
     getPosts {
+      id
+      userId {
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      createdAt
+      comments {
+        id
+        userId {
+          firstName
+          lastName
+          avatarImage
+        }
+        postId
+        body
+        createdAt
+      }
+      likes {
+        userId
+        postId
+        createdAt
+      }
+    }
+  }
+`;
+
+export const GET_URL_POSTS = gql`
+  query getUrlPosts($username: String!) {
+    getUrlPosts(username: $username) {
       id
       userId {
         firstName
