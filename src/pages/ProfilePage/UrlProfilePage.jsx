@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import Navbar from "../../components/Navbar/Navbar";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
@@ -11,10 +11,11 @@ import {
   GET_URL_POSTS
 } from "../../utils/queries";
 import {
-  InfoContainer,
-  PostsSection,
-  ProfilePageContainer
-} from "./ProfilePage.styles";
+  UrlInfoContainer,
+  UrlPostsSection,
+  UrlProfilePageContainer,
+  FixedContainer
+} from "./UrlProfilePage.styles";
 
 const UrlProfilePage = () => {
   const { username } = useParams();
@@ -33,23 +34,31 @@ const UrlProfilePage = () => {
     }
   });
 
+  if (userData && profileData) {
+    if (userData.loadUser.username === profileData.loadFromUrlUser.username) {
+      return <Redirect to="/profile" />;
+    }
+  }
+
   return (
     <>
       {profileData && (
-        <ProfilePageContainer>
+        <UrlProfilePageContainer>
           {/* TODO: Connect ProfileHeader to user */}
           <Navbar onProfile user={userData.loadUser} />
           <ProfileHeader user={profileData.loadFromUrlUser} readOnly />
-          <InfoContainer>
-            <About readOnly />
-            <PostsSection>
-              {postsData &&
-                postsData.getUrlPosts.map(post => (
-                  <Post key={post.id} post={post} user={userData} readOnly />
-                ))}
-            </PostsSection>
-          </InfoContainer>
-        </ProfilePageContainer>
+          <UrlInfoContainer>
+            <FixedContainer>
+              <About readOnly />
+              <UrlPostsSection>
+                {postsData &&
+                  postsData.getUrlPosts.map(post => (
+                    <Post key={post.id} post={post} user={userData} readOnly />
+                  ))}
+              </UrlPostsSection>
+            </FixedContainer>
+          </UrlInfoContainer>
+        </UrlProfilePageContainer>
       )}
     </>
   );

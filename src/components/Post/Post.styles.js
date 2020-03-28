@@ -3,6 +3,9 @@ import { Row, Card, Button } from "antd";
 
 export const PostContainer = styled(Row)`
   margin: 1.6rem 0;
+  &&:first-child {
+    margin-top: 0;
+  }
   width: 500px;
   box-shadow: ${props => props.theme.boxShadow};
   border-radius: 6px;

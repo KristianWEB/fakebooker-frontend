@@ -80,6 +80,7 @@ const CreateComment = ({ user, postId, urlProfile }) => {
           placeholder="Write in a comment.."
           onChange={e => setBody(e.target.value)}
           value={body}
+          data-testid="createComment"
         />
       </CommentForm>
     </>
