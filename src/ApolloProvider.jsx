@@ -8,8 +8,7 @@ import App from "./App";
 
 const cache = new InMemoryCache();
 const httpLink = createHttpLink({
-  // uri: "https://damp-forest-43324.herokuapp.com"
-  uri: "http://localhost:8080"
+  uri: "https://damp-forest-43324.herokuapp.com"
 });
 
 const authLink = setContext((_, { headers }) => {
