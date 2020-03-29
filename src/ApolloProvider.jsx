@@ -11,24 +11,26 @@ import App from "./App";
 
 const cache = new InMemoryCache();
 
-const token = localStorage.getItem("token");
-
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:8080/graphql`,
+  uri: "ws://damp-forest-43324.herokuapp.com/graphql",
   options: {
     reconnect: true,
     connectionParams: {
-      headers: { Authorization: token ? `JWT ${token}` : "" }
+      headers: {
+        Authorization: localStorage.getItem("token")
+          ? `JWT ${localStorage.getItem("token")}`
+          : ""
+      }
     }
   }
 });
 
 const httpLink = createHttpLink({
-  // uri: "https://damp-forest-43324.herokuapp.com"
-  uri: "http://localhost:8080/graphql"
+  uri: "https://damp-forest-43324.herokuapp.com"
 });
 
 const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem("token");
   // return the headers to the context so httpLink can read them
   return {
     headers: {

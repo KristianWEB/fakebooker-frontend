@@ -1,6 +1,8 @@
 import React from "react";
 import { useQuery, useSubscription } from "@apollo/react-hooks";
+import { notification } from "antd";
 import Navbar from "../../components/Navbar/Navbar";
+import Notification from "../../components/Notification/Notification";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import CreatePostDefault from "../../components/Post/CreatePostDefault";
 import Post from "../../components/Post/Post";
@@ -20,13 +22,26 @@ import {
 
 const ProfilePage = () => {
   const { data: userData } = useQuery(LOAD_USER);
+
   useQuery(GET_NOTIFICATIONS);
+
+  const openNotification = newNotification => {
+    notification.info({
+      message: `Notification`,
+      description: <Notification notification={newNotification} />,
+      placement: "bottomLeft",
+      style: {
+        padding: "16px 8px"
+      }
+    });
+  };
 
   useSubscription(NEW_NOTIFICATION, {
     onSubscriptionData: ({ client, subscriptionData }) => {
       const data = client.readQuery({
         query: GET_NOTIFICATIONS
       });
+      openNotification(subscriptionData.data.newNotification);
 
       const newData = {
         getNotifications: [
@@ -49,8 +64,7 @@ const ProfilePage = () => {
       });
 
       const newNotificationList = data.getNotifications.filter(
-        notification =>
-          notification.id !== subscriptionData.data.deleteNotification
+        item => item.id !== subscriptionData.data.deleteNotification
       );
 
       client.writeQuery({

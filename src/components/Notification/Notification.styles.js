@@ -30,22 +30,28 @@ export const CreatorAvatar = styled.img`
 
 export const CreatorFirstName = styled.span`
   font-weight: bold;
+  color: #050505;
 `;
 
 export const CreatorLastName = styled.span`
   font-weight: bold;
+  color: #050505;
 `;
 
 export const PostBody = styled.span`
   font-weight: bold;
+  color: #050505;
 `;
 
 export const Body = styled(Row)`
   font-size: 1.5rem;
+  color: #050505;
 `;
 
 export const Timestamp = styled.h3`
-  color: ${props => props.theme.appTextColor};
+/* I've hardcoded these values because somehow the notification antd component doesnt render them properly */
+  /* color: ${props => props.theme.appTextColor}; */
+  color: #1877f2;
   font-weight: bold;
   font-size: 1.3rem;
 `;

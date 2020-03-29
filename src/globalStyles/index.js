@@ -30,4 +30,7 @@ export const GlobalStyle = createGlobalStyle`
            width: 100% !important;
        }
    }
+   .ant-notification-notice-with-icon .ant-notification-notice-description {
+    margin-left: 0;
+   }
 `;
