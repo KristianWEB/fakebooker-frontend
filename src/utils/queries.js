@@ -112,6 +112,61 @@ export const GET_POSTS = gql`
   }
 `;
 
+export const GET_NOTIFICATIONS = gql`
+  {
+    getNotifications {
+      id
+      creator {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      notifier {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      action
+      actionId {
+        body
+      }
+      createdAt
+    }
+  }
+`;
+
+export const NEW_NOTIFICATION = gql`
+  subscription {
+    newNotification {
+      id
+      creator {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      notifier {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      action
+      actionId {
+        body
+      }
+      createdAt
+    }
+  }
+`;
+export const DELETE_NOTIFICATION = gql`
+  subscription {
+    deleteNotification
+  }
+`;
+
 export const GET_URL_POSTS = gql`
   query getUrlPosts($username: String!) {
     getUrlPosts(username: $username) {

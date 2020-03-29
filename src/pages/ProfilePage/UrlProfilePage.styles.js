@@ -25,5 +25,8 @@ export const FixedContainer = styled(Row)`
   width: 866px;
   height: 100%;
   display: flex;
+  @media only screen and (max-width: 767px) {
+    justify-content: center;
+  }
   margin: 0 auto;
 `;
