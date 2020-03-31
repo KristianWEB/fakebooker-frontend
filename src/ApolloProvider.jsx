@@ -12,7 +12,8 @@ import App from "./App";
 const cache = new InMemoryCache();
 
 const wsLink = new WebSocketLink({
-  uri: "ws://damp-forest-43324.herokuapp.com/graphql",
+  // uri: "ws://damp-forest-43324.herokuapp.com/graphql",
+  uri: "ws://localhost:8080/graphql",
   options: {
     reconnect: true,
     connectionParams: {
@@ -26,7 +27,8 @@ const wsLink = new WebSocketLink({
 });
 
 const httpLink = createHttpLink({
-  uri: "https://damp-forest-43324.herokuapp.com"
+  // uri: "https://damp-forest-43324.herokuapp.com"
+  uri: "http://localhost:8080/graphql"
 });
 
 const authLink = setContext((_, { headers }) => {

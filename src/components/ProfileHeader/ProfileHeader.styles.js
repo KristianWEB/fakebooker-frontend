@@ -104,76 +104,143 @@ export const UserActionsContainer = styled.div`
 
 export const UserActionsContainerLink = styled(Button)``;
 
-export const TimelineContainer = styled.div`
-  margin-right: 25px;
-  margin-top: 10px;
-`;
 export const TimelineContainerLink = styled.button`
   color: ${props => props.theme.appTextColor};
   font-size: 1.6rem;
   font-weight: bold;
-  display: inline;
-  border-radius: 0;
+  border-radius: 6px;
   border: 0;
   background-color: transparent;
   cursor: pointer;
-  margin: 0;
+  margin: 6px 0;
+  padding: 0 16px;
+  height: 50px;
 
-  &::after {
+  /* &::after {
     margin-top: 10px;
     width: 75px;
     height: 2px;
     display: block;
     background: ${props => props.theme.appTextColor};
     content: "";
+  } */
+
+  &:hover {
+    background-color: #f2f2f2;
+    outline: none;
+  }
+
+  &::after, &:focus {
+    outline: none;
+  }
+  &:active {
+    background-color: #e4e6eb;
   }
 `;
 
-export const AboutContainer = styled.div`
-  margin-right: 25px;
-  margin-top: 10px;
-`;
 export const AboutContainerLink = styled.button`
   color: #97999b;
   font-size: 1.6rem;
   font-weight: bold;
-  display: inline;
-  border-radius: 0;
+  border-radius: 6px;
   border: 0;
-  margin: 0;
   background-color: transparent;
   cursor: pointer;
+  margin: 6px 0;
+  padding: 0 16px;
+  height: 50px;
+
+  /* &::after {
+    margin-top: 10px;
+    width: 75px;
+    height: 2px;
+    display: block;
+    background: ${props => props.theme.appTextColor};
+    content: "";
+  } */
+
+  &:hover {
+    background-color: #f2f2f2;
+    outline: none;
+  }
+
+  &::after, &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: #e4e6eb;
+  }
 `;
 
-export const FriendsContainer = styled.div`
-  margin-right: 25px;
-  margin-top: 10px;
-`;
 export const FriendsContainerLink = styled.button`
   color: #97999b;
   font-size: 1.6rem;
   font-weight: bold;
-  display: inline;
-  border-radius: 0;
+  border-radius: 6px;
   border: 0;
-  margin: 0;
   background-color: transparent;
   cursor: pointer;
+  margin: 6px 0;
+  padding: 0 16px;
+  height: 50px;
+
+  /* &::after {
+    margin-top: 10px;
+    width: 75px;
+    height: 2px;
+    display: block;
+    background: ${props => props.theme.appTextColor};
+    content: "";
+  } */
+
+  &:hover {
+    background-color: #f2f2f2;
+    outline: none;
+  }
+
+  &::after, &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: #e4e6eb;
+  }
 `;
 
-export const PhotosContainer = styled.div`
-  margin-top: 10px;
-`;
 export const PhotosContainerLink = styled.button`
   color: #97999b;
   font-size: 1.6rem;
   font-weight: bold;
-  display: inline;
-  border-radius: 0;
+  border-radius: 6px;
   border: 0;
-  margin: 0;
   background-color: transparent;
   cursor: pointer;
+  margin: 6px 0;
+  padding: 0 16px;
+  height: 50px;
+
+  /* &::after {
+    margin-top: 10px;
+    width: 75px;
+    height: 2px;
+    display: block;
+    background: ${props => props.theme.appTextColor};
+    content: "";
+  } */
+
+  &:hover {
+    background-color: #f2f2f2;
+    outline: none;
+  }
+
+  &::after, &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: #e4e6eb;
+  }
 `;
 
 export const ChangeAvatarContainer = styled(Button)`

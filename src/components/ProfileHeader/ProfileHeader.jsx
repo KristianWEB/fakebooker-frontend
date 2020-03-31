@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
   ProfileHeaderContainer,
@@ -10,13 +11,9 @@ import {
   UserDescription,
   UserDescriptionEdit,
   UserActionsContainer,
-  TimelineContainer,
   TimelineContainerLink,
-  AboutContainer,
   AboutContainerLink,
-  FriendsContainer,
   FriendsContainerLink,
-  PhotosContainer,
   PhotosContainerLink,
   ChangePhotoContainer,
   ChangeBackgroundHeading,
@@ -55,18 +52,14 @@ const ProfileHeader = ({ user, readOnly }) => {
         )}
       </UserContainer>
       <UserActionsContainer>
-        <TimelineContainer>
+        <Link to="/profile">
           <TimelineContainerLink type="link">Timeline</TimelineContainerLink>
-        </TimelineContainer>
-        <AboutContainer>
+        </Link>
+        <Link to="/about_overview">
           <AboutContainerLink type="link">About</AboutContainerLink>
-        </AboutContainer>
-        <FriendsContainer>
-          <FriendsContainerLink type="link">Friends</FriendsContainerLink>
-        </FriendsContainer>
-        <PhotosContainer>
-          <PhotosContainerLink type="link">Photos</PhotosContainerLink>
-        </PhotosContainer>
+        </Link>
+        <FriendsContainerLink type="link">Friends</FriendsContainerLink>
+        <PhotosContainerLink type="link">Photos</PhotosContainerLink>
       </UserActionsContainer>
     </ProfileHeaderContainer>
   );
