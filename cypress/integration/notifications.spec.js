@@ -26,7 +26,7 @@ describe("Notifications", () => {
     cy.get('[data-testid="username"]').contains("James Brew");
 
     // get on user A's profile page
-    cy.visit("/profile/kristian.ivanovgmsbuqthx");
+    cy.visit("/profile/kristian.ivanovy3d4s_wbj");
 
     // comment on his post
     cy.get('[data-testid="createComment"]').type("nice post dude {enter}");

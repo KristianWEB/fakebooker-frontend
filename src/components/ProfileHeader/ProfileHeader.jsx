@@ -56,7 +56,9 @@ const ProfileHeader = ({ user, readOnly }) => {
           <TimelineContainerLink type="link">Timeline</TimelineContainerLink>
         </Link>
         <Link to="/about_overview">
-          <AboutContainerLink type="link">About</AboutContainerLink>
+          <AboutContainerLink type="link" data-testid="aboutLink">
+            About
+          </AboutContainerLink>
         </Link>
         <FriendsContainerLink type="link">Friends</FriendsContainerLink>
         <PhotosContainerLink type="link">Photos</PhotosContainerLink>
