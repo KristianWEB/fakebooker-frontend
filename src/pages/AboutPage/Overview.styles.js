@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import { Row } from "antd";
 
-export const AboutPageContainer = styled(Row)`
-  height: 100%;
-  width: 100%;
-  background-color: #f0f2f5;
-`;
+export const AboutPageContainer = styled(Row)``;
 
 export const AboutInfoContainer = styled(Row)`
   display: flex;

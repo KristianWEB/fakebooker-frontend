@@ -8,10 +8,11 @@ import {
 import AuthPage from "../pages/AuthPage/AuthPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import UrlProfilePage from "../pages/ProfilePage/UrlProfilePage";
-import AboutPageOverview from "../pages/AboutPage/AboutPageOverview";
-import AboutPageWorkAndEducation from "../pages/AboutPage/AboutPageWorkAndEducation";
+import AboutOverview from "../pages/AboutPage/AboutOverview";
+import AboutWorkAndEducation from "../pages/AboutPage/AboutWorkAndEducation";
 
 import PrivateRoute from "./PrivateRoute";
+import AboutRoute from "./AboutRoute";
 
 const Routes = () => {
   return (
@@ -19,15 +20,11 @@ const Routes = () => {
       <Switch>
         <Route exact path="/auth" component={AuthPage} />
         <PrivateRoute exact path="/profile" component={ProfilePage} />
-        <PrivateRoute
-          exact
-          path="/about_overview"
-          component={AboutPageOverview}
-        />
-        <PrivateRoute
+        <AboutRoute exact path="/about_overview" component={AboutOverview} />
+        <AboutRoute
           exact
           path="/about_work_and_education"
-          component={AboutPageWorkAndEducation}
+          component={AboutWorkAndEducation}
         />
         <PrivateRoute
           exact

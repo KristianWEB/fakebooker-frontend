@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery, useSubscription } from "@apollo/react-hooks";
-import { notification } from "antd";
+import { notification, Row } from "antd";
 import Navbar from "../../components/Navbar/Navbar";
 import Notification from "../../components/Notification/Notification";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
@@ -14,11 +14,7 @@ import {
   DELETE_NOTIFICATION,
   GET_NOTIFICATIONS
 } from "../../utils/queries";
-import {
-  InfoContainer,
-  PostsSection,
-  ProfilePageContainer
-} from "./ProfilePage.styles";
+import { InfoContainer, PostsSection } from "./ProfilePage.styles";
 
 const ProfilePage = () => {
   const { data: userData } = useQuery(LOAD_USER);
@@ -79,7 +75,7 @@ const ProfilePage = () => {
   return (
     <>
       {userData && (
-        <ProfilePageContainer>
+        <Row>
           <Navbar onProfile user={userData.loadUser} />
           <ProfileHeader user={userData.loadUser} />
           <InfoContainer>
@@ -92,7 +88,7 @@ const ProfilePage = () => {
                 ))}
             </PostsSection>
           </InfoContainer>
-        </ProfilePageContainer>
+        </Row>
       )}
     </>
   );

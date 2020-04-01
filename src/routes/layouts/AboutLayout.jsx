@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { useQuery, useSubscription } from "@apollo/react-hooks";
-import { notification } from "antd";
+import { notification, Row } from "antd";
 import Navbar from "../../components/Navbar/Navbar";
 import Notification from "../../components/Notification/Notification";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
@@ -11,18 +11,8 @@ import {
   DELETE_NOTIFICATION,
   GET_NOTIFICATIONS
 } from "../../utils/queries";
-import {
-  AboutPageContainer,
-  AboutInfoContainer,
-  AboutContainer,
-  AboutSidebar,
-  AboutHeading,
-  Overview,
-  WorkAndEducation,
-  ContactAndBasicInfo
-} from "./AboutPage.styles";
 
-const AboutPageOverview = () => {
+const AboutLayout = ({ children }) => {
   const { data: userData } = useQuery(LOAD_USER);
 
   useQuery(GET_NOTIFICATIONS);
@@ -79,30 +69,22 @@ const AboutPageOverview = () => {
   return (
     <>
       {userData && (
-        <AboutPageContainer>
+        <Row>
           <Navbar onProfile user={userData.loadUser} />
           <ProfileHeader user={userData.loadUser} />
-          <AboutInfoContainer>
-            <AboutContainer>
-              <AboutSidebar>
-                <AboutHeading>About</AboutHeading>
-                <Link to="about_overview">
-                  <Overview>Overview</Overview>
-                </Link>
-                <Link to="/about_work_and_education">
-                  <WorkAndEducation>Work and Education</WorkAndEducation>
-                </Link>
-                <ContactAndBasicInfo>
-                  Contact and Basic Info
-                </ContactAndBasicInfo>
-              </AboutSidebar>
-              <h1 style={{ margin: "auto", fontSize: "20px" }}>About</h1>
-            </AboutContainer>
-          </AboutInfoContainer>
-        </AboutPageContainer>
+          {children}
+        </Row>
       )}
     </>
   );
 };
 
-export default AboutPageOverview;
+export default AboutLayout;
+
+AboutLayout.propTypes = {
+  children: PropTypes.node
+};
+
+AboutLayout.defaultProps = {
+  children: null
+};

@@ -52,6 +52,7 @@ export const User = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  margin-top: -25px;
 `;
 
 export const UserAvatar = styled.img`
