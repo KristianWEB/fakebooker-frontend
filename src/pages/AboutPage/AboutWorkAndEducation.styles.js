@@ -246,20 +246,24 @@ export const SaveButton = styled(Button)`
   color: #fff;
   font-weight: 500;
   transition: 0.1s;
+  border-color: none;
 
   &&:focus {
     background-color: #1877f2;
     color: #fff;
+    border-color: none;
   }
 
   &&:active {
     background-color: #1877f2;
     color: #fff;
+    border-color: none;
   }
 
   &&:hover {
     background-color: #1771e6;
     color: #fff;
+    border-color: none;
   }
 `;
 

@@ -77,7 +77,6 @@ export const LOAD_USER_FROM_DB = gql`
       email
       birthday
       gender
-      token
       avatarImage
       coverImage
       username
@@ -361,6 +360,42 @@ export const ADD_SCHOOL = gql`
 export const DELETE_SCHOOL = gql`
   mutation {
     deleteSchool {
+      id
+      firstName
+      lastName
+      email
+      gender
+      birthday
+      avatarImage
+      coverImage
+      workPlace
+      username
+      school
+    }
+  }
+`;
+
+export const ADD_GENDER = gql`
+  mutation addGender($gender: String!) {
+    addGender(gender: $gender) {
+      id
+      firstName
+      lastName
+      email
+      gender
+      birthday
+      avatarImage
+      coverImage
+      workPlace
+      username
+      school
+    }
+  }
+`;
+
+export const DELETE_GENDER = gql`
+  mutation {
+    deleteGender {
       id
       firstName
       lastName

@@ -131,8 +131,8 @@ const RegisterForm = () => {
             value={signUpState.gender}
             name="gender"
           >
-            <Radio value="female">Female</Radio>
-            <Radio value="male">Male</Radio>
+            <Radio value="Female">Female</Radio>
+            <Radio value="Male">Male</Radio>
           </Radio.Group>
         </Form.Item>
         <StyledButton type="primary" htmlType="submit" block>
