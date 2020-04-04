@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Row, Button, Avatar, Input } from "antd";
+import { Row, Button, Input, Form } from "antd";
 
 export const AboutInfoContainer = styled(Row)`
   display: flex;
@@ -21,7 +21,8 @@ export const AboutContainer = styled(Row)`
 export const AboutSidebar = styled(Row)`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  width: 33%;
   border-right: 1px solid #ced0d4;
 `;
 
@@ -93,8 +94,9 @@ export const ContactAndBasicInfo = styled.p`
 export const AboutBodyContainer = styled(Row)`
   padding: 16px;
   flex-direction: column;
-  flex-grow: 4;
+  width: 66%;
   display: flex;
+  justify-content: center;
 `;
 
 export const WorkplaceContainer = styled(Row)`
@@ -104,6 +106,7 @@ export const WorkplaceHeading = styled.h1`
   color: #050505;
   font-weight: bold;
   font-size: 1.7rem;
+  line-height: 1;
   margin: 0;
 `;
 
@@ -124,8 +127,8 @@ export const WorkplaceSpan = styled.span`
 `;
 
 export const SchoolContainer = styled(Row)`
-  margin-top: 32px;
   width: 100%;
+  margin-top: 32px;
 `;
 export const SchoolHeading = styled.h1`
   color: #050505;
@@ -153,14 +156,21 @@ export const SchoolSpan = styled.span`
 export const School = styled(Row)`
   display: flex;
   align-items: center;
-  margin-top: 20px;
 `;
-
-export const SchoolImage = styled(Avatar)``;
 
 export const SchoolBody = styled.h1`
   font-size: 1.5rem;
-  margin-left: 12px;
+`;
+
+export const WorkPlace = styled(Row)`
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  color: #050505;
+`;
+
+export const WorkPlaceBody = styled.h1`
+  font-size: 1.5rem;
 `;
 
 export const SettingsContainer = styled(Button)`
@@ -190,9 +200,18 @@ export const SettingsContainer = styled(Button)`
   }
 `;
 
-export const WorkplaceActionContainer = styled(Row)``;
+export const WorkplaceActionContainer = styled(Form)``;
 
 export const WorkplaceInput = styled(Input)`
+  border-color: #ced0d4;
+  margin-top: 15px;
+  padding: 20px 16px;
+`;
+
+export const SchoolActionContainer = styled(Form)``;
+
+export const SchoolInput = styled(Input)`
+  border-color: #ced0d4;
   margin-top: 15px;
   padding: 20px 16px;
 `;
@@ -203,25 +222,43 @@ export const CancelButton = styled(Button)`
   background-color: #e4e6eb;
   color: #050505;
   border: none;
+  transition: 0.1s;
 
-  &&:hover,
-  &&:active,
   &&:focus {
     background-color: #e4e6eb;
+    color: #050505;
+    border-color: none;
+  }
+
+  &&:active {
+    background-color: #e4e6eb;
+  }
+
+  &&:hover {
+    background-color: #d8dadf;
     color: #050505;
     border-color: none;
   }
 `;
 
 export const SaveButton = styled(Button)`
-  background-color: #1876f2;
+  background-color: #1877f2;
   color: #fff;
   font-weight: 500;
+  transition: 0.1s;
 
-  &&:hover,
-  &&:active,
   &&:focus {
-    background-color: #1876f2;
+    background-color: #1877f2;
+    color: #fff;
+  }
+
+  &&:active {
+    background-color: #1877f2;
+    color: #fff;
+  }
+
+  &&:hover {
+    background-color: #1771e6;
     color: #fff;
   }
 `;

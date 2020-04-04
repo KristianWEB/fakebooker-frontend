@@ -52,6 +52,7 @@ export const LOAD_USER = gql`
   {
     loadUser {
       id
+      school
       firstName
       lastName
       email
@@ -61,6 +62,26 @@ export const LOAD_USER = gql`
       avatarImage
       coverImage
       username
+      workPlace
+    }
+  }
+`;
+
+export const LOAD_USER_FROM_DB = gql`
+  {
+    loadUserFromDB {
+      id
+      school
+      firstName
+      lastName
+      email
+      birthday
+      gender
+      token
+      avatarImage
+      coverImage
+      username
+      workPlace
     }
   }
 `;
@@ -69,6 +90,7 @@ export const LOAD_FROM_URL_USER = gql`
   query loadFromUrlUser($username: String!) {
     loadFromUrlUser(username: $username) {
       id
+      school
       firstName
       lastName
       email
@@ -77,6 +99,7 @@ export const LOAD_FROM_URL_USER = gql`
       avatarImage
       coverImage
       username
+      workPlace
     }
   }
 `;
@@ -277,6 +300,78 @@ export const LIKE_POST = gql`
         postId
         createdAt
       }
+    }
+  }
+`;
+
+export const ADD_WORKPLACE = gql`
+  mutation addWorkplace($body: String!) {
+    addWorkplace(body: $body) {
+      id
+      firstName
+      lastName
+      email
+      gender
+      birthday
+      avatarImage
+      coverImage
+      workPlace
+      username
+      school
+    }
+  }
+`;
+
+export const DELETE_WORKPLACE = gql`
+  mutation {
+    deleteWorkplace {
+      id
+      firstName
+      lastName
+      email
+      gender
+      birthday
+      avatarImage
+      coverImage
+      workPlace
+      username
+      school
+    }
+  }
+`;
+
+export const ADD_SCHOOL = gql`
+  mutation addSchool($body: String!) {
+    addSchool(body: $body) {
+      id
+      firstName
+      lastName
+      email
+      gender
+      birthday
+      avatarImage
+      coverImage
+      workPlace
+      username
+      school
+    }
+  }
+`;
+
+export const DELETE_SCHOOL = gql`
+  mutation {
+    deleteSchool {
+      id
+      firstName
+      lastName
+      email
+      gender
+      birthday
+      avatarImage
+      coverImage
+      workPlace
+      username
+      school
     }
   }
 `;

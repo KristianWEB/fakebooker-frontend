@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { Row } from "antd";
-
-export const AboutPageContainer = styled(Row)``;
+import { Row, Button, Input, Form } from "antd";
 
 export const AboutInfoContainer = styled(Row)`
   display: flex;
@@ -23,6 +21,7 @@ export const AboutContainer = styled(Row)`
 export const AboutSidebar = styled(Row)`
   display: flex;
   flex-direction: column;
+  /* flex-grow: 1; */
   width: 33%;
   border-right: 1px solid #ced0d4;
 `;
@@ -35,22 +34,34 @@ export const AboutHeading = styled.p`
 `;
 
 export const Overview = styled.p`
-  color: #1876f2;
+  color: #65676b;
   font-size: 1.5rem;
-  background-color: #e7f3ff;
   padding: 10px;
   border-radius: 6px;
   font-weight: 600;
   margin: 0 6px;
   margin-bottom: 8px;
+
+  &:hover {
+    background-color: #f2f2f2;
+    outline: none;
+  }
+
+  &::after,
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    background-color: #e4e6eb;
+  }
 `;
 
 export const WorkAndEducation = styled.p`
   color: #65676b;
   font-size: 1.5rem;
-  font-weight: 600;
-  border-radius: 6px;
   padding: 10px;
+  border-radius: 6px;
+  font-weight: 600;
   margin: 0 6px;
   margin-bottom: 8px;
 
@@ -69,68 +80,20 @@ export const WorkAndEducation = styled.p`
 `;
 
 export const ContactAndBasicInfo = styled.p`
-  color: #65676b;
+  color: #1876f2;
+  background-color: #e7f3ff;
   font-size: 1.5rem;
   font-weight: 600;
-  margin: 0 6px;
-  padding: 10px;
   border-radius: 6px;
-  margin-left: 6px;
-  margin-bottom: 20px;
-
-  &:hover {
-    background-color: #f2f2f2;
-    outline: none;
-  }
-
-  &::after,
-  &:focus {
-    outline: none;
-  }
-  &:active {
-    background-color: #e4e6eb;
-  }
+  padding: 10px;
+  margin: 0 6px;
+  margin-bottom: 8px;
 `;
 
 export const AboutBodyContainer = styled(Row)`
-  padding: 32px;
+  padding: 16px;
+  flex-direction: column;
   width: 66%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-`;
-
-export const WorkplaceContainer = styled(Row)`
-  display: flex;
-  align-items: center;
-`;
-
-export const WorkplaceBody = styled.h1`
-  color: #8a8d91;
-  font-size: 1.5rem;
-  margin-left: 16px;
-`;
-
-export const SchoolContainer = styled(Row)`
-  margin-top: 16px;
-  display: flex;
-  align-items: center;
-`;
-
-export const SchoolBody = styled.h1`
-  color: #050505;
-  font-size: 1.5rem;
-  margin-left: 16px;
-`;
-
-export const HomeContainer = styled(Row)`
-  margin-top: 16px;
-  display: flex;
-  align-items: center;
-`;
-
-export const HomeBody = styled.h1`
-  color: #050505;
-  font-size: 1.5rem;
-  margin-left: 16px;
 `;

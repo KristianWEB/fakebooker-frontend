@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import {
   AboutInfoContainer,
@@ -18,63 +19,127 @@ import {
   SchoolAction,
   SchoolSpan,
   School,
-  SchoolImage,
+  WorkPlace,
+  WorkPlaceBody,
   SchoolBody,
   SettingsContainer,
   WorkplaceActionContainer,
   WorkplaceInput,
+  SchoolActionContainer,
+  SchoolInput,
   CancelButton,
   SaveButton,
   Footer
 } from "./AboutWorkAndEducation.styles";
+import {
+  ADD_WORKPLACE,
+  ADD_SCHOOL,
+  LOAD_USER_FROM_DB,
+  DELETE_WORKPLACE,
+  DELETE_SCHOOL
+} from "../../utils/queries";
 import { ReactComponent as PlusIcon } from "../../assets/icons/add-circle-outline.svg";
-import { ReactComponent as SettingsIcon } from "../../assets/icons/three-dots-icon.svg";
+import { ReactComponent as CloseIcon } from "../../assets/icons/close-outline.svg";
 
 const AboutPageWorkAndEducation = () => {
   const [addWorkplace, setAddWorkplace] = useState(false);
+  const [workplaceBody, setWorkplaceBody] = useState("");
+  const [schoolBody, setSchoolBody] = useState("");
 
   const [addSchool, setAddSchool] = useState(false);
 
-  const AddWorkplace = () => (
-    <WorkplaceActionContainer>
-      <WorkplaceInput type="text" placeholder="Company" />
-      <Footer>
-        <CancelButton onClick={() => setAddWorkplace(false)}>
-          Cancel
-        </CancelButton>
-        <SaveButton type="link">Save</SaveButton>
-      </Footer>
-    </WorkplaceActionContainer>
-  );
+  const [saveWorkplace] = useMutation(ADD_WORKPLACE, {
+    variables: {
+      body: workplaceBody
+    }
+  });
 
-  const AddSchool = () => (
-    <WorkplaceActionContainer>
-      <WorkplaceInput type="text" placeholder="School" />
-      <Footer>
-        <CancelButton onClick={() => setAddSchool(false)}>Cancel</CancelButton>
-        <SaveButton type="link">Save</SaveButton>
-      </Footer>
-    </WorkplaceActionContainer>
-  );
+  const [deleteWorkplace] = useMutation(DELETE_WORKPLACE);
+
+  const [saveSchool] = useMutation(ADD_SCHOOL, {
+    variables: {
+      body: schoolBody
+    }
+  });
+
+  const [deleteSchool] = useMutation(DELETE_SCHOOL);
+
+  const deleteWorkplaceCb = () => {
+    deleteWorkplace();
+    setAddWorkplace(false);
+    setWorkplaceBody("");
+  };
+
+  const deleteSchoolCb = () => {
+    deleteSchool();
+    setAddSchool(false);
+    setSchoolBody("");
+  };
+
+  const { data: userData } = useQuery(LOAD_USER_FROM_DB);
+  if (!userData) {
+    return null;
+  }
+  const {
+    loadUserFromDB: { workPlace, school }
+  } = userData;
+
+  const onSubmitWorkplace = e => {
+    e.preventDefault();
+    saveWorkplace();
+    setAddWorkplace(false);
+    setWorkplaceBody("");
+  };
+
+  const onSubmitSchool = e => {
+    e.preventDefault();
+    saveSchool();
+    setAddSchool(false);
+    setSchoolBody("");
+  };
 
   return (
     <AboutInfoContainer>
       <AboutContainer>
         <AboutSidebar>
           <AboutHeading>About</AboutHeading>
-          <Link to="about_overview">
+          <Link to="/about_overview">
             <Overview>Overview</Overview>
           </Link>
-          <Link to="about_work_and_education">
+          <Link to="/about_work_and_education">
             <WorkAndEducation>Work and Education</WorkAndEducation>
           </Link>
-          <ContactAndBasicInfo>Contact and Basic Info</ContactAndBasicInfo>
+          <Link to="/about_contact_and_basic_info">
+            <ContactAndBasicInfo>Contact and Basic Info</ContactAndBasicInfo>
+          </Link>
         </AboutSidebar>
         <AboutBodyContainer>
           <WorkplaceContainer>
             <WorkplaceHeading>Work</WorkplaceHeading>
-            {addWorkplace && <AddWorkplace />}
-            {!addWorkplace && (
+            {addWorkplace && (
+              <WorkplaceActionContainer onSubmit={onSubmitWorkplace}>
+                <WorkplaceInput
+                  type="text"
+                  placeholder="Company"
+                  data-testid="workplaceInput"
+                  value={workplaceBody}
+                  onChange={e => setWorkplaceBody(e.target.value)}
+                />
+                <Footer>
+                  <CancelButton onClick={() => setAddWorkplace(false)}>
+                    Cancel
+                  </CancelButton>
+                  <SaveButton
+                    type="link"
+                    data-testid="saveWorkplace"
+                    htmlType="submit"
+                  >
+                    Save
+                  </SaveButton>
+                </Footer>
+              </WorkplaceActionContainer>
+            )}
+            {!addWorkplace && !workPlace && (
               <WorkplaceAction
                 type="link"
                 data-testid="addWorkplace"
@@ -84,23 +149,59 @@ const AboutPageWorkAndEducation = () => {
                 <WorkplaceSpan>Add a workplace</WorkplaceSpan>
               </WorkplaceAction>
             )}
+            {workPlace && (
+              <WorkPlace>
+                <WorkPlaceBody data-testid="workplace">
+                  Worked at{" "}
+                  <span style={{ fontWeight: "bold" }}>{workPlace}</span>
+                </WorkPlaceBody>
+                <SettingsContainer
+                  type="link"
+                  onClick={deleteWorkplaceCb}
+                  data-testid="deleteWorkplace"
+                >
+                  <CloseIcon width={20} height={20} />
+                </SettingsContainer>
+              </WorkPlace>
+            )}
           </WorkplaceContainer>
           <SchoolContainer>
             <SchoolHeading>High School</SchoolHeading>
-            {addSchool && <AddSchool />}
-            {!addSchool && (
+            {addSchool && (
+              <SchoolActionContainer onSubmit={onSubmitSchool}>
+                <SchoolInput
+                  type="text"
+                  placeholder="School"
+                  value={schoolBody}
+                  onChange={e => setSchoolBody(e.target.value)}
+                />
+                <Footer>
+                  <CancelButton onClick={() => setAddSchool(false)}>
+                    Cancel
+                  </CancelButton>
+                  <SaveButton type="link" htmlType="submit">
+                    Save
+                  </SaveButton>
+                </Footer>
+              </SchoolActionContainer>
+            )}
+            {!addSchool && !school && (
               <SchoolAction type="link" onClick={() => setAddSchool(true)}>
                 <PlusIcon width={30} height={30} />
                 <SchoolSpan>Add a high school</SchoolSpan>
               </SchoolAction>
             )}
-            {/* <School>
-              <SchoolImage />
-              <SchoolBody>Studied at New York University</SchoolBody>
-              <SettingsContainer type="link">
-                <SettingsIcon width={20} height={20} />
-              </SettingsContainer>
-            </School> */}
+            {school && (
+              <School>
+                <SchoolBody>
+                  Studied at{" "}
+                  <span style={{ fontWeight: "bold" }}>{school}</span>
+                </SchoolBody>
+                <SettingsContainer type="link" onClick={deleteSchoolCb}>
+                  <CloseIcon width={20} height={20} />
+                </SettingsContainer>
+              </School>
+            )}
           </SchoolContainer>
         </AboutBodyContainer>
       </AboutContainer>

@@ -9,12 +9,25 @@ describe("About Tabs ( Profile )", () => {
     cy.get('[data-testid="submitLogin"]').click();
   });
 
-  it.only("successfully add a workplace in about tab ( Profile )", () => {
+  it("successfully add a workplace in about tab ( Profile )", () => {
     cy.get('[data-testid="aboutLink"]').click();
     cy.get('[data-testid="aboutWorkLink"]').click();
     cy.get('[data-testid="addWorkplace"]').click();
     cy.get('[data-testid="workplaceInput"]').type("Facebook");
-    cy.get('[data-testid="submitWorkplace"]').click();
+    cy.get('[data-testid="saveWorkplace"]').click();
+
     cy.get('[data-testid="workplace"]').contains("Facebook");
+  });
+
+  it.only("successfully delete a workplace in about tab ( Profile )", () => {
+    cy.get('[data-testid="aboutLink"]').click();
+    cy.get('[data-testid="aboutWorkLink"]').click();
+    cy.get('[data-testid="addWorkplace"]').click();
+    cy.get('[data-testid="workplaceInput"]').type("Facebook");
+    cy.get('[data-testid="saveWorkplace"]').click();
+
+    cy.get('[data-testid="deleteWorkplace"]').click();
+
+    cy.get('[data-testid="workplace"]').should("have.length", 0);
   });
 });
