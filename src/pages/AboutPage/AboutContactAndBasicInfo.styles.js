@@ -87,7 +87,7 @@ export const ContactAndBasicInfo = styled.p`
   border-radius: 6px;
   padding: 10px;
   margin: 0 6px;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
 `;
 
 export const AboutBodyContainer = styled(Row)`
@@ -111,7 +111,7 @@ export const GenderAction = styled(Button)`
   align-items: center;
   padding: 0;
   margin-left: -5px;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 5px;
 `;
 
@@ -127,7 +127,7 @@ export const BirthdayAction = styled(Button)`
   align-items: center;
   padding: 0;
   margin-left: -5px;
-  margin-top: 10px;
+  margin-top: 15px;
 `;
 
 export const BirthdaySpan = styled.span`
@@ -142,7 +142,7 @@ export const HomeplaceAction = styled(Button)`
   align-items: center;
   padding: 0;
   margin-left: -5px;
-  margin-top: 10px;
+  margin-top: 15px;
 `;
 
 export const HomeplaceSpan = styled.span`
@@ -270,7 +270,6 @@ export const Birthday = styled(Row)`
   display: flex;
   color: #050505;
   align-items: center;
-  margin-top: 10px;
 `;
 
 export const Homeplace = styled(Row)`
@@ -278,7 +277,6 @@ export const Homeplace = styled(Row)`
   display: flex;
   color: #050505;
   align-items: center;
-  margin-top: 10px;
 `;
 
 export const SettingsContainer = styled(Button)`
@@ -306,4 +304,67 @@ export const SettingsContainer = styled(Button)`
     background-color: #d8dadf;
     color: ${props => props.theme.primarytextcolor};
   }
+`;
+
+export const GenderBody = styled(Row)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 12px;
+  margin-top: 20px;
+`;
+
+export const UserGender = styled.p`
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #050505;
+`;
+
+export const GenderCaption = styled.p`
+  font-size: 1.2rem;
+  color: #65676b;
+  margin: 0;
+`;
+
+export const BirthdayBody = styled(Row)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 12px;
+  margin-top: 20px;
+`;
+
+export const UserBirthday = styled.p`
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #050505;
+`;
+
+export const BirthdayCaption = styled.p`
+  font-size: 1.2rem;
+  color: #65676b;
+  margin: 0;
+`;
+
+export const HomeplaceBody = styled(Row)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 12px;
+  margin-top: 20px;
+`;
+
+export const UserHomeplace = styled.p`
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #050505;
+`;
+
+export const HomeplaceCaption = styled.p`
+  font-size: 1.2rem;
+  color: #65676b;
+  margin: 0;
 `;

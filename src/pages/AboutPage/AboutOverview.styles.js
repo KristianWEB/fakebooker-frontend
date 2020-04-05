@@ -93,7 +93,7 @@ export const ContactAndBasicInfo = styled.p`
 `;
 
 export const AboutBodyContainer = styled(Row)`
-  padding: 32px;
+  padding: 16px;
   width: 67%;
   display: flex;
   flex-direction: column;
@@ -106,8 +106,9 @@ export const WorkplaceContainer = styled(Row)`
 `;
 
 export const WorkplaceBody = styled.h1`
-  color: #8a8d91;
+  color: #050505;
   font-size: 1.5rem;
+  font-weight: 400;
   margin-left: 16px;
 `;
 
@@ -121,6 +122,7 @@ export const SchoolBody = styled.h1`
   color: #050505;
   font-size: 1.5rem;
   margin-left: 16px;
+  font-weight: 400;
 `;
 
 export const HomeContainer = styled(Row)`
@@ -133,4 +135,5 @@ export const HomeBody = styled.h1`
   color: #050505;
   font-size: 1.5rem;
   margin-left: 16px;
+  font-weight: 400;
 `;

@@ -160,6 +160,7 @@ export const School = styled(Row)`
 
 export const SchoolBody = styled.h1`
   font-size: 1.5rem;
+  font-weight: 400;
 `;
 
 export const WorkPlace = styled(Row)`
@@ -171,6 +172,7 @@ export const WorkPlace = styled(Row)`
 
 export const WorkPlaceBody = styled.h1`
   font-size: 1.5rem;
+  font-weight: 400;
 `;
 
 export const SettingsContainer = styled(Button)`

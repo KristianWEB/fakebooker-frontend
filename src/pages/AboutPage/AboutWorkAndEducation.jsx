@@ -152,7 +152,7 @@ const AboutPageWorkAndEducation = () => {
             {workPlace && (
               <WorkPlace>
                 <WorkPlaceBody data-testid="workplace">
-                  Worked at{" "}
+                  Works at{" "}
                   <span style={{ fontWeight: "bold" }}>{workPlace}</span>
                 </WorkPlaceBody>
                 <SettingsContainer
@@ -194,7 +194,7 @@ const AboutPageWorkAndEducation = () => {
             {school && (
               <School>
                 <SchoolBody>
-                  Studied at{" "}
+                  Studies at{" "}
                   <span style={{ fontWeight: "bold" }}>{school}</span>
                 </SchoolBody>
                 <SettingsContainer type="link" onClick={deleteSchoolCb}>

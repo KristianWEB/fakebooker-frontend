@@ -30,7 +30,16 @@ import {
   SettingsContainer,
   HomeplaceActionContainer,
   HomeplaceInput,
-  Homeplace
+  Homeplace,
+  GenderBody,
+  UserGender,
+  GenderCaption,
+  UserBirthday,
+  BirthdayCaption,
+  UserHomeplace,
+  HomeplaceCaption,
+  BirthdayBody,
+  HomeplaceBody
 } from "./AboutContactAndBasicInfo.styles";
 import {
   LOAD_USER_FROM_DB,
@@ -170,10 +179,11 @@ const AboutContactAndBasicInfo = () => {
             )}
             {user.gender && (
               <Gender>
-                <GenderIcon width={20} height={20} fill="#8a8d91" />
-                <span style={{ marginLeft: "12px", lineHeight: "1" }}>
-                  {user.gender}
-                </span>
+                <GenderIcon width={20} height={20} fill="#65676b" />
+                <GenderBody>
+                  <UserGender>{user.gender}</UserGender>
+                  <GenderCaption>Gender</GenderCaption>
+                </GenderBody>
                 <SettingsContainer type="link" onClick={deleteGenderCb}>
                   <CloseIcon width={20} height={20} />
                 </SettingsContainer>
@@ -206,16 +216,11 @@ const AboutContactAndBasicInfo = () => {
             )}
             {user.birthday && (
               <Birthday>
-                <BirthdayIcon width={20} height={20} fill="#8a8d91" />
-                <span
-                  style={{
-                    marginLeft: "12px",
-                    marginTop: "3px",
-                    lineHeight: "1"
-                  }}
-                >
-                  {user.birthday}
-                </span>
+                <BirthdayIcon width={20} height={20} fill="#65676b" />
+                <BirthdayBody>
+                  <UserBirthday>{user.birthday}</UserBirthday>
+                  <BirthdayCaption>Birthday</BirthdayCaption>
+                </BirthdayBody>
                 <SettingsContainer type="link" onClick={deleteBirthdayCb}>
                   <CloseIcon width={20} height={20} />
                 </SettingsContainer>
@@ -249,16 +254,11 @@ const AboutContactAndBasicInfo = () => {
             )}
             {user.homePlace && (
               <Homeplace>
-                <HomeIcon width={20} height={20} fill="#8a8d91" />
-                <span
-                  style={{
-                    marginLeft: "12px",
-                    marginTop: "3px",
-                    lineHeight: "1"
-                  }}
-                >
-                  {user.homePlace}
-                </span>
+                <HomeIcon width={20} height={20} fill="#65676b" />
+                <HomeplaceBody>
+                  <UserHomeplace>{user.homePlace}</UserHomeplace>
+                  <HomeplaceCaption>Homeplace</HomeplaceCaption>
+                </HomeplaceBody>
                 <SettingsContainer type="link" onClick={deleteHomeplaceCb}>
                   <CloseIcon width={20} height={20} />
                 </SettingsContainer>

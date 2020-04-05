@@ -1,4 +1,5 @@
 import React from "react";
+import { useQuery } from "@apollo/react-hooks";
 import { Link } from "react-router-dom";
 import {
   AboutInfoContainer,
@@ -16,11 +17,19 @@ import {
   HomeContainer,
   HomeBody
 } from "./AboutOverview.styles";
+import { LOAD_USER_FROM_DB } from "../../utils/queries";
 import { ReactComponent as WorkplaceIcon } from "../../assets/icons/briefcase.svg";
 import { ReactComponent as SchoolIcon } from "../../assets/icons/school.svg";
 import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
 
 const AboutPageOverview = () => {
+  const { data } = useQuery(LOAD_USER_FROM_DB);
+
+  if (!data) {
+    return null;
+  }
+  const { loadUserFromDB: user } = data;
+
   return (
     <AboutInfoContainer>
       <AboutContainer>
@@ -38,20 +47,42 @@ const AboutPageOverview = () => {
         </AboutSidebar>
         <AboutBodyContainer>
           <WorkplaceContainer>
-            <WorkplaceIcon width={20} height={20} fill="#8a8d91" />
-            <WorkplaceBody>No workplaces to show</WorkplaceBody>
+            <WorkplaceIcon width={20} height={20} fill="#65676b" />
+            <WorkplaceBody>
+              {user.workPlace ? (
+                <>
+                  Works at
+                  <span style={{ fontWeight: "bold" }}> {user.workPlace}</span>
+                </>
+              ) : (
+                <span style={{ color: "#65676b " }}>No workplace to show</span>
+              )}
+            </WorkplaceBody>
           </WorkplaceContainer>
           <SchoolContainer>
-            <SchoolIcon width={20} height={20} fill="#8a8d91" />
+            <SchoolIcon width={20} height={20} fill="#65676b" />
             <SchoolBody>
-              Studied at{" "}
-              <span style={{ fontWeight: "bold" }}>New York University</span>
+              {user.school ? (
+                <>
+                  Studies at{" "}
+                  <span style={{ fontWeight: "bold" }}>{user.school}</span>
+                </>
+              ) : (
+                <span style={{ color: "#65676b" }}>No school to show</span>
+              )}
             </SchoolBody>
           </SchoolContainer>
           <HomeContainer>
-            <HomeIcon width={20} height={20} fill="#8a8d91" />
+            <HomeIcon width={20} height={20} fill="#65676b" />
             <HomeBody>
-              Lives in <span style={{ fontWeight: "bold" }}>New York</span>
+              {user.homePlace ? (
+                <>
+                  Lives in{" "}
+                  <span style={{ fontWeight: "bold" }}>{user.homePlace}</span>
+                </>
+              ) : (
+                <span style={{ color: "#65676b" }}>No homeplace to show</span>
+              )}
             </HomeBody>
           </HomeContainer>
         </AboutBodyContainer>
