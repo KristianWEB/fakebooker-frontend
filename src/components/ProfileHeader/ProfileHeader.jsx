@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
   ProfileHeaderContainer,
@@ -52,14 +52,23 @@ const ProfileHeader = ({ user, readOnly }) => {
         )}
       </UserContainer>
       <UserActionsContainer>
-        <Link to="/profile">
-          <TimelineContainerLink type="link">Timeline</TimelineContainerLink>
-        </Link>
-        <Link to="/about_overview">
+        <NavLink to="/profile" activeClassName="activeProfileHeaderRoute">
+          <TimelineContainerLink>Timeline</TimelineContainerLink>
+        </NavLink>
+        <NavLink
+          to="/about_overview"
+          activeClassName="activeProfileHeaderRoute"
+          // eslint-disable-next-line consistent-return
+          isActive={() => {
+            if (window.location.pathname.includes("about_")) {
+              return true;
+            }
+          }}
+        >
           <AboutContainerLink type="link" data-testid="aboutLink">
             About
           </AboutContainerLink>
-        </Link>
+        </NavLink>
         <FriendsContainerLink type="link">Friends</FriendsContainerLink>
         <PhotosContainerLink type="link">Photos</PhotosContainerLink>
       </UserActionsContainer>

@@ -71,7 +71,7 @@ const AboutLayout = ({ children }) => {
       {userData && (
         <Row>
           <Navbar onProfile user={userData.loadUser} />
-          <ProfileHeader user={userData.loadUser} />
+          <ProfileHeader user={userData.loadUser} onAbout />
           {children}
         </Row>
       )}

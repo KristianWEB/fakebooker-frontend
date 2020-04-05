@@ -106,7 +106,7 @@ export const UserActionsContainer = styled.div`
 export const UserActionsContainerLink = styled(Button)``;
 
 export const TimelineContainerLink = styled.button`
-  color: ${props => props.theme.appTextColor};
+  color: #97999b;
   font-size: 1.6rem;
   font-weight: bold;
   border-radius: 6px;
@@ -117,21 +117,13 @@ export const TimelineContainerLink = styled.button`
   padding: 0 16px;
   height: 50px;
 
-  /* &::after {
-    margin-top: 10px;
-    width: 75px;
-    height: 2px;
-    display: block;
-    background: ${props => props.theme.appTextColor};
-    content: "";
-  } */
-
   &:hover {
     background-color: #f2f2f2;
     outline: none;
   }
 
-  &::after, &:focus {
+  &::after,
+  &:focus {
     outline: none;
   }
   &:active {
@@ -151,21 +143,13 @@ export const AboutContainerLink = styled.button`
   padding: 0 16px;
   height: 50px;
 
-  /* &::after {
-    margin-top: 10px;
-    width: 75px;
-    height: 2px;
-    display: block;
-    background: ${props => props.theme.appTextColor};
-    content: "";
-  } */
-
   &:hover {
     background-color: #f2f2f2;
     outline: none;
   }
 
-  &::after, &:focus {
+  &::after,
+  &:focus {
     outline: none;
   }
 

@@ -44,4 +44,18 @@ export const GlobalStyle = createGlobalStyle`
     outline: 0;
     box-shadow: none;
   }
+
+  .activeProfileHeaderRoute {
+      button {
+        color: #1876f2;
+      }
+    &::after {
+        width: 90%;
+        margin: 0 auto;
+        height: 2px;
+        display: block;
+        background: ${props => props.theme.appTextColor};
+        content: "";
+    }
+  }
 `;
