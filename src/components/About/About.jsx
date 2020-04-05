@@ -4,19 +4,20 @@ import { Modal } from "antd";
 import {
   AboutContainer,
   AboutHeading,
-  // HomeContainer,
-  // HomeContainerHeading,
-  // HomeContainerParagraph,
-  StyledButton
+  HomeContainer,
+  HomeplaceBody,
+  StyledButton,
+  WorkplaceContainer,
+  WorkplaceBody
 } from "./About.styles";
-// import { ReactComponent as HomeIcon } from "../../assets/icons/_ionicons_svg_md-home.svg";
-// import { ReactComponent as JobIcon } from "../../assets/icons/_ionicons_svg_md-briefcase.svg";
-// import { ReactComponent as LocationIcon } from "../../assets/icons/_ionicons_svg_md-pin.svg";
+import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
+import { ReactComponent as WorkplaceIcon } from "../../assets/icons/briefcase.svg";
 import { ReactComponent as CloseIconSVG } from "../../assets/icons/_ionicons_svg_md-close.svg";
 import AboutForm from "./AboutForm";
 
-const About = ({ readOnly }) => {
+const About = ({ readOnly, user }) => {
   const [visible, setVisible] = useState(false);
+  console.log(user);
 
   const handleOk = () => setVisible(false);
 
@@ -25,21 +26,28 @@ const About = ({ readOnly }) => {
   return (
     <AboutContainer>
       <AboutHeading>Intro</AboutHeading>
-      {/* <HomeContainer>
-        <JobIcon width="20" height="20" fill="#8C939D" />
-        <HomeContainerParagraph>Blogger at</HomeContainerParagraph>
-        <HomeContainerHeading>Josephine Williams</HomeContainerHeading>
-      </HomeContainer>
+      <WorkplaceContainer>
+        {user.workPlace && (
+          <>
+            <WorkplaceIcon width="20" height="20" fill="#65676b" />
+            <WorkplaceBody>
+              Works at{" "}
+              <span style={{ fontWeight: "bold" }}>{user.workPlace}</span>
+            </WorkplaceBody>
+          </>
+        )}
+      </WorkplaceContainer>
       <HomeContainer>
-        <HomeIcon width="20" height="20" fill="#8C939D" />
-        <HomeContainerParagraph>Lives in</HomeContainerParagraph>
-        <HomeContainerHeading>Chicago, Illinois</HomeContainerHeading>
+        {user.homePlace && (
+          <>
+            <HomeIcon width="20" height="20" fill="#65676b" />
+            <HomeplaceBody>
+              Lives in{" "}
+              <span style={{ fontWeight: "bold" }}>{user.homePlace}</span>
+            </HomeplaceBody>
+          </>
+        )}
       </HomeContainer>
-      <HomeContainer>
-        <LocationIcon width="20" height="20" fill="#8C939D" />
-        <HomeContainerParagraph>From</HomeContainerParagraph>
-        <HomeContainerHeading>New York, New York</HomeContainerHeading>
-      </HomeContainer> */}
       {!readOnly && (
         <>
           <StyledButton type="link" onClick={() => setVisible(true)}>
@@ -72,9 +80,18 @@ const About = ({ readOnly }) => {
 export default About;
 
 About.propTypes = {
+  user: PropTypes.shape({
+    coverImage: PropTypes.string,
+    avatarImage: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    workPlace: PropTypes.string,
+    homePlace: PropTypes.string
+  }),
   readOnly: PropTypes.bool
 };
 
 About.defaultProps = {
+  user: null,
   readOnly: null
 };

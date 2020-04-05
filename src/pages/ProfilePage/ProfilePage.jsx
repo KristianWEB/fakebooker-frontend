@@ -8,7 +8,7 @@ import CreatePostDefault from "../../components/Post/CreatePostDefault";
 import Post from "../../components/Post/Post";
 import About from "../../components/About/About";
 import {
-  LOAD_USER,
+  LOAD_USER_FROM_DB,
   GET_POSTS,
   NEW_NOTIFICATION,
   DELETE_NOTIFICATION,
@@ -17,7 +17,7 @@ import {
 import { InfoContainer, PostsSection } from "./ProfilePage.styles";
 
 const ProfilePage = () => {
-  const { data: userData } = useQuery(LOAD_USER);
+  const { data: userData } = useQuery(LOAD_USER_FROM_DB);
 
   useQuery(GET_NOTIFICATIONS);
 
@@ -76,15 +76,19 @@ const ProfilePage = () => {
     <>
       {userData && (
         <Row>
-          <Navbar onProfile user={userData.loadUser} />
-          <ProfileHeader user={userData.loadUser} />
+          <Navbar onProfile user={userData.loadUserFromDB} />
+          <ProfileHeader user={userData.loadUserFromDB} />
           <InfoContainer>
-            <About />
+            <About user={userData.loadUserFromDB} />
             <PostsSection>
-              <CreatePostDefault user={userData.loadUser} />
+              <CreatePostDefault user={userData.loadUserFromDB} />
               {postsData &&
                 postsData.getPosts.map(post => (
-                  <Post key={post.id} post={post} user={userData} />
+                  <Post
+                    key={post.id}
+                    post={post}
+                    user={userData.loadUserFromDB}
+                  />
                 ))}
             </PostsSection>
           </InfoContainer>

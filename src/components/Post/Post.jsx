@@ -38,7 +38,7 @@ const Post = ({ post, theme, user, readOnly }) => {
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
-    if (user && post.likes.find(like => like.userId === user.loadUser.id)) {
+    if (user && post.likes.find(like => like.userId === user.id)) {
       setLiked(true);
     } else setLiked(false);
   }, [user, post]);
@@ -175,11 +175,7 @@ const Post = ({ post, theme, user, readOnly }) => {
             urlProfile={readOnly}
           />
         ))}
-        <CreateComment
-          user={user.loadUser}
-          postId={post.id}
-          urlProfile={readOnly}
-        />
+        <CreateComment user={user} postId={post.id} urlProfile={readOnly} />
       </CommentsContainer>
     </PostContainer>
   );
@@ -205,16 +201,14 @@ Post.propTypes = {
     tertiaryTextColor: PropTypes.string
   }),
   user: PropTypes.shape({
-    loadUser: PropTypes.shape({
-      id: PropTypes.string,
-      avatarImage: PropTypes.string,
-      firstName: PropTypes.string,
-      lastName: PropTypes.string,
-      email: PropTypes.string,
-      birthday: PropTypes.string,
-      gender: PropTypes.string,
-      coverImage: PropTypes.string
-    })
+    id: PropTypes.string,
+    avatarImage: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string,
+    birthday: PropTypes.string,
+    gender: PropTypes.string,
+    coverImage: PropTypes.string
   }),
   readOnly: PropTypes.bool
 };
