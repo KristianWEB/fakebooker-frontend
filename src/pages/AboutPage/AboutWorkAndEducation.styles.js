@@ -94,7 +94,7 @@ export const ContactAndBasicInfo = styled.p`
 export const AboutBodyContainer = styled(Row)`
   padding: 16px;
   flex-direction: column;
-  width: 66%;
+  width: 67%;
   display: flex;
   justify-content: center;
 `;

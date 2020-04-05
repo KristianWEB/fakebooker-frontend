@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Row, Button, Input, Form } from "antd";
+import { Row, Button, DatePicker, Form, Input } from "antd";
 
 export const AboutInfoContainer = styled(Row)`
   display: flex;
@@ -93,7 +93,7 @@ export const ContactAndBasicInfo = styled.p`
 export const AboutBodyContainer = styled(Row)`
   padding: 16px;
   flex-direction: column;
-  width: 66%;
+  width: 67%;
   display: flex;
   /* justify-content: center; */
 `;
@@ -164,6 +164,43 @@ export const GenderActionContainer = styled(Form)`
   margin-top: 20px;
 `;
 
+export const BirthdayActionContainer = styled(Form)`
+  margin-top: 15px;
+`;
+
+export const HomeplaceActionContainer = styled(Form)`
+  margin-top: 15px;
+`;
+
+export const HomeplaceInput = styled(Input)`
+  border-color: #ced0d4;
+  margin-top: 15px;
+  padding: 20px 16px;
+`;
+
+export const BirthdayInput = styled(DatePicker)`
+  && {
+    width: 100%;
+
+    .ant-calendar-picker-input {
+      padding: 20px 16px;
+      border-color: #ced0d4;
+
+      &:hover {
+        border-color: #8a8d91;
+      }
+
+      &:focus,
+      &:active {
+        border-color: #1876f2;
+        outline: 0;
+        box-shadow: none;
+      }
+    }
+  }
+  /* padding: 20px 16px; */
+`;
+
 export const Footer = styled(Row)`
   display: flex;
   margin-top: 12px;
@@ -226,6 +263,22 @@ export const Gender = styled(Row)`
   display: flex;
   color: #050505;
   align-items: center;
+`;
+
+export const Birthday = styled(Row)`
+  font-size: 1.5rem;
+  display: flex;
+  color: #050505;
+  align-items: center;
+  margin-top: 10px;
+`;
+
+export const Homeplace = styled(Row)`
+  font-size: 1.5rem;
+  display: flex;
+  color: #050505;
+  align-items: center;
+  margin-top: 10px;
 `;
 
 export const SettingsContainer = styled(Button)`

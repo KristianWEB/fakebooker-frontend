@@ -75,6 +75,7 @@ export const LOAD_USER_FROM_DB = gql`
       firstName
       lastName
       email
+      homePlace
       birthday
       gender
       avatarImage
@@ -400,6 +401,80 @@ export const DELETE_GENDER = gql`
       firstName
       lastName
       email
+      gender
+      birthday
+      avatarImage
+      coverImage
+      workPlace
+      username
+      school
+    }
+  }
+`;
+
+export const ADD_BIRTHDAY = gql`
+  mutation addBirthday($birthday: Date!) {
+    addBirthday(birthday: $birthday) {
+      id
+      firstName
+      lastName
+      email
+      gender
+      birthday
+      avatarImage
+      coverImage
+      workPlace
+      username
+      school
+    }
+  }
+`;
+
+export const DELETE_BIRTHDAY = gql`
+  mutation {
+    deleteBirthday {
+      id
+      firstName
+      lastName
+      email
+      gender
+      birthday
+      avatarImage
+      coverImage
+      workPlace
+      username
+      school
+    }
+  }
+`;
+
+export const DELETE_HOMEPLACE = gql`
+  mutation {
+    deleteHomeplace {
+      id
+      firstName
+      lastName
+      email
+      gender
+      homePlace
+      birthday
+      avatarImage
+      coverImage
+      workPlace
+      username
+      school
+    }
+  }
+`;
+
+export const ADD_HOMEPLACE = gql`
+  mutation addHomeplace($homePlace: String!) {
+    addHomeplace(homePlace: $homePlace) {
+      id
+      firstName
+      lastName
+      email
+      homePlace
       gender
       birthday
       avatarImage

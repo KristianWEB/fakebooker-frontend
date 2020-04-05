@@ -94,7 +94,7 @@ export const ContactAndBasicInfo = styled.p`
 
 export const AboutBodyContainer = styled(Row)`
   padding: 32px;
-  width: 66%;
+  width: 67%;
   display: flex;
   flex-direction: column;
   justify-content: center;
