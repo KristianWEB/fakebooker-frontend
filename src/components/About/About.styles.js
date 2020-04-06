@@ -9,7 +9,7 @@ export const AboutContainer = styled.div`
   background-color: #fff;
   box-shadow: ${props => props.theme.boxShadow};
   border-radius: 6px;
-  padding: 0 14px;
+  padding: 12px;
   font-family: Roboto;
   @media only screen and (max-width: 767px) {
     display: none;
@@ -17,7 +17,6 @@ export const AboutContainer = styled.div`
 `;
 
 export const AboutHeading = styled.h1`
-  margin-top: 12px;
   font-size: 2rem;
   font-weight: bold;
   color: ${props => props.theme.primaryTextColor};
@@ -69,9 +68,9 @@ export const StyledButton = styled(Button)`
   font-weight: 600;
   color: ${props => props.theme.primaryTextColor};
   cursor: pointer;
-  margin: 12px 0;
   transition: 0.1s;
   height: 3.5rem;
+  margin-top: 12px;
 
   &&:focus,
   &&:active {

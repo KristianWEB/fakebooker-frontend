@@ -87,16 +87,20 @@ const UrlProfilePage = () => {
     <>
       {profileData && (
         <UrlProfilePageContainer>
-          {/* TODO: Connect ProfileHeader to user */}
           <Navbar onProfile user={userData.loadUser} />
           <ProfileHeader user={profileData.loadFromUrlUser} readOnly />
           <UrlInfoContainer>
             <FixedContainer>
-              <About readOnly />
+              <About readOnly user={profileData.loadFromUrlUser} />
               <UrlPostsSection>
                 {postsData &&
                   postsData.getUrlPosts.map(post => (
-                    <Post key={post.id} post={post} user={userData} readOnly />
+                    <Post
+                      key={post.id}
+                      post={post}
+                      user={userData.loadUser}
+                      readOnly
+                    />
                   ))}
               </UrlPostsSection>
             </FixedContainer>

@@ -23,7 +23,6 @@ const Routes = () => {
         <PrivateRoute exact path="/profile" component={ProfilePage} />
         <AboutRoute exact path="/about_overview" component={AboutOverview} />
         <AboutRoute
-          exact
           path="/about_work_and_education"
           component={AboutWorkAndEducation}
         />
@@ -37,7 +36,7 @@ const Routes = () => {
           path="/profile/:username"
           component={UrlProfilePage}
         />
-        <Redirect from="/" to="/profile" />
+        <Redirect from="*" to="/profile" />
       </Switch>
     </Router>
   );
