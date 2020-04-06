@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { useQuery, useSubscription } from "@apollo/react-hooks";
 import { notification, Row } from "antd";
 import Navbar from "../../components/Navbar/Navbar";
@@ -12,12 +13,44 @@ import {
   GET_POSTS,
   NEW_NOTIFICATION,
   DELETE_NOTIFICATION,
-  GET_NOTIFICATIONS
+  GET_NOTIFICATIONS,
+  GET_URL_POSTS,
+  LOAD_FROM_URL_USER
 } from "../../utils/queries";
 import { InfoContainer, PostsSection } from "./ProfilePage.styles";
 
 const ProfilePage = () => {
   const { data: userData } = useQuery(LOAD_USER_FROM_DB);
+
+  const { username } = useParams();
+  /* eslint-disable consistent-return */
+  const readOnly = () => {
+    if (userData) {
+      if (userData.loadUserFromDB.username !== username) {
+        return true;
+        // eslint-disable-next-line no-else-return
+      } else {
+        return false;
+      }
+    }
+  };
+
+  const { data: profileData } = useQuery(LOAD_FROM_URL_USER, {
+    variables: {
+      username
+    }
+  });
+
+  console.log(profileData);
+
+  // const loadUser = () => {
+  //   if (profileData) {
+  //     return profileData.loadFromUrlUser;
+  //     // eslint-disable-next-line no-else-return
+  //   } else {
+  //     return userData.loadUser;
+  //   }
+  // };
 
   useQuery(GET_NOTIFICATIONS);
 
@@ -70,24 +103,53 @@ const ProfilePage = () => {
     }
   });
 
-  const { data: postsData } = useQuery(GET_POSTS);
+  const { data: postsData } = useQuery(GET_POSTS, {
+    skip: readOnly()
+  });
+
+  const { data: urlPostsData } = useQuery(GET_URL_POSTS, {
+    variables: {
+      username
+    },
+    skip: !readOnly()
+  });
 
   return (
     <>
       {userData && (
         <Row>
           <Navbar onProfile user={userData.loadUserFromDB} />
-          <ProfileHeader user={userData.loadUserFromDB} />
+          <ProfileHeader
+            user={
+              profileData
+                ? profileData.loadFromUrlUser
+                : userData.loadUserFromDB
+            }
+            readOnly={readOnly()}
+          />
           <InfoContainer>
-            <About user={userData.loadUserFromDB} />
+            <About user={userData.loadUserFromDB} readOnly={readOnly()} />
             <PostsSection>
-              <CreatePostDefault user={userData.loadUserFromDB} />
-              {postsData &&
+              {!readOnly() && (
+                <CreatePostDefault user={userData.loadUserFromDB} />
+              )}
+              {!readOnly() &&
+                postsData &&
                 postsData.getPosts.map(post => (
                   <Post
                     key={post.id}
                     post={post}
                     user={userData.loadUserFromDB}
+                  />
+                ))}
+              {readOnly() &&
+                urlPostsData &&
+                urlPostsData.getUrlPosts.map(post => (
+                  <Post
+                    key={post.id}
+                    post={post}
+                    user={userData.loadUserFromDB}
+                    readOnly
                   />
                 ))}
             </PostsSection>

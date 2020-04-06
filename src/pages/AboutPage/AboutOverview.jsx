@@ -35,13 +35,13 @@ const AboutPageOverview = () => {
       <AboutContainer>
         <AboutSidebar>
           <AboutHeading>About</AboutHeading>
-          <Link to="/about_overview">
+          <Link to="about_overview">
             <Overview>Overview</Overview>
           </Link>
-          <Link to="/about_work_and_education" data-testid="aboutWorkLink">
+          <Link to="about_work_and_education" data-testid="aboutWorkLink">
             <WorkAndEducation>Work and Education</WorkAndEducation>
           </Link>
-          <Link to="/about_contact_and_basic_info">
+          <Link to="about_contact_and_basic_info">
             <ContactAndBasicInfo>Contact and Basic Info</ContactAndBasicInfo>
           </Link>
         </AboutSidebar>

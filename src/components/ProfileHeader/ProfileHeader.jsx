@@ -52,11 +52,20 @@ const ProfileHeader = ({ user, readOnly }) => {
         )}
       </UserContainer>
       <UserActionsContainer>
-        <NavLink to="/profile" activeClassName="activeProfileHeaderRoute">
+        <NavLink
+          to={`/${user.username}`}
+          activeClassName="activeProfileHeaderRoute"
+          // eslint-disable-next-line consistent-return
+          isActive={() => {
+            if (window.location.pathname === `/${user.username}`) {
+              return true;
+            }
+          }}
+        >
           <TimelineContainerLink>Timeline</TimelineContainerLink>
         </NavLink>
         <NavLink
-          to="/about_overview"
+          to={`${user.username}/about_overview`}
           activeClassName="activeProfileHeaderRoute"
           // eslint-disable-next-line consistent-return
           isActive={() => {
@@ -83,7 +92,8 @@ ProfileHeader.propTypes = {
     coverImage: PropTypes.string,
     avatarImage: PropTypes.string,
     firstName: PropTypes.string,
-    lastName: PropTypes.string
+    lastName: PropTypes.string,
+    username: PropTypes.string
   }),
   readOnly: PropTypes.bool
 };
