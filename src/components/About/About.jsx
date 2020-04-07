@@ -1,69 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { Modal } from "antd";
+import { Link } from "react-router-dom";
 import {
   AboutContainer,
   AboutHeading,
-  // HomeContainer,
-  // HomeContainerHeading,
-  // HomeContainerParagraph,
-  StyledButton
+  HomeContainer,
+  HomeplaceBody,
+  StyledButton,
+  WorkplaceContainer,
+  WorkplaceBody
 } from "./About.styles";
-// import { ReactComponent as HomeIcon } from "../../assets/icons/_ionicons_svg_md-home.svg";
-// import { ReactComponent as JobIcon } from "../../assets/icons/_ionicons_svg_md-briefcase.svg";
-// import { ReactComponent as LocationIcon } from "../../assets/icons/_ionicons_svg_md-pin.svg";
-import { ReactComponent as CloseIconSVG } from "../../assets/icons/_ionicons_svg_md-close.svg";
-import AboutForm from "./AboutForm";
+import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
+import { ReactComponent as WorkplaceIcon } from "../../assets/icons/briefcase.svg";
 
-const About = ({ readOnly }) => {
-  const [visible, setVisible] = useState(false);
-
-  const handleOk = () => setVisible(false);
-
-  const handleCancel = () => setVisible(false);
-
+const About = ({ readOnly, user }) => {
   return (
     <AboutContainer>
       <AboutHeading>Intro</AboutHeading>
-      {/* <HomeContainer>
-        <JobIcon width="20" height="20" fill="#8C939D" />
-        <HomeContainerParagraph>Blogger at</HomeContainerParagraph>
-        <HomeContainerHeading>Josephine Williams</HomeContainerHeading>
-      </HomeContainer>
-      <HomeContainer>
-        <HomeIcon width="20" height="20" fill="#8C939D" />
-        <HomeContainerParagraph>Lives in</HomeContainerParagraph>
-        <HomeContainerHeading>Chicago, Illinois</HomeContainerHeading>
-      </HomeContainer>
-      <HomeContainer>
-        <LocationIcon width="20" height="20" fill="#8C939D" />
-        <HomeContainerParagraph>From</HomeContainerParagraph>
-        <HomeContainerHeading>New York, New York</HomeContainerHeading>
-      </HomeContainer> */}
+      {user.workPlace && (
+        <WorkplaceContainer>
+          <WorkplaceIcon width="20" height="20" fill="#65676b" />
+          <WorkplaceBody>
+            Works at{" "}
+            <span style={{ fontWeight: "bold" }}>{user.workPlace}</span>
+          </WorkplaceBody>
+        </WorkplaceContainer>
+      )}
+      {user.homePlace && (
+        <HomeContainer>
+          <HomeIcon width="20" height="20" fill="#65676b" />
+          <HomeplaceBody>
+            Lives in{" "}
+            <span style={{ fontWeight: "bold" }}>{user.homePlace}</span>
+          </HomeplaceBody>
+        </HomeContainer>
+      )}
       {!readOnly && (
-        <>
-          <StyledButton type="link" onClick={() => setVisible(true)}>
-            Edit Details
-          </StyledButton>
-          <Modal
-            visible={visible}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            footer={null}
-            closeIcon={
-              // eslint-disable-next-line react/jsx-wrap-multilines
-              <CloseIconSVG
-                width="20"
-                height="20"
-                style={{ fill: "transparent" }}
-              />
-            }
-            bodyStyle={{ padding: 0 }}
-            centered
-          >
-            <AboutForm showModal={setVisible} />
-          </Modal>
-        </>
+        <StyledButton type="link">
+          <Link to={`${user.username}/about_overview`}>Edit Details</Link>
+        </StyledButton>
       )}
     </AboutContainer>
   );
@@ -72,9 +47,19 @@ const About = ({ readOnly }) => {
 export default About;
 
 About.propTypes = {
+  user: PropTypes.shape({
+    coverImage: PropTypes.string,
+    avatarImage: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    workPlace: PropTypes.string,
+    homePlace: PropTypes.string,
+    username: PropTypes.string
+  }),
   readOnly: PropTypes.bool
 };
 
 About.defaultProps = {
+  user: null,
   readOnly: null
 };

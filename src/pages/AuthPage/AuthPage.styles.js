@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Row } from "antd";
-import { ReactComponent as BgImg } from "../../assets/icons/undraw_processing_qj6a.svg";
+import { ReactComponent as BgImg } from "../../assets/icons/auth-background.svg";
 
 const inverseRotate = keyframes`
   from {

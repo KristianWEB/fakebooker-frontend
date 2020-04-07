@@ -1,9 +1,9 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import { useQuery } from "@apollo/react-hooks";
 import { Tabs } from "antd";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import LoginForm from "../../components/LoginForm/LoginForm";
-
 import {
   RegisterPageContainer,
   RegisterPageBackground,
@@ -11,12 +11,13 @@ import {
   SVGImgBackground,
   ActionsContainer
 } from "./AuthPage.styles";
+import { LOAD_USER } from "../../utils/queries";
 
 const AuthPage = () => {
-  const token = localStorage.getItem("token");
+  const { data: userData } = useQuery(LOAD_USER);
 
-  if (token) {
-    return <Redirect to="/profile" />;
+  if (userData) {
+    return <Redirect to={`/${userData.loadUser.username}`} />;
   }
 
   return (

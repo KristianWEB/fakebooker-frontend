@@ -15,7 +15,7 @@ import {
   PublishBtn,
   PublishBtnContainer
 } from "./CreatePostActive.styles";
-import { ReactComponent as CloseBtn } from "../../assets/icons/_ionicons_svg_md-close.svg";
+import { ReactComponent as CloseBtn } from "../../assets/icons/close.svg";
 import { CREATE_POST, GET_POSTS } from "../../utils/queries";
 
 const CreatePostActive = ({ user, showModal }) => {

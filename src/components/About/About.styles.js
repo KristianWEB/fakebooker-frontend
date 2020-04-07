@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "antd";
+import { Button, Row } from "antd";
 
 export const AboutContainer = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ export const AboutContainer = styled.div`
   background-color: #fff;
   box-shadow: ${props => props.theme.boxShadow};
   border-radius: 6px;
-  padding: 0 14px;
+  padding: 12px;
   font-family: Roboto;
   @media only screen and (max-width: 767px) {
     display: none;
@@ -17,26 +17,41 @@ export const AboutContainer = styled.div`
 `;
 
 export const AboutHeading = styled.h1`
-  margin-top: 12px;
   font-size: 2rem;
   font-weight: bold;
   color: ${props => props.theme.primaryTextColor};
   margin-bottom: 12px;
 `;
 
-export const HomeContainer = styled.div`
+export const WorkplaceContainer = styled(Row)`
   display: flex;
-  align-items: flex-end;
-  height: 20px;
+  align-items: center;
   margin-bottom: 10px;
 `;
 
-export const HomeContainerParagraph = styled.p`
+export const WorkplaceBody = styled.p`
   margin: 0;
-  margin-left: 8px;
+  margin-left: 12px;
   line-height: 1;
-  font-size: 14px;
+  font-size: 15px;
+  color: #050505;
 `;
+
+export const HomeContainer = styled(Row)`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+export const HomeplaceBody = styled.p`
+  margin: 0;
+  margin-left: 12px;
+  margin-top: 3px;
+  line-height: 1;
+  font-size: 15px;
+  color: #050505;
+`;
+
 export const HomeContainerHeading = styled.h2`
   font-size: 14px;
   margin: 0;
@@ -53,9 +68,9 @@ export const StyledButton = styled(Button)`
   font-weight: 600;
   color: ${props => props.theme.primaryTextColor};
   cursor: pointer;
-  margin: 12px 0;
   transition: 0.1s;
   height: 3.5rem;
+  margin-top: 12px;
 
   &&:focus,
   &&:active {

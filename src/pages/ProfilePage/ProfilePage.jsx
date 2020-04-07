@@ -1,6 +1,7 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { useQuery, useSubscription } from "@apollo/react-hooks";
-import { notification } from "antd";
+import { notification, Row } from "antd";
 import Navbar from "../../components/Navbar/Navbar";
 import Notification from "../../components/Notification/Notification";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
@@ -8,20 +9,42 @@ import CreatePostDefault from "../../components/Post/CreatePostDefault";
 import Post from "../../components/Post/Post";
 import About from "../../components/About/About";
 import {
-  LOAD_USER,
+  LOAD_USER_FROM_DB,
   GET_POSTS,
   NEW_NOTIFICATION,
   DELETE_NOTIFICATION,
-  GET_NOTIFICATIONS
+  GET_NOTIFICATIONS,
+  GET_URL_POSTS,
+  LOAD_FROM_URL_USER
 } from "../../utils/queries";
 import {
   InfoContainer,
   PostsSection,
-  ProfilePageContainer
+  FixedContainer
 } from "./ProfilePage.styles";
 
 const ProfilePage = () => {
-  const { data: userData } = useQuery(LOAD_USER);
+  const { data: userData } = useQuery(LOAD_USER_FROM_DB);
+
+  const { username } = useParams();
+  /* eslint-disable consistent-return */
+  const readOnly = () => {
+    if (userData) {
+      if (userData.loadUserFromDB.username !== username) {
+        return true;
+        // eslint-disable-next-line no-else-return
+      } else {
+        return false;
+      }
+    }
+  };
+
+  // skip this when viewed on auth profile
+  const { data: profileData } = useQuery(LOAD_FROM_URL_USER, {
+    variables: {
+      username
+    }
+  });
 
   useQuery(GET_NOTIFICATIONS);
 
@@ -41,19 +64,23 @@ const ProfilePage = () => {
       const data = client.readQuery({
         query: GET_NOTIFICATIONS
       });
-      openNotification(subscriptionData.data.newNotification);
+      if (
+        subscriptionData.data.newNotification.notifier.id ===
+        userData.loadUserFromDB.id
+      ) {
+        openNotification(subscriptionData.data.newNotification);
+        const newData = {
+          getNotifications: [
+            subscriptionData.data.newNotification,
+            ...data.getNotifications
+          ]
+        };
 
-      const newData = {
-        getNotifications: [
-          subscriptionData.data.newNotification,
-          ...data.getNotifications
-        ]
-      };
-
-      client.writeQuery({
-        query: GET_NOTIFICATIONS,
-        data: newData
-      });
+        client.writeQuery({
+          query: GET_NOTIFICATIONS,
+          data: newData
+        });
+      }
     }
   });
 
@@ -74,25 +101,67 @@ const ProfilePage = () => {
     }
   });
 
-  const { data: postsData } = useQuery(GET_POSTS);
+  const { data: postsData } = useQuery(GET_POSTS, {
+    skip: readOnly()
+  });
+
+  const { data: urlPostsData } = useQuery(GET_URL_POSTS, {
+    variables: {
+      username
+    },
+    skip: !readOnly()
+  });
 
   return (
     <>
       {userData && (
-        <ProfilePageContainer>
-          <Navbar onProfile user={userData.loadUser} />
-          <ProfileHeader user={userData.loadUser} />
+        <Row>
+          <Navbar onProfile user={userData.loadUserFromDB} />
+          <ProfileHeader
+            user={
+              profileData
+                ? profileData.loadFromUrlUser
+                : userData.loadUserFromDB
+            }
+            readOnly={readOnly()}
+          />
           <InfoContainer>
-            <About />
-            <PostsSection>
-              <CreatePostDefault user={userData.loadUser} />
-              {postsData &&
-                postsData.getPosts.map(post => (
-                  <Post key={post.id} post={post} user={userData} />
-                ))}
-            </PostsSection>
+            <FixedContainer>
+              <About
+                user={
+                  profileData
+                    ? profileData.loadFromUrlUser
+                    : userData.loadUserFromDB
+                }
+                readOnly={readOnly()}
+              />
+              <PostsSection>
+                {!readOnly() && (
+                  <CreatePostDefault user={userData.loadUserFromDB} />
+                )}
+                {!readOnly() &&
+                  postsData &&
+                  postsData.getPosts.map(post => (
+                    <Post
+                      key={post.id}
+                      post={post}
+                      user={userData.loadUserFromDB}
+                    />
+                  ))}
+                {readOnly() &&
+                  urlPostsData &&
+                  urlPostsData.getUrlPosts.map(post => (
+                    <Post
+                      key={post.id}
+                      post={post}
+                      user={userData.loadUserFromDB}
+                      readOnly
+                    />
+                  ))}
+              </PostsSection>
+            </FixedContainer>
           </InfoContainer>
-        </ProfilePageContainer>
+        </Row>
       )}
     </>
   );

@@ -24,10 +24,10 @@ const LoginForm = () => {
 
   const [loginUser] = useMutation(LOGIN_USER, {
     onCompleted: result => {
-      const { token } = result.login;
+      const { token, username } = result.login;
       localStorage.setItem("token", token);
       message.success("Logged in successfully");
-      history.push("/profile");
+      history.push(`/${username}`);
     },
     variables: {
       email: loginState.email,

@@ -26,10 +26,10 @@ import {
   SharesHeading,
   CommentsContainer
 } from "./Post.styles";
-import { ReactComponent as CommentsSVG } from "../../assets/icons/_ionicons_svg_md-chatbubbles.svg";
-import { ReactComponent as LikesSVG } from "../../assets/icons/_ionicons_svg_md-thumbs-up.svg";
-import { ReactComponent as SharesSVG } from "../../assets/icons/_ionicons_svg_md-share-alt.svg";
-import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/three-dots-icon.svg";
+import { ReactComponent as CommentsSVG } from "../../assets/icons/chatbox.svg";
+import { ReactComponent as LikesSVG } from "../../assets/icons/thumbs-up.svg";
+import { ReactComponent as SharesSVG } from "../../assets/icons/share-social.svg";
+import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/ellipsis-horizontal.svg";
 import Comment from "../Comment/Comment";
 import CreateComment from "../Comment/CreateComment";
 import { DELETE_POST, LIKE_POST, GET_POSTS } from "../../utils/queries";
@@ -38,7 +38,7 @@ const Post = ({ post, theme, user, readOnly }) => {
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
-    if (user && post.likes.find(like => like.userId === user.loadUser.id)) {
+    if (user && post.likes.find(like => like.userId === user.id)) {
       setLiked(true);
     } else setLiked(false);
   }, [user, post]);
@@ -97,7 +97,8 @@ const Post = ({ post, theme, user, readOnly }) => {
                 style={{
                   cursor: "pointer",
                   width: "25px",
-                  height: "25px"
+                  height: "25px",
+                  fill: "#65676b"
                 }}
               />
             </Popover>
@@ -175,11 +176,7 @@ const Post = ({ post, theme, user, readOnly }) => {
             urlProfile={readOnly}
           />
         ))}
-        <CreateComment
-          user={user.loadUser}
-          postId={post.id}
-          urlProfile={readOnly}
-        />
+        <CreateComment user={user} postId={post.id} urlProfile={readOnly} />
       </CommentsContainer>
     </PostContainer>
   );
@@ -205,16 +202,14 @@ Post.propTypes = {
     tertiaryTextColor: PropTypes.string
   }),
   user: PropTypes.shape({
-    loadUser: PropTypes.shape({
-      id: PropTypes.string,
-      avatarImage: PropTypes.string,
-      firstName: PropTypes.string,
-      lastName: PropTypes.string,
-      email: PropTypes.string,
-      birthday: PropTypes.string,
-      gender: PropTypes.string,
-      coverImage: PropTypes.string
-    })
+    id: PropTypes.string,
+    avatarImage: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string,
+    birthday: PropTypes.string,
+    gender: PropTypes.string,
+    coverImage: PropTypes.string
   }),
   readOnly: PropTypes.bool
 };

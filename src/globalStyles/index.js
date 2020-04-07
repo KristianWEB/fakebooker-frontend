@@ -33,4 +33,29 @@ export const GlobalStyle = createGlobalStyle`
    .ant-notification-notice-with-icon .ant-notification-notice-description {
     margin-left: 0;
    }
+
+  .ant-input:hover {
+    border-color: #8a8d91;
+  }
+
+  .ant-input:focus,
+  .ant-input:active {
+    border-color: #1876f2;
+    outline: 0;
+    box-shadow: none;
+  }
+
+  .activeProfileHeaderRoute {
+      button {
+        color: #1876f2;
+      }
+    &::after {
+        width: 90%;
+        margin: 0 auto;
+        height: 2px;
+        display: block;
+        background: ${props => props.theme.appTextColor};
+        content: "";
+    }
+  }
 `;

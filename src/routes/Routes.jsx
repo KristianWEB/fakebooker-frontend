@@ -7,21 +7,33 @@ import {
 } from "react-router-dom";
 import AuthPage from "../pages/AuthPage/AuthPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
-import UrlProfilePage from "../pages/ProfilePage/UrlProfilePage";
+import AboutOverview from "../pages/AboutPage/AboutOverview";
+import AboutWorkAndEducation from "../pages/AboutPage/AboutWorkAndEducation";
+import AboutContactAndBasicInfo from "../pages/AboutPage/AboutContactAndBasicInfo";
 import PrivateRoute from "./PrivateRoute";
+import AboutRoute from "./AboutRoute";
 
 const Routes = () => {
   return (
     <Router>
       <Switch>
         <Route exact path="/auth" component={AuthPage} />
-        <PrivateRoute exact path="/profile" component={ProfilePage} />
-        <PrivateRoute
+        <PrivateRoute exact path="/:username" component={ProfilePage} />
+        <AboutRoute
           exact
-          path="/profile/:username"
-          component={UrlProfilePage}
+          path="/:username/about_overview"
+          component={AboutOverview}
         />
-        <Redirect from="/" to="/profile" />
+        <AboutRoute
+          path="/:username/about_work_and_education"
+          component={AboutWorkAndEducation}
+        />
+        <AboutRoute
+          exact
+          path="/:username/about_contact_and_basic_info"
+          component={AboutContactAndBasicInfo}
+        />
+        <Route render={() => <Redirect to="/auth" />} />
       </Switch>
     </Router>
   );
