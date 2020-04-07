@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useQuery, useSubscription } from "@apollo/react-hooks";
 import { notification, Row } from "antd";
@@ -9,11 +10,26 @@ import {
   LOAD_USER,
   NEW_NOTIFICATION,
   DELETE_NOTIFICATION,
-  GET_NOTIFICATIONS
+  GET_NOTIFICATIONS,
+  LOAD_FROM_URL_USER
 } from "../../utils/queries";
 
 const AboutLayout = ({ children }) => {
   const { data: userData } = useQuery(LOAD_USER);
+
+  const { username } = useParams();
+
+  /* eslint-disable consistent-return */
+  const readOnly = () => {
+    if (userData) {
+      if (userData.loadUser.username !== username) {
+        return true;
+        // eslint-disable-next-line no-else-return
+      } else {
+        return false;
+      }
+    }
+  };
 
   useQuery(GET_NOTIFICATIONS);
 
@@ -66,12 +82,30 @@ const AboutLayout = ({ children }) => {
     }
   });
 
+  // skip this when on auth profile
+  const { data: profileData } = useQuery(LOAD_FROM_URL_USER, {
+    variables: {
+      username
+    }
+  });
+
+  if (!profileData) {
+    return null;
+  }
+
   return (
     <>
       {userData && (
         <Row>
           <Navbar onProfile user={userData.loadUser} />
-          <ProfileHeader user={userData.loadUser} onAbout />
+          <ProfileHeader
+            user={
+              profileData
+                ? profileData.loadFromUrlUser
+                : userData.loadUserFromDB
+            }
+            readOnly={readOnly()}
+          />
           {children}
         </Row>
       )}

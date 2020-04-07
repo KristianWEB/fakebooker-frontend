@@ -100,6 +100,7 @@ export const LOAD_FROM_URL_USER = gql`
       coverImage
       username
       workPlace
+      homePlace
     }
   }
 `;

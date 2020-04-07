@@ -17,12 +17,6 @@ import { LOAD_USER } from "../utils/queries";
 
 const Routes = () => {
   const { data: userData } = useQuery(LOAD_USER);
-
-  if (!userData) {
-    return null;
-  }
-  const { loadUser: user } = userData;
-
   return (
     <Router>
       <Switch>
@@ -42,8 +36,8 @@ const Routes = () => {
           path="/:username/about_contact_and_basic_info"
           component={AboutContactAndBasicInfo}
         />
-        <Redirect from="*" to={`/${user.username}`} />
       </Switch>
+      {/* <Redirect from="/" to={`/${userData && userData.loadUser.username}`} /> */}
     </Router>
   );
 };

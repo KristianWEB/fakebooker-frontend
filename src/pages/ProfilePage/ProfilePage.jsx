@@ -17,7 +17,11 @@ import {
   GET_URL_POSTS,
   LOAD_FROM_URL_USER
 } from "../../utils/queries";
-import { InfoContainer, PostsSection } from "./ProfilePage.styles";
+import {
+  InfoContainer,
+  PostsSection,
+  FixedContainer
+} from "./ProfilePage.styles";
 
 const ProfilePage = () => {
   const { data: userData } = useQuery(LOAD_USER_FROM_DB);
@@ -35,23 +39,14 @@ const ProfilePage = () => {
     }
   };
 
+  // skip this when viewed on auth profile
   const { data: profileData } = useQuery(LOAD_FROM_URL_USER, {
     variables: {
       username
     }
   });
 
-  console.log(profileData);
-
-  // const loadUser = () => {
-  //   if (profileData) {
-  //     return profileData.loadFromUrlUser;
-  //     // eslint-disable-next-line no-else-return
-  //   } else {
-  //     return userData.loadUser;
-  //   }
-  // };
-
+  // if you comment / like the notifications think that you are the notifier = you have to fix that
   useQuery(GET_NOTIFICATIONS);
 
   const openNotification = newNotification => {
@@ -70,8 +65,8 @@ const ProfilePage = () => {
       const data = client.readQuery({
         query: GET_NOTIFICATIONS
       });
-      openNotification(subscriptionData.data.newNotification);
-
+      // openNotification(subscriptionData.data.newNotification);
+      console.log(data);
       const newData = {
         getNotifications: [
           subscriptionData.data.newNotification,
@@ -128,31 +123,40 @@ const ProfilePage = () => {
             readOnly={readOnly()}
           />
           <InfoContainer>
-            <About user={userData.loadUserFromDB} readOnly={readOnly()} />
-            <PostsSection>
-              {!readOnly() && (
-                <CreatePostDefault user={userData.loadUserFromDB} />
-              )}
-              {!readOnly() &&
-                postsData &&
-                postsData.getPosts.map(post => (
-                  <Post
-                    key={post.id}
-                    post={post}
-                    user={userData.loadUserFromDB}
-                  />
-                ))}
-              {readOnly() &&
-                urlPostsData &&
-                urlPostsData.getUrlPosts.map(post => (
-                  <Post
-                    key={post.id}
-                    post={post}
-                    user={userData.loadUserFromDB}
-                    readOnly
-                  />
-                ))}
-            </PostsSection>
+            <FixedContainer>
+              <About
+                user={
+                  profileData
+                    ? profileData.loadFromUrlUser
+                    : userData.loadUserFromDB
+                }
+                readOnly={readOnly()}
+              />
+              <PostsSection>
+                {!readOnly() && (
+                  <CreatePostDefault user={userData.loadUserFromDB} />
+                )}
+                {!readOnly() &&
+                  postsData &&
+                  postsData.getPosts.map(post => (
+                    <Post
+                      key={post.id}
+                      post={post}
+                      user={userData.loadUserFromDB}
+                    />
+                  ))}
+                {readOnly() &&
+                  urlPostsData &&
+                  urlPostsData.getUrlPosts.map(post => (
+                    <Post
+                      key={post.id}
+                      post={post}
+                      user={userData.loadUserFromDB}
+                      readOnly
+                    />
+                  ))}
+              </PostsSection>
+            </FixedContainer>
           </InfoContainer>
         </Row>
       )}

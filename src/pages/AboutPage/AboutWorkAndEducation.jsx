@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   AboutInfoContainer,
   AboutContainer,
@@ -36,7 +36,8 @@ import {
   ADD_SCHOOL,
   LOAD_USER_FROM_DB,
   DELETE_WORKPLACE,
-  DELETE_SCHOOL
+  DELETE_SCHOOL,
+  LOAD_FROM_URL_USER
 } from "../../utils/queries";
 import { ReactComponent as PlusIcon } from "../../assets/icons/add-circle-outline.svg";
 import { ReactComponent as CloseIcon } from "../../assets/icons/close-outline.svg";
@@ -77,12 +78,32 @@ const AboutPageWorkAndEducation = () => {
   };
 
   const { data: userData } = useQuery(LOAD_USER_FROM_DB);
-  if (!userData) {
+  const { username } = useParams();
+
+  // skip this when on auth page
+  const { data: profileData } = useQuery(LOAD_FROM_URL_USER, {
+    variables: {
+      username
+    }
+  });
+
+  if (!userData && profileData) {
     return null;
   }
-  const {
-    loadUserFromDB: { workPlace, school }
-  } = userData;
+  const { loadUserFromDB: user } = userData;
+  const { loadFromUrlUser: profileUser } = profileData;
+
+  /* eslint-disable consistent-return */
+  const readOnly = () => {
+    if (userData) {
+      if (user.username !== username) {
+        return true;
+        // eslint-disable-next-line no-else-return
+      } else {
+        return false;
+      }
+    }
+  };
 
   const onSubmitWorkplace = e => {
     e.preventDefault();
@@ -113,97 +134,128 @@ const AboutPageWorkAndEducation = () => {
             <ContactAndBasicInfo>Contact and Basic Info</ContactAndBasicInfo>
           </Link>
         </AboutSidebar>
-        <AboutBodyContainer>
-          <WorkplaceContainer>
-            <WorkplaceHeading>Work</WorkplaceHeading>
-            {addWorkplace && (
-              <WorkplaceActionContainer onSubmit={onSubmitWorkplace}>
-                <WorkplaceInput
-                  type="text"
-                  placeholder="Company"
-                  data-testid="workplaceInput"
-                  value={workplaceBody}
-                  onChange={e => setWorkplaceBody(e.target.value)}
-                />
-                <Footer>
-                  <CancelButton onClick={() => setAddWorkplace(false)}>
-                    Cancel
-                  </CancelButton>
-                  <SaveButton
-                    type="link"
-                    data-testid="saveWorkplace"
-                    htmlType="submit"
-                  >
-                    Save
-                  </SaveButton>
-                </Footer>
-              </WorkplaceActionContainer>
-            )}
-            {!addWorkplace && !workPlace && (
-              <WorkplaceAction
-                type="link"
-                data-testid="addWorkplace"
-                onClick={() => setAddWorkplace(true)}
-              >
-                <PlusIcon width={30} height={30} />
-                <WorkplaceSpan>Add a workplace</WorkplaceSpan>
-              </WorkplaceAction>
-            )}
-            {workPlace && (
-              <WorkPlace>
-                <WorkPlaceBody data-testid="workplace">
-                  Works at{" "}
-                  <span style={{ fontWeight: "bold" }}>{workPlace}</span>
-                </WorkPlaceBody>
-                <SettingsContainer
+        {readOnly() ? (
+          <AboutBodyContainer>
+            <WorkplaceContainer>
+              <WorkplaceHeading>Work</WorkplaceHeading>
+              {profileUser.workPlace && (
+                <WorkPlace>
+                  <WorkPlaceBody data-testid="workplace">
+                    Works at{" "}
+                    <span style={{ fontWeight: "bold" }}>
+                      {profileUser.workPlace}
+                    </span>
+                  </WorkPlaceBody>
+                </WorkPlace>
+              )}
+            </WorkplaceContainer>
+            <SchoolContainer>
+              <SchoolHeading>High School</SchoolHeading>
+              {profileUser.school && (
+                <School>
+                  <SchoolBody>
+                    Studies at{" "}
+                    <span style={{ fontWeight: "bold" }}>
+                      {profileUser.school}
+                    </span>
+                  </SchoolBody>
+                </School>
+              )}
+            </SchoolContainer>
+          </AboutBodyContainer>
+        ) : (
+          <AboutBodyContainer>
+            <WorkplaceContainer>
+              <WorkplaceHeading>Work</WorkplaceHeading>
+              {addWorkplace && (
+                <WorkplaceActionContainer onSubmit={onSubmitWorkplace}>
+                  <WorkplaceInput
+                    type="text"
+                    placeholder="Company"
+                    data-testid="workplaceInput"
+                    value={workplaceBody}
+                    onChange={e => setWorkplaceBody(e.target.value)}
+                  />
+                  <Footer>
+                    <CancelButton onClick={() => setAddWorkplace(false)}>
+                      Cancel
+                    </CancelButton>
+                    <SaveButton
+                      type="link"
+                      data-testid="saveWorkplace"
+                      htmlType="submit"
+                    >
+                      Save
+                    </SaveButton>
+                  </Footer>
+                </WorkplaceActionContainer>
+              )}
+              {!addWorkplace && !user.workPlace && (
+                <WorkplaceAction
                   type="link"
-                  onClick={deleteWorkplaceCb}
-                  data-testid="deleteWorkplace"
+                  data-testid="addWorkplace"
+                  onClick={() => setAddWorkplace(true)}
                 >
-                  <CloseIcon width={20} height={20} />
-                </SettingsContainer>
-              </WorkPlace>
-            )}
-          </WorkplaceContainer>
-          <SchoolContainer>
-            <SchoolHeading>High School</SchoolHeading>
-            {addSchool && (
-              <SchoolActionContainer onSubmit={onSubmitSchool}>
-                <SchoolInput
-                  type="text"
-                  placeholder="School"
-                  value={schoolBody}
-                  onChange={e => setSchoolBody(e.target.value)}
-                />
-                <Footer>
-                  <CancelButton onClick={() => setAddSchool(false)}>
-                    Cancel
-                  </CancelButton>
-                  <SaveButton type="link" htmlType="submit">
-                    Save
-                  </SaveButton>
-                </Footer>
-              </SchoolActionContainer>
-            )}
-            {!addSchool && !school && (
-              <SchoolAction type="link" onClick={() => setAddSchool(true)}>
-                <PlusIcon width={30} height={30} />
-                <SchoolSpan>Add a high school</SchoolSpan>
-              </SchoolAction>
-            )}
-            {school && (
-              <School>
-                <SchoolBody>
-                  Studies at{" "}
-                  <span style={{ fontWeight: "bold" }}>{school}</span>
-                </SchoolBody>
-                <SettingsContainer type="link" onClick={deleteSchoolCb}>
-                  <CloseIcon width={20} height={20} />
-                </SettingsContainer>
-              </School>
-            )}
-          </SchoolContainer>
-        </AboutBodyContainer>
+                  <PlusIcon width={30} height={30} />
+                  <WorkplaceSpan>Add a workplace</WorkplaceSpan>
+                </WorkplaceAction>
+              )}
+              {user.workPlace && (
+                <WorkPlace>
+                  <WorkPlaceBody data-testid="workplace">
+                    Works at{" "}
+                    <span style={{ fontWeight: "bold" }}>{user.workPlace}</span>
+                  </WorkPlaceBody>
+                  <SettingsContainer
+                    type="link"
+                    onClick={deleteWorkplaceCb}
+                    data-testid="deleteWorkplace"
+                  >
+                    <CloseIcon width={20} height={20} />
+                  </SettingsContainer>
+                </WorkPlace>
+              )}
+            </WorkplaceContainer>
+            <SchoolContainer>
+              <SchoolHeading>High School</SchoolHeading>
+              {addSchool && (
+                <SchoolActionContainer onSubmit={onSubmitSchool}>
+                  <SchoolInput
+                    type="text"
+                    placeholder="School"
+                    value={schoolBody}
+                    onChange={e => setSchoolBody(e.target.value)}
+                  />
+                  <Footer>
+                    <CancelButton onClick={() => setAddSchool(false)}>
+                      Cancel
+                    </CancelButton>
+                    <SaveButton type="link" htmlType="submit">
+                      Save
+                    </SaveButton>
+                  </Footer>
+                </SchoolActionContainer>
+              )}
+              {!addSchool && !user.school && (
+                <SchoolAction type="link" onClick={() => setAddSchool(true)}>
+                  <PlusIcon width={30} height={30} />
+                  <SchoolSpan>Add a high school</SchoolSpan>
+                </SchoolAction>
+              )}
+              {user.school && (
+                <School>
+                  <SchoolBody>
+                    Studies at{" "}
+                    <span style={{ fontWeight: "bold" }}>{user.school}</span>
+                  </SchoolBody>
+                  <SettingsContainer type="link" onClick={deleteSchoolCb}>
+                    <CloseIcon width={20} height={20} />
+                  </SettingsContainer>
+                </School>
+              )}
+            </SchoolContainer>
+          </AboutBodyContainer>
+        )}
       </AboutContainer>
     </AboutInfoContainer>
   );

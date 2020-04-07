@@ -40,10 +40,10 @@ const RegisterForm = () => {
   const history = useHistory();
   const [registerUser] = useMutation(REGISTER_USER, {
     onCompleted: result => {
-      const { token } = result.register;
+      const { token, username } = result.register;
       localStorage.setItem("token", token);
       message.success("Registered successfully");
-      history.push("/profile");
+      history.push(`/${username}`);
     },
     variables: {
       firstName: signUpState.firstName,

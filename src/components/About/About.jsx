@@ -14,6 +14,7 @@ import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
 import { ReactComponent as WorkplaceIcon } from "../../assets/icons/briefcase.svg";
 
 const About = ({ readOnly, user }) => {
+  console.log(user);
   return (
     <AboutContainer>
       <AboutHeading>Intro</AboutHeading>

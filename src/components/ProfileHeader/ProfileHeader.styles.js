@@ -6,10 +6,11 @@ export const ProfileHeaderContainer = styled(Row)`
   background-image: linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.5) 0%,
-      rgba(255, 255, 255, 1) 50%
+      rgba(255, 255, 255, 1) 100%
     ),
     url(${props => props.img});
   background-size: cover;
+  background-color: white;
 `;
 export const ProfileBackgroundContainer = styled.div`
   max-width: 94rem;
