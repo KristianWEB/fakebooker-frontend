@@ -11,7 +11,7 @@ describe("Notifications", () => {
   // show empty notification message if there are no notifications
 
   // login with user A, then create a post, login with user B and then go to user a's profile page, like the post, after that login with user A and successfully receive a notification
-  it.only("successfully creates a notification when user B likes/comments user A'post ", () => {
+  it("successfully creates a notification when user B likes/comments user A'post ", () => {
     cy.get('[data-testid="username"]').contains("Kristian Ivanov");
     cy.get('[data-testid="openCreatePostModal"]').click();
     cy.get('[data-testid="createPostInput"]').type(
