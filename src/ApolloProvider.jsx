@@ -12,7 +12,7 @@ import App from "./App";
 const cache = new InMemoryCache();
 
 const wsLink = new WebSocketLink({
-  uri: "ws://damp-forest-43324.herokuapp.com/graphql",
+  uri: "wss://damp-forest-43324.herokuapp.com/graphql",
   options: {
     reconnect: true,
     connectionParams: {
