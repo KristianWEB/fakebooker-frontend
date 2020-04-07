@@ -60,24 +60,29 @@ const ProfilePage = () => {
     });
   };
 
+  // TODO: add/remove to cache only if the notifier is the authenticated user
   useSubscription(NEW_NOTIFICATION, {
     onSubscriptionData: ({ client, subscriptionData }) => {
       const data = client.readQuery({
         query: GET_NOTIFICATIONS
       });
-      // openNotification(subscriptionData.data.newNotification);
-      console.log(data);
-      const newData = {
-        getNotifications: [
-          subscriptionData.data.newNotification,
-          ...data.getNotifications
-        ]
-      };
+      if (
+        subscriptionData.data.newNotification.notifier.id ===
+        userData.loadUserFromDB.id
+      ) {
+        openNotification(subscriptionData.data.newNotification);
+        const newData = {
+          getNotifications: [
+            subscriptionData.data.newNotification,
+            ...data.getNotifications
+          ]
+        };
 
-      client.writeQuery({
-        query: GET_NOTIFICATIONS,
-        data: newData
-      });
+        client.writeQuery({
+          query: GET_NOTIFICATIONS,
+          data: newData
+        });
+      }
     }
   });
 

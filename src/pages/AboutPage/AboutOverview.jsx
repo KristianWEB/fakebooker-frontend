@@ -24,7 +24,6 @@ import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
 
 const AboutPageOverview = () => {
   const { data: userData } = useQuery(LOAD_USER_FROM_DB);
-  console.log(userData);
   const { username } = useParams();
 
   const { data: profileData } = useQuery(LOAD_FROM_URL_USER, {
