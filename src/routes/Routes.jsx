@@ -1,5 +1,4 @@
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,10 +12,8 @@ import AboutWorkAndEducation from "../pages/AboutPage/AboutWorkAndEducation";
 import AboutContactAndBasicInfo from "../pages/AboutPage/AboutContactAndBasicInfo";
 import PrivateRoute from "./PrivateRoute";
 import AboutRoute from "./AboutRoute";
-import { LOAD_USER } from "../utils/queries";
 
 const Routes = () => {
-  const { data: userData } = useQuery(LOAD_USER);
   return (
     <Router>
       <Switch>
@@ -36,8 +33,8 @@ const Routes = () => {
           path="/:username/about_contact_and_basic_info"
           component={AboutContactAndBasicInfo}
         />
+        <Route render={() => <Redirect to="/auth" />} />
       </Switch>
-      {/* <Redirect from="/" to={`/${userData && userData.loadUser.username}`} /> */}
     </Router>
   );
 };

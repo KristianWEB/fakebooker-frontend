@@ -53,7 +53,7 @@ import {
 } from "../../utils/queries";
 import { ReactComponent as PlusIcon } from "../../assets/icons/add-circle-outline.svg";
 import { ReactComponent as GenderIcon } from "../../assets/icons/person.svg";
-import { ReactComponent as CloseIcon } from "../../assets/icons/close-outline.svg";
+import { ReactComponent as CloseIcon } from "../../assets/icons/close.svg";
 import { ReactComponent as BirthdayIcon } from "../../assets/icons/calendar.svg";
 import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
 

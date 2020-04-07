@@ -193,12 +193,12 @@ export const SettingsContainer = styled(Button)`
 
   &&:active {
     background-color: #e4e6eb;
-    color: ${props => props.theme.primarytextcolor};
+    color: white;
   }
 
   &&:hover {
     background-color: #d8dadf;
-    color: ${props => props.theme.primarytextcolor};
+    color: white;
   }
 `;
 

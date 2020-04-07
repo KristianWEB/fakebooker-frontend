@@ -46,7 +46,6 @@ const ProfilePage = () => {
     }
   });
 
-  // if you comment / like the notifications think that you are the notifier = you have to fix that
   useQuery(GET_NOTIFICATIONS);
 
   const openNotification = newNotification => {
@@ -60,7 +59,6 @@ const ProfilePage = () => {
     });
   };
 
-  // TODO: add/remove to cache only if the notifier is the authenticated user
   useSubscription(NEW_NOTIFICATION, {
     onSubscriptionData: ({ client, subscriptionData }) => {
       const data = client.readQuery({

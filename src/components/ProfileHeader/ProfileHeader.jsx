@@ -19,7 +19,7 @@ import {
   ChangeBackgroundHeading,
   ChangeAvatarContainer
 } from "./ProfileHeader.styles";
-import { ReactComponent as CameraIcon } from "../../assets/icons/_ionicons_svg_md-camera.svg";
+import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
 
 const ProfileHeader = ({ user, readOnly }) => {
   return (

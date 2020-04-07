@@ -4,7 +4,6 @@ import { useQuery } from "@apollo/react-hooks";
 import { Tabs } from "antd";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import LoginForm from "../../components/LoginForm/LoginForm";
-
 import {
   RegisterPageContainer,
   RegisterPageBackground,

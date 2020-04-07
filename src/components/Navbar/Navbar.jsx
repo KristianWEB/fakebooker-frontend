@@ -16,10 +16,10 @@ import {
 } from "./Navbar.styles";
 import { ReactComponent as Logo } from "../../assets/icons/logo.svg";
 import UserPictureSample from "../../assets/images/Post-profile1.jpg";
-import { ReactComponent as HomeIcon } from "../../assets/icons/_ionicons_svg_md-home.svg";
-import { ReactComponent as ChatIcon } from "../../assets/icons/_ionicons_svg_md-chatbubbles.svg";
-import { ReactComponent as BellIcon } from "../../assets/icons/_ionicons_svg_md-notifications.svg";
-import { ReactComponent as BackArrowIcon } from "../../assets/icons/_ionicons_svg_md-arrow-round-back.svg";
+import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
+import { ReactComponent as ChatIcon } from "../../assets/icons/chatbox.svg";
+import { ReactComponent as BellIcon } from "../../assets/icons/notifications.svg";
+import { ReactComponent as BackArrowIcon } from "../../assets/icons/arrow-back-outline.svg";
 
 const Navbar = ({ onProfile, user }) => {
   const [navbarBgColor, setNavbarBgColor] = useState(false);

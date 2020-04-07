@@ -40,7 +40,7 @@ import {
   LOAD_FROM_URL_USER
 } from "../../utils/queries";
 import { ReactComponent as PlusIcon } from "../../assets/icons/add-circle-outline.svg";
-import { ReactComponent as CloseIcon } from "../../assets/icons/close-outline.svg";
+import { ReactComponent as CloseIcon } from "../../assets/icons/close.svg";
 
 const AboutPageWorkAndEducation = () => {
   const [addWorkplace, setAddWorkplace] = useState(false);

@@ -11,7 +11,7 @@ import {
   Username,
   PopButton
 } from "./Comment.styles";
-import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/three-dots-icon.svg";
+import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/ellipsis-horizontal.svg";
 
 const Comment = ({ comment: { userId, body, id }, postId, urlProfile }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -94,9 +94,19 @@ const Comment = ({ comment: { userId, body, id }, postId, urlProfile }) => {
           <Body>{body}</Body>
         </BodyContainer>
         {isHovering && (
-          <Popover content={SettingsPopup} placement="bottomRight">
+          <Popover
+            content={SettingsPopup}
+            placement="bottomRight"
+            style={{ marginRight: "20px" }}
+          >
             <ThreeDotsSvg
-              style={{ marginLeft: "20px", width: "22px", cursor: "pointer" }}
+              style={{
+                marginLeft: "20px",
+                cursor: "pointer",
+                width: "25px",
+                height: "25px",
+                fill: "#65676b"
+              }}
             />
           </Popover>
         )}
