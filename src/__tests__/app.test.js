@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Test from "../src/components/Test/Test";
+import Test from "../components/Test/Test";
 
 test("contains a specific message", () => {
   // Arrange ( render )
