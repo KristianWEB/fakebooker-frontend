@@ -115,6 +115,7 @@ export const GET_POSTS = gql`
         avatarImage
       }
       body
+      image
       createdAt
       comments {
         id
@@ -201,6 +202,7 @@ export const GET_URL_POSTS = gql`
         avatarImage
       }
       body
+      image
       createdAt
       comments {
         id
@@ -223,8 +225,8 @@ export const GET_URL_POSTS = gql`
 `;
 
 export const CREATE_POST = gql`
-  mutation createPost($body: String!) {
-    createPost(body: $body) {
+  mutation createPost($body: String!, $image: String!) {
+    createPost(body: $body, image: $image) {
       id
       userId {
         firstName
@@ -232,6 +234,7 @@ export const CREATE_POST = gql`
         avatarImage
       }
       body
+      image
       createdAt
       comments {
         id
@@ -484,5 +487,11 @@ export const ADD_HOMEPLACE = gql`
       username
       school
     }
+  }
+`;
+
+export const DELETE_IMAGE = gql`
+  mutation deleteImage($publicId: String!) {
+    deleteImage(publicId: $publicId)
   }
 `;

@@ -24,7 +24,8 @@ import {
   LikesHeading,
   CommentsHeading,
   SharesHeading,
-  CommentsContainer
+  CommentsContainer,
+  PostImage
 } from "./Post.styles";
 import { ReactComponent as CommentsSVG } from "../../assets/icons/chatbox.svg";
 import { ReactComponent as LikesSVG } from "../../assets/icons/thumbs-up.svg";
@@ -105,6 +106,7 @@ const Post = ({ post, theme, user, readOnly }) => {
           )}
         </PostHeader>
         <PostContent>{post.body}</PostContent>
+        {post.image && <PostImage src={post.image} alt="post graphics" />}
         <PostFooter>
           <LikesWrapper>
             <LikesDisplay>
@@ -194,6 +196,7 @@ Post.propTypes = {
     }),
     createdAt: PropTypes.string,
     body: PropTypes.string,
+    image: PropTypes.string,
     likes: PropTypes.array,
     comments: PropTypes.array
   }),
