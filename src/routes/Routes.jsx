@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import AuthPage from "../pages/AuthPage/AuthPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import PhotosPage from "../pages/PhotosPage/PhotosPage";
 import AboutOverview from "../pages/AboutPage/AboutOverview";
 import AboutWorkAndEducation from "../pages/AboutPage/AboutWorkAndEducation";
 import AboutContactAndBasicInfo from "../pages/AboutPage/AboutContactAndBasicInfo";
@@ -19,6 +20,7 @@ const Routes = () => {
       <Switch>
         <Route exact path="/auth" component={AuthPage} />
         <PrivateRoute exact path="/:username" component={ProfilePage} />
+        <AboutRoute exact path="/:username/photos" component={PhotosPage} />
         <AboutRoute
           exact
           path="/:username/about_overview"
