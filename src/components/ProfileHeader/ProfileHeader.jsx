@@ -65,7 +65,7 @@ const ProfileHeader = ({ user, readOnly }) => {
           <TimelineContainerLink>Timeline</TimelineContainerLink>
         </NavLink>
         <NavLink
-          to={`${user.username}/about_overview`}
+          to={`/${user.username}/about_overview`}
           activeClassName="activeProfileHeaderRoute"
           // eslint-disable-next-line consistent-return
           isActive={() => {
@@ -79,7 +79,18 @@ const ProfileHeader = ({ user, readOnly }) => {
           </AboutContainerLink>
         </NavLink>
         <FriendsContainerLink type="link">Friends</FriendsContainerLink>
-        <PhotosContainerLink type="link">Photos</PhotosContainerLink>
+        <NavLink
+          to={`/${user.username}/photos`}
+          activeClassName="activeProfileHeaderRoute"
+          // eslint-disable-next-line consistent-return
+          isActive={() => {
+            if (window.location.pathname.includes("photos")) {
+              return true;
+            }
+          }}
+        >
+          <PhotosContainerLink type="link">Photos</PhotosContainerLink>
+        </NavLink>
       </UserActionsContainer>
     </ProfileHeaderContainer>
   );
