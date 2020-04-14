@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
+import { Tooltip } from "antd";
 import Image from "../Image/Image";
 import {
   CreatePostNewContainer,
@@ -17,9 +18,11 @@ import {
   PublishBtnContainer,
   ImageContainer,
   PostImage,
-  EndPositionContainer
+  EndPositionContainer,
+  MarkdownContainer
 } from "./CreatePostActive.styles";
 import { ReactComponent as CloseBtn } from "../../assets/icons/close.svg";
+import { ReactComponent as MarkdownIcon } from "../../assets/icons/logo-markdown.svg";
 import { CREATE_POST, GET_POSTS, DELETE_IMAGE } from "../../utils/queries";
 
 const CreatePostActive = ({ user, showModal }) => {
@@ -62,9 +65,9 @@ const CreatePostActive = ({ user, showModal }) => {
     <CreatePostNewContainer onSubmit={onSubmit}>
       <CreatePostHeader type="flex" justify="center" align="middle">
         <CreatePostHeading>Create Post</CreatePostHeading>
-        <CloseContainer type="link">
+        {/* <CloseContainer type="link">
           <CloseBtn width="20" height="20" fill="#62626a" />
-        </CloseContainer>
+        </CloseContainer> */}
       </CreatePostHeader>
       <CreatePostBody>
         <User type="flex" align="middle">
@@ -72,14 +75,21 @@ const CreatePostActive = ({ user, showModal }) => {
           <UserName>
             {user.firstName} {user.lastName}
           </UserName>
-          <ImageContainer>
-            <Image setImage={setImage} />
-          </ImageContainer>
+          <div style={{ display: "flex", marginLeft: "auto" }}>
+            <ImageContainer>
+              <Image setImage={setImage} />
+            </ImageContainer>
+            <Tooltip title="Markdown Enabled">
+              <MarkdownContainer>
+                <MarkdownIcon width={20} height={20} />
+              </MarkdownContainer>
+            </Tooltip>
+          </div>
         </User>
         <CreatePostInputContainer>
           <CreatePostInput
             placeholder="What do you think?"
-            rows={3}
+            rows={4}
             value={body}
             name="content"
             onChange={e => setBody(e.target.value)}

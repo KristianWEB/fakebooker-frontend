@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "antd";
+import { Button, Row } from "antd";
 
 export const CreatePostContainer = styled.div`
   display: flex;
@@ -45,5 +45,31 @@ export const CreatePostButton = styled(Button)`
   &&:hover {
     background-color: #d8dadf;
     color: ${props => props.theme.primaryTextColor};
+  }
+`;
+
+export const CloseContainer = styled(Row)`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 0;
+  background-color: #e4e6eb;
+  cursor: pointer;
+  transition: 0.1s;
+  padding: 5px;
+
+  &&:focus {
+    background-color: #e4e6eb;
+  }
+
+  &&:active {
+    background-color: #e4e6eb;
+    color: white;
+  }
+
+  &&:hover {
+    background-color: #d8dadf;
+    color: white;
   }
 `;

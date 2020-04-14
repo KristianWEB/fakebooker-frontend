@@ -111,7 +111,6 @@ export const PublishBtn = styled(Button)`
 `;
 
 export const ImageContainer = styled(Row)`
-  margin-left: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,4 +135,22 @@ export const PostImage = styled(Row)`
   background-size: cover;
   border-radius: 8px;
   min-height: 20rem;
+`;
+
+export const MarkdownContainer = styled(Row)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+
+  &:hover {
+    background-color: #f2f2f2;
+    outline: none;
+  }
+
+  &:active {
+    background-color: #e4e6eb;
+  }
 `;
