@@ -4,10 +4,11 @@ import { Modal } from "antd";
 import {
   CreatePostContainer,
   UserAvatar,
-  CreatePostButton
+  CreatePostButton,
+  CloseContainer
 } from "./CreatePostDefault.styles";
 import CreatePostActive from "./CreatePostActive";
-import { ReactComponent as CloseIconSVG } from "../../assets/icons/close.svg";
+import { ReactComponent as CloseBtn } from "../../assets/icons/close.svg";
 
 const CreatePostDefault = ({ user }) => {
   const [visible, setVisible] = useState(false);
@@ -34,11 +35,14 @@ const CreatePostDefault = ({ user }) => {
           footer={null}
           closeIcon={
             // eslint-disable-next-line react/jsx-wrap-multilines
-            <CloseIconSVG
-              width="20"
-              height="20"
-              style={{ marginTop: "25px", fill: "transparent" }}
-            />
+            <CloseContainer>
+              <CloseBtn
+                width="20"
+                height="20"
+                // style={{ marginTop: "25px" }}
+                fill="#62626a"
+              />
+            </CloseContainer>
           }
           bodyStyle={{ padding: 0 }}
           centered

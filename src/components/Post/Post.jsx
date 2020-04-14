@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
 import { withTheme } from "styled-components";
+import ReactMarkdown from "react-markdown";
 import { Popover, Button, Avatar } from "antd";
 import {
   PostContainer,
@@ -105,7 +106,9 @@ const Post = ({ post, theme, user, readOnly }) => {
             </Popover>
           )}
         </PostHeader>
-        <PostContent>{post.body}</PostContent>
+        <PostContent>
+          <ReactMarkdown source={post.body} />
+        </PostContent>
         {post.image && <PostImage src={post.image} alt="post graphics" />}
         <PostFooter>
           <LikesWrapper>
