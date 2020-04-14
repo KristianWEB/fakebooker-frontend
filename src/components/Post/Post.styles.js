@@ -157,3 +157,8 @@ export const SharesHeading = styled.span`
   line-height: 1;
   margin-top: 5px;
 `;
+
+export const PostImage = styled.img`
+  width: 100%;
+  height: 100%;
+`;

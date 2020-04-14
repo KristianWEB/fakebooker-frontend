@@ -58,4 +58,7 @@ export const GlobalStyle = createGlobalStyle`
         content: "";
     }
   }
+  .ant-upload-list, .ant-upload-list-text {
+    display: none !important;
+  }
 `;

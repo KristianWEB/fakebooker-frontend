@@ -20,13 +20,36 @@ export const CreatePostHeading = styled.h1`
   margin: 18px auto;
 `;
 
-export const CloseContainer = styled.div`
-  padding: 0.25rem;
-  display: flex;
+export const CloseContainer = styled(Button)`
+  display: inline-flex;
+  justify-content: center;
   align-items: center;
-  background-color: #e4e6eb;
   border-radius: 50%;
   margin-right: 13px;
+  margin-top: 13px;
+  padding: 0;
+  background-color: #e4e6eb;
+  cursor: pointer;
+  transition: 0.1s;
+  padding: 5px;
+
+  &&:focus {
+    background-color: #e4e6eb;
+  }
+
+  &&:active {
+    background-color: #e4e6eb;
+    color: white;
+  }
+
+  &&:hover {
+    background-color: #d8dadf;
+    color: white;
+  }
+`;
+export const EndPositionContainer = styled(Row)`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const CreatePostBody = styled(Row)``;
@@ -50,11 +73,12 @@ export const UserName = styled.h3`
 
 export const CreatePostInputContainer = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 export const CreatePostInput = styled(TextArea)`
   && {
     display: flex;
-    margin: 19px 13px 0 13px;
+    margin-top: 19px;
     border: none;
     resize: none;
     width: 100%;
@@ -75,7 +99,6 @@ export const PublishBtnContainer = styled.div`
   display: flex;
 `;
 
-// WE FOUND A SOLUTION ON HOW TO OVERWRITE THE DEFAULT ANTD STYLES
 export const PublishBtn = styled(Button)`
   && {
     width: 100%;
@@ -85,4 +108,32 @@ export const PublishBtn = styled(Button)`
     color: #fff;
     background-color: ${props => props.theme.appTextColor};
   }
+`;
+
+export const ImageContainer = styled(Row)`
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+
+  &:hover {
+    background-color: #f2f2f2;
+    outline: none;
+  }
+
+  &:active {
+    background-color: #e4e6eb;
+  }
+`;
+
+export const PostImage = styled(Row)`
+  background-image: url("${props => props.img}");
+  display: block;
+  margin: 0 13px;
+  background-size: cover;
+  border-radius: 8px;
+  min-height: 20rem;
 `;

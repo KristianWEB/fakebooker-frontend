@@ -12,6 +12,7 @@ import AboutWorkAndEducation from "../pages/AboutPage/AboutWorkAndEducation";
 import AboutContactAndBasicInfo from "../pages/AboutPage/AboutContactAndBasicInfo";
 import PrivateRoute from "./PrivateRoute";
 import AboutRoute from "./AboutRoute";
+import Image from "../components/Image/Image";
 
 const Routes = () => {
   return (
@@ -19,6 +20,7 @@ const Routes = () => {
       <Switch>
         <Route exact path="/auth" component={AuthPage} />
         <PrivateRoute exact path="/:username" component={ProfilePage} />
+        <PrivateRoute exact path="/test/image" component={Image} />
         <AboutRoute
           exact
           path="/:username/about_overview"
