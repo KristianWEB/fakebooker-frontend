@@ -1,5 +1,7 @@
 import React from "react";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { NavLink } from "react-router-dom";
+import { Skeleton, Popover } from "antd";
 import PropTypes from "prop-types";
 import {
   ProfileHeaderContainer,
@@ -17,11 +19,87 @@ import {
   PhotosContainerLink,
   ChangePhotoContainer,
   ChangeBackgroundHeading,
-  ChangeAvatarContainer
+  ChangeAvatarContainer,
+  FriendActionContainer,
+  FriendBtn,
+  FriendText,
+  RespondBtn,
+  RespondText,
+  ActionsContainer,
+  AcceptFriendBtn,
+  RejectFriendBtn
 } from "./ProfileHeader.styles";
 import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
+import { ReactComponent as AddFriendIcon } from "../../assets/icons/person-add.svg";
+import {
+  ADD_FRIEND,
+  ACCEPT_FRIEND,
+  REJECT_FRIEND,
+  GET_SINGLE_NOTIFICATION
+} from "../../utils/queries";
 
-const ProfileHeader = ({ user, readOnly }) => {
+const ProfileHeader = ({ user, authUser, readOnly }) => {
+  const [addFriend, { data: friendData }] = useMutation(ADD_FRIEND, {
+    variables: {
+      notifier: user.username
+    }
+  });
+
+  // get single notification is changed: pass profileUser ( user ) and authUser ( authUser ) as creator and notifier once and the opposite and check if there is any data ( friend request sent )
+  const { data: notificationData, loading } = useQuery(
+    GET_SINGLE_NOTIFICATION,
+    {
+      variables: {
+        creator: user && user.id,
+        notifier: authUser && authUser.id
+      },
+      skip: !readOnly
+    }
+  );
+
+  const { data: notificationAuthData, authLoading } = useQuery(
+    GET_SINGLE_NOTIFICATION,
+    {
+      variables: {
+        creator: authUser && authUser.id,
+        notifier: user && user.id
+      },
+      skip: !readOnly
+    }
+  );
+
+  // if user A already sent a friend request to user B => fetch the notification with status "pending" and action "Sent you a friend request" and if it return data then show accept/rejectFriend buttons
+  // TODO: display based on reject/accept buttons if user A and user B are friends/or show " add friend "
+  const [acceptFriend, { data: acceptFriendData }] = useMutation(
+    ACCEPT_FRIEND,
+    {
+      variables: {
+        creator: user.username
+      }
+    }
+  );
+  const [rejectFriend, { data: rejectFriendData }] = useMutation(
+    REJECT_FRIEND,
+    {
+      variables: {
+        creator: user.username
+      }
+    }
+  );
+
+  if (loading) return <Skeleton />;
+  if (authLoading) return <Skeleton />;
+  const FriendActions = () => (
+    <ActionsContainer>
+      <AcceptFriendBtn type="link" onClick={acceptFriend}>
+        Confirm
+      </AcceptFriendBtn>
+      <RejectFriendBtn type="link" onClick={rejectFriend}>
+        Reject Request
+      </RejectFriendBtn>
+    </ActionsContainer>
+  );
+
   return (
     <ProfileHeaderContainer img={user.coverImage}>
       <ProfileBackgroundContainer img={user.coverImage}>
@@ -91,6 +169,43 @@ const ProfileHeader = ({ user, readOnly }) => {
         >
           <PhotosContainerLink type="link">Photos</PhotosContainerLink>
         </NavLink>
+        {readOnly && (
+          <FriendActionContainer>
+            {notificationData && notificationData.getSingleNotification && (
+              <Popover
+                placement="bottomRight"
+                content={<FriendActions />}
+                trigger="click"
+                overlayStyle={{
+                  width: "344px"
+                }}
+              >
+                <RespondBtn type="link">
+                  <AddFriendIcon width={16} height={16} fill="#1876f2" />
+                  <RespondText>Respond</RespondText>
+                </RespondBtn>
+              </Popover>
+            )}
+            {((notificationAuthData &&
+              notificationAuthData.getSingleNotification) ||
+              friendData) && (
+              <FriendBtn type="link">
+                <AddFriendIcon width={16} height={16} />
+                <FriendText>Friend Request Sent</FriendText>
+              </FriendBtn>
+            )}
+            {notificationData &&
+              notificationAuthData &&
+              !notificationData.getSingleNotification &&
+              !notificationAuthData.getSingleNotification &&
+              !friendData && (
+                <FriendBtn type="link" onClick={addFriend}>
+                  <AddFriendIcon width={16} height={16} />
+                  <FriendText>Add Friend</FriendText>
+                </FriendBtn>
+              )}
+          </FriendActionContainer>
+        )}
       </UserActionsContainer>
     </ProfileHeaderContainer>
   );
@@ -100,6 +215,15 @@ export default ProfileHeader;
 
 ProfileHeader.propTypes = {
   user: PropTypes.shape({
+    id: PropTypes.string,
+    coverImage: PropTypes.string,
+    avatarImage: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    username: PropTypes.string
+  }),
+  authUser: PropTypes.shape({
+    id: PropTypes.string,
     coverImage: PropTypes.string,
     avatarImage: PropTypes.string,
     firstName: PropTypes.string,
@@ -111,5 +235,6 @@ ProfileHeader.propTypes = {
 
 ProfileHeader.defaultProps = {
   user: null,
+  authUser: null,
   readOnly: null
 };

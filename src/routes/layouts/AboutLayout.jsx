@@ -93,17 +93,16 @@ const AboutLayout = ({ children }) => {
     return null;
   }
 
+  console.log(userData);
+
   return (
     <>
       {userData && (
         <Row>
           <Navbar onProfile user={userData.loadUser} />
           <ProfileHeader
-            user={
-              profileData
-                ? profileData.loadFromUrlUser
-                : userData.loadUserFromDB
-            }
+            user={profileData ? profileData.loadFromUrlUser : userData.loadUser}
+            authUser={userData.loadUser}
             readOnly={readOnly()}
           />
           {children}

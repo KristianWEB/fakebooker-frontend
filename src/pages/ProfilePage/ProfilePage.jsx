@@ -123,6 +123,7 @@ const ProfilePage = () => {
                 ? profileData.loadFromUrlUser
                 : userData.loadUserFromDB
             }
+            authUser={userData.loadUserFromDB}
             readOnly={readOnly()}
           />
           <InfoContainer>

@@ -495,3 +495,75 @@ export const DELETE_IMAGE = gql`
     deleteImage(publicId: $publicId)
   }
 `;
+
+export const ADD_FRIEND = gql`
+  mutation addFriend($notifier: String!) {
+    addFriend(notifier: $notifier) {
+      creator {
+        firstName
+        lastName
+        avatarImage
+      }
+      notifier {
+        firstName
+        lastName
+        avatarImage
+      }
+      action
+      status
+    }
+  }
+`;
+
+export const ACCEPT_FRIEND = gql`
+  mutation acceptFriend($creator: String!) {
+    acceptFriend(creator: $creator) {
+      creator {
+        firstName
+        lastName
+        avatarImage
+      }
+      notifier {
+        firstName
+        lastName
+        avatarImage
+      }
+      action
+      status
+    }
+  }
+`;
+
+export const REJECT_FRIEND = gql`
+  mutation rejectFriend($creator: String!) {
+    rejectFriend(creator: $creator)
+  }
+`;
+
+export const REMOVE_FRIEND = gql`
+  mutation removeFriend($creator: String!) {
+    removeFriend(creator: $creator)
+  }
+`;
+
+export const GET_SINGLE_NOTIFICATION = gql`
+  query getSingleNotification($creator: String!, $notifier: String!) {
+    getSingleNotification(creator: $creator, notifier: $notifier) {
+      id
+      creator {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      notifier {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      action
+      status
+    }
+  }
+`;

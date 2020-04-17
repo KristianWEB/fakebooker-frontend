@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, Row } from "antd";
+import { Button, Row, Popover } from "antd";
 
 export const ProfileHeaderContainer = styled(Row)`
   margin-top: -60px;
@@ -11,6 +11,7 @@ export const ProfileHeaderContainer = styled(Row)`
     url(${props => props.img});
   background-size: cover;
   background-color: white;
+  font-family: Roboto;
 `;
 export const ProfileBackgroundContainer = styled.div`
   max-width: 94rem;
@@ -206,21 +207,13 @@ export const PhotosContainerLink = styled.button`
   padding: 0 16px;
   height: 50px;
 
-  /* &::after {
-    margin-top: 10px;
-    width: 75px;
-    height: 2px;
-    display: block;
-    background: ${props => props.theme.appTextColor};
-    content: "";
-  } */
-
   &:hover {
     background-color: #f2f2f2;
     outline: none;
   }
 
-  &::after, &:focus {
+  &::after,
+  &:focus {
     outline: none;
   }
 
@@ -293,4 +286,122 @@ export const ChangeBackgroundHeading = styled.h3`
   margin-left: 4px;
   margin-bottom: 0;
   font-size: 1.4rem;
+`;
+
+export const FriendActionContainer = styled(Row)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+`;
+export const FriendBtn = styled(Button)`
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: ${props => props.theme.primaryTextColor};
+  font-size: 15px;
+  background-color: #e4e6eb;
+  transition: 0.1s;
+
+  &&:focus,
+  &&:active {
+    background-color: #e4e6eb;
+    border-color: #e4e6eb;
+    color: ${props => props.theme.primaryTextColor};
+  }
+  &&:hover {
+    background-color: #d8dadf;
+    color: ${props => props.theme.primaryTextColor};
+  }
+`;
+
+export const FriendText = styled.h1`
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  margin-left: 4px;
+`;
+
+export const RespondBtn = styled(Button)`
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: #1876f2;
+  font-size: 15px;
+  background-color: #e7f3ff;
+  transition: 0.1s;
+
+  &&:focus,
+  &&:active {
+    color: #1876f2;
+    background-color: #e7f3ff;
+  }
+  &&:hover {
+    color: #1876f2;
+    background-color: #e7f3ff;
+  }
+`;
+
+export const RespondText = styled.h1`
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  margin-left: 4px;
+  color: #1876f2;
+`;
+
+export const ActionsContainer = styled(Row)`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const AcceptFriendBtn = styled(Button)`
+  text-align: left;
+  font-size: 15px;
+  color: #050505;
+  padding: 0 8px;
+  transition: 0.1s;
+  font-weight: 500;
+
+  &:hover {
+    background-color: #f2f2f2;
+    color: #050505;
+  }
+
+  &::after,
+  &:focus {
+    outline: none;
+    color: #050505;
+  }
+
+  &:active {
+    background-color: #e4e6eb;
+    color: #050505;
+  }
+`;
+
+export const RejectFriendBtn = styled(Button)`
+  text-align: left;
+  color: #050505;
+  padding: 0 8px;
+  font-weight: 500;
+  transition: 0.1s;
+
+  &:hover {
+    background-color: #f2f2f2;
+    color: #050505;
+  }
+
+  &::after,
+  &:focus {
+    outline: none;
+    color: #050505;
+  }
+
+  &:active {
+    background-color: #e4e6eb;
+    color: #050505;
+  }
 `;

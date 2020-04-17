@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
    }
 
    .ant-popover-inner-content {
-    padding: 16px 8px;
+    padding: 8px;
    }
 
    .ant-popover-arrow {
