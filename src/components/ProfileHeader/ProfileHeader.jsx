@@ -69,26 +69,75 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
   );
 
   // if user A already sent a friend request to user B => fetch the notification with status "pending" and action "Sent you a friend request" and if it return data then show accept/rejectFriend buttons
-  // TODO: display based on reject/accept buttons if user A and user B are friends/or show " add friend "
   const [acceptFriend, { data: acceptFriendData }] = useMutation(
     ACCEPT_FRIEND,
     {
       variables: {
         creator: user.username
+      },
+      update: async (proxy, result) => {
+        const data = proxy.readQuery({
+          query: GET_SINGLE_NOTIFICATION,
+          variables: {
+            creator: user && user.id,
+            notifier: authUser && authUser.id
+          }
+        });
+
+        const {
+          acceptFriend: { status }
+        } = result.data;
+        const newData = {
+          getSingleNotification: {
+            ...data.getSingleNotification,
+            status
+          }
+        };
+        proxy.writeQuery({
+          query: GET_SINGLE_NOTIFICATION,
+          data: newData,
+          variables: {
+            creator: user.id,
+            notifier: authUser.id
+          }
+        });
       }
     }
   );
-  const [rejectFriend, { data: rejectFriendData }] = useMutation(
-    REJECT_FRIEND,
-    {
-      variables: {
-        creator: user.username
+  const [rejectFriend] = useMutation(REJECT_FRIEND, {
+    variables: {
+      creator: user.username
+    },
+    update: async (proxy, result) => {
+      const data = proxy.readQuery({
+        query: GET_SINGLE_NOTIFICATION,
+        variables: {
+          creator: user.id,
+          notifier: authUser.id
+        }
+      });
+
+      const newData = { getSingleNotification: null };
+
+      if (
+        data.getSingleNotification.id.toString() ===
+        result.data.rejectFriend.toString()
+      ) {
+        proxy.writeQuery({
+          query: GET_SINGLE_NOTIFICATION,
+          data: newData,
+          variables: {
+            creator: user.id,
+            notifier: authUser.id
+          }
+        });
       }
     }
-  );
+  });
 
   if (loading) return <Skeleton />;
   if (authLoading) return <Skeleton />;
+
   const FriendActions = () => (
     <ActionsContainer>
       <AcceptFriendBtn type="link" onClick={acceptFriend}>
@@ -171,23 +220,27 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
         </NavLink>
         {readOnly && (
           <FriendActionContainer>
-            {notificationData && notificationData.getSingleNotification && (
-              <Popover
-                placement="bottomRight"
-                content={<FriendActions />}
-                trigger="click"
-                overlayStyle={{
-                  width: "344px"
-                }}
-              >
-                <RespondBtn type="link">
-                  <AddFriendIcon width={16} height={16} fill="#1876f2" />
-                  <RespondText>Respond</RespondText>
-                </RespondBtn>
-              </Popover>
-            )}
+            {notificationData &&
+              notificationData.getSingleNotification &&
+              notificationData.getSingleNotification.status === "pending" && (
+                <Popover
+                  placement="bottomRight"
+                  content={<FriendActions />}
+                  trigger="click"
+                  overlayStyle={{
+                    width: "344px"
+                  }}
+                >
+                  <RespondBtn type="link">
+                    <AddFriendIcon width={16} height={16} fill="#1876f2" />
+                    <RespondText>Respond</RespondText>
+                  </RespondBtn>
+                </Popover>
+              )}
             {((notificationAuthData &&
-              notificationAuthData.getSingleNotification) ||
+              notificationAuthData.getSingleNotification &&
+              notificationAuthData.getSingleNotification.status ===
+                "pending") ||
               friendData) && (
               <FriendBtn type="link">
                 <AddFriendIcon width={16} height={16} />
@@ -204,6 +257,25 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
                   <FriendText>Add Friend</FriendText>
                 </FriendBtn>
               )}
+            {((notificationData &&
+              notificationData.getSingleNotification &&
+              notificationData.getSingleNotification.status === "accepted") ||
+              acceptFriendData) && (
+              <RespondBtn type="link">
+                <AddFriendIcon width={16} height={16} fill="#1876f2" />
+                <RespondText>Friends</RespondText>
+              </RespondBtn>
+            )}
+            {((notificationAuthData &&
+              notificationAuthData.getSingleNotification &&
+              notificationAuthData.getSingleNotification.status ===
+                "accepted") ||
+              acceptFriendData) && (
+              <RespondBtn type="link">
+                <AddFriendIcon width={16} height={16} fill="#1876f2" />
+                <RespondText>Friends</RespondText>
+              </RespondBtn>
+            )}
           </FriendActionContainer>
         )}
       </UserActionsContainer>

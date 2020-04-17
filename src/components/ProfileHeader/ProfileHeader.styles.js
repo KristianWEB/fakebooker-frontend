@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, Row, Popover } from "antd";
+import { Button, Row } from "antd";
 
 export const ProfileHeaderContainer = styled(Row)`
   margin-top: -60px;
