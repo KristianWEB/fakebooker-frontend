@@ -35,6 +35,7 @@ import {
   ADD_FRIEND,
   ACCEPT_FRIEND,
   REJECT_FRIEND,
+  REMOVE_FRIEND,
   GET_SINGLE_NOTIFICATION
 } from "../../utils/queries";
 
@@ -134,6 +135,36 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
       }
     }
   });
+  const [removeFriend] = useMutation(REMOVE_FRIEND, {
+    variables: {
+      creator: user.username
+    },
+    update: async (proxy, result) => {
+      const data = proxy.readQuery({
+        query: GET_SINGLE_NOTIFICATION,
+        variables: {
+          creator: user.id,
+          notifier: authUser.id
+        }
+      });
+
+      const newData = { getSingleNotification: null };
+
+      if (
+        data.getSingleNotification.id.toString() ===
+        result.data.removeFriend.toString()
+      ) {
+        proxy.writeQuery({
+          query: GET_SINGLE_NOTIFICATION,
+          data: newData,
+          variables: {
+            creator: user.id,
+            notifier: authUser.id
+          }
+        });
+      }
+    }
+  });
 
   if (loading) return <Skeleton />;
   if (authLoading) return <Skeleton />;
@@ -145,6 +176,14 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
       </AcceptFriendBtn>
       <RejectFriendBtn type="link" onClick={rejectFriend}>
         Reject Request
+      </RejectFriendBtn>
+    </ActionsContainer>
+  );
+
+  const RemoveContainer = () => (
+    <ActionsContainer>
+      <RejectFriendBtn type="link" onClick={removeFriend}>
+        Remove Friend
       </RejectFriendBtn>
     </ActionsContainer>
   );
@@ -261,21 +300,38 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
               notificationData.getSingleNotification &&
               notificationData.getSingleNotification.status === "accepted") ||
               acceptFriendData) && (
-              <RespondBtn type="link">
-                <AddFriendIcon width={16} height={16} fill="#1876f2" />
-                <RespondText>Friends</RespondText>
-              </RespondBtn>
+              <Popover
+                placement="bottomRight"
+                content={<RemoveContainer />}
+                trigger="click"
+                overlayStyle={{
+                  width: "344px"
+                }}
+              >
+                <RespondBtn type="link">
+                  <AddFriendIcon width={16} height={16} fill="#1876f2" />
+                  <RespondText>Friends</RespondText>
+                </RespondBtn>
+              </Popover>
             )}
-            {((notificationAuthData &&
+            {notificationAuthData &&
               notificationAuthData.getSingleNotification &&
               notificationAuthData.getSingleNotification.status ===
-                "accepted") ||
-              acceptFriendData) && (
-              <RespondBtn type="link">
-                <AddFriendIcon width={16} height={16} fill="#1876f2" />
-                <RespondText>Friends</RespondText>
-              </RespondBtn>
-            )}
+                "accepted" && (
+                <Popover
+                  placement="bottomRight"
+                  content={<RemoveContainer />}
+                  trigger="click"
+                  overlayStyle={{
+                    width: "344px"
+                  }}
+                >
+                  <RespondBtn type="link">
+                    <AddFriendIcon width={16} height={16} fill="#1876f2" />
+                    <RespondText>Friends</RespondText>
+                  </RespondBtn>
+                </Popover>
+              )}
           </FriendActionContainer>
         )}
       </UserActionsContainer>
