@@ -15,12 +15,21 @@ const Notification = ({
 }) => (
   <NotificationContainer data-testid="notification">
     <CreatorAvatar src={creator.avatarImage} />
-    <Body>
-      <CreatorFirstName> {creator.firstName}</CreatorFirstName>
-      <CreatorLastName> {creator.lastName} </CreatorLastName>
-      {action}: <PostBody> {`"${actionId.body}"`}</PostBody>
-      <Timestamp>{createdAt}</Timestamp>
-    </Body>
+    {actionId ? (
+      <Body>
+        <CreatorFirstName> {creator.firstName}</CreatorFirstName>
+        <CreatorLastName> {creator.lastName} </CreatorLastName>
+        {action}: <PostBody> {`"${actionId.body}"`}</PostBody>
+        <Timestamp>{createdAt}</Timestamp>
+      </Body>
+    ) : (
+      <Body>
+        <CreatorFirstName> {creator.firstName}</CreatorFirstName>
+        <CreatorLastName> {creator.lastName} </CreatorLastName>
+        {action}
+        <Timestamp>{createdAt}</Timestamp>
+      </Body>
+    )}
   </NotificationContainer>
 );
 export default Notification;
