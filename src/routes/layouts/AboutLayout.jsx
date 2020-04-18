@@ -49,19 +49,23 @@ const AboutLayout = ({ children }) => {
       const data = client.readQuery({
         query: GET_NOTIFICATIONS
       });
-      openNotification(subscriptionData.data.newNotification);
+      if (
+        subscriptionData.data.newNotification.notifier.id ===
+        userData.loadUser.id
+      ) {
+        openNotification(subscriptionData.data.newNotification);
+        const newData = {
+          getNotifications: [
+            subscriptionData.data.newNotification,
+            ...data.getNotifications
+          ]
+        };
 
-      const newData = {
-        getNotifications: [
-          subscriptionData.data.newNotification,
-          ...data.getNotifications
-        ]
-      };
-
-      client.writeQuery({
-        query: GET_NOTIFICATIONS,
-        data: newData
-      });
+        client.writeQuery({
+          query: GET_NOTIFICATIONS,
+          data: newData
+        });
+      }
     }
   });
 
@@ -92,8 +96,6 @@ const AboutLayout = ({ children }) => {
   if (!profileData) {
     return null;
   }
-
-  console.log(userData);
 
   return (
     <>

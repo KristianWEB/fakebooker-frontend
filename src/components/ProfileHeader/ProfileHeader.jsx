@@ -244,7 +244,18 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
             About
           </AboutContainerLink>
         </NavLink>
-        <FriendsContainerLink type="link">Friends</FriendsContainerLink>
+        <NavLink
+          to={`/${user.username}/friends`}
+          activeClassName="activeProfileHeaderRoute"
+          // eslint-disable-next-line consistent-return
+          isActive={() => {
+            if (window.location.pathname.includes("friends")) {
+              return true;
+            }
+          }}
+        >
+          <FriendsContainerLink type="link">Friends</FriendsContainerLink>
+        </NavLink>
         <NavLink
           to={`/${user.username}/photos`}
           activeClassName="activeProfileHeaderRoute"
