@@ -63,6 +63,13 @@ export const LOAD_USER = gql`
       coverImage
       username
       workPlace
+      # friends {
+      #   id
+      #   firstName
+      #   lastName
+      #   avatarImage
+      #   username
+      # }
     }
   }
 `;
@@ -82,6 +89,13 @@ export const LOAD_USER_FROM_DB = gql`
       coverImage
       username
       workPlace
+      friends {
+        id
+        firstName
+        lastName
+        avatarImage
+        username
+      }
     }
   }
 `;
@@ -101,6 +115,13 @@ export const LOAD_FROM_URL_USER = gql`
       username
       workPlace
       homePlace
+      friends {
+        id
+        firstName
+        lastName
+        avatarImage
+        username
+      }
     }
   }
 `;
@@ -542,7 +563,16 @@ export const REJECT_FRIEND = gql`
 
 export const REMOVE_FRIEND = gql`
   mutation removeFriend($creator: String!) {
-    removeFriend(creator: $creator)
+    removeFriend(creator: $creator) {
+      id
+      friends {
+        id
+        firstName
+        lastName
+        avatarImage
+        username
+      }
+    }
   }
 `;
 
