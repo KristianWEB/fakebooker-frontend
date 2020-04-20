@@ -42,14 +42,14 @@ const PhotosPage = () => {
         <PhotosContainer>
           {!readOnly() &&
             postsData &&
-            postsData.getPosts.map(post => (
-              <Photo key={post.id} src={post.image} />
-            ))}
+            postsData.getPosts.map(
+              post => post.image && <Photo key={post.id} src={post.image} />
+            )}
           {readOnly() &&
             urlPostsData &&
-            urlPostsData.getUrlPosts.map(post => (
-              <Photo key={post.id} src={post.image} />
-            ))}
+            urlPostsData.getUrlPosts.map(
+              post => post.image && <Photo key={post.id} src={post.image} />
+            )}
         </PhotosContainer>
       </FixedContainer>
     </InfoContainer>

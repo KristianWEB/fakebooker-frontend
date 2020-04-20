@@ -1,21 +1,23 @@
 import styled from "styled-components";
 import { Row } from "antd";
 
-export const NotificationContainer = styled(Row)`
+export const MessageContainer = styled.div`
   && {
     display: flex;
     padding: 8px;
+    width: 100%;
+    height: 100%;
     border-radius: 8px;
     transition: 0.1s;
 
     &&:hover {
       background-color: #f2f2f2;
     }
-    &:last-child {
+
+    &&:last-child {
       margin-bottom: 12px;
     }
-
-    &:active {
+    &&:active {
       background-color: #e4e6eb;
     }
   }
@@ -31,30 +33,23 @@ export const CreatorAvatar = styled.img`
   }
 `;
 
-export const CreatorFirstName = styled.span`
+export const CreatorFullName = styled.span`
   font-weight: bold;
   color: #050505;
-`;
-
-export const CreatorLastName = styled.span`
-  font-weight: bold;
-  color: #050505;
-`;
-
-export const PostBody = styled.span`
-  font-weight: bold;
-  color: #050505;
+  font-size: 15px;
 `;
 
 export const Body = styled(Row)`
   font-size: 1.5rem;
   color: #050505;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
-export const Timestamp = styled.h3`
-/* I've hardcoded these values because somehow the notification antd component doesnt render them properly */
-  /* color: ${props => props.theme.appTextColor}; */
-  color: #1877f2;
-  font-weight: bold;
-  font-size: 1.3rem;
+export const Footer = styled(Row)`
+  display: flex;
+  color: #65676b;
+  font-size: 13px;
+  font-weight: 500;
 `;
