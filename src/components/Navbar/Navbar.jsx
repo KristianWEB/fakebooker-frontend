@@ -22,7 +22,7 @@ import { ReactComponent as ChatIcon } from "../../assets/icons/chatbox.svg";
 import { ReactComponent as BellIcon } from "../../assets/icons/notifications.svg";
 import { ReactComponent as BackArrowIcon } from "../../assets/icons/arrow-back-outline.svg";
 
-const Navbar = ({ onProfile, user }) => {
+const Navbar = ({ onProfile, user, setOpenChat }) => {
   const [navbarBgColor, setNavbarBgColor] = useState(false);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const Navbar = ({ onProfile, user }) => {
           <ProfileContainer>
             <Popover
               placement="bottomRight"
-              content={<MessageList />}
+              content={<MessageList setOpenChat={setOpenChat} />}
               trigger="click"
               overlayStyle={{
                 width: "368px",

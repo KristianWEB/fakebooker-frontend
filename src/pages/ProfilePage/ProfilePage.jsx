@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useSubscription } from "@apollo/react-hooks";
 import { notification, Row } from "antd";
 import Navbar from "../../components/Navbar/Navbar";
+import SingleChat from "../../components/Message/SingleChat";
 import Notification from "../../components/Notification/Notification";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import CreatePostDefault from "../../components/Post/CreatePostDefault";
@@ -25,6 +26,10 @@ import {
 
 const ProfilePage = () => {
   const { data: userData } = useQuery(LOAD_USER_FROM_DB);
+  const [openChat, setOpenChat] = useState({
+    visible: false,
+    creator: null
+  });
 
   const { username } = useParams();
   /* eslint-disable consistent-return */
@@ -56,6 +61,7 @@ const ProfilePage = () => {
           <Notification notification={newNotification} />
         </div>
       ),
+      duration: 0,
       placement: "bottomLeft",
       style: {
         padding: "16px 8px"
@@ -120,7 +126,11 @@ const ProfilePage = () => {
     <>
       {userData && (
         <Row>
-          <Navbar onProfile user={userData.loadUserFromDB} />
+          <Navbar
+            onProfile
+            user={userData.loadUserFromDB}
+            setOpenChat={setOpenChat}
+          />
           <ProfileHeader
             user={
               profileData
@@ -129,6 +139,7 @@ const ProfilePage = () => {
             }
             authUser={userData.loadUserFromDB}
             readOnly={readOnly()}
+            setOpenChat={setOpenChat}
           />
           <InfoContainer>
             <FixedContainer>
@@ -166,6 +177,9 @@ const ProfilePage = () => {
               </PostsSection>
             </FixedContainer>
           </InfoContainer>
+          {openChat.visible && (
+            <SingleChat creator={openChat.creator} setOpenChat={setOpenChat} />
+          )}
         </Row>
       )}
     </>

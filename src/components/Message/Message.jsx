@@ -8,9 +8,16 @@ import {
   Footer
 } from "./Message.styles";
 
-const Message = ({ message: { creator, body, createdAt }, openChat }) => {
+const Message = ({ message: { creator, body, createdAt }, setOpenChat }) => {
   return (
-    <MessageContainer onClick={() => openChat({ creator })}>
+    <MessageContainer
+      onClick={() =>
+        setOpenChat({
+          visible: true,
+          creator
+        })
+      }
+    >
       <CreatorAvatar src={creator.avatarImage} />
       <Body>
         <CreatorFullName>
@@ -36,10 +43,10 @@ Message.propTypes = {
     createdAt: PropTypes.string,
     body: PropTypes.string
   }),
-  openChat: PropTypes.func
+  setOpenChat: PropTypes.func
 };
 
 Message.defaultProps = {
   message: null,
-  openChat: null
+  setOpenChat: null
 };

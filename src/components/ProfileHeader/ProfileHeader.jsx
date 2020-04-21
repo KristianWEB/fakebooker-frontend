@@ -27,10 +27,13 @@ import {
   RespondText,
   ActionsContainer,
   AcceptFriendBtn,
-  RejectFriendBtn
+  RejectFriendBtn,
+  MessageContainer,
+  MessageBtn
 } from "./ProfileHeader.styles";
 import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
 import { ReactComponent as AddFriendIcon } from "../../assets/icons/person-add.svg";
+import { ReactComponent as ChatIcon } from "../../assets/icons/chatbox.svg";
 import {
   ADD_FRIEND,
   ACCEPT_FRIEND,
@@ -39,7 +42,7 @@ import {
   GET_SINGLE_NOTIFICATION
 } from "../../utils/queries";
 
-const ProfileHeader = ({ user, authUser, readOnly }) => {
+const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
   const [addFriend, { data: friendData }] = useMutation(ADD_FRIEND, {
     variables: {
       notifier: user.username
@@ -269,66 +272,49 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
           <PhotosContainerLink type="link">Photos</PhotosContainerLink>
         </NavLink>
         {readOnly && (
-          <FriendActionContainer>
-            {notificationData &&
-              notificationData.getSingleNotification &&
-              notificationData.getSingleNotification.status === "pending" && (
-                <Popover
-                  placement="bottomRight"
-                  content={<FriendActions />}
-                  trigger="click"
-                  overlayStyle={{
-                    width: "344px"
-                  }}
-                >
-                  <RespondBtn type="link">
-                    <AddFriendIcon width={16} height={16} fill="#1876f2" />
-                    <RespondText>Respond</RespondText>
-                  </RespondBtn>
-                </Popover>
-              )}
-            {((notificationAuthData &&
-              notificationAuthData.getSingleNotification &&
-              notificationAuthData.getSingleNotification.status ===
-                "pending") ||
-              friendData) && (
-              <FriendBtn type="link">
-                <AddFriendIcon width={16} height={16} />
-                <FriendText>Friend Request Sent</FriendText>
-              </FriendBtn>
-            )}
-            {notificationData &&
-              notificationAuthData &&
-              !notificationData.getSingleNotification &&
-              !notificationAuthData.getSingleNotification &&
-              !friendData && (
-                <FriendBtn type="link" onClick={addFriend}>
+          <>
+            <FriendActionContainer>
+              {notificationData &&
+                notificationData.getSingleNotification &&
+                notificationData.getSingleNotification.status === "pending" && (
+                  <Popover
+                    placement="bottomRight"
+                    content={<FriendActions />}
+                    trigger="click"
+                    overlayStyle={{
+                      width: "344px"
+                    }}
+                  >
+                    <RespondBtn type="link">
+                      <AddFriendIcon width={16} height={16} fill="#1876f2" />
+                      <RespondText>Respond</RespondText>
+                    </RespondBtn>
+                  </Popover>
+                )}
+              {((notificationAuthData &&
+                notificationAuthData.getSingleNotification &&
+                notificationAuthData.getSingleNotification.status ===
+                  "pending") ||
+                friendData) && (
+                <FriendBtn type="link">
                   <AddFriendIcon width={16} height={16} />
-                  <FriendText>Add Friend</FriendText>
+                  <FriendText>Friend Request Sent</FriendText>
                 </FriendBtn>
               )}
-            {((notificationData &&
-              notificationData.getSingleNotification &&
-              notificationData.getSingleNotification.status === "accepted") ||
-              acceptFriendData) && (
-              <Popover
-                placement="bottomRight"
-                content={<RemoveContainer />}
-                trigger="click"
-                overlayStyle={{
-                  width: "344px"
-                }}
-              >
-                <RespondBtn type="link">
-                  <AddFriendIcon width={16} height={16} fill="#1876f2" />
-                  <RespondText>Friends</RespondText>
-                </RespondBtn>
-              </Popover>
-            )}
-            {notificationAuthData &&
-              notificationAuthData.getSingleNotification &&
-              notificationAuthData.getSingleNotification.status ===
-                "accepted" && (
+              {notificationData &&
+                notificationAuthData &&
+                !notificationData.getSingleNotification &&
+                !notificationAuthData.getSingleNotification &&
+                !friendData && (
+                  <FriendBtn type="link" onClick={addFriend}>
+                    <AddFriendIcon width={16} height={16} />
+                    <FriendText>Add Friend</FriendText>
+                  </FriendBtn>
+                )}
+              {((notificationData &&
+                notificationData.getSingleNotification &&
+                notificationData.getSingleNotification.status === "accepted") ||
+                acceptFriendData) && (
                 <Popover
                   placement="bottomRight"
                   content={<RemoveContainer />}
@@ -343,7 +329,33 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
                   </RespondBtn>
                 </Popover>
               )}
-          </FriendActionContainer>
+              {notificationAuthData &&
+                notificationAuthData.getSingleNotification &&
+                notificationAuthData.getSingleNotification.status ===
+                  "accepted" && (
+                  <Popover
+                    placement="bottomRight"
+                    content={<RemoveContainer />}
+                    trigger="click"
+                    overlayStyle={{
+                      width: "344px"
+                    }}
+                  >
+                    <RespondBtn type="link">
+                      <AddFriendIcon width={16} height={16} fill="#1876f2" />
+                      <RespondText>Friends</RespondText>
+                    </RespondBtn>
+                  </Popover>
+                )}
+            </FriendActionContainer>
+            <MessageContainer
+              onClick={() => setOpenChat({ visible: true, creator: user })}
+            >
+              <MessageBtn type="link">
+                <ChatIcon width={20} height={20} />
+              </MessageBtn>
+            </MessageContainer>
+          </>
         )}
       </UserActionsContainer>
     </ProfileHeaderContainer>
@@ -369,11 +381,13 @@ ProfileHeader.propTypes = {
     lastName: PropTypes.string,
     username: PropTypes.string
   }),
-  readOnly: PropTypes.bool
+  readOnly: PropTypes.bool,
+  setOpenChat: PropTypes.func
 };
 
 ProfileHeader.defaultProps = {
   user: null,
   authUser: null,
-  readOnly: null
+  readOnly: null,
+  setOpenChat: null
 };

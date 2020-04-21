@@ -597,3 +597,63 @@ export const GET_SINGLE_NOTIFICATION = gql`
     }
   }
 `;
+
+export const CREATE_MESSAGE = gql`
+  mutation createMessage($notifier: String!, $body: String!) {
+    createMessage(notifier: $notifier, body: $body) {
+      id
+      creator {
+        firstName
+        lastName
+        avatarImage
+      }
+      notifier {
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      createdAt
+    }
+  }
+`;
+
+export const MESSAGE_SUBSCRIPTION = gql`
+  subscription newMessage($notifier: String!) {
+    newMessage(notifier: $notifier) {
+      id
+      creator {
+        firstName
+        lastName
+        avatarImage
+      }
+      notifier {
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      createdAt
+    }
+  }
+`;
+
+export const GET_MESSAGES = gql`
+  {
+    getMessages {
+      id
+      creator {
+        firstName
+        lastName
+        avatarImage
+      }
+      notifier {
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      createdAt
+    }
+  }
+`;
