@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "@apollo/react-hooks";
+// import { useQuery } from "@apollo/react-hooks";
 import { notification } from "antd";
 import Message from "./Message";
 import {
@@ -14,10 +14,13 @@ import {
   AuthUserContainer,
   CreatorImg,
   CreatorMessage,
-  AuthUserImg,
-  AuthUserMessage
+  AuthUserMessage,
+  InputContainer,
+  MessageInput,
+  SubmitMessageBtn
 } from "./MessageList.styles";
 import { ReactComponent as CloseBtn } from "../../assets/icons/close.svg";
+import { ReactComponent as RightArrowBtn } from "../../assets/icons/play.svg";
 // import { GET_MESSAGES } from "../../utils/queries";
 
 const MessageList = () => {
@@ -25,7 +28,7 @@ const MessageList = () => {
 
   // fetch all messages for this creator and display a singleChat ( for authUser and creator )
   const openChat = ({ creator }) => {
-    notification.info({
+    notification.open({
       message: (
         <ChatHeader>
           <CreatorAvatar src={creator.avatarImage} alt="creator avatar" />
@@ -34,7 +37,6 @@ const MessageList = () => {
           </CreatorFullName>
         </ChatHeader>
       ),
-      icon: <></>,
       description: (
         <ChatBodyContainer>
           <CreatorContainer>
@@ -58,12 +60,19 @@ const MessageList = () => {
               Wow! Which language did you learn?
             </AuthUserMessage>
           </AuthUserContainer>
+          <InputContainer>
+            <MessageInput placeholder="Aa" />
+            <SubmitMessageBtn type="link">
+              <RightArrowBtn width={25} height={25} fill="#0084FF" />
+            </SubmitMessageBtn>
+          </InputContainer>
         </ChatBodyContainer>
       ),
       placement: "bottomRight",
       style: {
+        width: "100%",
         padding: "0px",
-        width: "328px",
+        marginLeft: "8px",
         borderRadius: "8px"
       },
       duration: 0,

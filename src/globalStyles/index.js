@@ -33,9 +33,6 @@ export const GlobalStyle = createGlobalStyle`
            width: 100% !important;
        }
    }
-   .ant-notification-notice-with-icon .ant-notification-notice-description {
-    margin-left: 0;
-   }
 
   .ant-input:hover {
     border-color: #8a8d91;
@@ -64,10 +61,15 @@ export const GlobalStyle = createGlobalStyle`
   .ant-upload-list, .ant-upload-list-text {
     display: none !important;
   }
-  .ant-notification-notice-with-icon .ant-notification-notice-message {
+  .ant-notification-notice-message {
     margin-left: 0 !important;
     margin-bottom: 0 !important;
   }
+
+   .ant-notification-notice-with-icon .ant-notification-notice-description {
+    margin-left: 0;
+   }
+
   .ant-notification-notice-close {
     right: 8px !important;
   }

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Row } from "antd";
+import { Row, Input, Button } from "antd";
 
 export const MessageListContainer = styled(Row)`
   font-family: "Roboto";
@@ -70,12 +70,6 @@ export const AuthUserContainer = styled(Row)`
   margin: 8px;
 `;
 
-export const AuthUserImg = styled.img`
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-`;
-
 export const AuthUserMessage = styled(Row)`
   font-size: 15px;
   padding: 8px 12px;
@@ -84,4 +78,30 @@ export const AuthUserMessage = styled(Row)`
   background-color: #0084ff;
   color: #fff;
   border-radius: 18px;
+`;
+
+export const InputContainer = styled(Row)`
+  display: flex;
+  font-family: "Roboto";
+`;
+
+export const MessageInput = styled(Input)`
+  && {
+    background-color: #f0f2f5;
+    border: none;
+    border-radius: 20px;
+
+    ::placeholder {
+      color: #90949c;
+      font-size: 15px;
+    }
+  }
+`;
+
+export const SubmitMessageBtn = styled(Button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin-left: 8px;
 `;

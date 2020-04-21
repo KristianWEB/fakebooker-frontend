@@ -35,8 +35,12 @@ const AboutLayout = ({ children }) => {
 
   const openNotification = newNotification => {
     notification.info({
-      message: `Notification`,
-      description: <Notification notification={newNotification} />,
+      message: <span style={{ marginLeft: "40px" }}>Notification</span>,
+      description: (
+        <div style={{ marginTop: "12px" }}>
+          <Notification notification={newNotification} />
+        </div>
+      ),
       placement: "bottomLeft",
       style: {
         padding: "16px 8px"
