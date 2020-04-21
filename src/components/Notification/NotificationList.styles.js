@@ -10,6 +10,9 @@ export const NotificationListHeading = styled.h3`
   font-size: 2.2rem;
   font-weight: bold;
   line-height: 1;
+  padding: 16px 18px 12px 18px;
 `;
 
-export const NotificationRow = styled(Row)``;
+export const NotificationRow = styled(Row)`
+  padding: 0 8px;
+`;

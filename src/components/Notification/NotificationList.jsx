@@ -15,7 +15,7 @@ const NotificationList = () => {
     <NotificationListContainer>
       <NotificationListHeading>Notifications</NotificationListHeading>
       {data && (
-        <NotificationRow data-testid="notificationsRow">
+        <NotificationRow>
           {data.getNotifications.map(notification => (
             <Notification key={notification.id} notification={notification} />
           ))}

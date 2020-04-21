@@ -18,7 +18,10 @@ export const GlobalStyle = createGlobalStyle`
    }
 
    .ant-popover-inner-content {
-    padding: 8px;
+    padding: 0;
+   }
+   .ant-popover-inner {
+    border-radius: 8px;
    }
 
    .ant-popover-arrow {
@@ -29,9 +32,6 @@ export const GlobalStyle = createGlobalStyle`
        @media only screen and (max-width: 575px) {
            width: 100% !important;
        }
-   }
-   .ant-notification-notice-with-icon .ant-notification-notice-description {
-    margin-left: 0;
    }
 
   .ant-input:hover {
@@ -60,5 +60,17 @@ export const GlobalStyle = createGlobalStyle`
   }
   .ant-upload-list, .ant-upload-list-text {
     display: none !important;
+  }
+  .ant-notification-notice-message {
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+   .ant-notification-notice-with-icon .ant-notification-notice-description {
+    margin-left: 0;
+   }
+
+  .ant-notification-notice-close {
+    right: 8px !important;
   }
 `;

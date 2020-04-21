@@ -80,7 +80,8 @@ export const BackArrowContainer = styled.div`
   margin-right: 0.5rem;
 `;
 
-export const MessageContainer = styled.div`
+export const MessageContainer = styled(Button)`
+  padding: 0;
   background-color: #f0f2f5;
   border-radius: 50%;
   display: flex;
@@ -89,6 +90,21 @@ export const MessageContainer = styled.div`
   margin-right: 0.5rem;
   width: 41px;
   height: 41px;
+  border: 0;
+  transition: 0.1s;
+  top: 0;
+  cursor: pointer;
+
+  &&:active,
+  &&:focus {
+    background-color: #d8dadf;
+    color: ${props => props.theme.primaryTextColor};
+  }
+
+  &&:hover {
+    background-color: #d8dadf;
+    color: ${props => props.theme.primaryTextColor};
+  }
 `;
 
 export const NotificationContainer = styled(Button)`
@@ -104,6 +120,7 @@ export const NotificationContainer = styled(Button)`
   border: 0;
   transition: 0.1s;
   top: 0;
+  cursor: pointer;
 
   &&:active,
   &&:focus {
