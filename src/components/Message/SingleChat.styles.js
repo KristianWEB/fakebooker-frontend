@@ -31,10 +31,12 @@ export const CreatorFullName = styled.h3`
   line-height: 1;
 `;
 
-export const ChatBodyContainer = styled(Row)`
+export const ChatBodyContainer = styled.div`
   border-top: 2px solid rgba(0, 0, 0, 0.1);
   padding: 8px;
-  font-size: "Roboto";
+  width: 100%;
+  height: 100%;
+  font-family: "Roboto";
 `;
 
 export const CreatorContainer = styled(Row)`
