@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { useMutation, useQuery, useSubscription } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   ChatContainer,
   ChatHeader,
@@ -25,7 +25,7 @@ import {
   CREATE_THREAD,
   GET_SINGLE_CHAT,
   GET_THREAD,
-  MESSAGE_SUBSCRIPTION
+  NEW_MESSAGE
 } from "../../utils/queries";
 
 const SingleChat = ({ creator, setOpenChat }) => {
@@ -45,44 +45,45 @@ const SingleChat = ({ creator, setOpenChat }) => {
     }
   });
 
-  const { data: conversationData } = useQuery(GET_SINGLE_CHAT, {
-    variables: {
-      threadId: getThreadData && getThreadData.getThread.id
+  const { data: conversationData, subscribeToMore } = useQuery(
+    GET_SINGLE_CHAT,
+    {
+      variables: {
+        threadId:
+          getThreadData && getThreadData.getThread && getThreadData.getThread.id
+      }
     }
-  });
+  );
 
-  // url profile user / user who created it
-  // subscriptions left
-  // useSubscription(MESSAGE_SUBSCRIPTION, {
-  //   variables: {
-  //     notifier: creator.id
-  //   }
-  // });
+  useEffect(() => {
+    subscribeToMore({
+      document: NEW_MESSAGE,
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) return prev;
+        if (authUser) {
+          // check  if the creator and the notifier of the message are either url user / auth user
+          // this is going to be fixed later as I dont know any better solution yet.
+          if (
+            (subscriptionData.data.newMessage.notifier.id === creator.id &&
+              subscriptionData.data.newMessage.creator.id ===
+                authUser.loadUser.id) ||
+            (subscriptionData.data.newMessage.notifier.id ===
+              authUser.loadUser.id &&
+              subscriptionData.data.newMessage.creator.id === creator.id)
+          ) {
+            const msg = subscriptionData.data.newMessage;
+            return { getSingleChat: [...prev.getSingleChat, msg] };
+          }
+        }
+      }
+    });
+  }, [subscribeToMore, authUser, creator]);
 
   const [createMessage] = useMutation(CREATE_MESSAGE, {
     variables: {
       notifier: creator.id,
       body: message,
       threadId: threadData && threadData.createThread.id
-    },
-    update: async (proxy, result) => {
-      const data = proxy.readQuery({
-        query: GET_SINGLE_CHAT,
-        variables: {
-          threadId: threadData.createThread.id
-        }
-      });
-      const newData = {
-        getSingleChat: [...data.getSingleChat, result.data.createMessage]
-      };
-
-      proxy.writeQuery({
-        query: GET_SINGLE_CHAT,
-        data: newData,
-        variables: {
-          threadId: threadData.createThread.id
-        }
-      });
     }
   });
 

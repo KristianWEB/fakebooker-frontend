@@ -620,16 +620,18 @@ export const CREATE_MESSAGE = gql`
   }
 `;
 
-export const MESSAGE_SUBSCRIPTION = gql`
-  subscription newMessage($notifier: String!) {
-    newMessage(notifier: $notifier) {
+export const NEW_MESSAGE = gql`
+  subscription {
+    newMessage {
       id
       creator {
+        id
         firstName
         lastName
         avatarImage
       }
       notifier {
+        id
         firstName
         lastName
         avatarImage
