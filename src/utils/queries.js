@@ -705,3 +705,35 @@ export const GET_SINGLE_CHAT = gql`
     }
   }
 `;
+
+export const GET_NEWSFEED = gql`
+  {
+    getNewsfeed {
+      id
+      userId {
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      image
+      createdAt
+      comments {
+        id
+        userId {
+          firstName
+          lastName
+          avatarImage
+        }
+        postId
+        body
+        createdAt
+      }
+      likes {
+        userId
+        postId
+        createdAt
+      }
+    }
+  }
+`;
