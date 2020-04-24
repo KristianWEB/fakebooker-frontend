@@ -405,3 +405,31 @@ export const RejectFriendBtn = styled(Button)`
     color: #050505;
   }
 `;
+
+export const MessageContainer = styled(Row)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8px;
+`;
+export const MessageBtn = styled(Button)`
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: ${props => props.theme.primaryTextColor};
+  font-size: 15px;
+  background-color: #e4e6eb;
+  transition: 0.1s;
+
+  &&:focus,
+  &&:active {
+    background-color: #e4e6eb;
+    border-color: #e4e6eb;
+    color: ${props => props.theme.primaryTextColor};
+  }
+  &&:hover {
+    background-color: #d8dadf;
+    color: ${props => props.theme.primaryTextColor};
+  }
+`;

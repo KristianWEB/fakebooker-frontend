@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useQuery, useSubscription } from "@apollo/react-hooks";
 import { notification, Row } from "antd";
 import Navbar from "../../components/Navbar/Navbar";
+import SingleChat from "../../components/Message/SingleChat";
 import Notification from "../../components/Notification/Notification";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import {
@@ -16,6 +17,10 @@ import {
 
 const AboutLayout = ({ children }) => {
   const { data: userData } = useQuery(LOAD_USER);
+  const [openChat, setOpenChat] = useState({
+    visible: false,
+    creator: null
+  });
 
   const { username } = useParams();
 
@@ -105,13 +110,21 @@ const AboutLayout = ({ children }) => {
     <>
       {userData && (
         <Row>
-          <Navbar onProfile user={userData.loadUser} />
+          <Navbar
+            onProfile
+            user={userData.loadUser}
+            setOpenChat={setOpenChat}
+          />
           <ProfileHeader
             user={profileData ? profileData.loadFromUrlUser : userData.loadUser}
             authUser={userData.loadUser}
             readOnly={readOnly()}
+            setOpenChat={setOpenChat}
           />
           {children}
+          {openChat.visible && (
+            <SingleChat creator={openChat.creator} setOpenChat={setOpenChat} />
+          )}
         </Row>
       )}
     </>

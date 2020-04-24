@@ -597,3 +597,111 @@ export const GET_SINGLE_NOTIFICATION = gql`
     }
   }
 `;
+
+export const CREATE_MESSAGE = gql`
+  mutation createMessage($notifier: String!, $body: String!, $threadId: ID!) {
+    createMessage(notifier: $notifier, body: $body, threadId: $threadId) {
+      id
+      creator {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      notifier {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      createdAt
+    }
+  }
+`;
+
+export const NEW_MESSAGE = gql`
+  subscription {
+    newMessage {
+      id
+      creator {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      notifier {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      createdAt
+    }
+  }
+`;
+
+export const GET_MESSAGES = gql`
+  {
+    getMessages {
+      id
+      creator {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      notifier {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      createdAt
+    }
+  }
+`;
+
+export const CREATE_THREAD = gql`
+  mutation createThread($urlUser: String!) {
+    createThread(urlUser: $urlUser) {
+      id
+      participantsIds
+      createdAt
+    }
+  }
+`;
+
+export const GET_THREAD = gql`
+  query getThread($urlUser: String!) {
+    getThread(urlUser: $urlUser) {
+      id
+      participantsIds
+      createdAt
+    }
+  }
+`;
+
+export const GET_SINGLE_CHAT = gql`
+  query getSingleChat($threadId: String) {
+    getSingleChat(threadId: $threadId) {
+      id
+      creator {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      notifier {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      createdAt
+    }
+  }
+`;
