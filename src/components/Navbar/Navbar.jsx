@@ -118,10 +118,12 @@ Navbar.propTypes = {
   onProfile: PropTypes.bool,
   user: PropTypes.shape({
     avatarImage: PropTypes.string
-  })
+  }),
+  setOpenChat: PropTypes.func
 };
 
 Navbar.defaultProps = {
   onProfile: null,
-  user: null
+  user: null,
+  setOpenChat: null
 };

@@ -58,6 +58,7 @@ const SingleChat = ({ creator, setOpenChat }) => {
   useEffect(() => {
     subscribeToMore({
       document: NEW_MESSAGE,
+      // eslint-disable-next-line consistent-return
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data) return prev;
         if (authUser) {
