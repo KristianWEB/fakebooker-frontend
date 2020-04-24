@@ -9,6 +9,7 @@ export const ChatContainer = styled.div`
   bottom: 30px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
   border-radius: 8px;
+  width: 330px;
 `;
 
 export const ChatHeader = styled(Row)`
@@ -40,9 +41,10 @@ export const ChatBodyContainer = styled.div`
 `;
 
 export const CreatorContainer = styled(Row)`
-  display: flex;
+  display: inline-flex;
   align-items: flex-end;
   margin: 8px;
+  margin-right: 20%;
 `;
 
 export const CreatorImg = styled.img`
@@ -58,13 +60,13 @@ export const CreatorMessage = styled(Row)`
   font-family: "Roboto";
   background-color: #e4e6eb;
   border-radius: 18px;
-  width: 170px;
 `;
 
 export const AuthUserContainer = styled(Row)`
   display: flex;
   justify-content: flex-end;
   margin: 8px;
+  margin-left: 20%;
 `;
 
 export const AuthUserMessage = styled(Row)`
