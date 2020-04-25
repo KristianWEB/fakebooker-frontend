@@ -7,7 +7,6 @@ import MessageList from "../Message/MessageList";
 import {
   NavContainer,
   LogoContainer,
-  InputContainer,
   SearchBar,
   User,
   Username,
@@ -16,7 +15,8 @@ import {
   MessageContainer,
   BackArrowContainer,
   NotificationContainer,
-  SettingsContainer
+  SettingsContainer,
+  SearchContainer
 } from "./Navbar.styles";
 import { ReactComponent as Logo } from "../../assets/icons/logo.svg";
 import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
@@ -24,6 +24,7 @@ import { ReactComponent as ChatIcon } from "../../assets/icons/chatbox.svg";
 import { ReactComponent as BellIcon } from "../../assets/icons/notifications.svg";
 import { ReactComponent as BackArrowIcon } from "../../assets/icons/arrow-back-outline.svg";
 import { ReactComponent as SettingsIcon } from "../../assets/icons/caret-down-outline.svg";
+import { ReactComponent as SearchIcon } from "../../assets/icons/search-outline.svg";
 
 const Navbar = ({ onProfile, user, setOpenChat }) => {
   const [navbarBgColor, setNavbarBgColor] = useState(false);
@@ -89,10 +90,17 @@ const Navbar = ({ onProfile, user, setOpenChat }) => {
       ) : (
         <NavContainer bgColor="#ffffff">
           <LogoContainer>
-            <Logo width={41} height={41} style={{ borderRadius: "50%" }} />
-            <InputContainer>
-              <SearchBar placeholder="Search in Fakebooker" />
-            </InputContainer>
+            <Logo width={41} height={41} />
+            <SearchBar
+              placeholder="Search in Fakebooker"
+              prefix={
+                // eslint-disable-next-line react/jsx-wrap-multilines
+                <SearchIcon width={20} height={20} />
+              }
+            />
+            <SearchContainer>
+              <SearchIcon width={20} height={20} />
+            </SearchContainer>
           </LogoContainer>
           <NewsFeedContainer>
             <HomeIcon width={25} height={25} fill="#1877f2" />

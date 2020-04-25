@@ -737,3 +737,35 @@ export const GET_NEWSFEED = gql`
     }
   }
 `;
+
+export const NEW_POST = gql`
+  subscription {
+    newPost {
+      id
+      userId {
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      image
+      createdAt
+      comments {
+        id
+        userId {
+          firstName
+          lastName
+          avatarImage
+        }
+        postId
+        body
+        createdAt
+      }
+      likes {
+        userId
+        postId
+        createdAt
+      }
+    }
+  }
+`;

@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery, useSubscription } from "@apollo/react-hooks";
 import { notification, Row } from "antd";
 import Navbar from "../../components/Navbar/Navbar";
 import SingleChat from "../../components/Message/SingleChat";
 import Notification from "../../components/Notification/Notification";
-import CreatePostDefault from "../../components/Post/CreatePostDefault";
 import Post from "../../components/Post/Post";
 import {
   LOAD_USER_FROM_DB,
   NEW_NOTIFICATION,
   DELETE_NOTIFICATION,
   GET_NOTIFICATIONS,
-  GET_NEWSFEED
+  GET_NEWSFEED,
+  NEW_POST
 } from "../../utils/queries";
-import { InfoContainer, PostsSection } from "./NewsfeedPage.styles";
+import {
+  InfoContainer,
+  PostsSection,
+  PostContainer,
+  ContactsSidebar,
+  ContactsContainer,
+  ContactsHeader,
+  ContactsHeading,
+  ContactsBody,
+  ContactAvatar,
+  ContactFullName
+} from "./NewsfeedPage.styles";
+import { ReactComponent as SearchIcon } from "../../assets/icons/search-outline.svg";
 
 const NewsfeedPage = () => {
   const { data: userData } = useQuery(LOAD_USER_FROM_DB);
@@ -24,8 +36,18 @@ const NewsfeedPage = () => {
 
   useQuery(GET_NOTIFICATIONS);
 
-  const { data: newsfeedData } = useQuery(GET_NEWSFEED);
-  console.log(newsfeedData);
+  const { data: newsfeedData, subscribeToMore } = useQuery(GET_NEWSFEED);
+
+  useEffect(() => {
+    subscribeToMore({
+      document: NEW_POST,
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) return prev;
+        const post = subscriptionData.data.newPost;
+        return { getNewsfeed: [post, ...prev.getNewsfeed] };
+      }
+    });
+  }, [subscribeToMore]);
 
   const openNotification = newNotification => {
     notification.info({
@@ -91,17 +113,65 @@ const NewsfeedPage = () => {
         <Row>
           <Navbar user={userData.loadUserFromDB} setOpenChat={setOpenChat} />
           <InfoContainer>
-            <PostsSection>
-              <CreatePostDefault user={userData.loadUserFromDB} />
-              {newsfeedData &&
-                newsfeedData.getNewsfeed.map(post => (
-                  <Post
-                    key={post.id}
-                    post={post}
-                    user={userData.loadUserFromDB}
-                  />
+            <PostContainer>
+              <PostsSection>
+                {newsfeedData &&
+                  newsfeedData.getNewsfeed.map(post => (
+                    <Post
+                      key={post.id}
+                      post={post}
+                      user={userData.loadUserFromDB}
+                    />
+                  ))}
+              </PostsSection>
+            </PostContainer>
+            <ContactsSidebar>
+              <ContactsContainer>
+                <ContactsHeader>
+                  <ContactsHeading>Contacts</ContactsHeading>
+                  <SearchIcon width={25} height={25} />
+                </ContactsHeader>
+                {userData.loadUserFromDB.friends.map(friend => (
+                  <ContactsBody
+                    key={friend.id}
+                    onClick={() =>
+                      setOpenChat({
+                        visible: true,
+                        creator: friend
+                      })
+                    }
+                  >
+                    <ContactAvatar
+                      src={friend.avatarImage}
+                      alt="contact avatar"
+                    />
+                    <ContactFullName>
+                      {friend.firstName} {friend.lastName}
+                    </ContactFullName>
+                  </ContactsBody>
                 ))}
-            </PostsSection>
+                {/* <ContactsBody>
+                  <ContactAvatar
+                    src={userData.loadUserFromDB.avatarImage}
+                    alt="contact avatar"
+                  />
+                  <ContactFullName>
+                    {userData.loadUserFromDB.firstName}{" "}
+                    {userData.loadUserFromDB.lastName}
+                  </ContactFullName>
+                </ContactsBody>
+                <ContactsBody>
+                  <ContactAvatar
+                    src={userData.loadUserFromDB.avatarImage}
+                    alt="contact avatar"
+                  />
+                  <ContactFullName>
+                    {userData.loadUserFromDB.firstName}{" "}
+                    {userData.loadUserFromDB.lastName}
+                  </ContactFullName>
+                </ContactsBody> */}
+              </ContactsContainer>
+            </ContactsSidebar>
           </InfoContainer>
           {openChat.visible && (
             <SingleChat creator={openChat.creator} setOpenChat={setOpenChat} />

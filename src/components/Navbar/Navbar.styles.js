@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "antd";
+import { Button, Input, Row } from "antd";
 
 export const NavContainer = styled.div`
   background-color: ${props => props.bgColor};
@@ -12,6 +12,7 @@ export const NavContainer = styled.div`
   position: sticky;
   top: 0;
   z-index: 5;
+  box-shadow: ${props => props.theme.boxShadow};
 `;
 
 export const LogoContainer = styled.div`
@@ -19,10 +20,6 @@ export const LogoContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
-`;
-
-export const InputContainer = styled.div`
-  /* position: relative; */
 `;
 
 export const NewsFeedContainer = styled.div`
@@ -34,21 +31,31 @@ export const NewsFeedContainer = styled.div`
   align-items: center;
   justify-content: center;
   border-bottom: 2px solid #1876f2;
+
+  @media only screen and (max-width: 575px) {
+    display: none;
+  }
 `;
 
-export const SearchBar = styled.input`
-  display: block;
-  width: 240px;
-  height: 41px;
-  border-radius: 1.375rem;
-  background-color: #f0f2f5;
-  border: none;
-  margin-left: 0.5rem;
-  padding: 0 15px;
-  font-size: 1.4rem;
+export const SearchBar = styled(Input)`
+  display: none;
+  @media only screen and (min-width: 767px) {
+    display: block;
+    .ant-input {
+      display: block;
+      width: 240px;
+      height: 41px;
+      border-radius: 20px;
+      background-color: #f0f2f5;
+      border: none;
+      margin-left: 8px;
+      /* padding: 0 20px; */
+      font-size: 1.5rem;
 
-  ::placeholder {
-    color: #8f9296;
+      ::placeholder {
+        color: #8f9296;
+      }
+    }
   }
 `;
 
@@ -147,6 +154,10 @@ export const User = styled.div`
   &:active {
     background-color: #e4e6eb;
   }
+
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const Username = styled.h1`
@@ -180,5 +191,18 @@ export const SettingsContainer = styled(Button)`
   &&:hover {
     background-color: #d8dadf;
     color: ${props => props.theme.primaryTextColor};
+  }
+`;
+
+export const SearchContainer = styled(Row)`
+  display: none;
+  @media only screen and (max-width: 767px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 8px;
+    background-color: #f0f2f5;
   }
 `;
