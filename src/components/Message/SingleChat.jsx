@@ -92,6 +92,7 @@ const SingleChat = ({ creator, setOpenChat }) => {
     e.preventDefault();
     await createThread();
     createMessage();
+    setMessage("");
   };
 
   return (

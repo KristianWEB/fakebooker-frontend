@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { Avatar, Popover } from "antd";
 import NotificationList from "../Notification/NotificationList";
 import MessageList from "../Message/MessageList";
 import {
   NavContainer,
   LogoContainer,
-  InputContainer,
   SearchBar,
+  User,
+  Username,
   ProfileContainer,
   NewsFeedContainer,
-  NewsFeedHeading,
   MessageContainer,
   BackArrowContainer,
-  NotificationContainer
+  NotificationContainer,
+  SettingsContainer,
+  SearchContainer
 } from "./Navbar.styles";
 import { ReactComponent as Logo } from "../../assets/icons/logo.svg";
-import UserPictureSample from "../../assets/images/Post-profile1.jpg";
 import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
 import { ReactComponent as ChatIcon } from "../../assets/icons/chatbox.svg";
 import { ReactComponent as BellIcon } from "../../assets/icons/notifications.svg";
 import { ReactComponent as BackArrowIcon } from "../../assets/icons/arrow-back-outline.svg";
+import { ReactComponent as SettingsIcon } from "../../assets/icons/caret-down-outline.svg";
+import { ReactComponent as SearchIcon } from "../../assets/icons/search-outline.svg";
 
 const Navbar = ({ onProfile, user, setOpenChat }) => {
   const [navbarBgColor, setNavbarBgColor] = useState(false);
@@ -86,26 +90,60 @@ const Navbar = ({ onProfile, user, setOpenChat }) => {
       ) : (
         <NavContainer bgColor="#ffffff">
           <LogoContainer>
-            <Logo width={41} height={41} style={{ borderRadius: "50%" }} />
-            <InputContainer>
-              <SearchBar placeholder="Search in Fakebooker" />
-            </InputContainer>
+            <Logo width={41} height={41} />
+            <SearchBar
+              placeholder="Search in Fakebooker"
+              prefix={
+                // eslint-disable-next-line react/jsx-wrap-multilines
+                <SearchIcon width={20} height={20} />
+              }
+            />
+            <SearchContainer>
+              <SearchIcon width={20} height={20} />
+            </SearchContainer>
           </LogoContainer>
           <NewsFeedContainer>
             <HomeIcon width={25} height={25} fill="#1877f2" />
-            <NewsFeedHeading> Newsfeed </NewsFeedHeading>
           </NewsFeedContainer>
           <ProfileContainer>
-            <MessageContainer>
-              <ChatIcon width={25} height={25} />
-            </MessageContainer>
-            <NotificationContainer
-              type="link"
-              data-testid="notificationsButton"
+            <Link to={`/${user.username}`}>
+              <User>
+                <Avatar size={28} src={user.avatarImage} />
+                <Username>{user.firstName}</Username>
+              </User>
+            </Link>
+            <Popover
+              placement="bottomRight"
+              content={<MessageList setOpenChat={setOpenChat} />}
+              trigger="click"
+              overlayStyle={{
+                width: "368px",
+                position: "fixed"
+              }}
             >
-              <BellIcon width={25} height={25} />
-            </NotificationContainer>
-            <Avatar size={41} src={UserPictureSample} />
+              <MessageContainer type="link">
+                <ChatIcon width="25" height="25" />
+              </MessageContainer>
+            </Popover>
+            <Popover
+              placement="bottomRight"
+              content={<NotificationList />}
+              trigger="click"
+              overlayStyle={{
+                width: "368px",
+                position: "fixed"
+              }}
+            >
+              <NotificationContainer
+                type="link"
+                data-testid="notificationsButton"
+              >
+                <BellIcon width="25" height="25" />
+              </NotificationContainer>
+            </Popover>
+            <SettingsContainer type="link">
+              <SettingsIcon width={25} height={25} />
+            </SettingsContainer>
           </ProfileContainer>
         </NavContainer>
       )}
@@ -117,7 +155,10 @@ export default Navbar;
 Navbar.propTypes = {
   onProfile: PropTypes.bool,
   user: PropTypes.shape({
-    avatarImage: PropTypes.string
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    avatarImage: PropTypes.string,
+    username: PropTypes.string
   }),
   setOpenChat: PropTypes.func
 };

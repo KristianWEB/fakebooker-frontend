@@ -14,6 +14,7 @@ import AboutWorkAndEducation from "../pages/AboutPage/AboutWorkAndEducation";
 import AboutContactAndBasicInfo from "../pages/AboutPage/AboutContactAndBasicInfo";
 import PrivateRoute from "./PrivateRoute";
 import AboutRoute from "./AboutRoute";
+import NewsfeedPage from "../pages/NewsfeedPage/NewsfeedPage";
 
 const Routes = () => {
   return (
@@ -37,6 +38,7 @@ const Routes = () => {
           path="/:username/about_contact_and_basic_info"
           component={AboutContactAndBasicInfo}
         />
+        <PrivateRoute exact path="/" component={NewsfeedPage} />
         <Route render={() => <Redirect to="/auth" />} />
       </Switch>
     </Router>

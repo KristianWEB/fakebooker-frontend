@@ -44,7 +44,9 @@ const CreatePostActive = ({ user, showModal }) => {
       const data = proxy.readQuery({
         query: GET_POSTS
       });
-      const newData = { getPosts: [result.data.createPost, ...data.getPosts] };
+      const newData = {
+        getPosts: [result.data.createPost, ...data.getPosts]
+      };
 
       proxy.writeQuery({
         query: GET_POSTS,

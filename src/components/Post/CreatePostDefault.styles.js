@@ -6,7 +6,7 @@ export const CreatePostContainer = styled.div`
   font-family: "Roboto";
   background-color: #fff;
   padding: 8px 12px;
-  width: 500px;
+  width: 100%;
   box-shadow: ${props => props.theme.boxShadow};
   border-radius: 6px;
   align-items: center;

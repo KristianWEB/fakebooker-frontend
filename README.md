@@ -1,4 +1,4 @@
-# The README File is not updated yet so do not follow these guides!!
+# The README File is not updated yet so do not follow these guides ( CHECK PROJECTS TAB FOR MORE INFO )!!
 
 [![Build Status](https://travis-ci.com/open-source-developers/front-end.svg?branch=master)](https://travis-ci.com/open-source-developers/front-end)
 

@@ -11,6 +11,7 @@ export const InfoContainer = styled(Row)`
 
 export const PostsSection = styled(Row)`
   margin-left: 16px;
+  width: 500px;
   @media only screen and (max-width: 575px) {
     margin: 0 5px;
     width: 100%;

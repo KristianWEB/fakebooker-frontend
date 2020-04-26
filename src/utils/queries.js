@@ -131,6 +131,7 @@ export const GET_POSTS = gql`
     getPosts {
       id
       userId {
+        id
         firstName
         lastName
         avatarImage
@@ -218,6 +219,7 @@ export const GET_URL_POSTS = gql`
     getUrlPosts(username: $username) {
       id
       userId {
+        id
         firstName
         lastName
         avatarImage
@@ -250,6 +252,7 @@ export const CREATE_POST = gql`
     createPost(body: $body, image: $image) {
       id
       userId {
+        id
         firstName
         lastName
         avatarImage
@@ -702,6 +705,72 @@ export const GET_SINGLE_CHAT = gql`
       }
       body
       createdAt
+    }
+  }
+`;
+
+export const GET_NEWSFEED = gql`
+  {
+    getNewsfeed {
+      id
+      userId {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      image
+      createdAt
+      comments {
+        id
+        userId {
+          firstName
+          lastName
+          avatarImage
+        }
+        postId
+        body
+        createdAt
+      }
+      likes {
+        userId
+        postId
+        createdAt
+      }
+    }
+  }
+`;
+
+export const NEW_POST = gql`
+  subscription {
+    newPost {
+      id
+      userId {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      image
+      createdAt
+      comments {
+        id
+        userId {
+          firstName
+          lastName
+          avatarImage
+        }
+        postId
+        body
+        createdAt
+      }
+      likes {
+        userId
+        postId
+        createdAt
+      }
     }
   }
 `;
