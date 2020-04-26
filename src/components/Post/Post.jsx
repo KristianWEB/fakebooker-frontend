@@ -34,9 +34,14 @@ import { ReactComponent as SharesSVG } from "../../assets/icons/share-social.svg
 import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/ellipsis-horizontal.svg";
 import Comment from "../Comment/Comment";
 import CreateComment from "../Comment/CreateComment";
-import { DELETE_POST, LIKE_POST, GET_POSTS } from "../../utils/queries";
+import {
+  DELETE_POST,
+  LIKE_POST,
+  GET_POSTS,
+  GET_NEWSFEED
+} from "../../utils/queries";
 
-const Post = ({ post, theme, user, readOnly }) => {
+const Post = ({ post, theme, user, readOnly, onNewsfeed }) => {
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
@@ -50,18 +55,34 @@ const Post = ({ post, theme, user, readOnly }) => {
       postId: post.id
     },
     update: proxy => {
-      const data = proxy.readQuery({
-        query: GET_POSTS
-      });
+      if (!onNewsfeed) {
+        const data = proxy.readQuery({
+          query: GET_POSTS
+        });
 
-      const newPostList = data.getPosts.filter(p => p.id !== post.id);
+        const newPostList = data.getPosts.filter(p => p.id !== post.id);
 
-      const newData = { getPosts: [...newPostList] };
+        const newData = { getPosts: [...newPostList] };
 
-      proxy.writeQuery({
-        query: GET_POSTS,
-        data: newData
-      });
+        proxy.writeQuery({
+          query: GET_POSTS,
+          data: newData
+        });
+      }
+      if (onNewsfeed) {
+        const data = proxy.readQuery({
+          query: GET_NEWSFEED
+        });
+
+        const newPostList = data.getNewsfeed.filter(p => p.id !== post.id);
+
+        const newData = { getNewsfeed: [...newPostList] };
+
+        proxy.writeQuery({
+          query: GET_NEWSFEED,
+          data: newData
+        });
+      }
     }
   });
 
@@ -93,7 +114,7 @@ const Post = ({ post, theme, user, readOnly }) => {
               </PostCreation>
             </NameWrapper>
           </ProfileWrapper>
-          {!readOnly && (
+          {!readOnly && post.userId.id === user.id && (
             <Popover content={SettingsPopup} placement="bottomRight">
               <ThreeDotsSvg
                 style={{
@@ -179,9 +200,15 @@ const Post = ({ post, theme, user, readOnly }) => {
             comment={comment}
             postId={post.id}
             urlProfile={readOnly}
+            onNewsfeed={onNewsfeed}
           />
         ))}
-        <CreateComment user={user} postId={post.id} urlProfile={readOnly} />
+        <CreateComment
+          user={user}
+          postId={post.id}
+          urlProfile={readOnly}
+          onNewsfeed={onNewsfeed}
+        />
       </CommentsContainer>
     </PostContainer>
   );
@@ -193,6 +220,7 @@ Post.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.string,
     userId: PropTypes.shape({
+      id: PropTypes.string,
       avatarImage: PropTypes.string,
       firstName: PropTypes.string,
       lastName: PropTypes.string
@@ -217,12 +245,14 @@ Post.propTypes = {
     gender: PropTypes.string,
     coverImage: PropTypes.string
   }),
-  readOnly: PropTypes.bool
+  readOnly: PropTypes.bool,
+  onNewsfeed: PropTypes.bool
 };
 
 Post.defaultProps = {
   post: null,
   theme: null,
   user: null,
-  readOnly: null
+  readOnly: null,
+  onNewsfeed: null
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
 import { Tooltip } from "antd";
 import Image from "../Image/Image";
 import {
@@ -23,13 +23,7 @@ import {
 } from "./CreatePostActive.styles";
 import { ReactComponent as CloseBtn } from "../../assets/icons/close.svg";
 import { ReactComponent as MarkdownIcon } from "../../assets/icons/logo-markdown.svg";
-import {
-  CREATE_POST,
-  GET_POSTS,
-  DELETE_IMAGE,
-  GET_NEWSFEED,
-  NEW_POST
-} from "../../utils/queries";
+import { CREATE_POST, GET_POSTS, DELETE_IMAGE } from "../../utils/queries";
 
 const CreatePostActive = ({ user, showModal }) => {
   const [body, setBody] = useState("");
@@ -40,7 +34,6 @@ const CreatePostActive = ({ user, showModal }) => {
       publicId: image.public_id
     }
   });
-  const { subscribeToMore } = useQuery(GET_NEWSFEED);
 
   const [createPost] = useMutation(CREATE_POST, {
     variables: {

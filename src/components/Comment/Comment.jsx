@@ -3,7 +3,12 @@ import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Avatar, Popover } from "antd";
 import { useMutation } from "@apollo/react-hooks";
-import { DELETE_COMMENT, GET_POSTS, GET_URL_POSTS } from "../../utils/queries";
+import {
+  DELETE_COMMENT,
+  GET_POSTS,
+  GET_URL_POSTS,
+  GET_NEWSFEED
+} from "../../utils/queries";
 import {
   CommentContainer,
   BodyContainer,
@@ -13,7 +18,12 @@ import {
 } from "./Comment.styles";
 import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/ellipsis-horizontal.svg";
 
-const Comment = ({ comment: { userId, body, id }, postId, urlProfile }) => {
+const Comment = ({
+  comment: { userId, body, id },
+  postId,
+  urlProfile,
+  onNewsfeed
+}) => {
   const [isHovering, setIsHovering] = useState(false);
   const { username } = useParams();
 
@@ -25,7 +35,7 @@ const Comment = ({ comment: { userId, body, id }, postId, urlProfile }) => {
       postId
     },
     update: (proxy, result) => {
-      if (!urlProfile) {
+      if (!urlProfile && !onNewsfeed) {
         const data = proxy.readQuery({
           query: GET_POSTS
         });
@@ -44,7 +54,8 @@ const Comment = ({ comment: { userId, body, id }, postId, urlProfile }) => {
           query: GET_POSTS,
           data: { getPosts }
         });
-      } else {
+      }
+      if (urlProfile && !onNewsfeed) {
         const data = proxy.readQuery({
           query: GET_URL_POSTS,
           variables: {
@@ -68,6 +79,26 @@ const Comment = ({ comment: { userId, body, id }, postId, urlProfile }) => {
           variables: {
             username
           }
+        });
+      }
+      if (onNewsfeed && !urlProfile) {
+        const data = proxy.readQuery({
+          query: GET_NEWSFEED
+        });
+
+        const getNewsfeed = data.getNewsfeed.map(post => {
+          if (post.id === postId) {
+            return {
+              ...post,
+              comments: post.comments.filter(c => c.id !== id)
+            };
+          }
+          return post;
+        });
+
+        proxy.writeQuery({
+          query: GET_NEWSFEED,
+          data: { getNewsfeed }
         });
       }
     }
@@ -128,11 +159,13 @@ Comment.propTypes = {
     id: PropTypes.string
   }),
   postId: PropTypes.string,
-  urlProfile: PropTypes.bool
+  urlProfile: PropTypes.bool,
+  onNewsfeed: PropTypes.bool
 };
 
 Comment.defaultProps = {
   comment: null,
   postId: null,
-  urlProfile: null
+  urlProfile: null,
+  onNewsfeed: null
 };

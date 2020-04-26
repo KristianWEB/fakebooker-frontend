@@ -121,6 +121,7 @@ const NewsfeedPage = () => {
                       key={post.id}
                       post={post}
                       user={userData.loadUserFromDB}
+                      onNewsfeed
                     />
                   ))}
               </PostsSection>
@@ -150,26 +151,6 @@ const NewsfeedPage = () => {
                     </ContactFullName>
                   </ContactsBody>
                 ))}
-                {/* <ContactsBody>
-                  <ContactAvatar
-                    src={userData.loadUserFromDB.avatarImage}
-                    alt="contact avatar"
-                  />
-                  <ContactFullName>
-                    {userData.loadUserFromDB.firstName}{" "}
-                    {userData.loadUserFromDB.lastName}
-                  </ContactFullName>
-                </ContactsBody>
-                <ContactsBody>
-                  <ContactAvatar
-                    src={userData.loadUserFromDB.avatarImage}
-                    alt="contact avatar"
-                  />
-                  <ContactFullName>
-                    {userData.loadUserFromDB.firstName}{" "}
-                    {userData.loadUserFromDB.lastName}
-                  </ContactFullName>
-                </ContactsBody> */}
               </ContactsContainer>
             </ContactsSidebar>
           </InfoContainer>

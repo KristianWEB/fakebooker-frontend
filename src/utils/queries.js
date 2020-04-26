@@ -131,6 +131,7 @@ export const GET_POSTS = gql`
     getPosts {
       id
       userId {
+        id
         firstName
         lastName
         avatarImage
@@ -218,6 +219,7 @@ export const GET_URL_POSTS = gql`
     getUrlPosts(username: $username) {
       id
       userId {
+        id
         firstName
         lastName
         avatarImage
@@ -250,6 +252,7 @@ export const CREATE_POST = gql`
     createPost(body: $body, image: $image) {
       id
       userId {
+        id
         firstName
         lastName
         avatarImage
@@ -711,6 +714,7 @@ export const GET_NEWSFEED = gql`
     getNewsfeed {
       id
       userId {
+        id
         firstName
         lastName
         avatarImage
@@ -743,6 +747,7 @@ export const NEW_POST = gql`
     newPost {
       id
       userId {
+        id
         firstName
         lastName
         avatarImage

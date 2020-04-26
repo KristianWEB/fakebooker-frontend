@@ -5,9 +5,14 @@ import PropTypes from "prop-types";
 import { Avatar } from "antd";
 import { useMutation } from "@apollo/react-hooks";
 import { CommentInput, CommentForm } from "./CreateComment.styles";
-import { CREATE_COMMENT, GET_POSTS, GET_URL_POSTS } from "../../utils/queries";
+import {
+  CREATE_COMMENT,
+  GET_POSTS,
+  GET_URL_POSTS,
+  GET_NEWSFEED
+} from "../../utils/queries";
 
-const CreateComment = ({ user, postId, urlProfile }) => {
+const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
   const [body, setBody] = useState("");
   const { username } = useParams();
 
@@ -18,7 +23,7 @@ const CreateComment = ({ user, postId, urlProfile }) => {
       postId
     },
     update: (proxy, result) => {
-      if (!urlProfile) {
+      if (!urlProfile && !onNewsfeed) {
         const data = proxy.readQuery({
           query: GET_POSTS
         });
@@ -37,7 +42,8 @@ const CreateComment = ({ user, postId, urlProfile }) => {
           query: GET_POSTS,
           data: { getPosts }
         });
-      } else {
+      }
+      if (urlProfile && !onNewsfeed) {
         const data = proxy.readQuery({
           query: GET_URL_POSTS,
           variables: {
@@ -60,6 +66,26 @@ const CreateComment = ({ user, postId, urlProfile }) => {
           variables: {
             username
           }
+        });
+      }
+      if (!urlProfile && onNewsfeed) {
+        const data = proxy.readQuery({
+          query: GET_NEWSFEED
+        });
+
+        const getNewsfeed = data.getNewsfeed.map(post => {
+          if (post.id === postId) {
+            return {
+              ...post,
+              comments: [...post.comments, result.data.createComment]
+            };
+          }
+          return post;
+        });
+
+        proxy.writeQuery({
+          query: GET_NEWSFEED,
+          data: { getNewsfeed }
         });
       }
     }
@@ -102,11 +128,13 @@ CreateComment.propTypes = {
     coverImage: PropTypes.string
   }),
   postId: PropTypes.string,
-  urlProfile: PropTypes.bool
+  urlProfile: PropTypes.bool,
+  onNewsfeed: PropTypes.bool
 };
 
 CreateComment.defaultProps = {
   user: null,
   postId: null,
-  urlProfile: null
+  urlProfile: null,
+  onNewsfeed: null
 };
