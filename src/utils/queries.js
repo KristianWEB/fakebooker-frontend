@@ -63,13 +63,13 @@ export const LOAD_USER = gql`
       coverImage
       username
       workPlace
-      # friends {
-      #   id
-      #   firstName
-      #   lastName
-      #   avatarImage
-      #   username
-      # }
+      friends {
+        id
+        firstName
+        lastName
+        avatarImage
+        username
+      }
     }
   }
 `;
@@ -300,15 +300,6 @@ export const DELETE_COMMENT = gql`
   mutation deleteComment($postId: ID!, $commentId: ID!) {
     deleteComment(postId: $postId, commentId: $commentId) {
       id
-      userId {
-        firstName
-        lastName
-        avatarImage
-        id
-      }
-      postId
-      body
-      createdAt
     }
   }
 `;
@@ -336,16 +327,7 @@ export const ADD_WORKPLACE = gql`
   mutation addWorkplace($body: String!) {
     addWorkplace(body: $body) {
       id
-      firstName
-      lastName
-      email
-      gender
-      birthday
-      avatarImage
-      coverImage
       workPlace
-      username
-      school
     }
   }
 `;
@@ -354,16 +336,7 @@ export const DELETE_WORKPLACE = gql`
   mutation {
     deleteWorkplace {
       id
-      firstName
-      lastName
-      email
-      gender
-      birthday
-      avatarImage
-      coverImage
       workPlace
-      username
-      school
     }
   }
 `;
@@ -372,15 +345,6 @@ export const ADD_SCHOOL = gql`
   mutation addSchool($body: String!) {
     addSchool(body: $body) {
       id
-      firstName
-      lastName
-      email
-      gender
-      birthday
-      avatarImage
-      coverImage
-      workPlace
-      username
       school
     }
   }
@@ -390,15 +354,6 @@ export const DELETE_SCHOOL = gql`
   mutation {
     deleteSchool {
       id
-      firstName
-      lastName
-      email
-      gender
-      birthday
-      avatarImage
-      coverImage
-      workPlace
-      username
       school
     }
   }
@@ -408,16 +363,7 @@ export const ADD_GENDER = gql`
   mutation addGender($gender: String!) {
     addGender(gender: $gender) {
       id
-      firstName
-      lastName
-      email
       gender
-      birthday
-      avatarImage
-      coverImage
-      workPlace
-      username
-      school
     }
   }
 `;
@@ -426,16 +372,7 @@ export const DELETE_GENDER = gql`
   mutation {
     deleteGender {
       id
-      firstName
-      lastName
-      email
       gender
-      birthday
-      avatarImage
-      coverImage
-      workPlace
-      username
-      school
     }
   }
 `;
@@ -444,16 +381,7 @@ export const ADD_BIRTHDAY = gql`
   mutation addBirthday($birthday: Date!) {
     addBirthday(birthday: $birthday) {
       id
-      firstName
-      lastName
-      email
-      gender
       birthday
-      avatarImage
-      coverImage
-      workPlace
-      username
-      school
     }
   }
 `;
@@ -462,16 +390,7 @@ export const DELETE_BIRTHDAY = gql`
   mutation {
     deleteBirthday {
       id
-      firstName
-      lastName
-      email
-      gender
       birthday
-      avatarImage
-      coverImage
-      workPlace
-      username
-      school
     }
   }
 `;
@@ -480,17 +399,7 @@ export const DELETE_HOMEPLACE = gql`
   mutation {
     deleteHomeplace {
       id
-      firstName
-      lastName
-      email
-      gender
       homePlace
-      birthday
-      avatarImage
-      coverImage
-      workPlace
-      username
-      school
     }
   }
 `;
@@ -499,17 +408,7 @@ export const ADD_HOMEPLACE = gql`
   mutation addHomeplace($homePlace: String!) {
     addHomeplace(homePlace: $homePlace) {
       id
-      firstName
-      lastName
-      email
       homePlace
-      gender
-      birthday
-      avatarImage
-      coverImage
-      workPlace
-      username
-      school
     }
   }
 `;
