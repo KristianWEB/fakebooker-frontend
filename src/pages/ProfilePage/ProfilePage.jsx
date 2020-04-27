@@ -10,7 +10,7 @@ import CreatePostDefault from "../../components/Post/CreatePostDefault";
 import Post from "../../components/Post/Post";
 import About from "../../components/About/About";
 import {
-  LOAD_USER_FROM_DB,
+  LOAD_USER,
   GET_POSTS,
   NEW_NOTIFICATION,
   DELETE_NOTIFICATION,
@@ -25,7 +25,8 @@ import {
 } from "./ProfilePage.styles";
 
 const ProfilePage = () => {
-  const { data: userData } = useQuery(LOAD_USER_FROM_DB);
+  const { data: userData } = useQuery(LOAD_USER);
+
   const [openChat, setOpenChat] = useState({
     visible: false,
     creator: null
@@ -35,7 +36,7 @@ const ProfilePage = () => {
   /* eslint-disable consistent-return */
   const readOnly = () => {
     if (userData) {
-      if (userData.loadUserFromDB.username !== username) {
+      if (userData.loadUser.username !== username) {
         return true;
         // eslint-disable-next-line no-else-return
       } else {
@@ -76,7 +77,7 @@ const ProfilePage = () => {
       });
       if (
         subscriptionData.data.newNotification.notifier.id ===
-        userData.loadUserFromDB.id
+        userData.loadUser.id
       ) {
         openNotification(subscriptionData.data.newNotification);
         const newData = {
@@ -128,16 +129,12 @@ const ProfilePage = () => {
         <Row>
           <Navbar
             onProfile
-            user={userData.loadUserFromDB}
+            user={userData.loadUser}
             setOpenChat={setOpenChat}
           />
           <ProfileHeader
-            user={
-              profileData
-                ? profileData.loadFromUrlUser
-                : userData.loadUserFromDB
-            }
-            authUser={userData.loadUserFromDB}
+            user={profileData ? profileData.loadFromUrlUser : userData.loadUser}
+            authUser={userData.loadUser}
             readOnly={readOnly()}
             setOpenChat={setOpenChat}
           />
@@ -145,24 +142,16 @@ const ProfilePage = () => {
             <FixedContainer>
               <About
                 user={
-                  profileData
-                    ? profileData.loadFromUrlUser
-                    : userData.loadUserFromDB
+                  profileData ? profileData.loadFromUrlUser : userData.loadUser
                 }
                 readOnly={readOnly()}
               />
               <PostsSection>
-                {!readOnly() && (
-                  <CreatePostDefault user={userData.loadUserFromDB} />
-                )}
+                {!readOnly() && <CreatePostDefault user={userData.loadUser} />}
                 {!readOnly() &&
                   postsData &&
                   postsData.getPosts.map(post => (
-                    <Post
-                      key={post.id}
-                      post={post}
-                      user={userData.loadUserFromDB}
-                    />
+                    <Post key={post.id} post={post} user={userData.loadUser} />
                   ))}
                 {readOnly() &&
                   urlPostsData &&
@@ -170,7 +159,7 @@ const ProfilePage = () => {
                     <Post
                       key={post.id}
                       post={post}
-                      user={userData.loadUserFromDB}
+                      user={userData.loadUser}
                       readOnly
                     />
                   ))}

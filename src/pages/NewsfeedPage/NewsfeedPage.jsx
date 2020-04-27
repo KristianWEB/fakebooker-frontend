@@ -6,7 +6,7 @@ import SingleChat from "../../components/Message/SingleChat";
 import Notification from "../../components/Notification/Notification";
 import Post from "../../components/Post/Post";
 import {
-  LOAD_USER_FROM_DB,
+  LOAD_USER,
   NEW_NOTIFICATION,
   DELETE_NOTIFICATION,
   GET_NOTIFICATIONS,
@@ -28,7 +28,7 @@ import {
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-outline.svg";
 
 const NewsfeedPage = () => {
-  const { data: userData } = useQuery(LOAD_USER_FROM_DB);
+  const { data: userData } = useQuery(LOAD_USER);
   const [openChat, setOpenChat] = useState({
     visible: false,
     creator: null
@@ -72,7 +72,7 @@ const NewsfeedPage = () => {
       });
       if (
         subscriptionData.data.newNotification.notifier.id ===
-        userData.loadUserFromDB.id
+        userData.loadUser.id
       ) {
         openNotification(subscriptionData.data.newNotification);
         const newData = {
@@ -111,7 +111,7 @@ const NewsfeedPage = () => {
     <>
       {userData && (
         <Row>
-          <Navbar user={userData.loadUserFromDB} setOpenChat={setOpenChat} />
+          <Navbar user={userData.loadUser} setOpenChat={setOpenChat} />
           <InfoContainer>
             <PostContainer>
               <PostsSection>
@@ -120,7 +120,7 @@ const NewsfeedPage = () => {
                     <Post
                       key={post.id}
                       post={post}
-                      user={userData.loadUserFromDB}
+                      user={userData.loadUser}
                       onNewsfeed
                     />
                   ))}
@@ -132,7 +132,7 @@ const NewsfeedPage = () => {
                   <ContactsHeading>Contacts</ContactsHeading>
                   <SearchIcon width={25} height={25} />
                 </ContactsHeader>
-                {userData.loadUserFromDB.friends.map(friend => (
+                {userData.loadUser.friends.map(friend => (
                   <ContactsBody
                     key={friend.id}
                     onClick={() =>

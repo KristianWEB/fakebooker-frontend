@@ -63,32 +63,7 @@ export const LOAD_USER = gql`
       coverImage
       username
       workPlace
-      # friends {
-      #   id
-      #   firstName
-      #   lastName
-      #   avatarImage
-      #   username
-      # }
-    }
-  }
-`;
-
-export const LOAD_USER_FROM_DB = gql`
-  {
-    loadUserFromDB {
-      id
-      school
-      firstName
-      lastName
-      email
       homePlace
-      birthday
-      gender
-      avatarImage
-      coverImage
-      username
-      workPlace
       friends {
         id
         firstName
