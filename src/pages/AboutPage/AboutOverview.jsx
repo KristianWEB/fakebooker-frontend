@@ -17,13 +17,13 @@ import {
   HomeContainer,
   HomeBody
 } from "./AboutOverview.styles";
-import { LOAD_USER_FROM_DB, LOAD_FROM_URL_USER } from "../../utils/queries";
+import { LOAD_USER, LOAD_FROM_URL_USER } from "../../utils/queries";
 import { ReactComponent as WorkplaceIcon } from "../../assets/icons/briefcase.svg";
 import { ReactComponent as SchoolIcon } from "../../assets/icons/school.svg";
 import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
 
 const AboutPageOverview = () => {
-  const { data: userData } = useQuery(LOAD_USER_FROM_DB);
+  const { data: userData } = useQuery(LOAD_USER);
   const { username } = useParams();
 
   const { data: profileData } = useQuery(LOAD_FROM_URL_USER, {
@@ -32,11 +32,11 @@ const AboutPageOverview = () => {
     }
   });
 
-  if (!userData || !profileData) {
+  if (!userData && !profileData) {
     return null;
   }
 
-  const { loadUserFromDB: user } = userData;
+  const { loadUser: user } = userData;
   const { loadFromUrlUser: profileUser } = profileData;
 
   /* eslint-disable consistent-return */

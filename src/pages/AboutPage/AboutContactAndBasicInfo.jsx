@@ -42,7 +42,7 @@ import {
   HomeplaceBody
 } from "./AboutContactAndBasicInfo.styles";
 import {
-  LOAD_USER_FROM_DB,
+  LOAD_USER,
   ADD_GENDER,
   DELETE_GENDER,
   ADD_BIRTHDAY,
@@ -90,7 +90,7 @@ const AboutContactAndBasicInfo = () => {
 
   const [deleteHomeplace] = useMutation(DELETE_HOMEPLACE);
 
-  const { data: userData } = useQuery(LOAD_USER_FROM_DB);
+  const { data: userData } = useQuery(LOAD_USER);
 
   const { username } = useParams();
 
@@ -104,7 +104,7 @@ const AboutContactAndBasicInfo = () => {
     return null;
   }
 
-  const { loadUserFromDB: user } = userData;
+  const { loadUser: user } = userData;
   const { loadFromUrlUser: profileUser } = profileData;
 
   /* eslint-disable consistent-return */

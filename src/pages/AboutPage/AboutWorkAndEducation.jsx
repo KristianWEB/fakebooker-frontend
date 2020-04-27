@@ -34,7 +34,7 @@ import {
 import {
   ADD_WORKPLACE,
   ADD_SCHOOL,
-  LOAD_USER_FROM_DB,
+  LOAD_USER,
   DELETE_WORKPLACE,
   DELETE_SCHOOL,
   LOAD_FROM_URL_USER
@@ -77,7 +77,7 @@ const AboutPageWorkAndEducation = () => {
     setSchoolBody("");
   };
 
-  const { data: userData } = useQuery(LOAD_USER_FROM_DB);
+  const { data: userData } = useQuery(LOAD_USER);
   const { username } = useParams();
 
   // skip this when on auth page
@@ -87,11 +87,11 @@ const AboutPageWorkAndEducation = () => {
     }
   });
 
-  if (!userData && profileData) {
+  if (!userData && !profileData) {
     return null;
   }
 
-  const { loadUserFromDB: user } = userData;
+  const { loadUser: user } = userData;
   const { loadFromUrlUser: profileUser } = profileData;
 
   /* eslint-disable consistent-return */
