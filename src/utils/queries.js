@@ -454,8 +454,8 @@ export const REMOVE_FRIEND = gql`
 `;
 
 export const GET_SINGLE_NOTIFICATION = gql`
-  query getSingleNotification($creator: String!, $notifier: String!) {
-    getSingleNotification(creator: $creator, notifier: $notifier) {
+  query getSingleNotification($urlUser: String!) {
+    getSingleNotification(urlUser: $urlUser) {
       id
       creator {
         id
