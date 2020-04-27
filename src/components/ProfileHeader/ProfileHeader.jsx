@@ -54,25 +54,12 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
     GET_SINGLE_NOTIFICATION,
     {
       variables: {
-        creator: user.id,
-        notifier: authUser.id
+        urlUser: user.id
       },
       skip: !readOnly
     }
   );
-
-  const { data: notificationAuthData, authLoading } = useQuery(
-    GET_SINGLE_NOTIFICATION,
-    {
-      variables: {
-        creator: authUser.id,
-        notifier: user.id
-      },
-      skip: !readOnly
-    }
-  );
-
-  // if user A already sent a friend request to user B => fetch the notification with status "pending" and action "Sent you a friend request" and if it return data then show accept/rejectFriend buttons
+  // if user A already sent a friend request to user B => fetch the notification with status "pending" and action "Sent you a friend request" and if it returns data then show accept/rejectFriend buttons
   const [acceptFriend, { data: acceptFriendData }] = useMutation(
     ACCEPT_FRIEND,
     {
@@ -83,8 +70,7 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
         const data = proxy.readQuery({
           query: GET_SINGLE_NOTIFICATION,
           variables: {
-            creator: user.id,
-            notifier: authUser.id
+            urlUser: user.id
           }
         });
 
@@ -102,8 +88,7 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
           query: GET_SINGLE_NOTIFICATION,
           data: newData,
           variables: {
-            creator: user.id,
-            notifier: authUser.id
+            urlUser: user.id
           }
         });
       }
@@ -117,8 +102,7 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
       const data = proxy.readQuery({
         query: GET_SINGLE_NOTIFICATION,
         variables: {
-          creator: user.id,
-          notifier: authUser.id
+          urlUser: user.id
         }
       });
 
@@ -132,8 +116,7 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
           query: GET_SINGLE_NOTIFICATION,
           data: newData,
           variables: {
-            creator: user.id,
-            notifier: authUser.id
+            urlUser: user.id
           }
         });
       }
@@ -145,35 +128,20 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
     },
     update: async (proxy, result) => {
       if (user && authUser) {
-        const data = proxy.readQuery({
-          query: GET_SINGLE_NOTIFICATION,
-          variables: {
-            creator: user.id,
-            notifier: authUser.id
-          }
-        });
-
         const newData = { getSingleNotification: null };
 
-        if (
-          data.getSingleNotification.id.toString() ===
-          result.data.removeFriend.toString()
-        ) {
-          proxy.writeQuery({
-            query: GET_SINGLE_NOTIFICATION,
-            data: newData,
-            variables: {
-              creator: user.id,
-              notifier: authUser.id
-            }
-          });
-        }
+        proxy.writeQuery({
+          query: GET_SINGLE_NOTIFICATION,
+          data: newData,
+          variables: {
+            urlUser: user.id
+          }
+        });
       }
     }
   });
 
   if (loading) return <Skeleton />;
-  if (authLoading) return <Skeleton />;
 
   const FriendActions = () => (
     <ActionsContainer>
@@ -279,7 +247,9 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
             <FriendActionContainer>
               {notificationData &&
                 notificationData.getSingleNotification &&
-                notificationData.getSingleNotification.status === "pending" && (
+                notificationData.getSingleNotification.status === "pending" &&
+                notificationData.getSingleNotification.notifier.id ===
+                  authUser.id && (
                   <Popover
                     placement="bottomRight"
                     content={<FriendActions />}
@@ -294,10 +264,11 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
                     </RespondBtn>
                   </Popover>
                 )}
-              {((notificationAuthData &&
-                notificationAuthData.getSingleNotification &&
-                notificationAuthData.getSingleNotification.status ===
-                  "pending") ||
+              {((notificationData &&
+                notificationData.getSingleNotification &&
+                notificationData.getSingleNotification.status === "pending" &&
+                notificationData.getSingleNotification.creator.id ===
+                  authUser.id) ||
                 friendData) && (
                 <FriendBtn type="link">
                   <AddFriendIcon width={16} height={16} />
@@ -305,9 +276,7 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
                 </FriendBtn>
               )}
               {notificationData &&
-                notificationAuthData &&
                 !notificationData.getSingleNotification &&
-                !notificationAuthData.getSingleNotification &&
                 !friendData && (
                   <FriendBtn type="link" onClick={addFriend}>
                     <AddFriendIcon width={16} height={16} />
@@ -332,24 +301,6 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
                   </RespondBtn>
                 </Popover>
               )}
-              {notificationAuthData &&
-                notificationAuthData.getSingleNotification &&
-                notificationAuthData.getSingleNotification.status ===
-                  "accepted" && (
-                  <Popover
-                    placement="bottomRight"
-                    content={<RemoveContainer />}
-                    trigger="click"
-                    overlayStyle={{
-                      width: "344px"
-                    }}
-                  >
-                    <RespondBtn type="link">
-                      <AddFriendIcon width={16} height={16} fill="#1876f2" />
-                      <RespondText>Friends</RespondText>
-                    </RespondBtn>
-                  </Popover>
-                )}
             </FriendActionContainer>
             <MessageContainer
               onClick={() => setOpenChat({ visible: true, creator: user })}
