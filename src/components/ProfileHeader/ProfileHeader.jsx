@@ -54,8 +54,8 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
     GET_SINGLE_NOTIFICATION,
     {
       variables: {
-        creator: user && user.id,
-        notifier: authUser && authUser.id
+        creator: user.id,
+        notifier: authUser.id
       },
       skip: !readOnly
     }
@@ -65,8 +65,8 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
     GET_SINGLE_NOTIFICATION,
     {
       variables: {
-        creator: authUser && authUser.id,
-        notifier: user && user.id
+        creator: authUser.id,
+        notifier: user.id
       },
       skip: !readOnly
     }
@@ -83,14 +83,15 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
         const data = proxy.readQuery({
           query: GET_SINGLE_NOTIFICATION,
           variables: {
-            creator: user && user.id,
-            notifier: authUser && authUser.id
+            creator: user.id,
+            notifier: authUser.id
           }
         });
 
         const {
           acceptFriend: { status }
         } = result.data;
+
         const newData = {
           getSingleNotification: {
             ...data.getSingleNotification,
@@ -143,28 +144,30 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
       creator: user.username
     },
     update: async (proxy, result) => {
-      const data = proxy.readQuery({
-        query: GET_SINGLE_NOTIFICATION,
-        variables: {
-          creator: user.id,
-          notifier: authUser.id
-        }
-      });
-
-      const newData = { getSingleNotification: null };
-
-      if (
-        data.getSingleNotification.id.toString() ===
-        result.data.removeFriend.toString()
-      ) {
-        proxy.writeQuery({
+      if (user && authUser) {
+        const data = proxy.readQuery({
           query: GET_SINGLE_NOTIFICATION,
-          data: newData,
           variables: {
             creator: user.id,
             notifier: authUser.id
           }
         });
+
+        const newData = { getSingleNotification: null };
+
+        if (
+          data.getSingleNotification.id.toString() ===
+          result.data.removeFriend.toString()
+        ) {
+          proxy.writeQuery({
+            query: GET_SINGLE_NOTIFICATION,
+            data: newData,
+            variables: {
+              creator: user.id,
+              notifier: authUser.id
+            }
+          });
+        }
       }
     }
   });
