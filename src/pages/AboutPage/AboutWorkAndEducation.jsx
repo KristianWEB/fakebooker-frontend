@@ -90,6 +90,7 @@ const AboutPageWorkAndEducation = () => {
   if (!userData && profileData) {
     return null;
   }
+
   const { loadUserFromDB: user } = userData;
   const { loadFromUrlUser: profileUser } = profileData;
 

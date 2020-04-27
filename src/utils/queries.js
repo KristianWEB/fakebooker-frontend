@@ -63,13 +63,13 @@ export const LOAD_USER = gql`
       coverImage
       username
       workPlace
-      friends {
-        id
-        firstName
-        lastName
-        avatarImage
-        username
-      }
+      # friends {
+      #   id
+      #   firstName
+      #   lastName
+      #   avatarImage
+      #   username
+      # }
     }
   }
 `;
