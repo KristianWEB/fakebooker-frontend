@@ -19,7 +19,7 @@ export const AboutContainer = styled.div`
 export const AboutHeading = styled.h1`
   font-size: 2rem;
   font-weight: bold;
-  color: ${props => props.theme.primaryTextColor};
+  color: ${props => props.theme.secondaryText};
   margin-bottom: 12px;
 `;
 
@@ -66,7 +66,7 @@ export const StyledButton = styled(Button)`
   border: 0;
   font-size: 1.4rem;
   font-weight: 600;
-  color: ${props => props.theme.primaryTextColor};
+  color: ${props => props.theme.secondaryText};
   cursor: pointer;
   transition: 0.1s;
   height: 3.5rem;

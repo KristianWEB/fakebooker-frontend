@@ -52,9 +52,9 @@ export const GlobalStyle = createGlobalStyle`
     &::after {
         width: 90%;
         margin: 0 auto;
-        height: 2px;
+        height: 3px;
         display: block;
-        background: ${props => props.theme.appTextColor};
+        background: ${props => props.theme.primaryText};
         content: "";
     }
   }

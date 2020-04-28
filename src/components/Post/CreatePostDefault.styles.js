@@ -7,8 +7,8 @@ export const CreatePostContainer = styled.div`
   background-color: #fff;
   padding: 8px 12px;
   width: 100%;
-  box-shadow: ${props => props.theme.boxShadow};
-  border-radius: 6px;
+  box-shadow: ${props => props.theme.boxShadow2};
+  border-radius: 8px;
   align-items: center;
   @media only screen and (max-width: 575px) {
     width: 100%;
@@ -25,10 +25,10 @@ export const UserAvatar = styled.img`
 
 export const CreatePostButton = styled(Button)`
   border: none;
-  color: ${props => props.theme.primaryTextColor};
+  color: ${props => props.theme.secondaryText};
   font-weight: 600;
-  font-size: 1.4rem;
-  background-color: #e4e6eb;
+  font-size: 1.5rem;
+  background-color: ${props => props.theme.secondaryBackground};
   border-radius: 4px;
   width: 100%;
   cursor: pointer;
@@ -36,15 +36,16 @@ export const CreatePostButton = styled(Button)`
   transition: 0.1s;
   height: 3.5rem;
 
-  &&:focus,
+  &&:focus {
+    background-color: ${props => props.theme.secondaryBackground};
+    color: ${props => props.theme.secondaryText};
+  }
   &&:active {
-    background-color: #e4e6eb;
-    border-color: #e4e6eb;
-    color: ${props => props.theme.primaryTextColor};
+    transform: scale(0.96);
   }
   &&:hover {
-    background-color: #d8dadf;
-    color: ${props => props.theme.primaryTextColor};
+    background-color: ${props => props.theme.secondaryHoverBackground};
+    color: ${props => props.theme.secondaryText};
   }
 `;
 
@@ -54,22 +55,20 @@ export const CloseContainer = styled(Row)`
   align-items: center;
   border-radius: 50%;
   padding: 0;
-  background-color: #e4e6eb;
+  background-color: ${props => props.theme.secondaryBackground};
   cursor: pointer;
   transition: 0.1s;
   padding: 5px;
 
   &&:focus {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
+    color: ${props => props.theme.secondaryText};
   }
-
   &&:active {
-    background-color: #e4e6eb;
-    color: white;
+    transform: scale(0.96);
   }
-
   &&:hover {
-    background-color: #d8dadf;
-    color: white;
+    background-color: ${props => props.theme.secondaryHoverBackground};
+    color: ${props => props.theme.secondaryText};
   }
 `;

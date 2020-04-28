@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
-import { withTheme } from "styled-components";
 import ReactMarkdown from "react-markdown";
 import { Popover, Button, Avatar } from "antd";
 import {
   PostContainer,
+  SettingsContainer,
   PostHeader,
   PostCard,
   ProfileWrapper,
@@ -15,7 +15,7 @@ import {
   PostContent,
   PostFooter,
   LikesWrapper,
-  LikesDisplay,
+  PopContainer,
   PopButton,
   LikesCount,
   CommentsWrapper,
@@ -41,7 +41,7 @@ import {
   GET_NEWSFEED
 } from "../../utils/queries";
 
-const Post = ({ post, theme, user, readOnly, onNewsfeed }) => {
+const Post = ({ post, user, readOnly, onNewsfeed }) => {
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
@@ -93,11 +93,11 @@ const Post = ({ post, theme, user, readOnly, onNewsfeed }) => {
   });
 
   const SettingsPopup = (
-    <div>
+    <PopContainer>
       <PopButton type="link" onClick={deletePost}>
         Delete Post
       </PopButton>
-    </div>
+    </PopContainer>
   );
   return (
     <PostContainer>
@@ -115,15 +115,22 @@ const Post = ({ post, theme, user, readOnly, onNewsfeed }) => {
             </NameWrapper>
           </ProfileWrapper>
           {!readOnly && post.userId.id === user.id && (
-            <Popover content={SettingsPopup} placement="bottomRight">
-              <ThreeDotsSvg
-                style={{
-                  cursor: "pointer",
-                  width: "25px",
-                  height: "25px",
-                  fill: "#65676b"
-                }}
-              />
+            <Popover
+              content={SettingsPopup}
+              placement="bottom"
+              trigger="click"
+              overlayStyle={{ width: "328px" }}
+            >
+              <SettingsContainer>
+                <ThreeDotsSvg
+                  style={{
+                    cursor: "pointer",
+                    width: "25px",
+                    height: "25px",
+                    fill: "#65676b"
+                  }}
+                />
+              </SettingsContainer>
             </Popover>
           )}
         </PostHeader>
@@ -132,47 +139,34 @@ const Post = ({ post, theme, user, readOnly, onNewsfeed }) => {
         </PostContent>
         {post.image && <PostImage src={post.image} alt="post graphics" />}
         <PostFooter>
-          <LikesWrapper>
-            <LikesDisplay>
-              {liked ? (
-                <Button
-                  type="link"
-                  onClick={likePost}
-                  style={{ padding: 0, display: "flex", alignItems: "center" }}
-                >
-                  <LikesSVG
-                    fill={theme.appTextColor}
-                    width="25px"
-                    height="25px"
-                  />
-                  <LikesCount>{post.likes.length}</LikesCount>
-                </Button>
-              ) : (
-                <Button
-                  type="link"
-                  onClick={likePost}
-                  style={{
-                    padding: 0,
-                    display: "flex",
-                    alignItems: "center"
-                  }}
-                >
-                  <LikesSVG
-                    fill={theme.tertiaryTextColor}
-                    width="25px"
-                    height="25px"
-                  />
-                  <LikesHeading>Like</LikesHeading>
-                </Button>
-              )}
-            </LikesDisplay>
-          </LikesWrapper>
+          {liked ? (
+            <LikesWrapper onClick={likePost}>
+              <Button
+                type="link"
+                style={{ padding: 0, display: "flex", alignItems: "center" }}
+              >
+                <LikesSVG fill="#1876f2" width="25px" height="25px" />
+                <LikesCount>{post.likes.length}</LikesCount>
+              </Button>
+            </LikesWrapper>
+          ) : (
+            <LikesWrapper onClick={likePost}>
+              <Button
+                type="link"
+                onClick={likePost}
+                style={{
+                  padding: 0,
+                  display: "flex",
+                  alignItems: "center"
+                }}
+              >
+                <LikesSVG fill="#65676b" width="25px" height="25px" />
+                <LikesHeading>Like</LikesHeading>
+              </Button>
+            </LikesWrapper>
+          )}
           <CommentsWrapper>
-            <CommentsSVG
-              fill={theme.tertiaryTextColor}
-              width="25px"
-              height="25px"
-            />
+            <CommentsSVG fill="#65676b" width="25px" height="25px" />
             <CommentsCount>
               {post.comments.length === 0 ? (
                 <CommentsHeading>Comment</CommentsHeading>
@@ -182,11 +176,7 @@ const Post = ({ post, theme, user, readOnly, onNewsfeed }) => {
             </CommentsCount>
           </CommentsWrapper>
           <SharesWrapper>
-            <SharesSVG
-              fill={theme.tertiaryTextColor}
-              width="25px"
-              height="25px"
-            />
+            <SharesSVG fill="#65676b" width="25px" height="25px" />
             <SharesCount>
               <SharesHeading>Share</SharesHeading>
             </SharesCount>
@@ -214,7 +204,7 @@ const Post = ({ post, theme, user, readOnly, onNewsfeed }) => {
   );
 };
 
-export default withTheme(Post);
+export default Post;
 
 Post.propTypes = {
   post: PropTypes.shape({
@@ -230,10 +220,6 @@ Post.propTypes = {
     image: PropTypes.string,
     likes: PropTypes.array,
     comments: PropTypes.array
-  }),
-  theme: PropTypes.shape({
-    appTextColor: PropTypes.string,
-    tertiaryTextColor: PropTypes.string
   }),
   user: PropTypes.shape({
     id: PropTypes.string,

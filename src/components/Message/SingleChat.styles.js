@@ -10,6 +10,7 @@ export const ChatContainer = styled.div`
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
   border-radius: 8px;
   width: 330px;
+  z-index: 6;
 `;
 
 export const ChatHeader = styled(Row)`

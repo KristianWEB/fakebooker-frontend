@@ -36,15 +36,11 @@ const CreatePostDefault = ({ user }) => {
           closeIcon={
             // eslint-disable-next-line react/jsx-wrap-multilines
             <CloseContainer>
-              <CloseBtn
-                width="20"
-                height="20"
-                // style={{ marginTop: "25px" }}
-                fill="#62626a"
-              />
+              <CloseBtn width="20" height="20" fill="#62626a" />
             </CloseContainer>
           }
           bodyStyle={{ padding: 0 }}
+          style={{ transition: "0.01s" }}
           centered
         >
           <CreatePostActive showModal={setVisible} user={user} />

@@ -3,48 +3,47 @@ import { Row, Avatar, Button, Input, Form } from "antd";
 
 const { TextArea } = Input;
 export const CreatePostNewContainer = styled(Form)`
-  box-shadow: ${props => props.theme.boxShadow};
+  box-shadow: ${props => props.theme.boxShadow1};
   font-family: Roboto;
-  border-radius: 6px;
+  border-radius: 8px;
 `;
 
 export const CreatePostHeader = styled(Row)`
-  border-bottom: 1px solid ${props => props.theme.lightBorder};
+  border-bottom: 1px solid ${props => props.theme.secondaryHoverBackground};
 `;
 
 export const CreatePostHeading = styled.h1`
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: bold;
   margin-bottom: 0;
   text-align: center;
   margin: 18px auto;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const CloseContainer = styled(Button)`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
   margin-right: 13px;
   margin-top: 13px;
+  border-radius: 50%;
   padding: 0;
-  background-color: #e4e6eb;
+  background-color: ${props => props.theme.secondaryBackground};
   cursor: pointer;
   transition: 0.1s;
   padding: 5px;
 
   &&:focus {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
+    color: ${props => props.theme.secondaryText};
   }
-
   &&:active {
-    background-color: #e4e6eb;
-    color: white;
+    transform: scale(0.96);
   }
-
   &&:hover {
-    background-color: #d8dadf;
-    color: white;
+    background-color: ${props => props.theme.secondaryHoverBackground};
+    color: ${props => props.theme.secondaryText};
   }
 `;
 export const EndPositionContainer = styled(Row)`
@@ -65,8 +64,8 @@ export const UserAvatar = styled(Avatar)`
 `;
 
 export const UserName = styled.h3`
-  color: 1px solid ${props => props.theme.primaryTextColor};
-  font-size: 16px;
+  color: 1px solid ${props => props.theme.secondaryText};
+  font-size: 1.5rem;
   font-weight: bold;
   padding-left: 10px;
 `;
@@ -82,11 +81,11 @@ export const CreatePostInput = styled(TextArea)`
     border: none;
     resize: none;
     width: 100%;
+    color: ${props => props.theme.secondaryText};
 
     &::placeholder {
-      color: #c7cbd1;
-      font-size: 16px;
-      font-weight: 500;
+      color: ${props => props.theme.placeholderColor};
+      font-size: 15px;
     }
     &:focus {
       outline: none;
@@ -106,7 +105,16 @@ export const PublishBtn = styled(Button)`
     font-weight: bold;
     font-size: 1.6rem;
     color: #fff;
-    background-color: ${props => props.theme.appTextColor};
+    background-color: ${props => props.theme.primaryText};
+    transition: 0.1s;
+
+    &&:focus {
+      color: #fff;
+      background-color: ${props => props.theme.primaryText};
+    }
+    &&:active {
+      transform: scale(0.96);
+    }
   }
 `;
 
@@ -118,13 +126,16 @@ export const ImageContainer = styled(Row)`
   height: 36px;
   border-radius: 100%;
 
+  &:focus {
+    background-color: ${props => props.theme.tertiaryBackground};
+  }
+
   &:hover {
-    background-color: #f2f2f2;
-    outline: none;
+    background-color: ${props => props.theme.tertiaryBackground};
   }
 
   &:active {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
   }
 `;
 
@@ -145,12 +156,15 @@ export const MarkdownContainer = styled(Row)`
   height: 36px;
   border-radius: 100%;
 
+  &:focus {
+    background-color: ${props => props.theme.tertiaryBackground};
+  }
+
   &:hover {
-    background-color: #f2f2f2;
-    outline: none;
+    background-color: ${props => props.theme.tertiaryBackground};
   }
 
   &:active {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
   }
 `;

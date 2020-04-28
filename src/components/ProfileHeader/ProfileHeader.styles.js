@@ -12,6 +12,8 @@ export const ProfileHeaderContainer = styled(Row)`
   background-size: cover;
   background-color: white;
   font-family: Roboto;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  z-index: 4;
 `;
 export const ProfileBackgroundContainer = styled.div`
   max-width: 94rem;
@@ -27,7 +29,7 @@ export const ProfileBackgroundContainer = styled.div`
   position: relative;
   font-family: "Roboto";
   margin-bottom: -85px;
-  box-shadow: ${props => props.theme.boxShadow};
+  box-shadow: ${props => props.theme.boxShadow1};
 
   @media only screen and (max-width: 1000px) {
     max-width: 90%;
@@ -69,12 +71,12 @@ export const UserName = styled.h3`
   font-weight: bold;
   margin-top: 5px;
   margin-bottom: 0;
-  color: ${props => props.theme.primaryTextColor};
+  color: ${props => props.theme.secondaryText};
 `;
 
-export const UserDescription = styled.h3`
-  font-size: 1.6rem;
-  color: #97999b;
+export const UserDescription = styled.p`
+  font-size: 1.7rem;
+  color: ${props => props.theme.tertiaryText};
   margin-top: 5px;
   margin-bottom: 0;
   position: relative;
@@ -82,9 +84,8 @@ export const UserDescription = styled.h3`
 
 export const UserDescriptionEdit = styled.button`
   font-size: 1.6rem;
-  color: ${props => props.theme.appTextColor};
+  color: ${props => props.theme.primaryText};
   font-weight: bold;
-  border-radius: 0;
   border: 0;
   background-color: transparent;
   cursor: pointer;
@@ -95,8 +96,7 @@ export const UserDescriptionEdit = styled.button`
 export const UserActionsContainer = styled.div`
   display: flex;
   width: 866px;
-  /* width: 100%; */
-  border-top: 1px solid ${props => props.theme.lightBorder};
+  border-top: 1px solid ${props => props.theme.secondaryHoverBackground};
   margin: 0 auto;
   margin-top: 28px;
   @media only screen and (max-width: 991px) {
@@ -108,8 +108,8 @@ export const UserActionsContainer = styled.div`
 export const UserActionsContainerLink = styled(Button)``;
 
 export const TimelineContainerLink = styled.button`
-  color: #97999b;
-  font-size: 1.6rem;
+  color: ${props => props.theme.tertiaryText};
+  font-size: 1.5rem;
   font-weight: bold;
   border-radius: 6px;
   border: 0;
@@ -118,9 +118,10 @@ export const TimelineContainerLink = styled.button`
   margin: 6px 0;
   padding: 0 16px;
   height: 50px;
+  z-index: 10;
 
   &:hover {
-    background-color: #f2f2f2;
+    background-color: ${props => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -129,13 +130,13 @@ export const TimelineContainerLink = styled.button`
     outline: none;
   }
   &:active {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
   }
 `;
 
 export const AboutContainerLink = styled.button`
-  color: #97999b;
-  font-size: 1.6rem;
+  color: ${props => props.theme.tertiaryText};
+  font-size: 1.5rem;
   font-weight: bold;
   border-radius: 6px;
   border: 0;
@@ -146,7 +147,7 @@ export const AboutContainerLink = styled.button`
   height: 50px;
 
   &:hover {
-    background-color: #f2f2f2;
+    background-color: ${props => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -154,50 +155,14 @@ export const AboutContainerLink = styled.button`
   &:focus {
     outline: none;
   }
-
   &:active {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
   }
 `;
 
 export const FriendsContainerLink = styled.button`
-  color: #97999b;
-  font-size: 1.6rem;
-  font-weight: bold;
-  border-radius: 6px;
-  border: 0;
-  background-color: transparent;
-  cursor: pointer;
-  margin: 6px 0;
-  padding: 0 16px;
-  height: 50px;
-
-  /* &::after {
-    margin-top: 10px;
-    width: 75px;
-    height: 2px;
-    display: block;
-    background: ${props => props.theme.appTextColor};
-    content: "";
-  } */
-
-  &:hover {
-    background-color: #f2f2f2;
-    outline: none;
-  }
-
-  &::after, &:focus {
-    outline: none;
-  }
-
-  &:active {
-    background-color: #e4e6eb;
-  }
-`;
-
-export const PhotosContainerLink = styled.button`
-  color: #97999b;
-  font-size: 1.6rem;
+  color: ${props => props.theme.tertiaryText};
+  font-size: 1.5rem;
   font-weight: bold;
   border-radius: 6px;
   border: 0;
@@ -208,7 +173,7 @@ export const PhotosContainerLink = styled.button`
   height: 50px;
 
   &:hover {
-    background-color: #f2f2f2;
+    background-color: ${props => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -216,14 +181,39 @@ export const PhotosContainerLink = styled.button`
   &:focus {
     outline: none;
   }
-
   &:active {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
+  }
+`;
+
+export const PhotosContainerLink = styled.button`
+  color: ${props => props.theme.tertiaryText};
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 6px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 6px 0;
+  padding: 0 16px;
+  height: 50px;
+
+  &:hover {
+    background-color: ${props => props.theme.tertiaryBackground};
+    outline: none;
+  }
+
+  &::after,
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    background-color: ${props => props.theme.secondaryBackground};
   }
 `;
 
 export const ChangeAvatarContainer = styled(Button)`
-  background-color: #f0f2f5;
+  background-color: ${props => props.theme.secondaryBackground};
   display: flex;
   justify-content: center;
   justify-content: center;
@@ -237,23 +227,19 @@ export const ChangeAvatarContainer = styled(Button)`
   border: 0;
   cursor: pointer;
   transition: 0.1s;
-
   &&:focus {
-    background-color: #f0f2f5;
+    background-color: ${props => props.theme.secondaryBackground};
+  }
+  &&:hover {
+    background-color: ${props => props.theme.secondaryHoverBackground};
   }
   &&:active {
-    background-color: #e4e6eb;
-    color: ${props => props.theme.primarytextcolor};
-  }
-
-  &&:hover {
-    background-color: #d8dadf;
-    color: ${props => props.theme.primarytextcolor};
+    transform: scale(0.96);
   }
 `;
 
 export const ChangePhotoContainer = styled(Button)`
-  background-color: #f0f2f5;
+  background-color: ${props => props.theme.secondaryBackground};
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -267,25 +253,21 @@ export const ChangePhotoContainer = styled(Button)`
   border: 0;
   padding: 5px 8px;
   transition: 0.1s;
-
   &&:focus {
-    background-color: #f0f2f5;
+    background-color: ${props => props.theme.secondaryBackground};
+  }
+  &&:hover {
+    background-color: ${props => props.theme.secondaryHoverBackground};
   }
   &&:active {
-    background-color: #e4e6eb;
-    color: ${props => props.theme.primarytextcolor};
-  }
-
-  &&:hover {
-    background-color: #d8dadf;
-    color: ${props => props.theme.primarytextcolor};
+    transform: scale(0.96);
   }
 `;
 
 export const ChangeBackgroundHeading = styled.h3`
   margin-left: 4px;
   margin-bottom: 0;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 `;
 
 export const FriendActionContainer = styled(Row)`
@@ -299,27 +281,27 @@ export const FriendBtn = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  color: ${props => props.theme.primaryTextColor};
+  color: ${props => props.theme.secondaryText};
   font-size: 15px;
-  background-color: #e4e6eb;
+  background-color: ${props => props.theme.secondaryBackground};
   transition: 0.1s;
 
-  &&:focus,
+  &&:focus {
+    background-color: ${props => props.theme.secondaryBackground};
+  }
   &&:active {
-    background-color: #e4e6eb;
-    border-color: #e4e6eb;
-    color: ${props => props.theme.primaryTextColor};
+    transform: scale(0.96);
   }
   &&:hover {
-    background-color: #d8dadf;
-    color: ${props => props.theme.primaryTextColor};
+    background-color: ${props => props.theme.secondaryHoverBackground};
   }
 `;
 
 export const FriendText = styled.h1`
   font-weight: 600;
-  font-size: 15px;
+  font-size: 1.5rem;
   line-height: 1;
+  color: ${props => props.theme.secondaryText};
   margin-left: 4px;
 `;
 
@@ -328,81 +310,84 @@ export const RespondBtn = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  color: #1876f2;
+  color: ${props => props.theme.primaryText};
   font-size: 15px;
-  background-color: #e7f3ff;
+  background-color: ${props => props.theme.primaryBackground};
   transition: 0.1s;
 
-  &&:focus,
-  &&:active {
-    color: #1876f2;
-    background-color: #e7f3ff;
+  &&:focus {
+    color: ${props => props.theme.primaryText};
+    background-color: ${props => props.theme.primaryBackground};
   }
+  &&:active {
+    transform: scale(0.96);
+  }
+
   &&:hover {
-    color: #1876f2;
-    background-color: #e7f3ff;
+    color: ${props => props.theme.primaryText};
+    background-color: ${props => props.theme.primaryBackground};
   }
 `;
 
 export const RespondText = styled.h1`
   font-weight: 600;
-  font-size: 15px;
+  font-size: 1.5rem;
   line-height: 1;
   margin-left: 4px;
-  color: #1876f2;
+  color: ${props => props.theme.primaryText};
 `;
 
 export const ActionsContainer = styled(Row)`
   display: flex;
   flex-direction: column;
+  padding: 8px;
 `;
 
 export const AcceptFriendBtn = styled(Button)`
   text-align: left;
-  font-size: 15px;
-  color: #050505;
+  font-size: 1.5rem;
+  color: ${props => props.theme.secondaryText};
   padding: 0 8px;
   transition: 0.1s;
   font-weight: 500;
 
   &:hover {
-    background-color: #f2f2f2;
-    color: #050505;
+    background-color: ${props => props.theme.tertiaryBackground};
+    color: ${props => props.theme.secondaryText};
   }
 
   &::after,
   &:focus {
-    outline: none;
-    color: #050505;
+    color: ${props => props.theme.secondaryText};
   }
 
   &:active {
-    background-color: #e4e6eb;
-    color: #050505;
+    background-color: ${props => props.theme.secondaryHoverBackground};
+    color: ${props => props.theme.secondaryText};
   }
 `;
 
 export const RejectFriendBtn = styled(Button)`
   text-align: left;
-  color: #050505;
+  font-size: 1.5rem;
+  color: ${props => props.theme.secondaryText};
   padding: 0 8px;
-  font-weight: 500;
   transition: 0.1s;
+  font-weight: 500;
 
   &:hover {
-    background-color: #f2f2f2;
-    color: #050505;
+    background-color: ${props => props.theme.tertiaryBackground};
+    color: ${props => props.theme.secondaryText};
   }
 
   &::after,
   &:focus {
-    outline: none;
-    color: #050505;
+    color: ${props => props.theme.secondaryText};
   }
 
   &:active {
-    background-color: #e4e6eb;
-    color: #050505;
+    background-color: ${props => props.theme.secondaryHoverBackground};
+    color: ${props => props.theme.secondaryText};
   }
 `;
 
@@ -417,19 +402,18 @@ export const MessageBtn = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  color: ${props => props.theme.primaryTextColor};
+  color: ${props => props.theme.secondaryText};
   font-size: 15px;
-  background-color: #e4e6eb;
+  background-color: ${props => props.theme.secondaryBackground};
   transition: 0.1s;
 
-  &&:focus,
+  &&:focus {
+    background-color: ${props => props.theme.secondaryBackground};
+  }
   &&:active {
-    background-color: #e4e6eb;
-    border-color: #e4e6eb;
-    color: ${props => props.theme.primaryTextColor};
+    transform: scale(0.96);
   }
   &&:hover {
-    background-color: #d8dadf;
-    color: ${props => props.theme.primaryTextColor};
+    background-color: ${props => props.theme.secondaryHoverBackground};
   }
 `;
