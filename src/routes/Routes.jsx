@@ -13,7 +13,7 @@ import AboutOverview from "../pages/AboutPage/AboutOverview";
 import AboutWorkAndEducation from "../pages/AboutPage/AboutWorkAndEducation";
 import AboutContactAndBasicInfo from "../pages/AboutPage/AboutContactAndBasicInfo";
 import PrivateRoute from "./PrivateRoute";
-import AboutRoute from "./AboutRoute";
+import ProfileRoute from "./ProfileRoute";
 import NewsfeedPage from "../pages/NewsfeedPage/NewsfeedPage";
 
 const Routes = () => {
@@ -21,19 +21,19 @@ const Routes = () => {
     <Router>
       <Switch>
         <Route exact path="/auth" component={AuthPage} />
-        <PrivateRoute exact path="/:username" component={ProfilePage} />
-        <AboutRoute exact path="/:username/photos" component={PhotosPage} />
-        <AboutRoute exact path="/:username/friends" component={FriendsPage} />
-        <AboutRoute
+        <ProfileRoute exact path="/:username" component={ProfilePage} />
+        <ProfileRoute exact path="/:username/photos" component={PhotosPage} />
+        <ProfileRoute exact path="/:username/friends" component={FriendsPage} />
+        <ProfileRoute
           exact
           path="/:username/about_overview"
           component={AboutOverview}
         />
-        <AboutRoute
+        <ProfileRoute
           path="/:username/about_work_and_education"
           component={AboutWorkAndEducation}
         />
-        <AboutRoute
+        <ProfileRoute
           exact
           path="/:username/about_contact_and_basic_info"
           component={AboutContactAndBasicInfo}

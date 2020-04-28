@@ -32,7 +32,7 @@ const AboutPageOverview = () => {
     }
   });
 
-  if (!userData && !profileData) {
+  if (!userData || !profileData) {
     return null;
   }
 

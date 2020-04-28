@@ -1,8 +1,9 @@
 import React from "react";
-import { useQuery, useSubscription } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
-import { Route, Redirect } from "react-router-dom";
+import { useQuery, useSubscription } from "@apollo/react-hooks";
 import { notification } from "antd";
+import { Route, Redirect } from "react-router-dom";
+import ProfileLayout from "./layouts/ProfileLayout";
 import Notification from "../components/Notification/Notification";
 import {
   GET_NOTIFICATIONS,
@@ -11,11 +12,11 @@ import {
   LOAD_USER
 } from "../utils/queries";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+const ProfileRoute = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem("token");
+  const { data: userData } = useQuery(LOAD_USER);
 
   useQuery(GET_NOTIFICATIONS);
-  const { data: userData } = useQuery(LOAD_USER);
 
   const openNotification = newNotification => {
     notification.info({
@@ -25,7 +26,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           <Notification notification={newNotification} />
         </div>
       ),
-      duration: 0,
       placement: "bottomLeft",
       style: {
         padding: "16px 8px"
@@ -74,22 +74,29 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       });
     }
   });
+
   return (
     <Route
       {...rest}
       render={props =>
-        token ? <Component {...props} /> : <Redirect to="/auth" />
+        token ? (
+          <ProfileLayout>
+            <Component {...props} />
+          </ProfileLayout>
+        ) : (
+          <Redirect to="/auth" />
+        )
       }
     />
   );
 };
 
-export default PrivateRoute;
+export default ProfileRoute;
 
-PrivateRoute.propTypes = {
+ProfileRoute.propTypes = {
   component: PropTypes.func
 };
 
-PrivateRoute.defaultProps = {
+ProfileRoute.defaultProps = {
   component: null
 };
