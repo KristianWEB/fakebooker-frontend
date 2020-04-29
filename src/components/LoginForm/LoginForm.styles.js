@@ -8,11 +8,24 @@ export const LoginFormContainer = styled(Row)`
 
 export const StyledButton = styled(Button)`
   && {
-    background-color: #1977f3;
+    background-color: ${props => props.theme.primaryText};
     width: 50%;
     height: auto;
     padding: 8px 0;
     font-size: 1.6rem;
+
+    &&:focus,
+    &&:hover {
+      background-color: ${props => props.theme.primaryText};
+      color: #fff;
+      border-color: none;
+    }
+
+    &&:active {
+      color: #fff;
+      border-color: none;
+      transform: scale(0.96);
+    }
   }
 `;
 
@@ -20,7 +33,7 @@ export const LoginHeading = styled.p`
   font-size: 2.4rem;
   font-weight: 600;
   margin-bottom: 30px;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const EmailLabel = styled.p`
@@ -29,7 +42,7 @@ export const EmailLabel = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const PasswordLabel = styled.p`
@@ -38,12 +51,12 @@ export const PasswordLabel = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const EmailInput = styled(Input)`
   && {
-    background-color: #f5f6f6;
+    background-color: ${props => props.theme.inputColor};
     border: none;
     border-radius: 6px;
   }
@@ -51,10 +64,10 @@ export const EmailInput = styled(Input)`
 export const PasswordInput = styled(Input.Password)`
   && {
     .ant-input.ant-input-lg {
-      background-color: #f5f6f6;
+      background-color: ${props => props.theme.inputColor};
       border: none;
     }
-    background-color: #f5f6f6;
+    background-color: ${props => props.theme.inputColor};
     border: none;
     border-radius: 6px;
   }

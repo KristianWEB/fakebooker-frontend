@@ -7,7 +7,7 @@ export const AboutContainer = styled.div`
   width: 360px;
   height: 100%;
   background-color: #fff;
-  box-shadow: ${props => props.theme.boxShadow};
+  box-shadow: ${props => props.theme.boxShadow2};
   border-radius: 6px;
   padding: 12px;
   font-family: Roboto;
@@ -33,8 +33,8 @@ export const WorkplaceBody = styled.p`
   margin: 0;
   margin-left: 12px;
   line-height: 1;
-  font-size: 15px;
-  color: #050505;
+  font-size: 1.5rem;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const HomeContainer = styled(Row)`
@@ -48,23 +48,15 @@ export const HomeplaceBody = styled.p`
   margin-left: 12px;
   margin-top: 3px;
   line-height: 1;
-  font-size: 15px;
-  color: #050505;
-`;
-
-export const HomeContainerHeading = styled.h2`
-  font-size: 14px;
-  margin: 0;
-  margin-left: 4px;
-  line-height: 1;
-  font-weight: 600;
+  font-size: 1.5rem;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const StyledButton = styled(Button)`
-  background-color: #e4e6eb;
+  background-color: ${props => props.theme.secondaryBackground};
   border-radius: 4px;
   border: 0;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: ${props => props.theme.secondaryText};
   cursor: pointer;
@@ -72,13 +64,15 @@ export const StyledButton = styled(Button)`
   height: 3.5rem;
   margin-top: 12px;
 
-  &&:focus,
-  &&:active {
-    background-color: #e4e6eb;
-    color: ${props => props.theme.primaryTextColor};
+  &&:focus {
+    background-color: ${props => props.theme.secondaryBackground};
   }
+  &&:active {
+    transform: scale(0.96);
+  }
+
   &&:hover {
-    background-color: #d8dadf;
-    color: ${props => props.theme.primaryTextColor};
+    color: ${props => props.theme.secondaryText};
+    background-color: ${props => props.theme.secondaryHoverBackground};
   }
 `;

@@ -87,7 +87,7 @@ const AboutPageWorkAndEducation = () => {
     }
   });
 
-  if (!userData && !profileData) {
+  if (!userData || !profileData) {
     return null;
   }
 

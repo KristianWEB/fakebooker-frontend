@@ -6,7 +6,7 @@ export const InfoContainer = styled(Row)`
   height: 100%;
   padding-top: 28px;
   padding-bottom: 28px;
-  background-color: #f0f2f5;
+  background-color: ${props => props.theme.inputColor};
   font-family: Roboto;
 `;
 
@@ -21,7 +21,7 @@ export const FixedContainer = styled(Row)`
   }
   margin: 0 auto;
   padding: 16px;
-  box-shadow: ${props => props.theme.boxShadow};
+  box-shadow: ${props => props.theme.boxShadow2};
   border-radius: 8px;
 `;
 
@@ -29,6 +29,7 @@ export const PhotosHeading = styled.h1`
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 30px;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const PhotosContainer = styled.div`

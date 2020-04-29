@@ -135,7 +135,7 @@ const RegisterForm = () => {
             <Radio value="Male">Male</Radio>
           </Radio.Group>
         </Form.Item>
-        <StyledButton type="primary" htmlType="submit" block>
+        <StyledButton type="link" htmlType="submit" block>
           Create Account
         </StyledButton>
       </Form>
