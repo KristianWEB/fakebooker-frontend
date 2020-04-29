@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Button, Input, Row } from "antd";
 
 export const NavContainer = styled.div`
-  background-color: ${props => props.bgColor};
+  background-color: #fff;
   width: 100%;
   height: 5.8rem;
   display: flex;
@@ -12,7 +12,7 @@ export const NavContainer = styled.div`
   position: sticky;
   top: 0;
   z-index: 5;
-  box-shadow: ${props => props.theme.boxShadow};
+  box-shadow: ${props => props.theme.boxShadow1};
 `;
 
 export const LogoContainer = styled.div`
@@ -30,7 +30,7 @@ export const NewsFeedContainer = styled.div`
   margin-right: 60px;
   align-items: center;
   justify-content: center;
-  border-bottom: 2px solid #1876f2;
+  border-bottom: 2px solid ${props => props.theme.primaryText};
 
   @media only screen and (max-width: 575px) {
     display: none;
@@ -46,7 +46,7 @@ export const SearchBar = styled(Input)`
       width: 240px;
       height: 41px;
       border-radius: 20px;
-      background-color: #f0f2f5;
+      background-color: ${props => props.theme.inputColor};
       border: none;
       margin-left: 8px;
       /* padding: 0 20px; */
@@ -69,7 +69,7 @@ export const ProfileContainer = styled.div`
 `;
 
 export const BackArrowContainer = styled.div`
-  background-color: #f0f2f5;
+  background-color: ${props => props.theme.inputColor};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -81,7 +81,7 @@ export const BackArrowContainer = styled.div`
 
 export const MessageContainer = styled(Button)`
   padding: 0;
-  background-color: #f0f2f5;
+  background-color: ${props => props.theme.secondaryBackground};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -94,21 +94,25 @@ export const MessageContainer = styled(Button)`
   top: 0;
   cursor: pointer;
 
-  &&:active,
   &&:focus {
-    background-color: #d8dadf;
+    background-color: ${props => props.theme.primaryBackground};
+    svg {
+      fill: ${props => props.theme.primaryText};
+    }
+  }
+  &&:active {
     color: ${props => props.theme.primaryTextColor};
+    transform: scale(0.96);
   }
 
   &&:hover {
-    background-color: #d8dadf;
-    color: ${props => props.theme.primaryTextColor};
+    background-color: ${props => props.theme.secondaryHoverBackground};
   }
 `;
 
 export const NotificationContainer = styled(Button)`
   padding: 0;
-  background-color: #f0f2f5;
+  background-color: ${props => props.theme.secondaryBackground};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -121,15 +125,19 @@ export const NotificationContainer = styled(Button)`
   top: 0;
   cursor: pointer;
 
-  &&:active,
   &&:focus {
-    background-color: #d8dadf;
+    background-color: ${props => props.theme.primaryBackground};
+    svg {
+      fill: ${props => props.theme.primaryText};
+    }
+  }
+  &&:active {
     color: ${props => props.theme.primaryTextColor};
+    transform: scale(0.96);
   }
 
   &&:hover {
-    background-color: #d8dadf;
-    color: ${props => props.theme.primaryTextColor};
+    background-color: ${props => props.theme.secondaryHoverBackground};
   }
 `;
 

@@ -1,23 +1,23 @@
 import styled from "styled-components";
 import { Row } from "antd";
 
-export const NotificationContainer = styled(Row)`
-  && {
-    display: flex;
-    padding: 8px;
-    border-radius: 8px;
-    transition: 0.1s;
+/* I've hardcoded these values because somehow the notification antd component doesnt render them properly */
+export const NotificationContainer = styled.div`
+  display: flex;
+  padding: 8px;
+  border-radius: 8px;
+  transition: 0.1s;
 
-    &&:hover {
-      background-color: #f2f2f2;
-    }
-    &:last-child {
-      margin-bottom: 12px;
-    }
+  &:hover {
+    background-color: #f2f2f2;
+  }
 
-    &:active {
-      background-color: #e4e6eb;
-    }
+  &:last-child {
+    margin-bottom: 12px;
+  }
+
+  &:active {
+    background-color: #e4e6eb;
   }
 `;
 
@@ -52,8 +52,6 @@ export const Body = styled(Row)`
 `;
 
 export const Timestamp = styled.h3`
-/* I've hardcoded these values because somehow the notification antd component doesnt render them properly */
-  /* color: ${props => props.theme.appTextColor}; */
   color: #1877f2;
   font-weight: bold;
   font-size: 1.3rem;

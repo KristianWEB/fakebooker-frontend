@@ -129,8 +129,10 @@ export const TimelineContainerLink = styled.button`
   &:focus {
     outline: none;
   }
+
   &:active {
     background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
   }
 `;
 

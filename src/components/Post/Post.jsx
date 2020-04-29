@@ -153,7 +153,6 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
             <LikesWrapper onClick={likePost}>
               <Button
                 type="link"
-                onClick={likePost}
                 style={{
                   padding: 0,
                   display: "flex",

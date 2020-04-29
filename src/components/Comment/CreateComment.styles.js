@@ -13,11 +13,10 @@ export const CommentInput = styled(Input)`
     margin-left: 5px;
     height: 35px;
     border: none;
-    background-color: #f6f6f6;
+    background-color: ${props => props.theme.inputColor};
 
     &::placeholder {
-      color: #444444;
-      opacity: 0.8;
+      color: ${props => props.theme.placeholderColor};
     }
   }
 `;

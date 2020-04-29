@@ -25,55 +25,61 @@ export const UserImg = styled.img`
 
 export const UserName = styled.h1`
   margin-left: 16px;
-  font-size: 17px;
+  font-size: 1.7rem;
   font-weight: 500;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const FriendBtn = styled(Button)`
   margin-left: auto;
-  color: ${props => props.theme.primaryTextColor};
+  color: ${props => props.theme.secondaryText};
   font-weight: 500;
   font-size: 15px;
-  background-color: #e4e6eb;
+  background-color: ${props => props.theme.secondaryBackground};
   transition: 0.1s;
 
-  &&:focus,
-  &&:active {
-    background-color: #e4e6eb;
-    border-color: #e4e6eb;
-    color: ${props => props.theme.primaryTextColor};
+  &&:focus {
+    background-color: ${props => props.theme.secondaryBackground};
+    color: ${props => props.theme.secondaryText};
   }
+
+  &&:active {
+    transform: scale(0.96);
+  }
+
   &&:hover {
-    background-color: #d8dadf;
-    color: ${props => props.theme.primaryTextColor};
+    background-color: ${props => props.theme.secondaryHoverBackground};
+    color: ${props => props.theme.secondaryText};
   }
 `;
 
 export const ActionsContainer = styled(Row)`
   display: flex;
   flex-direction: column;
+  padding: 8px;
 `;
 
 export const RejectFriendBtn = styled(Button)`
   text-align: left;
-  color: #050505;
+  font-size: 1.5rem;
+  display: flex;
+  color: ${props => props.theme.secondaryText};
   padding: 0 8px;
-  font-weight: 500;
   transition: 0.1s;
+  font-weight: 500;
 
   &:hover {
-    background-color: #f2f2f2;
-    color: #050505;
+    background-color: ${props => props.theme.tertiaryBackground};
+    color: ${props => props.theme.secondaryText};
   }
 
   &::after,
   &:focus {
-    outline: none;
-    color: #050505;
+    color: ${props => props.theme.secondaryText};
   }
 
   &:active {
-    background-color: #e4e6eb;
-    color: #050505;
+    background-color: ${props => props.theme.secondaryHoverBackground};
+    color: ${props => props.theme.secondaryText};
   }
 `;
