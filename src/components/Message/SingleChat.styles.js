@@ -7,9 +7,10 @@ export const ChatContainer = styled.div`
   top: auto;
   right: 30px;
   bottom: 30px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 330px;
+  z-index: 6;
 `;
 
 export const ChatHeader = styled(Row)`
@@ -54,11 +55,11 @@ export const CreatorImg = styled.img`
 `;
 
 export const CreatorMessage = styled(Row)`
-  font-size: 15px;
+  font-size: 1.5rem;
   padding: 8px 12px;
   margin-left: 8px;
   font-family: "Roboto";
-  background-color: #e4e6eb;
+  background-color: ${props => props.theme.secondaryBackground};
   border-radius: 18px;
 `;
 
@@ -70,7 +71,7 @@ export const AuthUserContainer = styled(Row)`
 `;
 
 export const AuthUserMessage = styled(Row)`
-  font-size: 15px;
+  font-size: 1.5rem;
   padding: 8px 12px;
   margin-left: 8px;
   font-family: "Roboto";
@@ -86,13 +87,13 @@ export const InputContainer = styled(Form)`
 
 export const MessageInput = styled(Input)`
   && {
-    background-color: #f0f2f5;
+    background-color: ${props => props.theme.inputColor};
     border: none;
     border-radius: 20px;
 
     ::placeholder {
-      color: #90949c;
-      font-size: 15px;
+      color: ${props => props.theme.placeholderColor};
+      font-size: 1.5rem;
     }
   }
 `;
@@ -110,4 +111,20 @@ export const CloseContainer = styled(Row)`
   justify-content: center;
   align-items: center;
   margin-left: auto;
+  border-radius: 100%;
+
+  &:hover {
+    background-color: ${props => props.theme.tertiaryBackground};
+    outline: none;
+  }
+
+  &::after,
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
+  }
 `;

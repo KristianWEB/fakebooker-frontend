@@ -7,7 +7,7 @@ export const InfoContainer = styled(Row)`
   width: 100%;
   justify-content: flex-end;
   padding-top: 8px;
-  background-color: #f0f2f5;
+  background-color: ${props => props.theme.inputColor};
 `;
 
 export const PostContainer = styled(Row)`
@@ -58,7 +58,7 @@ export const ContactsHeading = styled.h1`
   font-size: 1.7rem;
   font-weight: medium;
   margin-right: auto;
-  color: #65676b;
+  color: ${props => props.theme.tertiaryText};
 `;
 
 export const ContactsBody = styled(Row)`
@@ -70,10 +70,10 @@ export const ContactsBody = styled(Row)`
   cursor: pointer;
 
   &&:hover {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
   }
   &&:active {
-    background-color: #d8dadf;
+    background-color: ${props => props.theme.secondaryHoverBackground};
   }
 `;
 
@@ -87,6 +87,6 @@ export const ContactAvatar = styled.img`
 export const ContactFullName = styled.h1`
   font-size: 1.5rem;
   margin-left: 12px;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   font-weight: medium;
 `;

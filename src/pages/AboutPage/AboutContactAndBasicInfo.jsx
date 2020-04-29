@@ -100,7 +100,7 @@ const AboutContactAndBasicInfo = () => {
     }
   });
 
-  if (!userData) {
+  if (!userData || !profileData) {
     return null;
   }
 

@@ -40,12 +40,12 @@ const FriendsPage = () => {
         <FriendsHeading>Friends</FriendsHeading>
         <FriendsContainer>
           {!readOnly() &&
-            // userData &&
+            userData &&
             userData.loadUser.friends.map(friend => (
               <Friend key={friend.id} user={friend} />
             ))}
           {readOnly() &&
-            // profileData &&
+            profileData &&
             profileData.loadFromUrlUser.friends.map(friend => (
               <Friend key={friend.id} user={friend} readOnly />
             ))}

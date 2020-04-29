@@ -7,7 +7,7 @@ export const AboutInfoContainer = styled(Row)`
   justify-content: center;
   padding-top: 28px;
   padding-bottom: 28px;
-  background-color: #f0f2f5;
+  background-color: ${props => props.theme.inputColor};
 `;
 
 export const AboutContainer = styled(Row)`
@@ -15,7 +15,7 @@ export const AboutContainer = styled(Row)`
   width: 866px;
   background-color: #fff;
   border-radius: 6px;
-  box-shadow: ${props => props.theme.boxShadow};
+  box-shadow: ${props => props.theme.boxShadow2};
 `;
 
 export const AboutSidebar = styled(Row)`
@@ -23,27 +23,27 @@ export const AboutSidebar = styled(Row)`
   flex-direction: column;
   /* flex-grow: 1; */
   width: 33%;
-  border-right: 1px solid #ced0d4;
+  border-right: 1px solid ${props => props.theme.secondaryBackground};
 `;
 
 export const AboutHeading = styled.p`
   font-size: 2rem;
   font-weight: bold;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   margin: 20px 16px;
 `;
 
 export const Overview = styled.p`
-  color: #65676b;
+  color: ${props => props.theme.tertiaryText};
   font-size: 1.5rem;
-  padding: 10px;
-  border-radius: 6px;
   font-weight: 600;
+  border-radius: 6px;
+  padding: 10px;
   margin: 0 6px;
   margin-bottom: 8px;
 
   &:hover {
-    background-color: #f2f2f2;
+    background-color: ${props => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -51,22 +51,24 @@ export const Overview = styled.p`
   &:focus {
     outline: none;
   }
+
   &:active {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
   }
 `;
 
 export const WorkAndEducation = styled.p`
-  color: #65676b;
+  color: ${props => props.theme.tertiaryText};
   font-size: 1.5rem;
-  padding: 10px;
-  border-radius: 6px;
   font-weight: 600;
+  border-radius: 6px;
+  padding: 10px;
   margin: 0 6px;
   margin-bottom: 8px;
 
   &:hover {
-    background-color: #f2f2f2;
+    background-color: ${props => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -74,20 +76,21 @@ export const WorkAndEducation = styled.p`
   &:focus {
     outline: none;
   }
+
   &:active {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
   }
 `;
 
 export const ContactAndBasicInfo = styled.p`
-  color: #1876f2;
-  background-color: #e7f3ff;
+  color: ${props => props.theme.primaryText};
   font-size: 1.5rem;
-  font-weight: 600;
-  border-radius: 6px;
+  background-color: ${props => props.theme.primaryBackground};
   padding: 10px;
+  border-radius: 6px;
+  font-weight: 600;
   margin: 0 6px;
-  margin-bottom: 20px;
 `;
 
 export const AboutBodyContainer = styled(Row)`
@@ -95,11 +98,10 @@ export const AboutBodyContainer = styled(Row)`
   flex-direction: column;
   width: 67%;
   display: flex;
-  /* justify-content: center; */
 `;
 
 export const BasicInfoHeading = styled.h1`
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   font-weight: bold;
   font-size: 1.7rem;
   line-height: 1;
@@ -116,7 +118,7 @@ export const GenderAction = styled(Button)`
 `;
 
 export const GenderSpan = styled.span`
-  color: #1977f3;
+  color: ${props => props.theme.primaryText};
   font-size: 1.5rem;
   font-weight: 500;
   margin-left: 12px;
@@ -131,7 +133,7 @@ export const BirthdayAction = styled(Button)`
 `;
 
 export const BirthdaySpan = styled.span`
-  color: #1977f3;
+  color: ${props => props.theme.primaryText};
   font-size: 1.5rem;
   font-weight: 500;
   margin-left: 12px;
@@ -146,7 +148,7 @@ export const HomeplaceAction = styled(Button)`
 `;
 
 export const HomeplaceSpan = styled.span`
-  color: #1977f3;
+  color: ${props => props.theme.primaryText};
   font-size: 1.5rem;
   font-weight: 500;
   margin-left: 12px;
@@ -192,13 +194,12 @@ export const BirthdayInput = styled(DatePicker)`
 
       &:focus,
       &:active {
-        border-color: #1876f2;
+        border-color: ${props => props.theme.primaryText};
         outline: 0;
         box-shadow: none;
       }
     }
   }
-  /* padding: 20px 16px; */
 `;
 
 export const Footer = styled(Row)`
@@ -210,72 +211,67 @@ export const Footer = styled(Row)`
 export const CancelButton = styled(Button)`
   margin-right: 8px;
   font-weight: 500;
-  background-color: #e4e6eb;
-  color: #050505;
+  background-color: ${props => props.theme.secondaryBackground};
+  color: ${props => props.theme.secondaryText};
   border: none;
   transition: 0.1s;
 
   &&:focus {
-    background-color: #e4e6eb;
-    color: #050505;
     border-color: none;
+    background-color: ${props => props.theme.secondaryBackground};
+    color: ${props => props.theme.secondaryText};
   }
 
   &&:active {
-    background-color: #e4e6eb;
+    transform: scale(0.96);
   }
 
   &&:hover {
-    background-color: #d8dadf;
-    color: #050505;
     border-color: none;
+    color: ${props => props.theme.secondaryText};
+    background-color: ${props => props.theme.secondaryHoverBackground};
   }
 `;
 
 export const SaveButton = styled(Button)`
-  background-color: #1877f2;
+  background-color: ${props => props.theme.primaryText};
   color: #fff;
   font-weight: 500;
   transition: 0.1s;
   border: none;
 
-  &&:focus {
-    background-color: #1877f2;
+  &&:focus,
+  &&:hover {
+    background-color: ${props => props.theme.primaryText};
     color: #fff;
-    border: none;
+    border-color: none;
   }
 
   &&:active {
-    background-color: #1877f2;
     color: #fff;
-    border: none;
-  }
-
-  &&:hover {
-    background-color: #1771e6;
-    color: #fff;
-    border: none;
+    border-color: none;
+    transform: scale(0.96);
   }
 `;
 
 export const Gender = styled(Row)`
   font-size: 1.5rem;
   display: flex;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   align-items: center;
 `;
 
 export const Birthday = styled(Row)`
   font-size: 1.5rem;
   display: flex;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   align-items: center;
 `;
 
 export const Homeplace = styled(Row)`
   font-size: 1.5rem;
   display: flex;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   align-items: center;
 `;
 
@@ -286,23 +282,19 @@ export const SettingsContainer = styled(Button)`
   padding: 0;
   justify-content: center;
   align-items: center;
-  background-color: #e4e6eb;
+  background-color: ${props => props.theme.secondaryBackground};
   cursor: pointer;
   transition: 0.1s;
   padding: 5px;
 
   &&:focus {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
   }
-
   &&:active {
-    background-color: #e4e6eb;
-    color: ${props => props.theme.primarytextcolor};
+    transform: scale(0.96);
   }
-
   &&:hover {
-    background-color: #d8dadf;
-    color: ${props => props.theme.primarytextcolor};
+    background-color: ${props => props.theme.secondaryHoverBackground};
   }
 `;
 
@@ -318,12 +310,12 @@ export const UserGender = styled.p`
   margin: 0;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const GenderCaption = styled.p`
   font-size: 1.2rem;
-  color: #65676b;
+  color: ${props => props.theme.tertiaryText};
   margin: 0;
 `;
 
@@ -339,12 +331,12 @@ export const UserBirthday = styled.p`
   margin: 0;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const BirthdayCaption = styled.p`
   font-size: 1.2rem;
-  color: #65676b;
+  color: ${props => props.theme.tertiaryText};
   margin: 0;
 `;
 
@@ -360,7 +352,7 @@ export const UserHomeplace = styled.p`
   margin: 0;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const HomeplaceCaption = styled.p`

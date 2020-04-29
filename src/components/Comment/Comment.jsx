@@ -14,7 +14,8 @@ import {
   BodyContainer,
   Body,
   Username,
-  PopButton
+  PopButton,
+  ActionsContainer
 } from "./Comment.styles";
 import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/ellipsis-horizontal.svg";
 
@@ -105,11 +106,11 @@ const Comment = ({
   });
 
   const SettingsPopup = (
-    <div>
+    <ActionsContainer>
       <PopButton type="link" onClick={deleteComment}>
         Delete Comment
       </PopButton>
-    </div>
+    </ActionsContainer>
   );
   return (
     <>
@@ -127,8 +128,9 @@ const Comment = ({
         {isHovering && (
           <Popover
             content={SettingsPopup}
-            placement="bottomRight"
-            style={{ marginRight: "20px" }}
+            placement="bottom"
+            overlayStyle={{ width: "344px" }}
+            trigger="click"
           >
             <ThreeDotsSvg
               style={{

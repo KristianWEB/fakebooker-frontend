@@ -67,9 +67,6 @@ const CreatePostActive = ({ user, showModal }) => {
     <CreatePostNewContainer onSubmit={onSubmit}>
       <CreatePostHeader type="flex" justify="center" align="middle">
         <CreatePostHeading>Create Post</CreatePostHeading>
-        {/* <CloseContainer type="link">
-          <CloseBtn width="20" height="20" fill="#62626a" />
-        </CloseContainer> */}
       </CreatePostHeader>
       <CreatePostBody>
         <User type="flex" align="middle">
@@ -90,8 +87,8 @@ const CreatePostActive = ({ user, showModal }) => {
         </User>
         <CreatePostInputContainer>
           <CreatePostInput
-            placeholder="What do you think?"
-            rows={4}
+            placeholder="What's on your mind?"
+            rows={6}
             value={body}
             name="content"
             onChange={e => setBody(e.target.value)}
@@ -115,12 +112,8 @@ const CreatePostActive = ({ user, showModal }) => {
         </CreatePostInputContainer>
       </CreatePostBody>
       <PublishBtnContainer>
-        <PublishBtn
-          type="primary"
-          htmlType="submit"
-          data-testid="createPostBtn"
-        >
-          Publish
+        <PublishBtn type="link" htmlType="submit">
+          Post
         </PublishBtn>
       </PublishBtnContainer>
     </CreatePostNewContainer>

@@ -9,7 +9,7 @@ export const AboutInfoContainer = styled(Row)`
   justify-content: center;
   padding-top: 28px;
   padding-bottom: 28px;
-  background-color: #f0f2f5;
+  background-color: ${props => props.theme.inputColor};
 `;
 
 export const AboutContainer = styled(Row)`
@@ -17,27 +17,27 @@ export const AboutContainer = styled(Row)`
   width: 866px;
   background-color: #fff;
   border-radius: 6px;
-  box-shadow: ${props => props.theme.boxShadow};
+  box-shadow: ${props => props.theme.boxShadow2};
 `;
 
 export const AboutSidebar = styled(Row)`
   display: flex;
   flex-direction: column;
   width: 33%;
-  border-right: 1px solid #ced0d4;
+  border-right: 1px solid ${props => props.theme.secondaryBackground};
 `;
 
 export const AboutHeading = styled.p`
   font-size: 2rem;
   font-weight: bold;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   margin: 20px 16px;
 `;
 
 export const Overview = styled.p`
-  color: #1876f2;
+  color: ${props => props.theme.primaryText};
   font-size: 1.5rem;
-  background-color: #e7f3ff;
+  background-color: ${props => props.theme.primaryBackground};
   padding: 10px;
   border-radius: 6px;
   font-weight: 600;
@@ -46,7 +46,7 @@ export const Overview = styled.p`
 `;
 
 export const WorkAndEducation = styled.p`
-  color: #65676b;
+  color: ${props => props.theme.tertiaryText};
   font-size: 1.5rem;
   font-weight: 600;
   border-radius: 6px;
@@ -55,7 +55,7 @@ export const WorkAndEducation = styled.p`
   margin-bottom: 8px;
 
   &:hover {
-    background-color: #f2f2f2;
+    background-color: ${props => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -63,13 +63,15 @@ export const WorkAndEducation = styled.p`
   &:focus {
     outline: none;
   }
+
   &:active {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
   }
 `;
 
 export const ContactAndBasicInfo = styled.p`
-  color: #65676b;
+  color: ${props => props.theme.tertiaryText};
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0 6px;
@@ -77,9 +79,8 @@ export const ContactAndBasicInfo = styled.p`
   border-radius: 6px;
   margin-left: 6px;
   margin-bottom: 20px;
-
   &:hover {
-    background-color: #f2f2f2;
+    background-color: ${props => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -87,8 +88,10 @@ export const ContactAndBasicInfo = styled.p`
   &:focus {
     outline: none;
   }
+
   &:active {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
   }
 `;
 
@@ -106,7 +109,7 @@ export const WorkplaceContainer = styled(Row)`
 `;
 
 export const WorkplaceBody = styled.h1`
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   font-size: 1.5rem;
   font-weight: 400;
   margin-left: 16px;
@@ -119,7 +122,7 @@ export const SchoolContainer = styled(Row)`
 `;
 
 export const SchoolBody = styled.h1`
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   font-size: 1.5rem;
   margin-left: 16px;
   font-weight: 400;
@@ -132,7 +135,7 @@ export const HomeContainer = styled(Row)`
 `;
 
 export const HomeBody = styled.h1`
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   font-size: 1.5rem;
   margin-left: 16px;
   font-weight: 400;

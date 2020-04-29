@@ -11,14 +11,14 @@ export const MessageContainer = styled.div`
     transition: 0.1s;
 
     &&:hover {
-      background-color: #f2f2f2;
+      background-color: ${props => props.theme.tertiaryBackground};
     }
 
     &&:last-child {
       margin-bottom: 12px;
     }
     &&:active {
-      background-color: #e4e6eb;
+      background-color: ${props => props.theme.secondaryBackground};
     }
   }
 `;
@@ -35,13 +35,13 @@ export const CreatorAvatar = styled.img`
 
 export const CreatorFullName = styled.span`
   font-weight: bold;
-  color: #050505;
-  font-size: 15px;
+  color: ${props => props.theme.secondaryText};
+  font-size: 1.5rem;
 `;
 
 export const Body = styled(Row)`
   font-size: 1.5rem;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,7 +49,7 @@ export const Body = styled(Row)`
 
 export const Footer = styled(Row)`
   display: flex;
-  color: #65676b;
-  font-size: 13px;
+  color: ${props => props.theme.tertiaryText};
+  font-size: 1.3rem;
   font-weight: 500;
 `;
