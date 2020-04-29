@@ -12,6 +12,9 @@ export const GlobalStyle = createGlobalStyle`
    html, body {
     font-size: 62.5%;
    } 
+   body {
+     background-color: #f0f2f5;
+   }
    #root {
        width: 100%;
        height: 100%;
