@@ -236,7 +236,6 @@ Post.propTypes = {
 
 Post.defaultProps = {
   post: null,
-  theme: null,
   user: null,
   readOnly: null,
   onNewsfeed: null
