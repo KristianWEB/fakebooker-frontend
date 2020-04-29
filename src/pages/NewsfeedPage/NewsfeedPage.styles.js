@@ -7,7 +7,6 @@ export const InfoContainer = styled(Row)`
   width: 100%;
   justify-content: flex-end;
   padding-top: 8px;
-  background-color: ${props => props.theme.inputColor};
 `;
 
 export const PostContainer = styled(Row)`

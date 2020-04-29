@@ -31,6 +31,7 @@ export const RegisterPageContainer = styled(Row)`
     display: flex;
     width: 100%;
     height: 100%;
+    background-color: #fff;
   }
 `;
 export const SVGImgBackground = styled(BgImg)`
