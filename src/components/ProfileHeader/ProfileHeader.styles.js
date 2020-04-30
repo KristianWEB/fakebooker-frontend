@@ -358,6 +358,8 @@ export const ActionsContainer = styled.div`
   display: flex;
   position: absolute;
   top: 48px;
+  left: -60px;
+  transform: translateX(-45%);
   background-color: #fff;
   border-radius: 8px;
   width: 344px;

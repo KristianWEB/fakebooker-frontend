@@ -22,12 +22,17 @@ export const PopContainer = styled.div`
   top: 48px;
   background-color: #fff;
   border-radius: 8px;
-  width: 344px;
+  width: 328px;
   box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
     inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   z-index: 20;
   flex-direction: column;
   padding: 8px;
+  transform: translateX(-45%);
+
+  @media only screen and (max-width: 575px) {
+    width: 200px;
+  }
 `;
 
 export const PopButton = styled.button`
