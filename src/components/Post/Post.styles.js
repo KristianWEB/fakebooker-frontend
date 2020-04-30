@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Row, Card, Button } from "antd";
 
-export const PostContainer = styled(Row)`
+export const PostContainer = styled.div`
   margin: 1.6rem 0;
+  padding: 13px;
   &&:first-child {
     margin-top: 0;
   }
@@ -16,16 +17,19 @@ export const PostContainer = styled(Row)`
   }
 `;
 
-export const PopContainer = styled(Row)`
+export const PopContainer = styled.div`
   padding: 8px;
 `;
-export const PopButton = styled(Button)`
+export const PopButton = styled.button`
   text-align: left;
   font-size: 1.5rem;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
   display: flex;
   width: 100%;
+  background-color: #fff;
   color: ${props => props.theme.secondaryText};
-  padding: 0 8px;
   transition: 0.1s;
   font-weight: 500;
 
@@ -36,6 +40,7 @@ export const PopButton = styled(Button)`
 
   &::after,
   &:focus {
+    outline: none;
     color: ${props => props.theme.secondaryText};
   }
 
@@ -45,17 +50,16 @@ export const PopButton = styled(Button)`
   }
 `;
 
-export const CommentsContainer = styled(Row)`
-  margin: 13px;
+export const CommentsContainer = styled.div`
+  margin-top: 13px;
   border-radius: 0 0 8px 8px;
 `;
 
 export const PostHeader = styled.div`
   display: flex;
-  margin: 13px;
   margin-bottom: 0;
 `;
-export const SettingsContainer = styled(Row)`
+export const SettingsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,12 +79,7 @@ export const SettingsContainer = styled(Row)`
   }
 `;
 
-export const PostCard = styled(Card)`
-  && {
-    border: none;
-    border-radius: 6px;
-  }
-`;
+export const PostCard = styled.div``;
 
 export const ProfileWrapper = styled.div`
   width: 100%;
@@ -107,7 +106,7 @@ export const PostCreation = styled.p`
 `;
 
 export const PostContent = styled.div`
-  margin: 13px;
+  margin-top: 13px;
   color: ${props => props.theme.secondaryText};
   font-size: 1.5rem;
 `;
@@ -116,7 +115,6 @@ export const PostFooter = styled.div`
   display: flex;
   border-top: 1px solid ${props => props.theme.secondaryHoverBackground};
   border-bottom: 1px solid ${props => props.theme.secondaryHoverBackground};
-  margin: 0 13px;
 `;
 export const LikesWrapper = styled.div`
   display: flex;

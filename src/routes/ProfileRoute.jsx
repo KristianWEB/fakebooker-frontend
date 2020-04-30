@@ -84,7 +84,7 @@ const ProfileRoute = ({ component: Component, ...rest }) => {
             <Component {...props} />
           </ProfileLayout>
         ) : (
-          <Redirect to="/auth" />
+          <Redirect to="/login" />
         )
       }
     />

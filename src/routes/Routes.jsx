@@ -5,7 +5,8 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-import AuthPage from "../pages/AuthPage/AuthPage";
+import RegisterPage from "../pages/AuthPages/RegisterPage";
+import LoginPage from "../pages/AuthPages/LoginPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import PhotosPage from "../pages/PhotosPage/PhotosPage";
 import FriendsPage from "../pages/FriendsPage/FriendsPage";
@@ -20,7 +21,8 @@ const Routes = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/auth" component={AuthPage} />
+        <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/login" component={LoginPage} />
         <ProfileRoute exact path="/:username" component={ProfilePage} />
         <ProfileRoute exact path="/:username/photos" component={PhotosPage} />
         <ProfileRoute exact path="/:username/friends" component={FriendsPage} />
@@ -39,7 +41,7 @@ const Routes = () => {
           component={AboutContactAndBasicInfo}
         />
         <PrivateRoute exact path="/" component={NewsfeedPage} />
-        <Route render={() => <Redirect to="/auth" />} />
+        <Route render={() => <Redirect to="/login" />} />
       </Switch>
     </Router>
   );

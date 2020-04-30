@@ -7,7 +7,6 @@ import {
   PostContainer,
   SettingsContainer,
   PostHeader,
-  PostCard,
   ProfileWrapper,
   NameWrapper,
   ProfileName,
@@ -101,87 +100,85 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
   );
   return (
     <PostContainer>
-      <PostCard bodyStyle={{ padding: "0" }} bordered={false}>
-        <PostHeader>
-          <ProfileWrapper>
-            <Avatar size={40} shape="circle" src={post.userId.avatarImage} />
-            <NameWrapper>
-              <ProfileName>
-                {post.userId.firstName} {post.userId.lastName}
-              </ProfileName>
-              <PostCreation>
-                {new Date(Number(post.createdAt)).toLocaleDateString("en-US")}
-              </PostCreation>
-            </NameWrapper>
-          </ProfileWrapper>
-          {!readOnly && post.userId.id === user.id && (
-            <Popover
-              content={SettingsPopup}
-              placement="bottom"
-              trigger="click"
-              overlayStyle={{ width: "328px" }}
-            >
-              <SettingsContainer>
-                <ThreeDotsSvg
-                  style={{
-                    cursor: "pointer",
-                    width: "25px",
-                    height: "25px",
-                    fill: "#65676b"
-                  }}
-                />
-              </SettingsContainer>
-            </Popover>
-          )}
-        </PostHeader>
-        <PostContent>
-          <ReactMarkdown source={post.body} />
-        </PostContent>
-        {post.image && <PostImage src={post.image} alt="post graphics" />}
-        <PostFooter>
-          {liked ? (
-            <LikesWrapper onClick={likePost}>
-              <Button
-                type="link"
-                style={{ padding: 0, display: "flex", alignItems: "center" }}
-              >
-                <LikesSVG fill="#1876f2" width="25px" height="25px" />
-                <LikesCount>{post.likes.length}</LikesCount>
-              </Button>
-            </LikesWrapper>
-          ) : (
-            <LikesWrapper onClick={likePost}>
-              <Button
-                type="link"
+      <PostHeader>
+        <ProfileWrapper>
+          <Avatar size={40} shape="circle" src={post.userId.avatarImage} />
+          <NameWrapper>
+            <ProfileName>
+              {post.userId.firstName} {post.userId.lastName}
+            </ProfileName>
+            <PostCreation>
+              {new Date(Number(post.createdAt)).toLocaleDateString("en-US")}
+            </PostCreation>
+          </NameWrapper>
+        </ProfileWrapper>
+        {!readOnly && post.userId.id === user.id && (
+          <Popover
+            content={SettingsPopup}
+            placement="bottom"
+            trigger="click"
+            overlayStyle={{ width: "328px" }}
+          >
+            <SettingsContainer>
+              <ThreeDotsSvg
                 style={{
-                  padding: 0,
-                  display: "flex",
-                  alignItems: "center"
+                  cursor: "pointer",
+                  width: "25px",
+                  height: "25px",
+                  fill: "#65676b"
                 }}
-              >
-                <LikesSVG fill="#65676b" width="25px" height="25px" />
-                <LikesHeading>Like</LikesHeading>
-              </Button>
-            </LikesWrapper>
-          )}
-          <CommentsWrapper>
-            <CommentsSVG fill="#65676b" width="25px" height="25px" />
-            <CommentsCount>
-              {post.comments.length === 0 ? (
-                <CommentsHeading>Comment</CommentsHeading>
-              ) : (
-                post.comments.length
-              )}
-            </CommentsCount>
-          </CommentsWrapper>
-          <SharesWrapper>
-            <SharesSVG fill="#65676b" width="25px" height="25px" />
-            <SharesCount>
-              <SharesHeading>Share</SharesHeading>
-            </SharesCount>
-          </SharesWrapper>
-        </PostFooter>
-      </PostCard>
+              />
+            </SettingsContainer>
+          </Popover>
+        )}
+      </PostHeader>
+      <PostContent>
+        <ReactMarkdown source={post.body} />
+      </PostContent>
+      {post.image && <PostImage src={post.image} alt="post graphics" />}
+      <PostFooter>
+        {liked ? (
+          <LikesWrapper onClick={likePost}>
+            <Button
+              type="link"
+              style={{ padding: 0, display: "flex", alignItems: "center" }}
+            >
+              <LikesSVG fill="#1876f2" width="25px" height="25px" />
+              <LikesCount>{post.likes.length}</LikesCount>
+            </Button>
+          </LikesWrapper>
+        ) : (
+          <LikesWrapper onClick={likePost}>
+            <Button
+              type="link"
+              style={{
+                padding: 0,
+                display: "flex",
+                alignItems: "center"
+              }}
+            >
+              <LikesSVG fill="#65676b" width="25px" height="25px" />
+              <LikesHeading>Like</LikesHeading>
+            </Button>
+          </LikesWrapper>
+        )}
+        <CommentsWrapper>
+          <CommentsSVG fill="#65676b" width="25px" height="25px" />
+          <CommentsCount>
+            {post.comments.length === 0 ? (
+              <CommentsHeading>Comment</CommentsHeading>
+            ) : (
+              post.comments.length
+            )}
+          </CommentsCount>
+        </CommentsWrapper>
+        <SharesWrapper>
+          <SharesSVG fill="#65676b" width="25px" height="25px" />
+          <SharesCount>
+            <SharesHeading>Share</SharesHeading>
+          </SharesCount>
+        </SharesWrapper>
+      </PostFooter>
       <CommentsContainer>
         {post.comments.map(comment => (
           <Comment

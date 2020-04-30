@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Button, Row } from "antd";
 
-export const ProfileHeaderContainer = styled(Row)`
+export const ProfileHeaderContainer = styled.div`
   margin-top: -60px;
   background-image: linear-gradient(
       to bottom,
@@ -67,7 +66,7 @@ export const UserAvatar = styled.img`
 `;
 
 export const UserName = styled.h3`
-  font-size: 26px;
+  font-size: 2.6rem;
   font-weight: bold;
   margin-top: 5px;
   margin-bottom: 0;
@@ -104,8 +103,6 @@ export const UserActionsContainer = styled.div`
     width: 100%;
   }
 `;
-
-export const UserActionsContainerLink = styled(Button)``;
 
 export const TimelineContainerLink = styled.button`
   color: ${props => props.theme.tertiaryText};
@@ -214,7 +211,7 @@ export const PhotosContainerLink = styled.button`
   }
 `;
 
-export const ChangeAvatarContainer = styled(Button)`
+export const ChangeAvatarContainer = styled.button`
   background-color: ${props => props.theme.secondaryBackground};
   display: flex;
   justify-content: center;
@@ -229,18 +226,21 @@ export const ChangeAvatarContainer = styled(Button)`
   border: 0;
   cursor: pointer;
   transition: 0.1s;
+
   &&:focus {
     background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
   }
   &&:hover {
     background-color: ${props => props.theme.secondaryHoverBackground};
+    outline: none;
   }
   &&:active {
     transform: scale(0.96);
   }
 `;
 
-export const ChangePhotoContainer = styled(Button)`
+export const ChangePhotoContainer = styled.button`
   background-color: ${props => props.theme.secondaryBackground};
   display: inline-flex;
   justify-content: center;
@@ -257,9 +257,11 @@ export const ChangePhotoContainer = styled(Button)`
   transition: 0.1s;
   &&:focus {
     background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
   }
   &&:hover {
     background-color: ${props => props.theme.secondaryHoverBackground};
+    outline: none;
   }
   &&:active {
     transform: scale(0.96);
@@ -272,30 +274,35 @@ export const ChangeBackgroundHeading = styled.h3`
   font-size: 1.5rem;
 `;
 
-export const FriendActionContainer = styled(Row)`
+export const FriendActionContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: auto;
 `;
-export const FriendBtn = styled(Button)`
-  margin: 8px 0;
+export const FriendBtn = styled.button`
+  padding: 8px 12px;
+  border-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   color: ${props => props.theme.secondaryText};
-  font-size: 15px;
+  font-size: 1.5rem;
   background-color: ${props => props.theme.secondaryBackground};
   transition: 0.1s;
+  border: none;
+  cursor: pointer;
 
-  &&:focus {
+  &:focus {
     background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
   }
-  &&:active {
+  &:active {
     transform: scale(0.96);
   }
-  &&:hover {
+  &:hover {
     background-color: ${props => props.theme.secondaryHoverBackground};
+    outline: none;
   }
 `;
 
@@ -307,19 +314,27 @@ export const FriendText = styled.h1`
   margin-left: 4px;
 `;
 
-export const RespondBtn = styled(Button)`
-  margin: 8px 0;
+export const RespondContainer = styled.div`
+  position: relative;
+`;
+
+export const RespondBtn = styled.button`
+  padding: 8px 12px;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   color: ${props => props.theme.primaryText};
-  font-size: 15px;
+  font-size: 1.5rem;
   background-color: ${props => props.theme.primaryBackground};
   transition: 0.1s;
+  border-radius: 6px;
+  cursor: pointer;
 
   &&:focus {
     color: ${props => props.theme.primaryText};
     background-color: ${props => props.theme.primaryBackground};
+    outline: none;
   }
   &&:active {
     transform: scale(0.96);
@@ -339,17 +354,29 @@ export const RespondText = styled.h1`
   color: ${props => props.theme.primaryText};
 `;
 
-export const ActionsContainer = styled(Row)`
+export const ActionsContainer = styled.div`
   display: flex;
+  position: absolute;
+  top: 48px;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 344px;
+  box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  z-index: 20;
   flex-direction: column;
   padding: 8px;
 `;
 
-export const AcceptFriendBtn = styled(Button)`
+export const AcceptFriendBtn = styled.button`
   text-align: left;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
   font-size: 1.5rem;
+  background-color: #fff;
   color: ${props => props.theme.secondaryText};
-  padding: 0 8px;
   transition: 0.1s;
   font-weight: 500;
 
@@ -361,6 +388,7 @@ export const AcceptFriendBtn = styled(Button)`
   &::after,
   &:focus {
     color: ${props => props.theme.secondaryText};
+    outline: none;
   }
 
   &:active {
@@ -369,11 +397,15 @@ export const AcceptFriendBtn = styled(Button)`
   }
 `;
 
-export const RejectFriendBtn = styled(Button)`
+export const RejectFriendBtn = styled.button`
   text-align: left;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
   font-size: 1.5rem;
+  background-color: #fff;
   color: ${props => props.theme.secondaryText};
-  padding: 0 8px;
   transition: 0.1s;
   font-weight: 500;
 
@@ -385,6 +417,7 @@ export const RejectFriendBtn = styled(Button)`
   &::after,
   &:focus {
     color: ${props => props.theme.secondaryText};
+    outline: none;
   }
 
   &:active {
@@ -393,24 +426,28 @@ export const RejectFriendBtn = styled(Button)`
   }
 `;
 
-export const MessageContainer = styled(Row)`
+export const MessageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 8px;
 `;
-export const MessageBtn = styled(Button)`
-  margin: 8px 0;
+export const MessageBtn = styled.button`
+  padding: 8px 12px;
   display: flex;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
   justify-content: center;
   align-items: flex-end;
   color: ${props => props.theme.secondaryText};
-  font-size: 15px;
+  font-size: 1.5rem;
   background-color: ${props => props.theme.secondaryBackground};
   transition: 0.1s;
 
   &&:focus {
     background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
   }
   &&:active {
     transform: scale(0.96);

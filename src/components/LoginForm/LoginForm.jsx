@@ -11,7 +11,9 @@ import {
   EmailInput,
   PasswordInput,
   StyledButton,
-  LoginHeading
+  LoginHeading,
+  EmailContainer,
+  PasswordContainer
 } from "./LoginForm.styles";
 
 const LoginForm = () => {
@@ -26,7 +28,6 @@ const LoginForm = () => {
     onCompleted: result => {
       const { token, username } = result.login;
       localStorage.setItem("token", token);
-      message.success("Logged in successfully");
       history.push(`/${username}`);
     },
     variables: {
@@ -46,36 +47,24 @@ const LoginForm = () => {
     <LoginFormContainer>
       <LoginHeading>Sign in to Fakebooker</LoginHeading>
       <Form onSubmit={onSubmit} style={{ padding: "3px" }}>
-        <Form.Item style={{ marginBottom: "15px" }}>
+        <EmailContainer>
           <EmailLabel>Email</EmailLabel>
           <EmailInput
             name="email"
             value={loginState.email}
             onChange={onChange}
-            size="large"
-            required
-            data-testid="emailLogin"
           />
-        </Form.Item>
-        <Form.Item style={{ marginBottom: "25px" }}>
+        </EmailContainer>
+        <PasswordContainer>
           <PasswordLabel>Password</PasswordLabel>
           <PasswordInput
             name="password"
+            type="password"
             value={loginState.password}
             onChange={onChange}
-            data-testid="passwordLogin"
-            size="large"
-            required
           />
-        </Form.Item>
-        <StyledButton
-          type="primary"
-          htmlType="submit"
-          block
-          data-testid="submitLogin"
-        >
-          Sign in
-        </StyledButton>
+        </PasswordContainer>
+        <StyledButton htmlType="submit">Sign in</StyledButton>
       </Form>
     </LoginFormContainer>
   );
