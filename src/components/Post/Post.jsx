@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
 import ReactMarkdown from "react-markdown";
-import { Popover, Button, Avatar } from "antd";
+import { useComponentVisible } from "../../utils/customHooks";
 import {
   PostContainer,
   SettingsContainer,
   PostHeader,
+  ProfileAvatar,
   ProfileWrapper,
   NameWrapper,
   ProfileName,
@@ -25,7 +26,8 @@ import {
   CommentsHeading,
   SharesHeading,
   CommentsContainer,
-  PostImage
+  PostImage,
+  LikeButton
 } from "./Post.styles";
 import { ReactComponent as CommentsSVG } from "../../assets/icons/chatbox.svg";
 import { ReactComponent as LikesSVG } from "../../assets/icons/thumbs-up.svg";
@@ -42,6 +44,7 @@ import {
 
 const Post = ({ post, user, readOnly, onNewsfeed }) => {
   const [liked, setLiked] = useState(false);
+  const { ref, isComponentVisible } = useComponentVisible(false);
 
   useEffect(() => {
     if (user && post.likes.find(like => like.userId === user.id)) {
@@ -91,18 +94,17 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
     }
   });
 
-  const SettingsPopup = (
+  const SettingsPopup = () => (
     <PopContainer>
-      <PopButton type="link" onClick={deletePost}>
-        Delete Post
-      </PopButton>
+      <PopButton onClick={deletePost}>Delete Post</PopButton>
     </PopContainer>
   );
+
   return (
     <PostContainer>
       <PostHeader>
         <ProfileWrapper>
-          <Avatar size={40} shape="circle" src={post.userId.avatarImage} />
+          <ProfileAvatar src={post.userId.avatarImage} />
           <NameWrapper>
             <ProfileName>
               {post.userId.firstName} {post.userId.lastName}
@@ -113,23 +115,17 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
           </NameWrapper>
         </ProfileWrapper>
         {!readOnly && post.userId.id === user.id && (
-          <Popover
-            content={SettingsPopup}
-            placement="bottom"
-            trigger="click"
-            overlayStyle={{ width: "328px" }}
-          >
-            <SettingsContainer>
-              <ThreeDotsSvg
-                style={{
-                  cursor: "pointer",
-                  width: "25px",
-                  height: "25px",
-                  fill: "#65676b"
-                }}
-              />
-            </SettingsContainer>
-          </Popover>
+          <SettingsContainer ref={ref}>
+            <ThreeDotsSvg
+              style={{
+                cursor: "pointer",
+                width: "25px",
+                height: "25px",
+                fill: "#65676b"
+              }}
+            />
+            {isComponentVisible && <SettingsPopup />}
+          </SettingsContainer>
         )}
       </PostHeader>
       <PostContent>
@@ -139,27 +135,17 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
       <PostFooter>
         {liked ? (
           <LikesWrapper onClick={likePost}>
-            <Button
-              type="link"
-              style={{ padding: 0, display: "flex", alignItems: "center" }}
-            >
+            <LikeButton>
               <LikesSVG fill="#1876f2" width="25px" height="25px" />
               <LikesCount>{post.likes.length}</LikesCount>
-            </Button>
+            </LikeButton>
           </LikesWrapper>
         ) : (
           <LikesWrapper onClick={likePost}>
-            <Button
-              type="link"
-              style={{
-                padding: 0,
-                display: "flex",
-                alignItems: "center"
-              }}
-            >
+            <LikeButton>
               <LikesSVG fill="#65676b" width="25px" height="25px" />
               <LikesHeading>Like</LikesHeading>
-            </Button>
+            </LikeButton>
           </LikesWrapper>
         )}
         <CommentsWrapper>

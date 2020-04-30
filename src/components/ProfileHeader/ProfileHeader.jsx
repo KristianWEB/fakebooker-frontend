@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { NavLink } from "react-router-dom";
-import { Popover } from "antd";
 import PropTypes from "prop-types";
-import { useComponentVisible } from "../../utils/customHooks";
 import {
   ProfileHeaderContainer,
   ProfileBackgroundContainer,
@@ -45,12 +43,37 @@ import {
 } from "../../utils/queries";
 
 const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
-  const { ref, isComponentVisible } = useComponentVisible(false);
+  const [friendReqDropdown, setFriendReqDropdown] = useState(false);
+  const [removeFriendDropdown, setRemoveFriendDropdown] = useState(false);
 
   const [addFriend, { data: friendData }] = useMutation(ADD_FRIEND, {
     variables: {
       notifier: user.username
     }
+  });
+
+  const frRef = useRef(null);
+  const removeFrRef = useRef(null);
+
+  const handleClickOutside = event => {
+    if (frRef.current && !frRef.current.contains(event.target)) {
+      setFriendReqDropdown(false);
+    }
+  };
+
+  const handleClickOutsideRemoveFr = event => {
+    if (removeFrRef.current && !removeFrRef.current.contains(event.target)) {
+      setRemoveFriendDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    document.addEventListener("click", handleClickOutsideRemoveFr, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+      document.removeEventListener("click", handleClickOutsideRemoveFr, true);
+    };
   });
 
   // get single notification is changed: pass profileUser ( user ) and authUser ( authUser ) as creator and notifier once and the opposite and check if there is any data ( friend request sent )
@@ -249,12 +272,12 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
                 notificationData.getSingleNotification.status === "pending" &&
                 notificationData.getSingleNotification.notifier.id ===
                   authUser.id && (
-                  <RespondContainer ref={ref}>
-                    <RespondBtn>
+                  <RespondContainer ref={frRef}>
+                    <RespondBtn onClick={() => setFriendReqDropdown(true)}>
                       <AddFriendIcon width={16} height={16} fill="#1876f2" />
                       <RespondText>Respond</RespondText>
                     </RespondBtn>
-                    {isComponentVisible && <FriendActions />}
+                    {friendReqDropdown && <FriendActions />}
                   </RespondContainer>
                 )}
               {((notificationData &&
@@ -280,22 +303,16 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
                 notificationData.getSingleNotification &&
                 notificationData.getSingleNotification.status === "accepted") ||
                 acceptFriendData) && (
-                // <Popover
-                //   placement="bottomRight"
-                //   content={<RemoveContainer />}
-                //   trigger="click"
-                //   overlayStyle={{
-                //     width: "344px"
-                //   }}
-                // >
-                <RespondContainer ref={ref}>
-                  <RespondBtn type="link">
+                <RespondContainer ref={removeFrRef}>
+                  <RespondBtn
+                    type="link"
+                    onClick={() => setRemoveFriendDropdown(true)}
+                  >
                     <AddFriendIcon width={16} height={16} fill="#1876f2" />
                     <RespondText>Friends</RespondText>
                   </RespondBtn>
-                  {isComponentVisible && <RemoveContainer />}
+                  {removeFriendDropdown && <RemoveContainer />}
                 </RespondContainer>
-                // </Popover>
               )}
             </FriendActionContainer>
             <MessageContainer

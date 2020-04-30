@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Row, Card, Button } from "antd";
 
 export const PostContainer = styled.div`
   margin: 1.6rem 0;
@@ -18,8 +17,19 @@ export const PostContainer = styled.div`
 `;
 
 export const PopContainer = styled.div`
+  display: flex;
+  position: absolute;
+  top: 48px;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 344px;
+  box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  z-index: 20;
+  flex-direction: column;
   padding: 8px;
 `;
+
 export const PopButton = styled.button`
   text-align: left;
   font-size: 1.5rem;
@@ -32,6 +42,7 @@ export const PopButton = styled.button`
   color: ${props => props.theme.secondaryText};
   transition: 0.1s;
   font-weight: 500;
+  cursor: pointer;
 
   &:hover {
     background-color: ${props => props.theme.tertiaryBackground};
@@ -66,15 +77,17 @@ export const SettingsContainer = styled.div`
   height: 100%;
   border-radius: 100%;
   padding: 5px;
+  cursor: pointer;
+  position: relative;
 
   &:focus {
     background-color: ${props => props.theme.tertiaryBackground};
   }
 
-  &&:hover {
+  &:hover {
     background-color: ${props => props.theme.tertiaryBackground};
   }
-  &&:active {
+  &:active {
     background-color: ${props => props.theme.secondaryBackground};
   }
 `;
@@ -232,4 +245,20 @@ export const SharesHeading = styled.span`
 export const PostImage = styled.img`
   width: 100%;
   height: 100%;
+`;
+
+export const ProfileAvatar = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+`;
+
+export const LikeButton = styled.button`
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  &:focus {
+    outline: none;
+  }
 `;
