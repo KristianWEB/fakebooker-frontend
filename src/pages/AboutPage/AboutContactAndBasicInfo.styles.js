@@ -7,7 +7,6 @@ export const AboutInfoContainer = styled(Row)`
   justify-content: center;
   padding-top: 28px;
   padding-bottom: 28px;
-  background-color: ${props => props.theme.inputColor};
 `;
 
 export const AboutContainer = styled(Row)`

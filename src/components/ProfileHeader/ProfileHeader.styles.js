@@ -12,7 +12,6 @@ export const ProfileHeaderContainer = styled.div`
   background-color: white;
   font-family: Roboto;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  z-index: 4;
 `;
 export const ProfileBackgroundContainer = styled.div`
   max-width: 94rem;

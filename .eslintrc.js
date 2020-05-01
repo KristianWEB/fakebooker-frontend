@@ -32,6 +32,7 @@ module.exports = {
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "jsx-a11y/label-has-associated-control": "off"
   }
 };

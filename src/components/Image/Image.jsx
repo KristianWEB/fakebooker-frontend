@@ -6,7 +6,11 @@ import { ReactComponent as ImageIcon } from "../../assets/icons/images.svg";
 const Image = ({ setImage }) => {
   const uploadImage = async e => {
     const data = new FormData();
-    data.append("file", e.file);
+    const {
+      target: { files }
+    } = e;
+
+    data.append("file", files[0]);
     data.append("upload_preset", "kristian");
     const res = await fetch(
       "https://api.cloudinary.com/v1_1/djsafwbaq/image/upload",
@@ -22,9 +26,10 @@ const Image = ({ setImage }) => {
 
   return (
     <ImageContainer>
-      <ImageUpload type="file" customRequest={uploadImage}>
+      <label htmlFor="upload-photo">
         <ImageIcon width={20} height={20} fill="#0EAD69" />
-      </ImageUpload>
+        <ImageUpload type="file" id="upload-photo" onChange={uploadImage} />
+      </label>
     </ImageContainer>
   );
 };

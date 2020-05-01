@@ -5,8 +5,6 @@ export const InfoContainer = styled(Row)`
   display: flex;
   height: 100%;
   padding-top: 28px;
-  padding-bottom: 28px;
-  background-color: ${props => props.theme.inputColor};
   font-family: Roboto;
 `;
 

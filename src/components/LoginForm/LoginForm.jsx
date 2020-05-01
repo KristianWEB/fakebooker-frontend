@@ -1,7 +1,6 @@
 import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { Form, message } from "antd";
 import { LOGIN_USER } from "../../utils/queries";
 
 import {
@@ -46,7 +45,7 @@ const LoginForm = () => {
   return (
     <LoginFormContainer>
       <LoginHeading>Sign in to Fakebooker</LoginHeading>
-      <Form onSubmit={onSubmit} style={{ padding: "3px" }}>
+      <form onSubmit={onSubmit}>
         <EmailContainer>
           <EmailLabel>Email</EmailLabel>
           <EmailInput
@@ -65,7 +64,7 @@ const LoginForm = () => {
           />
         </PasswordContainer>
         <StyledButton htmlType="submit">Sign in</StyledButton>
-      </Form>
+      </form>
     </LoginFormContainer>
   );
 };

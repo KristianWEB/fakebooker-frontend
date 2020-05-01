@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, Row } from "antd";
+import Popup from "reactjs-popup";
 
 export const CreatePostContainer = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ export const UserAvatar = styled.img`
   margin-right: 8px;
 `;
 
-export const CreatePostButton = styled(Button)`
+export const CreatePostButton = styled.button`
   border: none;
   color: ${props => props.theme.secondaryText};
   font-weight: 600;
@@ -36,20 +36,21 @@ export const CreatePostButton = styled(Button)`
   transition: 0.1s;
   height: 3.5rem;
 
-  &&:focus {
+  &:focus {
     background-color: ${props => props.theme.secondaryBackground};
     color: ${props => props.theme.secondaryText};
+    outline: none;
   }
-  &&:active {
+  &:active {
     transform: scale(0.96);
   }
-  &&:hover {
+  &:hover {
     background-color: ${props => props.theme.secondaryHoverBackground};
     color: ${props => props.theme.secondaryText};
   }
 `;
 
-export const CloseContainer = styled(Row)`
+export const CloseContainer = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -60,15 +61,29 @@ export const CloseContainer = styled(Row)`
   transition: 0.1s;
   padding: 5px;
 
-  &&:focus {
+  &:focus {
     background-color: ${props => props.theme.secondaryBackground};
     color: ${props => props.theme.secondaryText};
   }
-  &&:active {
+  &:active {
     transform: scale(0.96);
   }
-  &&:hover {
+  &:hover {
     background-color: ${props => props.theme.secondaryHoverBackground};
     color: ${props => props.theme.secondaryText};
+  }
+`;
+
+export const StyledPopup = styled(Popup)`
+  &-content {
+    padding: 0px !important;
+    border-radius: 6px;
+    border: none !important;
+    width: 488px !important;
+    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+  &-overlay {
+    background-color: rgba(244, 244, 244, 0.8) !important;
   }
 `;

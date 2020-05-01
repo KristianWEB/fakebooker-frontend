@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const LoginFormContainer = styled.div`
   width: 500px;
   font-family: "Roboto";
+  font-size: 1.5rem;
 `;
 
 export const StyledButton = styled.button`

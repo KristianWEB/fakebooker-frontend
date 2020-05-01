@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-import { REGISTER_USER } from "../../utils/queries";
+// import { useMutation } from "@apollo/react-hooks";
+// import { useForm } from "react-hook-form";
+// import { useHistory } from "react-router-dom";
+// import { REGISTER_USER } from "../../utils/queries";
 import {
   RegisterFormContainer,
   StyledButton,
@@ -43,49 +43,50 @@ const RegisterForm = () => {
     password: "",
     gender: ""
   });
-  const { register, handleSubmit, getValues, errors } = useForm();
+  // const { register, handleSubmit, getValues, errors } = useForm();
 
-  const [birthday, setBirthday] = useState(null);
+  // const [birthday /*setBirthday*/] = useState(null);
 
   const onChangeRegister = e =>
     setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
 
-  const history = useHistory();
+  // const history = useHistory();
 
-  const [registerUser] = useMutation(REGISTER_USER, {
-    onCompleted: result => {
-      const { token, username } = result.register;
-      localStorage.setItem("token", token);
-      history.push(`/${username}`);
-    },
-    variables: {
-      firstName: signUpState.firstName,
-      lastName: signUpState.lastName,
-      email: signUpState.email,
-      password: signUpState.password,
-      gender: signUpState.gender,
-      birthday
-    }
-  });
+  // const [registerUser] = useMutation(REGISTER_USER, {
+  //   onCompleted: result => {
+  //     const { token, username } = result.register;
+  //     localStorage.setItem("token", token);
+  //     history.push(`/${username}`);
+  //   },
+  //   variables: {
+  //     firstName: signUpState.firstName,
+  //     lastName: signUpState.lastName,
+  //     email: signUpState.email,
+  //     password: signUpState.password,
+  //     gender: signUpState.gender,
+  //     birthday
+  //   }
+  // });
 
-  const onSubmitRegister = e => {
-    // e.preventDefault();
-    console.log(e);
+  // const onSubmitRegister = e => {
+  // e.preventDefault();
+  // console.log(e);
 
-    // registerUser();
+  // registerUser();
 
-    // setSignUpState({
-    //   email: "",
-    //   username: "",
-    //   password: "",
-    //   confirmPassword: ""
-    // });
-  };
+  // setSignUpState({
+  //   email: "",
+  //   username: "",
+  //   password: "",
+  //   confirmPassword: ""
+  // });
+  // };
+
   return (
     <RegisterFormContainer>
       <RegisterHeading>Sign Up to Fakebooker</RegisterHeading>
       <form
-        onSubmit={handleSubmit(onSubmitRegister)}
+        // onSubmit={handleSubmit(onSubmitRegister)}
         style={{ padding: "3px" }}
       >
         <NameContainer>
@@ -106,7 +107,7 @@ const RegisterForm = () => {
               name="lastName"
               value={signUpState.lastName}
               onChange={onChangeRegister}
-              ref={register}
+              // ref={register}
             />
           </LastNameContainer>
         </NameContainer>
@@ -116,7 +117,7 @@ const RegisterForm = () => {
             name="email"
             value={signUpState.email}
             onChange={onChangeRegister}
-            ref={register}
+            // ref={register}
           />
         </EmailContainer>
         <PasswordContainer>
@@ -126,7 +127,7 @@ const RegisterForm = () => {
             type="password"
             value={signUpState.password}
             onChange={onChangeRegister}
-            ref={register}
+            // ref={register}
           />
         </PasswordContainer>
         <BirthdayContainer>
@@ -135,17 +136,17 @@ const RegisterForm = () => {
             <DayInput
               name="birthday.birthDay"
               placeholder="30"
-              ref={register}
+              // ref={register}
             />
             <MonthInput
               name="birthday.birthMonth"
               placeholder="April"
-              ref={register}
+              // ref={register}
             />
             <YearInput
               name="birthday.birthYear"
               placeholder="1995"
-              ref={register}
+              // ref={register}
             />
           </div>
         </BirthdayContainer>
@@ -156,7 +157,7 @@ const RegisterForm = () => {
               name="gender"
               value="female"
               type="radio"
-              ref={register}
+              // ref={register}
             />
             <FemaleLabel htmlFor="female">Female</FemaleLabel>
           </FemaleContainer>
@@ -165,7 +166,7 @@ const RegisterForm = () => {
               value="male"
               name="gender"
               type="radio"
-              ref={register}
+              // ref={register}
             />
             <MaleLabel htmlFor="male">Male</MaleLabel>
           </MaleContainer>
