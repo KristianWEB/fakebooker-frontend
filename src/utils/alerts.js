@@ -13,7 +13,7 @@ export const notificationAlert = notification => {
     {
       position: toast.POSITION.BOTTOM_LEFT,
       hideProgressBar: true,
-      autoClose: false,
+      autoClose: 5000,
       className: "notificationToast",
       transition: Slide,
       closeButton: (
