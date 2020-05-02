@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { Row } from "antd";
 import Navbar from "../../components/Navbar/Navbar";
 import SingleChat from "../../components/Message/SingleChat";
 import Post from "../../components/Post/Post";
@@ -41,7 +40,7 @@ const NewsfeedPage = () => {
   return (
     <>
       {userData && (
-        <Row>
+        <>
           <Navbar user={userData.loadUser} setOpenChat={setOpenChat} />
           <InfoContainer>
             <PostContainer>
@@ -88,7 +87,7 @@ const NewsfeedPage = () => {
           {openChat.visible && (
             <SingleChat creator={openChat.creator} setOpenChat={setOpenChat} />
           )}
-        </Row>
+        </>
       )}
     </>
   );

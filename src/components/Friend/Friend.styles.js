@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Row, Button } from "antd";
 
-export const FriendContainer = styled(Row)`
+export const FriendContainer = styled.div`
   display: inline-flex;
   width: 419px;
   align-items: center;
@@ -11,7 +10,7 @@ export const FriendContainer = styled(Row)`
   margin: 3px;
 `;
 
-export const UserContainer = styled(Row)`
+export const UserContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,17 +29,22 @@ export const UserName = styled.h1`
   color: ${props => props.theme.secondaryText};
 `;
 
-export const FriendBtn = styled(Button)`
+export const FriendBtn = styled.button`
   margin-left: auto;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
   color: ${props => props.theme.secondaryText};
   font-weight: 500;
   font-size: 15px;
   background-color: ${props => props.theme.secondaryBackground};
   transition: 0.1s;
+  cursor: pointer;
 
   &&:focus {
     background-color: ${props => props.theme.secondaryBackground};
     color: ${props => props.theme.secondaryText};
+    outline: none;
   }
 
   &&:active {
@@ -53,20 +57,25 @@ export const FriendBtn = styled(Button)`
   }
 `;
 
-export const ActionsContainer = styled(Row)`
+export const ActionsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  width: 100%;
 `;
 
-export const RejectFriendBtn = styled(Button)`
+export const RejectFriendBtn = styled.button`
   text-align: left;
   font-size: 1.5rem;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
   display: flex;
+  width: 100%;
+  background-color: #fff;
   color: ${props => props.theme.secondaryText};
-  padding: 0 8px;
   transition: 0.1s;
   font-weight: 500;
+  cursor: pointer;
 
   &:hover {
     background-color: ${props => props.theme.tertiaryBackground};
@@ -75,6 +84,7 @@ export const RejectFriendBtn = styled(Button)`
 
   &::after,
   &:focus {
+    outline: none;
     color: ${props => props.theme.secondaryText};
   }
 

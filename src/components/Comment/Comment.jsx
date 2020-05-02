@@ -1,22 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
+import Popup from "reactjs-popup";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Avatar, Popover } from "antd";
 import { useMutation } from "@apollo/react-hooks";
-import {
-  DELETE_COMMENT,
-  GET_POSTS,
-  GET_URL_POSTS,
-  GET_NEWSFEED
-} from "../../utils/queries";
 import {
   CommentContainer,
   BodyContainer,
   Body,
   Username,
   PopButton,
-  ActionsContainer
+  ActionsContainer,
+  CommentAvatar
 } from "./Comment.styles";
+import {
+  DELETE_COMMENT,
+  GET_POSTS,
+  GET_URL_POSTS,
+  GET_NEWSFEED
+} from "../../utils/queries";
 import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/ellipsis-horizontal.svg";
 
 const Comment = ({
@@ -25,10 +26,7 @@ const Comment = ({
   urlProfile,
   onNewsfeed
 }) => {
-  const [isHovering, setIsHovering] = useState(false);
   const { username } = useParams();
-
-  const handleMouseHover = () => setIsHovering(!isHovering);
 
   const [deleteComment] = useMutation(DELETE_COMMENT, {
     variables: {
@@ -105,44 +103,39 @@ const Comment = ({
     }
   });
 
-  const SettingsPopup = (
+  const SettingsPopup = () => (
     <ActionsContainer>
-      <PopButton type="link" onClick={deleteComment}>
-        Delete Comment
-      </PopButton>
+      <PopButton onClick={deleteComment}>Delete Comment</PopButton>
     </ActionsContainer>
   );
   return (
     <>
-      <CommentContainer
-        onMouseEnter={() => handleMouseHover()}
-        onMouseLeave={() => handleMouseHover()}
-      >
-        <Avatar src={userId.avatarImage} style={{ alignSelf: "flex-start" }} />
+      <CommentContainer>
+        <CommentAvatar src={userId.avatarImage} />
         <BodyContainer>
           <Username>
             {userId.firstName} {userId.lastName}
           </Username>
           <Body>{body}</Body>
         </BodyContainer>
-        {isHovering && (
-          <Popover
-            content={SettingsPopup}
-            placement="bottom"
-            overlayStyle={{ width: "344px" }}
-            trigger="click"
-          >
+        <Popup
+          className="deleteCommentPopup"
+          arrow={false}
+          trigger={
+            // eslint-disable-next-line react/jsx-wrap-multilines
             <ThreeDotsSvg
               style={{
-                marginLeft: "20px",
                 cursor: "pointer",
-                width: "25px",
-                height: "25px",
+                width: "20px",
+                height: "20px",
                 fill: "#65676b"
               }}
             />
-          </Popover>
-        )}
+          }
+          closeOnDocumentClick
+        >
+          <SettingsPopup />
+        </Popup>
       </CommentContainer>
     </>
   );

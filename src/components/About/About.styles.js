@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Button, Row } from "antd";
 
 export const AboutContainer = styled.div`
   display: flex;
@@ -23,7 +22,7 @@ export const AboutHeading = styled.h1`
   margin-bottom: 12px;
 `;
 
-export const WorkplaceContainer = styled(Row)`
+export const WorkplaceContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -37,7 +36,7 @@ export const WorkplaceBody = styled.p`
   color: ${props => props.theme.secondaryText};
 `;
 
-export const HomeContainer = styled(Row)`
+export const HomeContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
@@ -52,7 +51,7 @@ export const HomeplaceBody = styled.p`
   color: ${props => props.theme.secondaryText};
 `;
 
-export const StyledButton = styled(Button)`
+export const StyledButton = styled.button`
   background-color: ${props => props.theme.secondaryBackground};
   border-radius: 4px;
   border: 0;
@@ -63,9 +62,11 @@ export const StyledButton = styled(Button)`
   transition: 0.1s;
   height: 3.5rem;
   margin-top: 12px;
+  width: 100%;
 
   &&:focus {
     background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
   }
   &&:active {
     transform: scale(0.96);

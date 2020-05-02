@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { Row } from "antd";
 
-export const AboutPageContainer = styled(Row)``;
+export const AboutPageContainer = styled.div``;
 
-export const AboutInfoContainer = styled(Row)`
+export const AboutInfoContainer = styled.div`
   display: flex;
   font-family: Roboto;
   justify-content: center;
@@ -11,7 +10,7 @@ export const AboutInfoContainer = styled(Row)`
   padding-bottom: 28px;
 `;
 
-export const AboutContainer = styled(Row)`
+export const AboutContainer = styled.div`
   display: flex;
   width: 866px;
   background-color: #fff;
@@ -19,7 +18,7 @@ export const AboutContainer = styled(Row)`
   box-shadow: ${props => props.theme.boxShadow2};
 `;
 
-export const AboutSidebar = styled(Row)`
+export const AboutSidebar = styled.div`
   display: flex;
   flex-direction: column;
   width: 33%;
@@ -94,7 +93,7 @@ export const ContactAndBasicInfo = styled.p`
   }
 `;
 
-export const AboutBodyContainer = styled(Row)`
+export const AboutBodyContainer = styled.div`
   padding: 16px;
   width: 67%;
   display: flex;
@@ -102,7 +101,7 @@ export const AboutBodyContainer = styled(Row)`
   justify-content: center;
 `;
 
-export const WorkplaceContainer = styled(Row)`
+export const WorkplaceContainer = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -114,7 +113,7 @@ export const WorkplaceBody = styled.h1`
   margin-left: 16px;
 `;
 
-export const SchoolContainer = styled(Row)`
+export const SchoolContainer = styled.div`
   margin-top: 16px;
   display: flex;
   align-items: center;
@@ -127,7 +126,7 @@ export const SchoolBody = styled.h1`
   font-weight: 400;
 `;
 
-export const HomeContainer = styled(Row)`
+export const HomeContainer = styled.div`
   margin-top: 16px;
   display: flex;
   align-items: center;

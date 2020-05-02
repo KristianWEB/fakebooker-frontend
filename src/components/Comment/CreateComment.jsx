@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-// import produce from "immer";
 import PropTypes from "prop-types";
-import { Avatar } from "antd";
 import { useMutation } from "@apollo/react-hooks";
-import { CommentInput, CommentForm } from "./CreateComment.styles";
+import { CommentInput, CommentForm, UserAvatar } from "./CreateComment.styles";
 import {
   CREATE_COMMENT,
   GET_POSTS,
@@ -100,13 +98,12 @@ const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
   return (
     <>
       <CommentForm onSubmit={onSubmit}>
-        <Avatar src={user.avatarImage} size={32} />
+        <UserAvatar src={user.avatarImage} />
         <CommentInput
           name="content"
           placeholder="Write in a comment.."
           onChange={e => setBody(e.target.value)}
           value={body}
-          data-testid="createComment"
         />
       </CommentForm>
     </>

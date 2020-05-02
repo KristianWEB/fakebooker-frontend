@@ -192,11 +192,7 @@ const AboutPageWorkAndEducation = () => {
                 </WorkplaceActionContainer>
               )}
               {!addWorkplace && !user.workPlace && (
-                <WorkplaceAction
-                  type="link"
-                  data-testid="addWorkplace"
-                  onClick={() => setAddWorkplace(true)}
-                >
+                <WorkplaceAction onClick={() => setAddWorkplace(true)}>
                   <PlusIcon width={30} height={30} />
                   <WorkplaceSpan>Add a workplace</WorkplaceSpan>
                 </WorkplaceAction>

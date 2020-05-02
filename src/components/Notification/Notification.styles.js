@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-/* I've hardcoded these values because somehow the notification antd component doesnt render them properly */
 export const NotificationContainer = styled.div`
   display: flex;
   padding: 8px;
@@ -9,7 +8,7 @@ export const NotificationContainer = styled.div`
   font-family: Roboto;
 
   &:hover {
-    background-color: #f2f2f2;
+    background-color: ${props => props.theme.tertiaryBackground};
   }
 
   &:last-child {
@@ -17,7 +16,7 @@ export const NotificationContainer = styled.div`
   }
 
   &:active {
-    background-color: #e4e6eb;
+    background-color: ${props => props.theme.secondaryBackground};
   }
 `;
 

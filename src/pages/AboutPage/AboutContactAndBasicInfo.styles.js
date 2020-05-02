@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Row, Button, DatePicker, Form, Input } from "antd";
 
-export const AboutInfoContainer = styled(Row)`
+export const AboutInfoContainer = styled.div`
   display: flex;
   font-family: Roboto;
   justify-content: center;
@@ -9,7 +8,7 @@ export const AboutInfoContainer = styled(Row)`
   padding-bottom: 28px;
 `;
 
-export const AboutContainer = styled(Row)`
+export const AboutContainer = styled.div`
   display: flex;
   width: 866px;
   background-color: #fff;
@@ -17,7 +16,7 @@ export const AboutContainer = styled(Row)`
   box-shadow: ${props => props.theme.boxShadow2};
 `;
 
-export const AboutSidebar = styled(Row)`
+export const AboutSidebar = styled.div`
   display: flex;
   flex-direction: column;
   /* flex-grow: 1; */
@@ -90,9 +89,10 @@ export const ContactAndBasicInfo = styled.p`
   border-radius: 6px;
   font-weight: 600;
   margin: 0 6px;
+  margin-bottom: 20px;
 `;
 
-export const AboutBodyContainer = styled(Row)`
+export const AboutBodyContainer = styled.div`
   padding: 16px;
   flex-direction: column;
   width: 67%;
@@ -107,13 +107,19 @@ export const BasicInfoHeading = styled.h1`
   margin: 0;
 `;
 
-export const GenderAction = styled(Button)`
+export const GenderAction = styled.button`
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
   display: flex;
   align-items: center;
   padding: 0;
   margin-left: -5px;
-  margin-top: 15px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-right: auto;
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const GenderSpan = styled.span`
@@ -123,12 +129,19 @@ export const GenderSpan = styled.span`
   margin-left: 12px;
 `;
 
-export const BirthdayAction = styled(Button)`
+export const BirthdayAction = styled.button`
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
   display: flex;
   align-items: center;
   padding: 0;
   margin-left: -5px;
-  margin-top: 15px;
+  margin-top: 10px;
+  margin-right: auto;
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const BirthdaySpan = styled.span`
@@ -138,12 +151,74 @@ export const BirthdaySpan = styled.span`
   margin-left: 12px;
 `;
 
-export const HomeplaceAction = styled(Button)`
+export const BirthdayContainer = styled.div`
+  display: flex;
+`;
+
+export const DayInput = styled.input`
+  width: 20%;
+  height: 40px;
+  background-color: ${props => props.theme.secondaryBackground};
+  color: ${props => props.theme.secondaryText};
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  margin-right: 16px;
+  font-size: 1.5rem;
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const MonthInput = styled.input`
+  width: 20%;
+  height: 40px;
+  color: ${props => props.theme.secondaryText};
+  background-color: ${props => props.theme.secondaryBackground};
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  margin-right: 16px;
+  font-size: 1.5rem;
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const YearInput = styled.input`
+  width: 20%;
+  height: 40px;
+  color: ${props => props.theme.secondaryText};
+  background-color: ${props => props.theme.secondaryBackground};
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 1.5rem;
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const HomeplaceAction = styled.button`
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
   display: flex;
   align-items: center;
   padding: 0;
   margin-left: -5px;
-  margin-top: 15px;
+  margin-top: 10px;
+  margin-right: auto;
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const HomeplaceSpan = styled.span`
@@ -153,7 +228,7 @@ export const HomeplaceSpan = styled.span`
   margin-left: 12px;
 `;
 
-export const ActionContainer = styled(Row)`
+export const ActionContainer = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
@@ -161,64 +236,61 @@ export const ActionContainer = styled(Row)`
   justify-content: center;
 `;
 
-export const GenderActionContainer = styled(Form)`
+export const GenderActionContainer = styled.form`
   margin-top: 20px;
 `;
 
-export const BirthdayActionContainer = styled(Form)`
+export const BirthdayActionContainer = styled.form`
   margin-top: 15px;
 `;
 
-export const HomeplaceActionContainer = styled(Form)`
+export const HomeplaceActionContainer = styled.form`
   margin-top: 15px;
 `;
 
-export const HomeplaceInput = styled(Input)`
-  border-color: #ced0d4;
+export const HomeplaceInput = styled.input`
+  border: 1px solid #ced0d4;
   margin-top: 15px;
-  padding: 20px 16px;
-`;
+  padding: 16px;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 1.5rem;
+  ::placeholder {
+    font-size: 1.5rem;
+  }
+  &:hover {
+    border: 1px solid #8a8d91;
+  }
 
-export const BirthdayInput = styled(DatePicker)`
-  && {
-    width: 100%;
-
-    .ant-calendar-picker-input {
-      padding: 20px 16px;
-      border-color: #ced0d4;
-
-      &:hover {
-        border-color: #8a8d91;
-      }
-
-      &:focus,
-      &:active {
-        border-color: ${props => props.theme.primaryText};
-        outline: 0;
-        box-shadow: none;
-      }
-    }
+  &:focus {
+    outline: none;
+    border: 1px solid ${props => props.theme.primaryText};
   }
 `;
 
-export const Footer = styled(Row)`
+export const Footer = styled.div`
   display: flex;
   margin-top: 12px;
   justify-content: flex-end;
 `;
 
-export const CancelButton = styled(Button)`
+export const CancelButton = styled.button`
   margin-right: 8px;
   font-weight: 500;
   background-color: ${props => props.theme.secondaryBackground};
   color: ${props => props.theme.secondaryText};
   border: none;
+  font-size: 1.5rem;
+  border-radius: 6px;
+  padding: 8px 12px;
   transition: 0.1s;
+  cursor: pointer;
 
   &&:focus {
     border-color: none;
     background-color: ${props => props.theme.secondaryBackground};
     color: ${props => props.theme.secondaryText};
+    outline: none;
   }
 
   &&:active {
@@ -232,50 +304,54 @@ export const CancelButton = styled(Button)`
   }
 `;
 
-export const SaveButton = styled(Button)`
+export const SaveButton = styled.button`
   background-color: ${props => props.theme.primaryText};
   color: #fff;
   font-weight: 500;
   transition: 0.1s;
+  font-size: 1.5rem;
   border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
 
   &&:focus,
   &&:hover {
     background-color: ${props => props.theme.primaryText};
     color: #fff;
-    border-color: none;
+    outline: none;
   }
 
   &&:active {
     color: #fff;
-    border-color: none;
     transform: scale(0.96);
   }
 `;
 
-export const Gender = styled(Row)`
+export const Gender = styled.div`
   font-size: 1.5rem;
   display: flex;
   color: ${props => props.theme.secondaryText};
   align-items: center;
 `;
 
-export const Birthday = styled(Row)`
+export const Birthday = styled.div`
   font-size: 1.5rem;
   display: flex;
   color: ${props => props.theme.secondaryText};
   align-items: center;
 `;
 
-export const Homeplace = styled(Row)`
+export const Homeplace = styled.div`
   font-size: 1.5rem;
   display: flex;
   color: ${props => props.theme.secondaryText};
   align-items: center;
 `;
 
-export const SettingsContainer = styled(Button)`
+export const SettingsContainer = styled.button`
   margin-left: auto;
+  border: none;
   border-radius: 50%;
   display: flex;
   padding: 0;
@@ -288,6 +364,7 @@ export const SettingsContainer = styled(Button)`
 
   &&:focus {
     background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
   }
   &&:active {
     transform: scale(0.96);
@@ -297,7 +374,7 @@ export const SettingsContainer = styled(Button)`
   }
 `;
 
-export const GenderBody = styled(Row)`
+export const GenderBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -318,7 +395,7 @@ export const GenderCaption = styled.p`
   margin: 0;
 `;
 
-export const BirthdayBody = styled(Row)`
+export const BirthdayBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -339,7 +416,7 @@ export const BirthdayCaption = styled.p`
   margin: 0;
 `;
 
-export const HomeplaceBody = styled(Row)`
+export const HomeplaceBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -358,4 +435,41 @@ export const HomeplaceCaption = styled.p`
   font-size: 1.2rem;
   color: #65676b;
   margin: 0;
+`;
+
+export const FemaleGender = styled.input`
+  margin-right: 8px;
+  cursor: pointer;
+`;
+
+export const MaleGender = styled.input`
+  margin-right: 8px;
+  cursor: pointer;
+`;
+
+export const FemaleLabel = styled.label`
+  line-height: 1;
+  font-size: 1.5rem;
+  color: ${props => props.theme.secondaryText};
+`;
+
+export const MaleLabel = styled.label`
+  line-height: 1;
+  font-size: 1.5rem;
+  color: ${props => props.theme.secondaryText};
+`;
+
+export const FemaleContainer = styled.div`
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+`;
+
+export const MaleContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const GenderContainer = styled.div`
+  display: flex;
 `;

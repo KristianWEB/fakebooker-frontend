@@ -89,7 +89,7 @@ export const FirstNameInput = styled.input`
   border: none;
   border-radius: 6px;
   width: 100%;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   height: 100%;
   padding: 8px;
   font-size: 1.5rem;
@@ -104,7 +104,7 @@ export const LastNameInput = styled.input`
   background-color: ${props => props.theme.inputColor};
   border: none;
   border-radius: 6px;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   width: 100%;
   height: 40px;
   padding: 8px;
@@ -120,7 +120,7 @@ export const EmailInput = styled.input`
   background-color: ${props => props.theme.inputColor};
   border: none;
   border-radius: 6px;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   width: 100%;
   height: 40px;
   padding: 8px;
@@ -136,7 +136,7 @@ export const PasswordInput = styled.input`
   background-color: ${props => props.theme.inputColor};
   border: none;
   border-radius: 6px;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   width: 100%;
   height: 40px;
   padding: 8px;
@@ -166,7 +166,7 @@ export const DayInput = styled.input`
   padding: 8px;
   margin-right: 16px;
   font-size: 1.5rem;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   &:hover,
   &:active,
   &:focus {
@@ -183,7 +183,7 @@ export const MonthInput = styled.input`
   padding: 8px;
   margin-right: 16px;
   font-size: 1.5rem;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   &:hover,
   &:active,
   &:focus {
@@ -199,7 +199,7 @@ export const YearInput = styled.input`
   border-radius: 6px;
   padding: 8px;
   font-size: 1.5rem;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
   &:hover,
   &:active,
   &:focus {
@@ -263,13 +263,13 @@ export const MaleGender = styled.input`
 export const FemaleLabel = styled.label`
   line-height: 1;
   font-size: 1.5rem;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const MaleLabel = styled.label`
   line-height: 1;
   font-size: 1.5rem;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const FemaleContainer = styled.div`

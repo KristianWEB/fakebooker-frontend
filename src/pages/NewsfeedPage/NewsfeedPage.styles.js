@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Row } from "antd";
 
-export const InfoContainer = styled(Row)`
+export const InfoContainer = styled.div`
   display: flex;
   height: 100%;
   width: 100%;
@@ -9,7 +8,7 @@ export const InfoContainer = styled(Row)`
   padding-top: 8px;
 `;
 
-export const PostContainer = styled(Row)`
+export const PostContainer = styled.div`
   display: flex;
   flex-basis: 75%;
   padding: 0 32px;
@@ -21,7 +20,7 @@ export const PostContainer = styled(Row)`
     width: 100%;
   }
 `;
-export const PostsSection = styled(Row)`
+export const PostsSection = styled.div`
   width: 680px;
   @media only screen and (max-width: 767px) {
     width: 100%;
@@ -29,7 +28,7 @@ export const PostsSection = styled(Row)`
   }
 `;
 
-export const ContactsSidebar = styled(Row)`
+export const ContactsSidebar = styled.div`
   display: none;
   @media only screen and (min-width: 992px) {
     display: flex;
@@ -38,7 +37,7 @@ export const ContactsSidebar = styled(Row)`
     max-width: 320px;
   }
 `;
-export const ContactsContainer = styled(Row)`
+export const ContactsContainer = styled.div`
   position: fixed;
   max-width: 320px;
   width: 320px;
@@ -47,7 +46,7 @@ export const ContactsContainer = styled(Row)`
   }
 `;
 
-export const ContactsHeader = styled(Row)`
+export const ContactsHeader = styled.div`
   display: flex;
   margin-right: 18px;
   margin-bottom: 16px;
@@ -60,7 +59,7 @@ export const ContactsHeading = styled.h1`
   color: ${props => props.theme.tertiaryText};
 `;
 
-export const ContactsBody = styled(Row)`
+export const ContactsBody = styled.div`
   display: flex;
   align-items: center;
   margin-right: 8px;

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useQuery } from "@apollo/react-hooks";
-import { Row } from "antd";
 import Navbar from "../../components/Navbar/Navbar";
 import SingleChat from "../../components/Message/SingleChat";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
@@ -39,7 +38,7 @@ const ProfileLayout = ({ children }) => {
   return (
     <>
       {userData && (
-        <Row>
+        <>
           <Navbar
             onProfile
             user={userData.loadUser}
@@ -55,7 +54,7 @@ const ProfileLayout = ({ children }) => {
           {openChat.visible && (
             <SingleChat creator={openChat.creator} setOpenChat={setOpenChat} />
           )}
-        </Row>
+        </>
       )}
     </>
   );
