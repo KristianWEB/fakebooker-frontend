@@ -110,7 +110,7 @@ export const MessageContainer = styled(Button)`
   }
 `;
 
-export const NotificationContainer = styled(Button)`
+export const NotificationContainer = styled.button`
   padding: 0;
   background-color: ${props => props.theme.secondaryBackground};
   border-radius: 50%;
@@ -122,21 +122,21 @@ export const NotificationContainer = styled(Button)`
   height: 41px;
   border: 0;
   transition: 0.1s;
-  top: 0;
   cursor: pointer;
 
-  &&:focus {
+  &:focus {
     background-color: ${props => props.theme.primaryBackground};
     svg {
       fill: ${props => props.theme.primaryText};
     }
+    outline: none;
   }
-  &&:active {
+  &:active {
     color: ${props => props.theme.primaryTextColor};
     transform: scale(0.96);
   }
 
-  &&:hover {
+  &:hover {
     background-color: ${props => props.theme.secondaryHoverBackground};
   }
 `;

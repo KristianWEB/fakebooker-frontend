@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
 import ReactMarkdown from "react-markdown";
-import { useComponentVisible } from "../../utils/customHooks";
+import Popup from "reactjs-popup";
 import {
   PostContainer,
   SettingsContainer,
@@ -44,7 +44,6 @@ import {
 
 const Post = ({ post, user, readOnly, onNewsfeed }) => {
   const [liked, setLiked] = useState(false);
-  const { ref, isComponentVisible } = useComponentVisible(false);
 
   useEffect(() => {
     if (user && post.likes.find(like => like.userId === user.id)) {
@@ -115,17 +114,26 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
           </NameWrapper>
         </ProfileWrapper>
         {!readOnly && post.userId.id === user.id && (
-          <SettingsContainer ref={ref}>
-            <ThreeDotsSvg
-              style={{
-                cursor: "pointer",
-                width: "25px",
-                height: "25px",
-                fill: "#65676b"
-              }}
-            />
-            {isComponentVisible && <SettingsPopup />}
-          </SettingsContainer>
+          <Popup
+            className="deletePostPopup"
+            arrow={false}
+            trigger={
+              // eslint-disable-next-line react/jsx-wrap-multilines
+              <SettingsContainer>
+                <ThreeDotsSvg
+                  style={{
+                    cursor: "pointer",
+                    width: "25px",
+                    height: "25px",
+                    fill: "#65676b"
+                  }}
+                />
+              </SettingsContainer>
+            }
+            closeOnDocumentClick
+          >
+            <SettingsPopup />
+          </Popup>
         )}
       </PostHeader>
       <PostContent>

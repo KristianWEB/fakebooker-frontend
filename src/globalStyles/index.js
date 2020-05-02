@@ -79,4 +79,40 @@ export const GlobalStyle = createGlobalStyle`
   .ant-notification-notice-close {
     right: 8px !important;
   }
+
+  .deletePostPopup {
+    &-content {
+    width: 200px !important;
+    display: flex;
+    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2),0 2px 4px 0 rgba(0, 0, 0, 0.1),inset 0 0 0 1px rgba(255, 255, 255, 0.5) !important;
+    border-radius: 8px;
+    transform: translateX(-45%);
+    border: none !important;
+    padding: 8px !important;
+    }
+  }
+
+  .notificationPopup {
+    &-content {
+    width: 368px !important;
+    display: flex;
+    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2),0 2px 4px 0 rgba(0, 0, 0, 0.1),inset 0 0 0 1px rgba(255, 255, 255, 0.5) !important;
+    border-radius: 8px;
+    transform: translateX(-45%);
+    border: none !important;
+    padding: 0 !important;
+
+    @media only screen and (max-width: 400px) {
+      width: 100% !important;
+      left: calc(100% - 55%) !important;
+      }
+    }
+  }
+
+  .notificationToast {
+    flex-direction: column;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2), 0 2px 12px rgba(0, 0, 0, 0.2);
+  }
 `;

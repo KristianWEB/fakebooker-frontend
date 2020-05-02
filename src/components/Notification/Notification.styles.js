@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Row } from "antd";
 
 /* I've hardcoded these values because somehow the notification antd component doesnt render them properly */
 export const NotificationContainer = styled.div`
@@ -7,6 +6,7 @@ export const NotificationContainer = styled.div`
   padding: 8px;
   border-radius: 8px;
   transition: 0.1s;
+  font-family: Roboto;
 
   &:hover {
     background-color: #f2f2f2;
@@ -33,26 +33,36 @@ export const CreatorAvatar = styled.img`
 
 export const CreatorFirstName = styled.span`
   font-weight: bold;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const CreatorLastName = styled.span`
   font-weight: bold;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const PostBody = styled.span`
   font-weight: bold;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
 `;
 
-export const Body = styled(Row)`
+export const Body = styled.div`
   font-size: 1.5rem;
-  color: #050505;
+  color: ${props => props.theme.secondaryText};
 `;
 
 export const Timestamp = styled.h3`
-  color: #1877f2;
+  color: ${props => props.theme.primaryText};
   font-weight: bold;
   font-size: 1.3rem;
+`;
+
+export const NotificationHeading = styled.h1`
+  font-size: 1.5rem;
+  font-family: Roboto;
+  font-weight: medium;
+  color: ${props => props.theme.secondaryText};
+  padding: 0 16px;
+  margin-bottom: 4px;
+  margin-top: 8px;
 `;

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {
   NotificationContainer,
+  NotificationHeading,
   CreatorFirstName,
   CreatorLastName,
   CreatorAvatar,
@@ -11,26 +12,30 @@ import {
 } from "./Notification.styles";
 
 const Notification = ({
-  notification: { action, creator, actionId, createdAt }
+  notification: { action, creator, actionId, createdAt },
+  alert
 }) => (
-  <NotificationContainer data-testid="notification">
-    <CreatorAvatar src={creator.avatarImage} />
-    {actionId ? (
-      <Body>
-        <CreatorFirstName> {creator.firstName}</CreatorFirstName>
-        <CreatorLastName> {creator.lastName} </CreatorLastName>
-        {action}: <PostBody> {`"${actionId.body}"`}</PostBody>
-        <Timestamp>{createdAt}</Timestamp>
-      </Body>
-    ) : (
-      <Body>
-        <CreatorFirstName> {creator.firstName}</CreatorFirstName>
-        <CreatorLastName> {creator.lastName} </CreatorLastName>
-        {action}
-        <Timestamp>{createdAt}</Timestamp>
-      </Body>
-    )}
-  </NotificationContainer>
+  <>
+    {alert && <NotificationHeading>New Notification</NotificationHeading>}
+    <NotificationContainer>
+      <CreatorAvatar src={creator.avatarImage} />
+      {actionId ? (
+        <Body>
+          <CreatorFirstName> {creator.firstName}</CreatorFirstName>
+          <CreatorLastName> {creator.lastName} </CreatorLastName>
+          {action}: <PostBody> {`"${actionId.body}"`}</PostBody>
+          <Timestamp>{createdAt}</Timestamp>
+        </Body>
+      ) : (
+        <Body>
+          <CreatorFirstName> {creator.firstName}</CreatorFirstName>
+          <CreatorLastName> {creator.lastName} </CreatorLastName>
+          {action}
+          <Timestamp>{createdAt}</Timestamp>
+        </Body>
+      )}
+    </NotificationContainer>
+  </>
 );
 export default Notification;
 
@@ -46,9 +51,11 @@ Notification.propTypes = {
       body: PropTypes.string
     }),
     createdAt: PropTypes.string
-  })
+  }),
+  alert: PropTypes.bool
 };
 
 Notification.defaultProps = {
-  notification: null
+  notification: null,
+  alert: null
 };

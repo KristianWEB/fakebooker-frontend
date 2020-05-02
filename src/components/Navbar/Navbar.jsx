@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import Popup from "reactjs-popup";
 import { Link } from "react-router-dom";
 import { Avatar, Popover } from "antd";
 import NotificationList from "../Notification/NotificationList";
@@ -68,22 +69,19 @@ const Navbar = ({ onProfile, user, setOpenChat }) => {
                 <ChatIcon width="25" height="25" />
               </MessageContainer>
             </Popover>
-            <Popover
-              placement="bottomRight"
-              content={<NotificationList />}
-              trigger="click"
-              overlayStyle={{
-                width: "368px",
-                position: "fixed"
-              }}
+            <Popup
+              className="notificationPopup"
+              trigger={
+                // eslint-disable-next-line react/jsx-wrap-multilines
+                <NotificationContainer>
+                  <BellIcon width="25" height="25" />
+                </NotificationContainer>
+              }
+              closeOnDocumentClick
+              arrow={false}
             >
-              <NotificationContainer
-                type="link"
-                data-testid="notificationsButton"
-              >
-                <BellIcon width="25" height="25" />
-              </NotificationContainer>
-            </Popover>
+              <NotificationList setOpenChat={setOpenChat} />
+            </Popup>
             <Avatar size={41} src={user.avatarImage} />
           </ProfileContainer>
         </NavContainer>

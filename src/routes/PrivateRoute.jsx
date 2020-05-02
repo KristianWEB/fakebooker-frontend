@@ -2,8 +2,7 @@ import React from "react";
 import { useQuery, useSubscription } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
 import { Route, Redirect } from "react-router-dom";
-import { notification } from "antd";
-import Notification from "../components/Notification/Notification";
+import { notificationAlert } from "../utils/alerts";
 import {
   GET_NOTIFICATIONS,
   NEW_NOTIFICATION,
@@ -17,22 +16,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   useQuery(GET_NOTIFICATIONS);
   const { data: userData } = useQuery(LOAD_USER);
 
-  const openNotification = newNotification => {
-    notification.info({
-      message: <span style={{ marginLeft: "40px" }}>Notification</span>,
-      description: (
-        <div style={{ marginTop: "12px" }}>
-          <Notification notification={newNotification} />
-        </div>
-      ),
-      duration: 0,
-      placement: "bottomLeft",
-      style: {
-        padding: "16px 8px"
-      }
-    });
-  };
-
   useSubscription(NEW_NOTIFICATION, {
     onSubscriptionData: ({ client, subscriptionData }) => {
       const data = client.readQuery({
@@ -42,7 +25,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         subscriptionData.data.newNotification.notifier.id ===
         userData.loadUser.id
       ) {
-        openNotification(subscriptionData.data.newNotification);
+        notificationAlert(subscriptionData.data.newNotification);
         const newData = {
           getNotifications: [
             subscriptionData.data.newNotification,
