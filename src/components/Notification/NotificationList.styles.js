@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const NotificationListContainer = styled.div`
   font-family: "Roboto";
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 export const NotificationListHeading = styled.h3`

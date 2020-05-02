@@ -19,27 +19,30 @@ export const AboutContainer = styled.div`
 export const AboutSidebar = styled.div`
   display: flex;
   flex-direction: column;
-  /* flex-grow: 1; */
   width: 33%;
   border-right: 1px solid ${props => props.theme.secondaryBackground};
+  padding: 6px;
 `;
 
 export const AboutHeading = styled.p`
   font-size: 2rem;
   font-weight: bold;
   color: ${props => props.theme.secondaryText};
-  margin: 20px 16px;
+  margin: 20px 10px;
 `;
 
-export const Overview = styled.p`
+export const Overview = styled.button`
   color: ${props => props.theme.tertiaryText};
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  width: 100%;
+  background-color: #fff;
   font-size: 1.5rem;
   font-weight: 600;
-  border-radius: 6px;
   padding: 10px;
-  margin: 0 6px;
+  border-radius: 6px;
   margin-bottom: 8px;
-
   &:hover {
     background-color: ${props => props.theme.tertiaryBackground};
     outline: none;
@@ -56,15 +59,18 @@ export const Overview = styled.p`
   }
 `;
 
-export const WorkAndEducation = styled.p`
+export const WorkAndEducation = styled.button`
   color: ${props => props.theme.tertiaryText};
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  width: 100%;
+  background-color: #fff;
   font-size: 1.5rem;
   font-weight: 600;
-  border-radius: 6px;
   padding: 10px;
-  margin: 0 6px;
+  border-radius: 6px;
   margin-bottom: 8px;
-
   &:hover {
     background-color: ${props => props.theme.tertiaryBackground};
     outline: none;
@@ -81,15 +87,22 @@ export const WorkAndEducation = styled.p`
   }
 `;
 
-export const ContactAndBasicInfo = styled.p`
+export const ContactAndBasicInfo = styled.button`
   color: ${props => props.theme.primaryText};
+  border: none;
+  width: 100%;
+  text-align: left;
   font-size: 1.5rem;
   background-color: ${props => props.theme.primaryBackground};
   padding: 10px;
   border-radius: 6px;
+  cursor: pointer;
   font-weight: 600;
-  margin: 0 6px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const AboutBodyContainer = styled.div`
@@ -246,6 +259,8 @@ export const BirthdayActionContainer = styled.form`
 
 export const HomeplaceActionContainer = styled.form`
   margin-top: 15px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const HomeplaceInput = styled.input`
@@ -253,7 +268,6 @@ export const HomeplaceInput = styled.input`
   margin-top: 15px;
   padding: 16px;
   border-radius: 6px;
-  width: 100%;
   font-size: 1.5rem;
   ::placeholder {
     font-size: 1.5rem;

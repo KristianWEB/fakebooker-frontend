@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     }
   html {
   overflow-y: scroll;
+  box-sizing: border-box;
   }
 
    html, body {
@@ -23,33 +24,9 @@ export const GlobalStyle = createGlobalStyle`
        height: 100%;
    }
 
-   .ant-popover-inner-content {
-    padding: 0;
-   }
-   .ant-popover-inner {
-    border-radius: 8px;
-   }
-
-   .ant-popover-arrow {
-       display: none;
-   }
-
-   .ant-popover {
-       @media only screen and (max-width: 575px) {
-           width: 100% !important;
-       }
-   }
-
-  .ant-input:hover {
-    border-color: #8a8d91;
-  }
-
-  .ant-input:focus,
-  .ant-input:active {
-    border-color: #1876f2;
-    outline: 0;
-    box-shadow: none;
-  }
+    a {
+      text-decoration: none;
+    }
 
   .activeProfileHeaderRoute {
       button {
@@ -64,22 +41,6 @@ export const GlobalStyle = createGlobalStyle`
         content: "";
     }
   }
-  .ant-upload-list, .ant-upload-list-text {
-    display: none !important;
-  }
-  .ant-notification-notice-message {
-    margin-left: 0 !important;
-    margin-bottom: 0 !important;
-  }
-
-   .ant-notification-notice-with-icon .ant-notification-notice-description {
-    margin-left: 0;
-   }
-
-  .ant-notification-notice-close {
-    right: 8px !important;
-  }
-
   .deletePostPopup {
     &-content {
     width: 200px !important;

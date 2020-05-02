@@ -11,9 +11,6 @@ export const PostContainer = styled.div`
   border-radius: 8px;
   font-family: "Roboto";
   background-color: #fff;
-  @media only screen and (max-width: 575px) {
-    width: 100%;
-  }
 `;
 
 export const PopContainer = styled.div`
@@ -112,8 +109,8 @@ export const ProfileName = styled.h3`
 
 export const PostCreation = styled.p`
   font-size: 1.3rem;
+  margin: 4px 0 0 0;
   color: ${props => props.theme.tertiaryText};
-  margin-bottom: 0;
 `;
 
 export const PostContent = styled.div`
@@ -129,6 +126,7 @@ export const PostFooter = styled.div`
 `;
 export const LikesWrapper = styled.div`
   display: flex;
+  cursor: pointer;
   align-items: center;
   border-radius: 6px;
   margin: 3px 0;
@@ -160,6 +158,7 @@ export const LikesCount = styled.p`
 export const CommentsWrapper = styled.div`
   margin: 3px 0;
   margin-left: 0.5rem;
+  cursor: pointer;
   border-radius: 6px;
   padding: 5px;
   display: flex;
@@ -191,6 +190,7 @@ export const CommentsCount = styled.p`
 export const SharesWrapper = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
   justify-content: center;
   flex: 3;
   margin: 3px 0;
@@ -255,6 +255,7 @@ export const LikeButton = styled.button`
   border: none;
   background-color: transparent;
   display: flex;
+  cursor: pointer;
   align-items: center;
   &:focus {
     outline: none;

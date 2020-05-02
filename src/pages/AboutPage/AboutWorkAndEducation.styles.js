@@ -21,24 +21,28 @@ export const AboutSidebar = styled.div`
   flex-direction: column;
   width: 33%;
   border-right: 1px solid ${props => props.theme.secondaryBackground};
+  padding: 6px;
 `;
 
 export const AboutHeading = styled.p`
   font-size: 2rem;
   font-weight: bold;
   color: ${props => props.theme.secondaryText};
-  margin: 20px 16px;
+  margin: 20px 10px;
 `;
 
-export const Overview = styled.p`
+export const Overview = styled.button`
   color: ${props => props.theme.tertiaryText};
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  width: 100%;
+  background-color: #fff;
   font-size: 1.5rem;
   font-weight: 600;
-  border-radius: 6px;
   padding: 10px;
-  margin: 0 6px;
+  border-radius: 6px;
   margin-bottom: 8px;
-
   &:hover {
     background-color: ${props => props.theme.tertiaryBackground};
     outline: none;
@@ -55,26 +59,36 @@ export const Overview = styled.p`
   }
 `;
 
-export const WorkAndEducation = styled.p`
+export const WorkAndEducation = styled.button`
   color: ${props => props.theme.primaryText};
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
   font-size: 1.5rem;
   background-color: ${props => props.theme.primaryBackground};
   padding: 10px;
   border-radius: 6px;
   font-weight: 600;
-  margin: 0 6px;
   margin-bottom: 8px;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
-export const ContactAndBasicInfo = styled.p`
+export const ContactAndBasicInfo = styled.button`
   color: ${props => props.theme.tertiaryText};
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  width: 100%;
+  background-color: #fff;
   font-size: 1.5rem;
   font-weight: 600;
-  border-radius: 6px;
   padding: 10px;
-  margin: 0 6px;
-  margin-bottom: 20px;
-
+  border-radius: 6px;
+  margin-bottom: 8px;
   &:hover {
     background-color: ${props => props.theme.tertiaryBackground};
     outline: none;
@@ -212,14 +226,16 @@ export const SettingsContainer = styled.button`
   }
 `;
 
-export const WorkplaceActionContainer = styled.form``;
+export const WorkplaceActionContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const WorkplaceInput = styled.input`
   border: 1px solid #ced0d4;
   margin-top: 15px;
   padding: 16px;
   border-radius: 6px;
-  width: 100%;
   font-size: 1.5rem;
   ::placeholder {
     font-size: 1.5rem;
@@ -234,14 +250,16 @@ export const WorkplaceInput = styled.input`
   }
 `;
 
-export const SchoolActionContainer = styled.form``;
+export const SchoolActionContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const SchoolInput = styled.input`
   border: 1px solid #ced0d4;
   margin-top: 15px;
   padding: 16px;
   border-radius: 6px;
-  width: 100%;
   font-size: 1.5rem;
   ::placeholder {
     font-size: 1.5rem;

@@ -88,10 +88,9 @@ export const FirstNameInput = styled.input`
   background-color: ${props => props.theme.inputColor};
   border: none;
   border-radius: 6px;
-  width: 100%;
   color: ${props => props.theme.secondaryText};
-  height: 100%;
-  padding: 8px;
+  height: 40px;
+  padding: 0 8px;
   font-size: 1.5rem;
 
   &:hover,
@@ -105,9 +104,8 @@ export const LastNameInput = styled.input`
   border: none;
   border-radius: 6px;
   color: ${props => props.theme.secondaryText};
-  width: 100%;
   height: 40px;
-  padding: 8px;
+  padding: 0 8px;
   font-size: 1.5rem;
 
   &:hover,
@@ -121,9 +119,8 @@ export const EmailInput = styled.input`
   border: none;
   border-radius: 6px;
   color: ${props => props.theme.secondaryText};
-  width: 100%;
   height: 40px;
-  padding: 8px;
+  padding: 0 8px;
   font-size: 1.5rem;
 
   &:hover,
@@ -137,9 +134,8 @@ export const PasswordInput = styled.input`
   border: none;
   border-radius: 6px;
   color: ${props => props.theme.secondaryText};
-  width: 100%;
   height: 40px;
-  padding: 8px;
+  padding: 0 8px;
   font-size: 1.5rem;
   &:hover,
   &:active,
@@ -163,7 +159,7 @@ export const DayInput = styled.input`
   background-color: ${props => props.theme.inputColor};
   border: none;
   border-radius: 6px;
-  padding: 8px;
+  padding: 0 8px;
   margin-right: 16px;
   font-size: 1.5rem;
   color: ${props => props.theme.secondaryText};
@@ -180,7 +176,7 @@ export const MonthInput = styled.input`
   background-color: ${props => props.theme.inputColor};
   border: none;
   border-radius: 6px;
-  padding: 8px;
+  padding: 0 8px;
   margin-right: 16px;
   font-size: 1.5rem;
   color: ${props => props.theme.secondaryText};
@@ -197,7 +193,7 @@ export const YearInput = styled.input`
   background-color: ${props => props.theme.inputColor};
   border: none;
   border-radius: 6px;
-  padding: 8px;
+  padding: 0 8px;
   font-size: 1.5rem;
   color: ${props => props.theme.secondaryText};
   &:hover,

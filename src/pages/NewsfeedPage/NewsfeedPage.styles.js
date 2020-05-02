@@ -6,6 +6,7 @@ export const InfoContainer = styled.div`
   width: 100%;
   justify-content: flex-end;
   padding-top: 8px;
+  font-family: Roboto;
 `;
 
 export const PostContainer = styled.div`

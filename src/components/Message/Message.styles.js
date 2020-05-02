@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const MessageContainer = styled.div`
   display: flex;
   padding: 8px;
-  width: 100%;
   height: 100%;
   border-radius: 8px;
   transition: 0.1s;

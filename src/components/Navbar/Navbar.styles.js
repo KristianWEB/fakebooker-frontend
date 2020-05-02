@@ -146,6 +146,7 @@ export const User = styled.div`
   border-radius: 18px;
   margin-right: 16px;
   cursor: pointer;
+  font-size: 1.5rem;
   background-color: ${props =>
     props.primary ? props.theme.primaryBackground : "#fff"};
 

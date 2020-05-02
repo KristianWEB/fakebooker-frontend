@@ -62,7 +62,7 @@ export const EmailInput = styled.input`
   border: none;
   border-radius: 6px;
   height: 40px;
-  padding: 8px;
+  padding: 0 8px;
   &:focus,
   &:hover,
   &:active {
@@ -75,7 +75,7 @@ export const PasswordInput = styled.input`
   border: none;
   border-radius: 6px;
   height: 40px;
-  padding: 8px;
+  padding: 0 8px;
   &:focus,
   &:hover,
   &:active {

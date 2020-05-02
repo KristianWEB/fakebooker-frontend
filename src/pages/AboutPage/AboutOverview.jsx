@@ -59,7 +59,7 @@ const AboutPageOverview = () => {
           <Link to="about_overview">
             <Overview>Overview</Overview>
           </Link>
-          <Link to="about_work_and_education" data-testid="aboutWorkLink">
+          <Link to="about_work_and_education">
             <WorkAndEducation>Work and Education</WorkAndEducation>
           </Link>
           <Link to="about_contact_and_basic_info">

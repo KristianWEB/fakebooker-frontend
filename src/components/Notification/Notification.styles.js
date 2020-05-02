@@ -6,6 +6,7 @@ export const NotificationContainer = styled.div`
   border-radius: 8px;
   transition: 0.1s;
   font-family: Roboto;
+  cursor: pointer;
 
   &:hover {
     background-color: ${props => props.theme.tertiaryBackground};
@@ -62,6 +63,6 @@ export const NotificationHeading = styled.h1`
   font-weight: medium;
   color: ${props => props.theme.secondaryText};
   padding: 0 16px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   margin-top: 8px;
 `;

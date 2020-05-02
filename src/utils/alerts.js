@@ -18,7 +18,7 @@ export const notificationAlert = notification => {
       transition: Slide,
       closeButton: (
         <CloseContainer
-          style={{ position: "absolute", right: "16px", top: "12px" }}
+          style={{ position: "absolute", right: "12px", top: "12px" }}
         >
           <CloseBtn width="15" height="15" fill="#62626a" />
         </CloseContainer>
