@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import moment from "moment/moment";
 import { useQuery, useMutation } from "@apollo/react-hooks";
+import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 import {
   AboutInfoContainer,
@@ -67,11 +69,13 @@ import { ReactComponent as BirthdayIcon } from "../../assets/icons/calendar.svg"
 import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
 
 const AboutContactAndBasicInfo = () => {
+  const { register, handleSubmit, getValues } = useForm();
   const [addGender, setAddGender] = useState(false);
   const [addBirthday, setAddBirthday] = useState(false);
   const [addHomeplace, setAddHomeplace] = useState(false);
 
-  const [birthdayBody, setBirthdayBody] = useState(null);
+  const { birthday } = getValues({ nest: true });
+
   const [genderBody, setGenderBody] = useState("");
   const [homePlaceBody, setHomePlaceBody] = useState("");
 
@@ -83,7 +87,9 @@ const AboutContactAndBasicInfo = () => {
 
   const [saveBirthday] = useMutation(ADD_BIRTHDAY, {
     variables: {
-      birthday: birthdayBody
+      birthday:
+        birthday &&
+        new Date(birthday.birthDay + birthday.birthMonth + birthday.birthYear)
     }
   });
 
@@ -141,7 +147,6 @@ const AboutContactAndBasicInfo = () => {
   };
 
   const onSubmitBirthday = e => {
-    e.preventDefault();
     saveBirthday();
     setAddBirthday(false);
   };
@@ -149,7 +154,6 @@ const AboutContactAndBasicInfo = () => {
   const deleteBirthdayCb = () => {
     deleteBirthday();
     setAddBirthday(false);
-    setBirthdayBody(null);
   };
 
   const onSubmitHomePlace = e => {
@@ -196,7 +200,9 @@ const AboutContactAndBasicInfo = () => {
                 <Birthday>
                   <BirthdayIcon width={20} height={20} fill="#65676b" />
                   <BirthdayBody>
-                    <UserBirthday>{profileUser.birthday}</UserBirthday>
+                    <UserBirthday>
+                      {moment.unix(profileUser.birthday).format()}
+                    </UserBirthday>
                     <BirthdayCaption>Birthday</BirthdayCaption>
                   </BirthdayBody>
                 </Birthday>
@@ -262,22 +268,27 @@ const AboutContactAndBasicInfo = () => {
                 </Gender>
               )}
               {addBirthday && (
-                <BirthdayActionContainer onSubmit={onSubmitBirthday}>
+                <BirthdayActionContainer
+                  onSubmit={handleSubmit(onSubmitBirthday)}
+                >
                   <BirthdayContainer>
                     <DayInput
+                      name="birthday.birthDay"
                       type="text"
                       placeholder="30"
-                      // onChange={e => setBirthdayBody(e && e.format())}
+                      ref={register}
                     />
                     <MonthInput
+                      ref={register}
+                      name="birthday.birthMonth"
                       type="text"
                       placeholder="April"
-                      // onChange={e => setBirthdayBody(e && e.format())}
                     />
                     <YearInput
                       type="text"
                       placeholder="1995"
-                      // onChange={e => setBirthdayBody(e && e.format())}
+                      ref={register}
+                      name="birthday.birthYear"
                     />
                   </BirthdayContainer>
                   <Footer>
@@ -298,7 +309,9 @@ const AboutContactAndBasicInfo = () => {
                 <Birthday>
                   <BirthdayIcon width={20} height={20} fill="#65676b" />
                   <BirthdayBody>
-                    <UserBirthday>{user.birthday}</UserBirthday>
+                    <UserBirthday>
+                      {moment(Number(user.birthday)).format("DD MMMM YYYY")}
+                    </UserBirthday>
                     <BirthdayCaption>Birthday</BirthdayCaption>
                   </BirthdayBody>
                   <SettingsContainer onClick={deleteBirthdayCb}>

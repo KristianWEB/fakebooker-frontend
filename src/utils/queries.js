@@ -5,7 +5,7 @@ export const REGISTER_USER = gql`
     $firstName: String!
     $lastName: String!
     $email: String!
-    $birthday: Date!
+    $birthday: String!
     $gender: String!
     $password: String!
   ) {
@@ -353,7 +353,7 @@ export const DELETE_GENDER = gql`
 `;
 
 export const ADD_BIRTHDAY = gql`
-  mutation addBirthday($birthday: Date!) {
+  mutation addBirthday($birthday: String!) {
     addBirthday(birthday: $birthday) {
       id
       birthday

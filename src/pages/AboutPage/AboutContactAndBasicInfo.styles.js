@@ -169,52 +169,58 @@ export const BirthdayContainer = styled.div`
 
 export const DayInput = styled.input`
   width: 20%;
-  height: 40px;
-  background-color: ${props => props.theme.secondaryBackground};
   color: ${props => props.theme.secondaryText};
   border: none;
   border-radius: 6px;
-  padding: 8px;
+  padding: 16px;
   margin-right: 16px;
   font-size: 1.5rem;
+  border: 1px solid #ced0d4;
 
-  &:hover,
-  &:active,
+  &:hover {
+    border: 1px solid #8a8d91;
+  }
+
   &:focus {
     outline: none;
+    border: 1px solid ${props => props.theme.primaryText};
   }
 `;
 
 export const MonthInput = styled.input`
   width: 20%;
-  height: 40px;
   color: ${props => props.theme.secondaryText};
-  background-color: ${props => props.theme.secondaryBackground};
   border: none;
   border-radius: 6px;
-  padding: 8px;
+  padding: 16px;
   margin-right: 16px;
   font-size: 1.5rem;
-  &:hover,
-  &:active,
+  border: 1px solid #ced0d4;
+  &:hover {
+    border: 1px solid #8a8d91;
+  }
+
   &:focus {
     outline: none;
+    border: 1px solid ${props => props.theme.primaryText};
   }
 `;
 
 export const YearInput = styled.input`
   width: 20%;
-  height: 40px;
   color: ${props => props.theme.secondaryText};
-  background-color: ${props => props.theme.secondaryBackground};
   border: none;
   border-radius: 6px;
-  padding: 8px;
+  padding: 16px;
   font-size: 1.5rem;
-  &:hover,
-  &:active,
+  border: 1px solid #ced0d4;
+  &:hover {
+    border: 1px solid #8a8d91;
+  }
+
   &:focus {
     outline: none;
+    border: 1px solid ${props => props.theme.primaryText};
   }
 `;
 

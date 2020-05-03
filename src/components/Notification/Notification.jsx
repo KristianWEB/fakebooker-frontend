@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment/moment";
 import PropTypes from "prop-types";
 import {
   NotificationContainer,
@@ -26,7 +27,7 @@ const Notification = ({
             </CreatorFullName>
             {action}: <PostBody> {`"${actionId.body}"`}</PostBody>
           </div>
-          <Timestamp>{createdAt}</Timestamp>
+          <Timestamp>{moment(Number(createdAt)).fromNow()}</Timestamp>
         </Body>
       ) : (
         <Body>

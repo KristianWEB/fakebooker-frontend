@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PostContainer = styled.div`
   margin: 1.6rem 0;
-  padding: 13px;
+  /* padding: 13px; */
   &&:first-child {
     margin-top: 0;
   }
@@ -57,13 +57,14 @@ export const PopButton = styled.button`
 `;
 
 export const CommentsContainer = styled.div`
-  margin-top: 13px;
+  padding: 8px 16px;
   border-radius: 0 0 8px 8px;
 `;
 
 export const PostHeader = styled.div`
   display: flex;
   margin-bottom: 0;
+  padding: 12px 16px;
 `;
 export const SettingsContainer = styled.div`
   display: flex;
@@ -114,15 +115,19 @@ export const PostCreation = styled.p`
 `;
 
 export const PostContent = styled.div`
-  margin-top: 13px;
   color: ${props => props.theme.secondaryText};
   font-size: 1.5rem;
+  p {
+    margin: 0;
+    padding: 0px 16px 16px 16px;
+  }
 `;
 
 export const PostFooter = styled.div`
   display: flex;
   border-top: 1px solid ${props => props.theme.secondaryHoverBackground};
   border-bottom: 1px solid ${props => props.theme.secondaryHoverBackground};
+  margin: 0 16px;
 `;
 export const LikesWrapper = styled.div`
   display: flex;

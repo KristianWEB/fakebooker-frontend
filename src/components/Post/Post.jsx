@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment/moment";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
 import ReactMarkdown from "react-markdown";
@@ -109,7 +110,7 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
               {post.userId.firstName} {post.userId.lastName}
             </ProfileName>
             <PostCreation>
-              {new Date(Number(post.createdAt)).toLocaleDateString("en-US")}
+              {moment(Number(post.createdAt)).fromNow()}
             </PostCreation>
           </NameWrapper>
         </ProfileWrapper>
