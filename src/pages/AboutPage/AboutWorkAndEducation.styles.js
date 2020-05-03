@@ -4,13 +4,12 @@ export const AboutInfoContainer = styled.div`
   display: flex;
   font-family: Roboto;
   justify-content: center;
-  padding-top: 28px;
-  padding-bottom: 28px;
+  padding: 28px 8px;
 `;
 
 export const AboutContainer = styled.div`
   display: flex;
-  width: 866px;
+  width: 876px;
   background-color: #fff;
   border-radius: 6px;
   box-shadow: ${props => props.theme.boxShadow2};

@@ -15,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
 
    html, body {
     font-size: 62.5%;
+    box-sizing: border-box;
    } 
    body {
      background-color: #f0f2f5;
@@ -61,6 +62,18 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 8px;
     border: none !important;
     padding: 8px !important;
+    }
+  }
+
+  .profileFriendPopup {
+    &-content {
+    width: 200px !important;
+    display: flex;
+    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2),0 2px 4px 0 rgba(0, 0, 0, 0.1),inset 0 0 0 1px rgba(255, 255, 255, 0.5) !important;
+    border-radius: 8px;
+    border: none !important;
+    padding: 8px !important;
+    transform: translateX(-20%);
     }
   }
 

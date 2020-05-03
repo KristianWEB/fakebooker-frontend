@@ -1,11 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import Popup from "reactjs-popup";
 import PropTypes from "prop-types";
 import {
   ProfileHeaderContainer,
   ProfileBackgroundContainer,
   UserContainer,
+  MoreLinkContainer,
+  PopupFriendsLink,
+  PopupPhotosLink,
+  PopupLinkContainer,
+  MoreBtn,
   User,
   UserAvatar,
   UserName,
@@ -43,37 +49,10 @@ import {
 } from "../../utils/queries";
 
 const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
-  const [friendReqDropdown, setFriendReqDropdown] = useState(false);
-  const [removeFriendDropdown, setRemoveFriendDropdown] = useState(false);
-
   const [addFriend, { data: friendData }] = useMutation(ADD_FRIEND, {
     variables: {
       notifier: user.username
     }
-  });
-
-  const frRef = useRef(null);
-  const removeFrRef = useRef(null);
-
-  const handleClickOutside = event => {
-    if (frRef.current && !frRef.current.contains(event.target)) {
-      setFriendReqDropdown(false);
-    }
-  };
-
-  const handleClickOutsideRemoveFr = event => {
-    if (removeFrRef.current && !removeFrRef.current.contains(event.target)) {
-      setRemoveFriendDropdown(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
-    document.addEventListener("click", handleClickOutsideRemoveFr, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-      document.removeEventListener("click", handleClickOutsideRemoveFr, true);
-    };
   });
 
   // get single notification is changed: pass profileUser ( user ) and authUser ( authUser ) as creator and notifier once and the opposite and check if there is any data ( friend request sent )
@@ -262,8 +241,26 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
             }
           }}
         >
-          <PhotosContainerLink type="link">Photos</PhotosContainerLink>
+          <PhotosContainerLink>Photos</PhotosContainerLink>
         </NavLink>
+        <MoreLinkContainer>
+          <Popup
+            className="profileFriendPopup"
+            arrow={false}
+            trigger={<MoreBtn>More</MoreBtn>}
+            closeOnDocumentClick
+            on="click"
+          >
+            <PopupLinkContainer>
+              <Link to={`/${user.username}/friends`}>
+                <PopupFriendsLink>Friends</PopupFriendsLink>
+              </Link>
+              <Link to={`/${user.username}/photos`}>
+                <PopupPhotosLink>Photos</PopupPhotosLink>
+              </Link>
+            </PopupLinkContainer>
+          </Popup>
+        </MoreLinkContainer>
         {readOnly && (
           <>
             <FriendActionContainer>
@@ -272,12 +269,26 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
                 notificationData.getSingleNotification.status === "pending" &&
                 notificationData.getSingleNotification.notifier.id ===
                   authUser.id && (
-                  <RespondContainer ref={frRef}>
-                    <RespondBtn onClick={() => setFriendReqDropdown(true)}>
-                      <AddFriendIcon width={16} height={16} fill="#1876f2" />
-                      <RespondText>Respond</RespondText>
-                    </RespondBtn>
-                    {friendReqDropdown && <FriendActions />}
+                  <RespondContainer>
+                    <Popup
+                      className="profileFriendPopup"
+                      arrow={false}
+                      trigger={
+                        // eslint-disable-next-line react/jsx-wrap-multilines
+                        <RespondBtn>
+                          <AddFriendIcon
+                            width={16}
+                            height={16}
+                            fill="#1876f2"
+                          />
+                          <RespondText>Respond</RespondText>
+                        </RespondBtn>
+                      }
+                      closeOnDocumentClick
+                      on="click"
+                    >
+                      <FriendActions />
+                    </Popup>
                   </RespondContainer>
                 )}
               {((notificationData &&
@@ -303,15 +314,22 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
                 notificationData.getSingleNotification &&
                 notificationData.getSingleNotification.status === "accepted") ||
                 acceptFriendData) && (
-                <RespondContainer ref={removeFrRef}>
-                  <RespondBtn
-                    type="link"
-                    onClick={() => setRemoveFriendDropdown(true)}
+                <RespondContainer>
+                  <Popup
+                    className="profileFriendPopup"
+                    arrow={false}
+                    trigger={
+                      // eslint-disable-next-line react/jsx-wrap-multilines
+                      <RespondBtn>
+                        <AddFriendIcon width={16} height={16} fill="#1876f2" />
+                        <RespondText>Friends</RespondText>
+                      </RespondBtn>
+                    }
+                    closeOnDocumentClick
+                    on="click"
                   >
-                    <AddFriendIcon width={16} height={16} fill="#1876f2" />
-                    <RespondText>Friends</RespondText>
-                  </RespondBtn>
-                  {removeFriendDropdown && <RemoveContainer />}
+                    <RemoveContainer />
+                  </Popup>
                 </RespondContainer>
               )}
             </FriendActionContainer>

@@ -31,12 +31,7 @@ export const CreatorAvatar = styled.img`
   }
 `;
 
-export const CreatorFirstName = styled.span`
-  font-weight: bold;
-  color: ${props => props.theme.secondaryText};
-`;
-
-export const CreatorLastName = styled.span`
+export const CreatorFullName = styled.span`
   font-weight: bold;
   color: ${props => props.theme.secondaryText};
 `;
@@ -49,12 +44,17 @@ export const PostBody = styled.span`
 export const Body = styled.div`
   font-size: 1.5rem;
   color: ${props => props.theme.secondaryText};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const Timestamp = styled.h3`
   color: ${props => props.theme.primaryText};
   font-weight: bold;
   font-size: 1.3rem;
+  display: flex;
+  margin-top: 5px;
 `;
 
 export const NotificationHeading = styled.h1`

@@ -4,10 +4,12 @@ export const AboutContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 360px;
+  box-sizing: border-box;
   height: 100%;
   background-color: #fff;
   box-shadow: ${props => props.theme.boxShadow2};
   border-radius: 6px;
+  margin-right: 8px;
   padding: 12px;
   font-family: Roboto;
   @media only screen and (max-width: 767px) {

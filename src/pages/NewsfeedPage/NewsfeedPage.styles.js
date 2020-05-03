@@ -25,7 +25,7 @@ export const PostsSection = styled.div`
   width: 680px;
   @media only screen and (max-width: 767px) {
     width: 100%;
-    margin: 0 5px;
+    margin: 0 8px;
   }
 `;
 

@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import {
   NotificationContainer,
   NotificationHeading,
-  CreatorFirstName,
-  CreatorLastName,
+  CreatorFullName,
   CreatorAvatar,
   Body,
   PostBody,
@@ -21,16 +20,22 @@ const Notification = ({
       <CreatorAvatar src={creator.avatarImage} />
       {actionId ? (
         <Body>
-          <CreatorFirstName> {creator.firstName}</CreatorFirstName>
-          <CreatorLastName> {creator.lastName} </CreatorLastName>
-          {action}: <PostBody> {`"${actionId.body}"`}</PostBody>
+          <div>
+            <CreatorFullName>
+              {creator.firstName} {creator.lastName}{" "}
+            </CreatorFullName>
+            {action}: <PostBody> {`"${actionId.body}"`}</PostBody>
+          </div>
           <Timestamp>{createdAt}</Timestamp>
         </Body>
       ) : (
         <Body>
-          <CreatorFirstName> {creator.firstName}</CreatorFirstName>
-          <CreatorLastName> {creator.lastName} </CreatorLastName>
-          {action}
+          <div>
+            <CreatorFullName>
+              {creator.firstName} {creator.lastName}{" "}
+            </CreatorFullName>
+            {action}
+          </div>
           <Timestamp>{createdAt}</Timestamp>
         </Body>
       )}

@@ -6,6 +6,7 @@ export const MessageContainer = styled.div`
   height: 100%;
   border-radius: 8px;
   transition: 0.1s;
+  cursor: pointer;
 
   &:hover {
     background-color: ${props => props.theme.tertiaryBackground};

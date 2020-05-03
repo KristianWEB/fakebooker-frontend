@@ -6,7 +6,7 @@ export const PostContainer = styled.div`
   &&:first-child {
     margin-top: 0;
   }
-  width: 100%;
+  max-width: 680px;
   box-shadow: ${props => props.theme.boxShadow2};
   border-radius: 8px;
   font-family: "Roboto";

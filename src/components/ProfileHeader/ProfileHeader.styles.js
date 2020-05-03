@@ -182,6 +182,12 @@ export const FriendsContainerLink = styled.button`
   &:active {
     background-color: ${props => props.theme.secondaryBackground};
   }
+
+  display: block;
+
+  @media only screen and (max-width: 700px) {
+    display: none;
+  }
 `;
 
 export const PhotosContainerLink = styled.button`
@@ -195,6 +201,11 @@ export const PhotosContainerLink = styled.button`
   margin: 6px 0;
   padding: 0 16px;
   height: 50px;
+  display: block;
+
+  @media only screen and (max-width: 700px) {
+    display: none;
+  }
 
   &:hover {
     background-color: ${props => props.theme.tertiaryBackground};
@@ -355,18 +366,8 @@ export const RespondText = styled.h1`
 
 export const ActionsContainer = styled.div`
   display: flex;
-  position: absolute;
-  top: 48px;
-  left: -60px;
-  transform: translateX(-45%);
-  background-color: #fff;
-  border-radius: 8px;
-  width: 344px;
-  box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-  z-index: 20;
+  width: 100%;
   flex-direction: column;
-  padding: 8px;
 `;
 
 export const AcceptFriendBtn = styled.button`
@@ -455,5 +456,105 @@ export const MessageBtn = styled.button`
   }
   &&:hover {
     background-color: ${props => props.theme.secondaryHoverBackground};
+  }
+`;
+
+export const MoreLinkContainer = styled.div`
+  display: none;
+  @media only screen and (max-width: 700px) {
+    display: block;
+  }
+`;
+export const PopupLinkContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+export const PopupFriendsLink = styled.button`
+  text-align: left;
+  border: none;
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  background-color: #fff;
+  color: ${props => props.theme.secondaryText};
+  transition: 0.1s;
+  font-weight: 500;
+
+  &:hover {
+    background-color: ${props => props.theme.tertiaryBackground};
+    color: ${props => props.theme.secondaryText};
+  }
+
+  &::after,
+  &:focus {
+    color: ${props => props.theme.secondaryText};
+    outline: none;
+  }
+
+  &:active {
+    background-color: ${props => props.theme.secondaryHoverBackground};
+    color: ${props => props.theme.secondaryText};
+  }
+`;
+
+export const PopupPhotosLink = styled.button`
+  text-align: left;
+  border: none;
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  background-color: #fff;
+  color: ${props => props.theme.secondaryText};
+  transition: 0.1s;
+  font-weight: 500;
+
+  &:hover {
+    background-color: ${props => props.theme.tertiaryBackground};
+    color: ${props => props.theme.secondaryText};
+  }
+
+  &::after,
+  &:focus {
+    color: ${props => props.theme.secondaryText};
+    outline: none;
+  }
+
+  &:active {
+    background-color: ${props => props.theme.secondaryHoverBackground};
+    color: ${props => props.theme.secondaryText};
+  }
+`;
+
+export const MoreBtn = styled.button`
+  color: ${props => props.theme.tertiaryText};
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 6px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 6px 0;
+  padding: 0 16px;
+  height: 50px;
+  z-index: 10;
+
+  &:hover {
+    background-color: ${props => props.theme.tertiaryBackground};
+    outline: none;
+  }
+
+  &::after,
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: ${props => props.theme.secondaryBackground};
+    outline: none;
   }
 `;

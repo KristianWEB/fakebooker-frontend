@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const InfoContainer = styled.div`
   display: flex;
   height: 100%;
-  padding-top: 28px;
-  padding-bottom: 28px;
+  padding: 28px 8px;
   font-family: Roboto;
 `;
 
 export const FixedContainer = styled.div`
-  width: 882px;
+  width: 876px;
+  box-sizing: border-box;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@ export const FixedContainer = styled.div`
   margin: 0 auto;
   padding: 16px;
   box-shadow: ${props => props.theme.boxShadow2};
-  border-radius: 8px;
+  border-radius: 6px;
 `;
 
 export const PhotosHeading = styled.h1`
