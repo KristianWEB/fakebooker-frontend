@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const MessageListContainer = styled.div`
   font-family: "Roboto";
+  width: 100%;
 `;
 
 export const MessageListHeading = styled.h3`
