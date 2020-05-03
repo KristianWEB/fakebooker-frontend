@@ -12,23 +12,23 @@ import App from "./App";
 const cache = new InMemoryCache();
 
 const wsLink = new WebSocketLink({
-  // uri: "wss://damp-forest-43324.herokuapp.com/graphql",
-  uri: "ws://localhost:8080/graphql",
+  uri: "wss://damp-forest-43324.herokuapp.com/graphql",
+  // uri: "ws://localhost:8080/graphql",
   options: {
     reconnect: true,
     connectionParams: {
       headers: {
         Authorization: localStorage.getItem("token")
           ? `JWT ${localStorage.getItem("token")}`
-          : ""
-      }
-    }
-  }
+          : "",
+      },
+    },
+  },
 });
 
 const httpLink = createHttpLink({
-  // uri: "https://damp-forest-43324.herokuapp.com"
-  uri: "http://localhost:8080/graphql"
+  uri: "https://damp-forest-43324.herokuapp.com",
+  // uri: "http://localhost:8080/graphql"
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -38,8 +38,8 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `JWT ${token}` : ""
-    }
+      authorization: token ? `JWT ${token}` : "",
+    },
   };
 });
 
@@ -58,7 +58,7 @@ const link = split(
 
 const client = new ApolloClient({
   link,
-  cache
+  cache,
 });
 
 export default (
