@@ -57,7 +57,7 @@ export const ContactsHeading = styled.h1`
   font-size: 1.7rem;
   font-weight: medium;
   margin-right: auto;
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
 `;
 
 export const ContactsBody = styled.div`
@@ -69,10 +69,10 @@ export const ContactsBody = styled.div`
   cursor: pointer;
 
   &&:hover {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
   }
   &&:active {
-    background-color: ${props => props.theme.secondaryHoverBackground};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
   }
 `;
 
@@ -86,6 +86,6 @@ export const ContactAvatar = styled.img`
 export const ContactFullName = styled.h1`
   font-size: 1.5rem;
   margin-left: 12px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-weight: medium;
 `;

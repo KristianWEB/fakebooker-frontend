@@ -12,26 +12,26 @@ export const AboutContainer = styled.div`
   width: 876px;
   background-color: #fff;
   border-radius: 6px;
-  box-shadow: ${props => props.theme.boxShadow2};
+  box-shadow: ${(props) => props.theme.boxShadow2};
 `;
 
 export const AboutSidebar = styled.div`
   display: flex;
   flex-direction: column;
   width: 33%;
-  border-right: 1px solid ${props => props.theme.secondaryBackground};
+  border-right: 1px solid ${(props) => props.theme.secondaryBackground};
   padding: 6px;
 `;
 
 export const AboutHeading = styled.p`
   font-size: 2rem;
   font-weight: bold;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   margin: 20px 10px;
 `;
 
 export const Overview = styled.button`
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
   cursor: pointer;
   border: none;
   text-align: left;
@@ -43,7 +43,7 @@ export const Overview = styled.button`
   border-radius: 6px;
   margin-bottom: 8px;
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -53,13 +53,13 @@ export const Overview = styled.button`
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
     outline: none;
   }
 `;
 
 export const WorkAndEducation = styled.button`
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
   cursor: pointer;
   border: none;
   text-align: left;
@@ -71,7 +71,7 @@ export const WorkAndEducation = styled.button`
   border-radius: 6px;
   margin-bottom: 8px;
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -81,18 +81,18 @@ export const WorkAndEducation = styled.button`
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
     outline: none;
   }
 `;
 
 export const ContactAndBasicInfo = styled.button`
-  color: ${props => props.theme.primaryText};
+  color: ${(props) => props.theme.primaryText};
   border: none;
   width: 100%;
   text-align: left;
   font-size: 1.5rem;
-  background-color: ${props => props.theme.primaryBackground};
+  background-color: ${(props) => props.theme.primaryBackground};
   padding: 10px;
   border-radius: 6px;
   cursor: pointer;
@@ -112,7 +112,7 @@ export const AboutBodyContainer = styled.div`
 `;
 
 export const BasicInfoHeading = styled.h1`
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-weight: bold;
   font-size: 1.7rem;
   line-height: 1;
@@ -135,7 +135,7 @@ export const GenderAction = styled.button`
 `;
 
 export const GenderSpan = styled.span`
-  color: ${props => props.theme.primaryText};
+  color: ${(props) => props.theme.primaryText};
   font-size: 1.5rem;
   font-weight: 500;
   margin-left: 12px;
@@ -157,7 +157,7 @@ export const BirthdayAction = styled.button`
 `;
 
 export const BirthdaySpan = styled.span`
-  color: ${props => props.theme.primaryText};
+  color: ${(props) => props.theme.primaryText};
   font-size: 1.5rem;
   font-weight: 500;
   margin-left: 12px;
@@ -169,7 +169,7 @@ export const BirthdayContainer = styled.div`
 
 export const DayInput = styled.input`
   width: 20%;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   border: none;
   border-radius: 6px;
   padding: 16px;
@@ -183,13 +183,13 @@ export const DayInput = styled.input`
 
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.primaryText};
+    border: 1px solid ${(props) => props.theme.primaryText};
   }
 `;
 
 export const MonthInput = styled.input`
   width: 20%;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   border: none;
   border-radius: 6px;
   padding: 16px;
@@ -202,13 +202,13 @@ export const MonthInput = styled.input`
 
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.primaryText};
+    border: 1px solid ${(props) => props.theme.primaryText};
   }
 `;
 
 export const YearInput = styled.input`
   width: 20%;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   border: none;
   border-radius: 6px;
   padding: 16px;
@@ -220,7 +220,7 @@ export const YearInput = styled.input`
 
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.primaryText};
+    border: 1px solid ${(props) => props.theme.primaryText};
   }
 `;
 
@@ -240,7 +240,7 @@ export const HomeplaceAction = styled.button`
 `;
 
 export const HomeplaceSpan = styled.span`
-  color: ${props => props.theme.primaryText};
+  color: ${(props) => props.theme.primaryText};
   font-size: 1.5rem;
   font-weight: 500;
   margin-left: 12px;
@@ -283,7 +283,7 @@ export const HomeplaceInput = styled.input`
 
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.primaryText};
+    border: 1px solid ${(props) => props.theme.primaryText};
   }
 `;
 
@@ -296,8 +296,8 @@ export const Footer = styled.div`
 export const CancelButton = styled.button`
   margin-right: 8px;
   font-weight: 500;
-  background-color: ${props => props.theme.secondaryBackground};
-  color: ${props => props.theme.secondaryText};
+  background-color: ${(props) => props.theme.secondaryBackground};
+  color: ${(props) => props.theme.secondaryText};
   border: none;
   font-size: 1.5rem;
   border-radius: 6px;
@@ -307,8 +307,8 @@ export const CancelButton = styled.button`
 
   &&:focus {
     border-color: none;
-    background-color: ${props => props.theme.secondaryBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryBackground};
+    color: ${(props) => props.theme.secondaryText};
     outline: none;
   }
 
@@ -318,13 +318,13 @@ export const CancelButton = styled.button`
 
   &&:hover {
     border-color: none;
-    color: ${props => props.theme.secondaryText};
-    background-color: ${props => props.theme.secondaryHoverBackground};
+    color: ${(props) => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
   }
 `;
 
 export const SaveButton = styled.button`
-  background-color: ${props => props.theme.primaryText};
+  background-color: ${(props) => props.theme.primaryText};
   color: #fff;
   font-weight: 500;
   transition: 0.1s;
@@ -336,7 +336,7 @@ export const SaveButton = styled.button`
 
   &&:focus,
   &&:hover {
-    background-color: ${props => props.theme.primaryText};
+    background-color: ${(props) => props.theme.primaryText};
     color: #fff;
     outline: none;
   }
@@ -350,21 +350,21 @@ export const SaveButton = styled.button`
 export const Gender = styled.div`
   font-size: 1.5rem;
   display: flex;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   align-items: center;
 `;
 
 export const Birthday = styled.div`
   font-size: 1.5rem;
   display: flex;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   align-items: center;
 `;
 
 export const Homeplace = styled.div`
   font-size: 1.5rem;
   display: flex;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   align-items: center;
 `;
 
@@ -376,20 +376,20 @@ export const SettingsContainer = styled.button`
   padding: 0;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.theme.secondaryBackground};
+  background-color: ${(props) => props.theme.secondaryBackground};
   cursor: pointer;
   transition: 0.1s;
   padding: 5px;
 
   &&:focus {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
     outline: none;
   }
   &&:active {
     transform: scale(0.96);
   }
   &&:hover {
-    background-color: ${props => props.theme.secondaryHoverBackground};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
   }
 `;
 
@@ -405,12 +405,12 @@ export const UserGender = styled.p`
   margin: 0;
   font-size: 1.5rem;
   font-weight: bold;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const GenderCaption = styled.p`
   font-size: 1.2rem;
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
   margin: 0;
 `;
 
@@ -426,12 +426,12 @@ export const UserBirthday = styled.p`
   margin: 0;
   font-size: 1.5rem;
   font-weight: bold;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const BirthdayCaption = styled.p`
   font-size: 1.2rem;
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
   margin: 0;
 `;
 
@@ -447,7 +447,7 @@ export const UserHomeplace = styled.p`
   margin: 0;
   font-size: 1.5rem;
   font-weight: bold;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const HomeplaceCaption = styled.p`
@@ -469,13 +469,13 @@ export const MaleGender = styled.input`
 export const FemaleLabel = styled.label`
   line-height: 1;
   font-size: 1.5rem;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const MaleLabel = styled.label`
   line-height: 1;
   font-size: 1.5rem;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const FemaleContainer = styled.div`

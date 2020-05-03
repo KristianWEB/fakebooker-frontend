@@ -26,7 +26,7 @@ export const UserName = styled.h1`
   margin-left: 16px;
   font-size: 1.7rem;
   font-weight: 500;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const FriendBtn = styled.button`
@@ -34,16 +34,16 @@ export const FriendBtn = styled.button`
   border: none;
   padding: 8px 12px;
   border-radius: 6px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-weight: 500;
   font-size: 15px;
-  background-color: ${props => props.theme.secondaryBackground};
+  background-color: ${(props) => props.theme.secondaryBackground};
   transition: 0.1s;
   cursor: pointer;
 
   &&:focus {
-    background-color: ${props => props.theme.secondaryBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryBackground};
+    color: ${(props) => props.theme.secondaryText};
     outline: none;
   }
 
@@ -52,8 +52,8 @@ export const FriendBtn = styled.button`
   }
 
   &&:hover {
-    background-color: ${props => props.theme.secondaryHoverBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
+    color: ${(props) => props.theme.secondaryText};
   }
 `;
 
@@ -72,24 +72,24 @@ export const RejectFriendBtn = styled.button`
   display: flex;
   width: 100%;
   background-color: #fff;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   transition: 0.1s;
   font-weight: 500;
   cursor: pointer;
 
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.tertiaryBackground};
+    color: ${(props) => props.theme.secondaryText};
   }
 
   &::after,
   &:focus {
     outline: none;
-    color: ${props => props.theme.secondaryText};
+    color: ${(props) => props.theme.secondaryText};
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryHoverBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
+    color: ${(props) => props.theme.secondaryText};
   }
 `;

@@ -7,7 +7,7 @@ export const CreatePostContainer = styled.div`
   background-color: #fff;
   padding: 8px 12px;
   max-width: 500px;
-  box-shadow: ${props => props.theme.boxShadow2};
+  box-shadow: ${(props) => props.theme.boxShadow2};
   border-radius: 8px;
   align-items: center;
   @media only screen and (max-width: 575px) {
@@ -24,10 +24,10 @@ export const UserAvatar = styled.img`
 
 export const CreatePostButton = styled.button`
   border: none;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-weight: 600;
   font-size: 1.5rem;
-  background-color: ${props => props.theme.secondaryBackground};
+  background-color: ${(props) => props.theme.secondaryBackground};
   border-radius: 4px;
   width: 100%;
   cursor: pointer;
@@ -36,16 +36,16 @@ export const CreatePostButton = styled.button`
   height: 3.5rem;
 
   &:focus {
-    background-color: ${props => props.theme.secondaryBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryBackground};
+    color: ${(props) => props.theme.secondaryText};
     outline: none;
   }
   &:active {
     transform: scale(0.96);
   }
   &:hover {
-    background-color: ${props => props.theme.secondaryHoverBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
+    color: ${(props) => props.theme.secondaryText};
   }
 `;
 
@@ -55,21 +55,21 @@ export const CloseContainer = styled.div`
   align-items: center;
   border-radius: 50%;
   padding: 0;
-  background-color: ${props => props.theme.secondaryBackground};
+  background-color: ${(props) => props.theme.secondaryBackground};
   cursor: pointer;
   transition: 0.1s;
   padding: 5px;
 
   &:focus {
-    background-color: ${props => props.theme.secondaryBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryBackground};
+    color: ${(props) => props.theme.secondaryText};
   }
   &:active {
     transform: scale(0.96);
   }
   &:hover {
-    background-color: ${props => props.theme.secondaryHoverBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
+    color: ${(props) => props.theme.secondaryText};
   }
 `;
 

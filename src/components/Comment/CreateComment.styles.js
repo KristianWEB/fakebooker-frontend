@@ -19,10 +19,10 @@ export const CommentInput = styled.input`
   width: 100%;
   padding-left: 8px;
   font-size: 1.5rem;
-  background-color: ${props => props.theme.inputColor};
+  background-color: ${(props) => props.theme.inputColor};
 
   &::placeholder {
-    color: ${props => props.theme.placeholderColor};
+    color: ${(props) => props.theme.placeholderColor};
   }
 
   &:focus {

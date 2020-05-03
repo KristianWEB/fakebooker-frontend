@@ -38,7 +38,7 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0 auto;
         height: 3px;
         display: block;
-        background: ${props => props.theme.primaryText};
+        background: ${(props) => props.theme.primaryText};
         content: "";
     }
   }

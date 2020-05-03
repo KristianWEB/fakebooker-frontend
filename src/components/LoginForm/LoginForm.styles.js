@@ -7,7 +7,7 @@ export const LoginFormContainer = styled.div`
 `;
 
 export const StyledButton = styled.button`
-  background-color: ${props => props.theme.primaryText};
+  background-color: ${(props) => props.theme.primaryText};
   color: #fff;
   width: 50%;
   height: auto;
@@ -19,7 +19,7 @@ export const StyledButton = styled.button`
 
   &:focus,
   &:hover {
-    background-color: ${props => props.theme.primaryText};
+    background-color: ${(props) => props.theme.primaryText};
     color: #fff;
     border-color: none;
     outline: none;
@@ -36,7 +36,7 @@ export const LoginHeading = styled.p`
   font-size: 2.4rem;
   font-weight: 600;
   margin-bottom: 30px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const EmailLabel = styled.p`
@@ -45,7 +45,7 @@ export const EmailLabel = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const PasswordLabel = styled.p`
@@ -54,11 +54,11 @@ export const PasswordLabel = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const EmailInput = styled.input`
-  background-color: ${props => props.theme.inputColor};
+  background-color: ${(props) => props.theme.inputColor};
   border: none;
   border-radius: 6px;
   height: 40px;
@@ -71,7 +71,7 @@ export const EmailInput = styled.input`
 `;
 
 export const PasswordInput = styled.input`
-  background-color: ${props => props.theme.inputColor};
+  background-color: ${(props) => props.theme.inputColor};
   border: none;
   border-radius: 6px;
   height: 40px;

@@ -6,7 +6,7 @@ export const MessageListContainer = styled.div`
 `;
 
 export const MessageListHeading = styled.h3`
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-size: 2.2rem;
   font-weight: bold;
   line-height: 1;

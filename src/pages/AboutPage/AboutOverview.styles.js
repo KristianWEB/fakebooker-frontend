@@ -14,31 +14,31 @@ export const AboutContainer = styled.div`
   width: 876px;
   background-color: #fff;
   border-radius: 6px;
-  box-shadow: ${props => props.theme.boxShadow2};
+  box-shadow: ${(props) => props.theme.boxShadow2};
 `;
 
 export const AboutSidebar = styled.div`
   display: flex;
   flex-direction: column;
   width: 33%;
-  border-right: 1px solid ${props => props.theme.secondaryBackground};
+  border-right: 1px solid ${(props) => props.theme.secondaryBackground};
   padding: 6px;
 `;
 
 export const AboutHeading = styled.p`
   font-size: 2rem;
   font-weight: bold;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   margin: 20px 10px;
 `;
 
 export const Overview = styled.button`
-  color: ${props => props.theme.primaryText};
+  color: ${(props) => props.theme.primaryText};
   border: none;
   width: 100%;
   text-align: left;
   font-size: 1.5rem;
-  background-color: ${props => props.theme.primaryBackground};
+  background-color: ${(props) => props.theme.primaryBackground};
   padding: 10px;
   border-radius: 6px;
   cursor: pointer;
@@ -51,7 +51,7 @@ export const Overview = styled.button`
 `;
 
 export const WorkAndEducation = styled.button`
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
   cursor: pointer;
   border: none;
   text-align: left;
@@ -63,7 +63,7 @@ export const WorkAndEducation = styled.button`
   border-radius: 6px;
   margin-bottom: 8px;
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -73,13 +73,13 @@ export const WorkAndEducation = styled.button`
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
     outline: none;
   }
 `;
 
 export const ContactAndBasicInfo = styled.button`
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
   cursor: pointer;
   border: none;
   text-align: left;
@@ -91,7 +91,7 @@ export const ContactAndBasicInfo = styled.button`
   border-radius: 6px;
   margin-bottom: 8px;
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -101,7 +101,7 @@ export const ContactAndBasicInfo = styled.button`
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
     outline: none;
   }
 `;
@@ -120,7 +120,7 @@ export const WorkplaceContainer = styled.div`
 `;
 
 export const WorkplaceBody = styled.h1`
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-size: 1.5rem;
   font-weight: 400;
   margin-left: 16px;
@@ -133,7 +133,7 @@ export const SchoolContainer = styled.div`
 `;
 
 export const SchoolBody = styled.h1`
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-size: 1.5rem;
   margin-left: 16px;
   font-weight: 400;
@@ -146,7 +146,7 @@ export const HomeContainer = styled.div`
 `;
 
 export const HomeBody = styled.h1`
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-size: 1.5rem;
   margin-left: 16px;
   font-weight: 400;

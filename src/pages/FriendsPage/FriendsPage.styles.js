@@ -24,7 +24,7 @@ export const FixedContainer = styled.div`
   }
   margin: 0 auto;
   padding: 16px;
-  box-shadow: ${props => props.theme.boxShadow2};
+  box-shadow: ${(props) => props.theme.boxShadow2};
   border-radius: 6px;
 `;
 
@@ -32,5 +32,5 @@ export const FriendsHeading = styled.h1`
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 30px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;

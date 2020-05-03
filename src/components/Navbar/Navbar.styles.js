@@ -11,7 +11,7 @@ export const NavContainer = styled.div`
   position: sticky;
   top: 0;
   z-index: 5;
-  box-shadow: ${props => props.theme.boxShadow1};
+  box-shadow: ${(props) => props.theme.boxShadow1};
 `;
 
 export const LogoContainer = styled.div`
@@ -29,7 +29,7 @@ export const NewsFeedContainer = styled.div`
   margin-right: 60px;
   align-items: center;
   justify-content: center;
-  border-bottom: 2px solid ${props => props.theme.primaryText};
+  border-bottom: 2px solid ${(props) => props.theme.primaryText};
 
   @media only screen and (max-width: 575px) {
     display: none;
@@ -43,7 +43,7 @@ export const SearchBar = styled.input`
     width: 240px;
     height: 41px;
     border-radius: 50px;
-    background-color: ${props => props.theme.inputColor};
+    background-color: ${(props) => props.theme.inputColor};
     border: none;
     margin-left: 8px;
     padding: 0 30px;
@@ -65,7 +65,7 @@ export const ProfileContainer = styled.div`
 `;
 
 export const BackArrowContainer = styled.div`
-  background-color: ${props => props.theme.inputColor};
+  background-color: ${(props) => props.theme.inputColor};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -77,7 +77,7 @@ export const BackArrowContainer = styled.div`
 
 export const MessageContainer = styled.button`
   padding: 0;
-  background-color: ${props => props.theme.secondaryBackground};
+  background-color: ${(props) => props.theme.secondaryBackground};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -91,25 +91,25 @@ export const MessageContainer = styled.button`
   cursor: pointer;
 
   &:focus {
-    background-color: ${props => props.theme.primaryBackground};
+    background-color: ${(props) => props.theme.primaryBackground};
     svg {
-      fill: ${props => props.theme.primaryText};
+      fill: ${(props) => props.theme.primaryText};
     }
     outline: none;
   }
   &:active {
-    color: ${props => props.theme.primaryTextColor};
+    color: ${(props) => props.theme.primaryTextColor};
     transform: scale(0.96);
   }
 
   &:hover {
-    background-color: ${props => props.theme.secondaryHoverBackground};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
   }
 `;
 
 export const NotificationContainer = styled.button`
   padding: 0;
-  background-color: ${props => props.theme.secondaryBackground};
+  background-color: ${(props) => props.theme.secondaryBackground};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -122,19 +122,19 @@ export const NotificationContainer = styled.button`
   cursor: pointer;
 
   &:focus {
-    background-color: ${props => props.theme.primaryBackground};
+    background-color: ${(props) => props.theme.primaryBackground};
     svg {
-      fill: ${props => props.theme.primaryText};
+      fill: ${(props) => props.theme.primaryText};
     }
     outline: none;
   }
   &:active {
-    color: ${props => props.theme.primaryTextColor};
+    color: ${(props) => props.theme.primaryTextColor};
     transform: scale(0.96);
   }
 
   &:hover {
-    background-color: ${props => props.theme.secondaryHoverBackground};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
   }
 `;
 
@@ -147,11 +147,11 @@ export const User = styled.div`
   margin-right: 16px;
   cursor: pointer;
   font-size: 1.5rem;
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.primary ? props.theme.primaryBackground : "#fff"};
 
   &:hover {
-    background-color: ${props =>
+    background-color: ${(props) =>
       props.primary
         ? props.theme.primaryBackground
         : props.theme.tertiaryBackground};
@@ -163,7 +163,7 @@ export const User = styled.div`
     outline: none;
   }
   &:active {
-    background-color: ${props =>
+    background-color: ${(props) =>
       props.primary ? "none" : props.theme.secondaryBackground};
   }
 
@@ -176,13 +176,13 @@ export const Username = styled.h1`
   font-size: 15px;
   font-weight: medium;
   line-height: 1;
-  color: ${props =>
+  color: ${(props) =>
     props.primary ? props.theme.primaryText : props.theme.secondaryText};
 `;
 
 export const SettingsContainer = styled.button`
   padding: 0;
-  background-color: ${props => props.theme.secondaryBackground};
+  background-color: ${(props) => props.theme.secondaryBackground};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -197,14 +197,14 @@ export const SettingsContainer = styled.button`
 
   &:active,
   &:focus {
-    background-color: ${props => props.theme.secondaryHoverBackground};
-    color: ${props => props.theme.primaryTextColor};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
+    color: ${(props) => props.theme.primaryTextColor};
     outline: none;
   }
 
   &:hover {
-    background-color: ${props => props.theme.secondaryHoverBackground};
-    color: ${props => props.theme.primaryTextColor};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
+    color: ${(props) => props.theme.primaryTextColor};
   }
 `;
 
@@ -212,7 +212,7 @@ export const SearchContainer = styled.button`
   display: none;
   @media only screen and (max-width: 767px) {
     padding: 0;
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -225,19 +225,19 @@ export const SearchContainer = styled.button`
     cursor: pointer;
 
     &:focus {
-      background-color: ${props => props.theme.primaryBackground};
+      background-color: ${(props) => props.theme.primaryBackground};
       svg {
-        fill: ${props => props.theme.primaryText};
+        fill: ${(props) => props.theme.primaryText};
       }
       outline: none;
     }
     &:active {
-      color: ${props => props.theme.primaryTextColor};
+      color: ${(props) => props.theme.primaryTextColor};
       transform: scale(0.96);
     }
 
     &:hover {
-      background-color: ${props => props.theme.secondaryHoverBackground};
+      background-color: ${(props) => props.theme.secondaryHoverBackground};
     }
   }
 `;

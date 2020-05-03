@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const CreatePostNewContainer = styled.form`
-  box-shadow: ${props => props.theme.boxShadow1};
+  box-shadow: ${(props) => props.theme.boxShadow1};
   font-family: Roboto;
   border-radius: 8px;
 `;
 
 export const CreatePostHeader = styled.div`
-  border-bottom: 1px solid ${props => props.theme.secondaryHoverBackground};
+  border-bottom: 1px solid ${(props) => props.theme.secondaryHoverBackground};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@ export const CreatePostHeading = styled.h1`
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 0;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const CloseContainer = styled.div`
@@ -28,21 +28,21 @@ export const CloseContainer = styled.div`
   align-items: center;
   border-radius: 50%;
   padding: 0;
-  background-color: ${props => props.theme.secondaryBackground};
+  background-color: ${(props) => props.theme.secondaryBackground};
   cursor: pointer;
   transition: 0.1s;
   padding: 5px;
 
   &:focus {
-    background-color: ${props => props.theme.secondaryBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryBackground};
+    color: ${(props) => props.theme.secondaryText};
   }
   &:active {
     transform: scale(0.96);
   }
   &:hover {
-    background-color: ${props => props.theme.secondaryHoverBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
+    color: ${(props) => props.theme.secondaryText};
   }
 `;
 
@@ -67,7 +67,7 @@ export const UserAvatar = styled.img`
 `;
 
 export const UserName = styled.h3`
-  color: 1px solid ${props => props.theme.secondaryText};
+  color: 1px solid ${(props) => props.theme.secondaryText};
   font-size: 1.5rem;
   font-weight: bold;
   padding-left: 10px;
@@ -83,10 +83,10 @@ export const CreatePostInput = styled.textarea`
   resize: none;
   margin: 16px;
   font-size: 1.5rem;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 
   &::placeholder {
-    color: ${props => props.theme.placeholderColor};
+    color: ${(props) => props.theme.placeholderColor};
     font-size: 1.5rem;
   }
   &:focus {
@@ -108,13 +108,13 @@ export const PublishBtn = styled.button`
   font-weight: 600;
   font-size: 1.6rem;
   color: #fff;
-  background-color: ${props => props.theme.primaryText};
+  background-color: ${(props) => props.theme.primaryText};
   transition: 0.1s;
   cursor: pointer;
 
   &:focus {
     color: #fff;
-    background-color: ${props => props.theme.primaryText};
+    background-color: ${(props) => props.theme.primaryText};
     outline: none;
   }
   &:active {
@@ -131,20 +131,20 @@ export const ImageContainer = styled.div`
   border-radius: 100%;
 
   &:focus {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
   }
 
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
   }
 `;
 
 export const PostImage = styled.div`
-  background-image: url("${props => props.img}");
+  background-image: url("${(props) => props.img}");
   display: block;
   margin: 0 13px;
   background-size: cover;
@@ -161,15 +161,15 @@ export const MarkdownContainer = styled.div`
   border-radius: 100%;
 
   &:focus {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
   }
 
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
   }
 `;
 

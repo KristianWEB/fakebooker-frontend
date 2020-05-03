@@ -9,7 +9,7 @@ export const NotificationContainer = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
   }
 
   &:last-child {
@@ -17,7 +17,7 @@ export const NotificationContainer = styled.div`
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
   }
 `;
 
@@ -33,24 +33,24 @@ export const CreatorAvatar = styled.img`
 
 export const CreatorFullName = styled.span`
   font-weight: bold;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const PostBody = styled.span`
   font-weight: bold;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const Body = styled.div`
   font-size: 1.5rem;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
 export const Timestamp = styled.h3`
-  color: ${props => props.theme.primaryText};
+  color: ${(props) => props.theme.primaryText};
   font-weight: bold;
   font-size: 1.3rem;
   display: flex;
@@ -61,7 +61,7 @@ export const NotificationHeading = styled.h1`
   font-size: 1.5rem;
   font-family: Roboto;
   font-weight: medium;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   padding: 0 16px;
   margin-bottom: 8px;
   margin-top: 8px;

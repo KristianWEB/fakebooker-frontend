@@ -7,7 +7,7 @@ export const PostContainer = styled.div`
     margin-top: 0;
   }
   max-width: 680px;
-  box-shadow: ${props => props.theme.boxShadow2};
+  box-shadow: ${(props) => props.theme.boxShadow2};
   border-radius: 8px;
   font-family: "Roboto";
   background-color: #fff;
@@ -34,25 +34,25 @@ export const PopButton = styled.button`
   display: flex;
   width: 100%;
   background-color: #fff;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   transition: 0.1s;
   font-weight: 500;
   cursor: pointer;
 
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.tertiaryBackground};
+    color: ${(props) => props.theme.secondaryText};
   }
 
   &::after,
   &:focus {
     outline: none;
-    color: ${props => props.theme.secondaryText};
+    color: ${(props) => props.theme.secondaryText};
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryHoverBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
+    color: ${(props) => props.theme.secondaryText};
   }
 `;
 
@@ -77,14 +77,14 @@ export const SettingsContainer = styled.div`
   position: relative;
 
   &:focus {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
   }
 
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
   }
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
   }
 `;
 
@@ -103,7 +103,7 @@ export const NameWrapper = styled.div`
 `;
 export const ProfileName = styled.h3`
   font-size: 1.5rem;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-weight: 500;
   font-family: "Roboto";
 `;
@@ -111,11 +111,11 @@ export const ProfileName = styled.h3`
 export const PostCreation = styled.p`
   font-size: 1.3rem;
   margin: 4px 0 0 0;
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
 `;
 
 export const PostContent = styled.div`
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-size: 1.5rem;
   p {
     margin: 0;
@@ -125,8 +125,8 @@ export const PostContent = styled.div`
 
 export const PostFooter = styled.div`
   display: flex;
-  border-top: 1px solid ${props => props.theme.secondaryHoverBackground};
-  border-bottom: 1px solid ${props => props.theme.secondaryHoverBackground};
+  border-top: 1px solid ${(props) => props.theme.secondaryHoverBackground};
+  border-bottom: 1px solid ${(props) => props.theme.secondaryHoverBackground};
   margin: 0 16px;
 `;
 export const LikesWrapper = styled.div`
@@ -140,7 +140,7 @@ export const LikesWrapper = styled.div`
   flex: 3;
 
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -149,7 +149,7 @@ export const LikesWrapper = styled.div`
     outline: none;
   }
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
   }
 `;
 export const LikesCount = styled.p`
@@ -157,7 +157,7 @@ export const LikesCount = styled.p`
   margin-left: 5px;
   margin-top: 5px;
   line-height: 1;
-  color: ${props => props.theme.primaryText};
+  color: ${(props) => props.theme.primaryText};
   margin-bottom: 0;
 `;
 export const CommentsWrapper = styled.div`
@@ -172,7 +172,7 @@ export const CommentsWrapper = styled.div`
   flex: 3;
 
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -181,14 +181,14 @@ export const CommentsWrapper = styled.div`
     outline: none;
   }
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
   }
 `;
 
 export const CommentsCount = styled.p`
   font-size: 1.5rem;
   margin: 0;
-  color: ${props => props.theme.secondaryTextColor};
+  color: ${(props) => props.theme.secondaryTextColor};
   margin-left: 5px;
 `;
 
@@ -204,7 +204,7 @@ export const SharesWrapper = styled.div`
   padding: 5px;
 
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -213,34 +213,34 @@ export const SharesWrapper = styled.div`
     outline: none;
   }
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
   }
 `;
 export const SharesCount = styled.p`
   font-size: 1.5rem;
   margin: 0;
   margin-left: 6px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const LikesHeading = styled.span`
   font-size: 1.5rem;
   margin-left: 5px;
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
   line-height: 1;
   margin-top: 5px;
 `;
 export const CommentsHeading = styled.span`
   font-size: 1.5rem;
   margin-left: 5px;
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
   line-height: 1;
   margin-top: 5px;
 `;
 
 export const SharesHeading = styled.span`
   font-size: 1.5rem;
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
   line-height: 1;
   margin-top: 5px;
 `;

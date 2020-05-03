@@ -5,7 +5,7 @@ import { CloseContainer } from "../components/Post/CreatePostActive.styles";
 import { ReactComponent as CloseBtn } from "../assets/icons/close.svg";
 
 // eslint-disable-next-line import/prefer-default-export
-export const notificationAlert = notification => {
+export const notificationAlert = (notification) => {
   toast(
     <div style={{ padding: "8px" }}>
       <Notification notification={notification} alert />
@@ -22,7 +22,7 @@ export const notificationAlert = notification => {
         >
           <CloseBtn width="15" height="15" fill="#62626a" />
         </CloseContainer>
-      )
+      ),
     }
   );
 };

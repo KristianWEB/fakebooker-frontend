@@ -8,7 +8,7 @@ export const NotificationListContainer = styled.div`
 `;
 
 export const NotificationListHeading = styled.h3`
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-size: 2.2rem;
   font-weight: bold;
   line-height: 1;

@@ -12,26 +12,26 @@ export const AboutContainer = styled.div`
   width: 876px;
   background-color: #fff;
   border-radius: 6px;
-  box-shadow: ${props => props.theme.boxShadow2};
+  box-shadow: ${(props) => props.theme.boxShadow2};
 `;
 
 export const AboutSidebar = styled.div`
   display: flex;
   flex-direction: column;
   width: 33%;
-  border-right: 1px solid ${props => props.theme.secondaryBackground};
+  border-right: 1px solid ${(props) => props.theme.secondaryBackground};
   padding: 6px;
 `;
 
 export const AboutHeading = styled.p`
   font-size: 2rem;
   font-weight: bold;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   margin: 20px 10px;
 `;
 
 export const Overview = styled.button`
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
   cursor: pointer;
   border: none;
   text-align: left;
@@ -43,7 +43,7 @@ export const Overview = styled.button`
   border-radius: 6px;
   margin-bottom: 8px;
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -53,19 +53,19 @@ export const Overview = styled.button`
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
     outline: none;
   }
 `;
 
 export const WorkAndEducation = styled.button`
-  color: ${props => props.theme.primaryText};
+  color: ${(props) => props.theme.primaryText};
   border: none;
   width: 100%;
   text-align: left;
   cursor: pointer;
   font-size: 1.5rem;
-  background-color: ${props => props.theme.primaryBackground};
+  background-color: ${(props) => props.theme.primaryBackground};
   padding: 10px;
   border-radius: 6px;
   font-weight: 600;
@@ -77,7 +77,7 @@ export const WorkAndEducation = styled.button`
 `;
 
 export const ContactAndBasicInfo = styled.button`
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
   cursor: pointer;
   border: none;
   text-align: left;
@@ -89,7 +89,7 @@ export const ContactAndBasicInfo = styled.button`
   border-radius: 6px;
   margin-bottom: 8px;
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -99,7 +99,7 @@ export const ContactAndBasicInfo = styled.button`
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
     outline: none;
   }
 `;
@@ -116,7 +116,7 @@ export const WorkplaceContainer = styled.div`
   width: 100%;
 `;
 export const WorkplaceHeading = styled.h1`
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-weight: bold;
   font-size: 1.7rem;
   line-height: 1;
@@ -139,7 +139,7 @@ export const WorkplaceAction = styled.button`
 `;
 
 export const WorkplaceSpan = styled.span`
-  color: ${props => props.theme.primaryText};
+  color: ${(props) => props.theme.primaryText};
   font-size: 1.5rem;
   font-weight: 500;
   margin-left: 12px;
@@ -150,7 +150,7 @@ export const SchoolContainer = styled.div`
   margin-top: 32px;
 `;
 export const SchoolHeading = styled.h1`
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-weight: bold;
   font-size: 1.7rem;
   margin: 0;
@@ -172,7 +172,7 @@ export const SchoolAction = styled.button`
 `;
 
 export const SchoolSpan = styled.span`
-  color: ${props => props.theme.primaryText};
+  color: ${(props) => props.theme.primaryText};
   font-size: 1.5rem;
   font-weight: 500;
   margin-left: 12px;
@@ -192,7 +192,7 @@ export const WorkPlace = styled.div`
   display: flex;
   align-items: center;
   margin-top: 10px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const WorkPlaceBody = styled.h1`
@@ -211,17 +211,17 @@ export const SettingsContainer = styled.button`
   cursor: pointer;
   transition: 0.01s;
   padding: 5px;
-  background-color: ${props => props.theme.secondaryBackground};
+  background-color: ${(props) => props.theme.secondaryBackground};
 
   &:focus {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
     outline: none;
   }
   &:active {
     transform: scale(0.96);
   }
   &:hover {
-    background-color: ${props => props.theme.secondaryHoverBackground};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
   }
 `;
 
@@ -245,7 +245,7 @@ export const WorkplaceInput = styled.input`
 
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.primaryText};
+    border: 1px solid ${(props) => props.theme.primaryText};
   }
 `;
 
@@ -269,15 +269,15 @@ export const SchoolInput = styled.input`
 
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.primaryText};
+    border: 1px solid ${(props) => props.theme.primaryText};
   }
 `;
 
 export const CancelButton = styled.button`
   margin-right: 8px;
   font-weight: 500;
-  background-color: ${props => props.theme.secondaryBackground};
-  color: ${props => props.theme.secondaryText};
+  background-color: ${(props) => props.theme.secondaryBackground};
+  color: ${(props) => props.theme.secondaryText};
   border: none;
   font-size: 1.5rem;
   border-radius: 6px;
@@ -287,8 +287,8 @@ export const CancelButton = styled.button`
 
   &&:focus {
     border-color: none;
-    background-color: ${props => props.theme.secondaryBackground};
-    color: ${props => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryBackground};
+    color: ${(props) => props.theme.secondaryText};
     outline: none;
   }
 
@@ -298,13 +298,13 @@ export const CancelButton = styled.button`
 
   &&:hover {
     border-color: none;
-    color: ${props => props.theme.secondaryText};
-    background-color: ${props => props.theme.secondaryHoverBackground};
+    color: ${(props) => props.theme.secondaryText};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
   }
 `;
 
 export const SaveButton = styled.button`
-  background-color: ${props => props.theme.primaryText};
+  background-color: ${(props) => props.theme.primaryText};
   color: #fff;
   font-weight: 500;
   transition: 0.1s;
@@ -316,7 +316,7 @@ export const SaveButton = styled.button`
 
   &&:focus,
   &&:hover {
-    background-color: ${props => props.theme.primaryText};
+    background-color: ${(props) => props.theme.primaryText};
     color: #fff;
     outline: none;
   }

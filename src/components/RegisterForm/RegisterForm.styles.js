@@ -6,7 +6,7 @@ export const RegisterFormContainer = styled.div`
 `;
 
 export const StyledButton = styled.button`
-  background-color: ${props => props.theme.primaryText};
+  background-color: ${(props) => props.theme.primaryText};
   color: #fff;
   width: 50%;
   border: none;
@@ -19,7 +19,7 @@ export const StyledButton = styled.button`
 
   &&:focus,
   &&:hover {
-    background-color: ${props => props.theme.primaryText};
+    background-color: ${(props) => props.theme.primaryText};
     color: #fff;
     border-color: none;
     outline: none;
@@ -36,7 +36,7 @@ export const RegisterHeading = styled.p`
   font-size: 2.4rem;
   font-weight: 600;
   margin-bottom: 30px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const FirstNameLabel = styled.p`
@@ -45,7 +45,7 @@ export const FirstNameLabel = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const LastNameLabel = styled.p`
@@ -54,7 +54,7 @@ export const LastNameLabel = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const EmailLabel = styled.p`
@@ -63,7 +63,7 @@ export const EmailLabel = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const PasswordLabel = styled.p`
@@ -72,7 +72,7 @@ export const PasswordLabel = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const GenderLabel = styled.p`
@@ -81,14 +81,14 @@ export const GenderLabel = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const FirstNameInput = styled.input`
-  background-color: ${props => props.theme.inputColor};
+  background-color: ${(props) => props.theme.inputColor};
   border: none;
   border-radius: 6px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   height: 40px;
   padding: 0 8px;
   font-size: 1.5rem;
@@ -100,10 +100,10 @@ export const FirstNameInput = styled.input`
   }
 `;
 export const LastNameInput = styled.input`
-  background-color: ${props => props.theme.inputColor};
+  background-color: ${(props) => props.theme.inputColor};
   border: none;
   border-radius: 6px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   height: 40px;
   padding: 0 8px;
   font-size: 1.5rem;
@@ -115,10 +115,10 @@ export const LastNameInput = styled.input`
   }
 `;
 export const EmailInput = styled.input`
-  background-color: ${props => props.theme.inputColor};
+  background-color: ${(props) => props.theme.inputColor};
   border: none;
   border-radius: 6px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   height: 40px;
   padding: 0 8px;
   font-size: 1.5rem;
@@ -130,10 +130,10 @@ export const EmailInput = styled.input`
   }
 `;
 export const PasswordInput = styled.input`
-  background-color: ${props => props.theme.inputColor};
+  background-color: ${(props) => props.theme.inputColor};
   border: none;
   border-radius: 6px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   height: 40px;
   padding: 0 8px;
   font-size: 1.5rem;
@@ -150,19 +150,19 @@ export const BirthdayLabel = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const DayInput = styled.input`
   width: 20%;
   height: 40px;
-  background-color: ${props => props.theme.inputColor};
+  background-color: ${(props) => props.theme.inputColor};
   border: none;
   border-radius: 6px;
   padding: 0 8px;
   margin-right: 16px;
   font-size: 1.5rem;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   &:hover,
   &:active,
   &:focus {
@@ -173,13 +173,13 @@ export const DayInput = styled.input`
 export const MonthInput = styled.input`
   width: 20%;
   height: 40px;
-  background-color: ${props => props.theme.inputColor};
+  background-color: ${(props) => props.theme.inputColor};
   border: none;
   border-radius: 6px;
   padding: 0 8px;
   margin-right: 16px;
   font-size: 1.5rem;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   &:hover,
   &:active,
   &:focus {
@@ -190,12 +190,12 @@ export const MonthInput = styled.input`
 export const YearInput = styled.input`
   width: 20%;
   height: 40px;
-  background-color: ${props => props.theme.inputColor};
+  background-color: ${(props) => props.theme.inputColor};
   border: none;
   border-radius: 6px;
   padding: 0 8px;
   font-size: 1.5rem;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   &:hover,
   &:active,
   &:focus {
@@ -259,13 +259,13 @@ export const MaleGender = styled.input`
 export const FemaleLabel = styled.label`
   line-height: 1;
   font-size: 1.5rem;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const MaleLabel = styled.label`
   line-height: 1;
   font-size: 1.5rem;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const FemaleContainer = styled.div`

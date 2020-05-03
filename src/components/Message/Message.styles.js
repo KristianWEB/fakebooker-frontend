@@ -9,14 +9,14 @@ export const MessageContainer = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
   }
 
   &:last-child {
     margin-bottom: 12px;
   }
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
   }
 `;
 
@@ -30,13 +30,13 @@ export const CreatorAvatar = styled.img`
 
 export const CreatorFullName = styled.span`
   font-weight: bold;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-size: 1.5rem;
 `;
 
 export const Body = styled.div`
   font-size: 1.5rem;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,7 +44,7 @@ export const Body = styled.div`
 
 export const Footer = styled.div`
   display: flex;
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
   font-size: 1.3rem;
   font-weight: 500;
 `;

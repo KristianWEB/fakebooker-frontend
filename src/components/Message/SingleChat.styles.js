@@ -57,7 +57,7 @@ export const CreatorMessage = styled.div`
   padding: 8px 12px;
   margin-left: 8px;
   font-family: "Roboto";
-  background-color: ${props => props.theme.secondaryBackground};
+  background-color: ${(props) => props.theme.secondaryBackground};
   border-radius: 18px;
 `;
 
@@ -84,7 +84,7 @@ export const InputContainer = styled.form`
 `;
 
 export const MessageInput = styled.input`
-  background-color: ${props => props.theme.inputColor};
+  background-color: ${(props) => props.theme.inputColor};
   border: none;
   border-radius: 20px;
   width: 100%;
@@ -92,7 +92,7 @@ export const MessageInput = styled.input`
   padding-left: 8px;
   font-size: 1.5rem;
   ::placeholder {
-    color: ${props => props.theme.placeholderColor};
+    color: ${(props) => props.theme.placeholderColor};
     font-size: 1.5rem;
   }
   &:focus {
@@ -122,7 +122,7 @@ export const CloseContainer = styled.div`
   border-radius: 100%;
 
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -132,7 +132,7 @@ export const CloseContainer = styled.div`
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
     outline: none;
   }
 `;
