@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment/moment";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
 import ReactMarkdown from "react-markdown";
-import { Popover, Button, Avatar } from "antd";
+import Popup from "reactjs-popup";
 import {
   PostContainer,
   SettingsContainer,
   PostHeader,
-  PostCard,
+  ProfileAvatar,
   ProfileWrapper,
   NameWrapper,
   ProfileName,
@@ -26,7 +27,8 @@ import {
   CommentsHeading,
   SharesHeading,
   CommentsContainer,
-  PostImage
+  PostImage,
+  LikeButton
 } from "./Post.styles";
 import { ReactComponent as CommentsSVG } from "../../assets/icons/chatbox.svg";
 import { ReactComponent as LikesSVG } from "../../assets/icons/thumbs-up.svg";
@@ -92,35 +94,32 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
     }
   });
 
-  const SettingsPopup = (
+  const SettingsPopup = () => (
     <PopContainer>
-      <PopButton type="link" onClick={deletePost}>
-        Delete Post
-      </PopButton>
+      <PopButton onClick={deletePost}>Delete Post</PopButton>
     </PopContainer>
   );
+
   return (
     <PostContainer>
-      <PostCard bodyStyle={{ padding: "0" }} bordered={false}>
-        <PostHeader>
-          <ProfileWrapper>
-            <Avatar size={40} shape="circle" src={post.userId.avatarImage} />
-            <NameWrapper>
-              <ProfileName>
-                {post.userId.firstName} {post.userId.lastName}
-              </ProfileName>
-              <PostCreation>
-                {new Date(Number(post.createdAt)).toLocaleDateString("en-US")}
-              </PostCreation>
-            </NameWrapper>
-          </ProfileWrapper>
-          {!readOnly && post.userId.id === user.id && (
-            <Popover
-              content={SettingsPopup}
-              placement="bottom"
-              trigger="click"
-              overlayStyle={{ width: "328px" }}
-            >
+      <PostHeader>
+        <ProfileWrapper>
+          <ProfileAvatar src={post.userId.avatarImage} />
+          <NameWrapper>
+            <ProfileName>
+              {post.userId.firstName} {post.userId.lastName}
+            </ProfileName>
+            <PostCreation>
+              {moment(Number(post.createdAt)).fromNow()}
+            </PostCreation>
+          </NameWrapper>
+        </ProfileWrapper>
+        {!readOnly && post.userId.id === user.id && (
+          <Popup
+            className="deletePostPopup"
+            arrow={false}
+            trigger={
+              // eslint-disable-next-line react/jsx-wrap-multilines
               <SettingsContainer>
                 <ThreeDotsSvg
                   style={{
@@ -131,57 +130,50 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
                   }}
                 />
               </SettingsContainer>
-            </Popover>
-          )}
-        </PostHeader>
-        <PostContent>
-          <ReactMarkdown source={post.body} />
-        </PostContent>
-        {post.image && <PostImage src={post.image} alt="post graphics" />}
-        <PostFooter>
-          {liked ? (
-            <LikesWrapper onClick={likePost}>
-              <Button
-                type="link"
-                style={{ padding: 0, display: "flex", alignItems: "center" }}
-              >
-                <LikesSVG fill="#1876f2" width="25px" height="25px" />
-                <LikesCount>{post.likes.length}</LikesCount>
-              </Button>
-            </LikesWrapper>
-          ) : (
-            <LikesWrapper onClick={likePost}>
-              <Button
-                type="link"
-                style={{
-                  padding: 0,
-                  display: "flex",
-                  alignItems: "center"
-                }}
-              >
-                <LikesSVG fill="#65676b" width="25px" height="25px" />
-                <LikesHeading>Like</LikesHeading>
-              </Button>
-            </LikesWrapper>
-          )}
-          <CommentsWrapper>
-            <CommentsSVG fill="#65676b" width="25px" height="25px" />
-            <CommentsCount>
-              {post.comments.length === 0 ? (
-                <CommentsHeading>Comment</CommentsHeading>
-              ) : (
-                post.comments.length
-              )}
-            </CommentsCount>
-          </CommentsWrapper>
-          <SharesWrapper>
-            <SharesSVG fill="#65676b" width="25px" height="25px" />
-            <SharesCount>
-              <SharesHeading>Share</SharesHeading>
-            </SharesCount>
-          </SharesWrapper>
-        </PostFooter>
-      </PostCard>
+            }
+            closeOnDocumentClick
+          >
+            <SettingsPopup />
+          </Popup>
+        )}
+      </PostHeader>
+      <PostContent>
+        <ReactMarkdown source={post.body} />
+      </PostContent>
+      {post.image && <PostImage src={post.image} alt="post graphics" />}
+      <PostFooter>
+        {liked ? (
+          <LikesWrapper onClick={likePost}>
+            <LikeButton>
+              <LikesSVG fill="#1876f2" width="25px" height="25px" />
+              <LikesCount>{post.likes.length}</LikesCount>
+            </LikeButton>
+          </LikesWrapper>
+        ) : (
+          <LikesWrapper onClick={likePost}>
+            <LikeButton>
+              <LikesSVG fill="#65676b" width="25px" height="25px" />
+              <LikesHeading>Like</LikesHeading>
+            </LikeButton>
+          </LikesWrapper>
+        )}
+        <CommentsWrapper>
+          <CommentsSVG fill="#65676b" width="25px" height="25px" />
+          <CommentsCount>
+            {post.comments.length === 0 ? (
+              <CommentsHeading>Comment</CommentsHeading>
+            ) : (
+              post.comments.length
+            )}
+          </CommentsCount>
+        </CommentsWrapper>
+        <SharesWrapper>
+          <SharesSVG fill="#65676b" width="25px" height="25px" />
+          <SharesCount>
+            <SharesHeading>Share</SharesHeading>
+          </SharesCount>
+        </SharesWrapper>
+      </PostFooter>
       <CommentsContainer>
         {post.comments.map(comment => (
           <Comment

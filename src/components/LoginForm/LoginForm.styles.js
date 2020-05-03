@@ -1,31 +1,34 @@
 import styled from "styled-components";
-import { Button, Input, Row } from "antd";
 
-export const LoginFormContainer = styled(Row)`
+export const LoginFormContainer = styled.div`
   width: 500px;
   font-family: "Roboto";
+  font-size: 1.5rem;
 `;
 
-export const StyledButton = styled(Button)`
-  && {
-    background-color: ${props => props.theme.primaryText};
-    width: 50%;
-    height: auto;
-    padding: 8px 0;
-    font-size: 1.6rem;
+export const StyledButton = styled.button`
+  background-color: ${(props) => props.theme.primaryText};
+  color: #fff;
+  width: 50%;
+  height: auto;
+  padding: 8px 0;
+  border-radius: 4px;
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
 
-    &&:focus,
-    &&:hover {
-      background-color: ${props => props.theme.primaryText};
-      color: #fff;
-      border-color: none;
-    }
+  &:focus,
+  &:hover {
+    background-color: ${(props) => props.theme.primaryText};
+    color: #fff;
+    border-color: none;
+    outline: none;
+  }
 
-    &&:active {
-      color: #fff;
-      border-color: none;
-      transform: scale(0.96);
-    }
+  &:active {
+    color: #fff;
+    border-color: none;
+    transform: scale(0.96);
   }
 `;
 
@@ -33,7 +36,7 @@ export const LoginHeading = styled.p`
   font-size: 2.4rem;
   font-weight: 600;
   margin-bottom: 30px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const EmailLabel = styled.p`
@@ -42,7 +45,7 @@ export const EmailLabel = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const PasswordLabel = styled.p`
@@ -51,24 +54,43 @@ export const PasswordLabel = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
-export const EmailInput = styled(Input)`
-  && {
-    background-color: ${props => props.theme.inputColor};
-    border: none;
-    border-radius: 6px;
+export const EmailInput = styled.input`
+  background-color: ${(props) => props.theme.inputColor};
+  border: none;
+  border-radius: 6px;
+  height: 40px;
+  padding: 0 8px;
+  &:focus,
+  &:hover,
+  &:active {
+    outline: none;
   }
 `;
-export const PasswordInput = styled(Input.Password)`
-  && {
-    .ant-input.ant-input-lg {
-      background-color: ${props => props.theme.inputColor};
-      border: none;
-    }
-    background-color: ${props => props.theme.inputColor};
-    border: none;
-    border-radius: 6px;
+
+export const PasswordInput = styled.input`
+  background-color: ${(props) => props.theme.inputColor};
+  border: none;
+  border-radius: 6px;
+  height: 40px;
+  padding: 0 8px;
+  &:focus,
+  &:hover,
+  &:active {
+    outline: none;
   }
+`;
+
+export const EmailContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+`;
+
+export const PasswordContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
 `;

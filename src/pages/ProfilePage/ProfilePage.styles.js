@@ -1,15 +1,14 @@
 import styled from "styled-components";
-import { Row } from "antd";
 
-export const InfoContainer = styled(Row)`
+export const InfoContainer = styled.div`
   display: flex;
   height: 100%;
-  padding-top: 28px;
-  padding-bottom: 28px;
+  padding: 28px 8px;
+  justify-content: center;
 `;
 
-export const PostsSection = styled(Row)`
-  margin-left: 16px;
+export const PostsSection = styled.div`
+  margin-left: 8px;
   width: 500px;
   @media only screen and (max-width: 575px) {
     margin: 0 5px;
@@ -17,12 +16,11 @@ export const PostsSection = styled(Row)`
   }
 `;
 
-export const FixedContainer = styled(Row)`
-  width: 866px;
+export const FixedContainer = styled.div`
   height: 100%;
   display: flex;
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 991px) {
+    width: 100%;
     justify-content: center;
   }
-  margin: 0 auto;
 `;

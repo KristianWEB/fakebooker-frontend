@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
-import { Tooltip } from "antd";
 import Image from "../Image/Image";
 import {
   CreatePostNewContainer,
@@ -19,13 +18,14 @@ import {
   ImageContainer,
   PostImage,
   EndPositionContainer,
-  MarkdownContainer
+  MarkdownContainer,
+  AdditionalActions
 } from "./CreatePostActive.styles";
 import { ReactComponent as CloseBtn } from "../../assets/icons/close.svg";
 import { ReactComponent as MarkdownIcon } from "../../assets/icons/logo-markdown.svg";
 import { CREATE_POST, GET_POSTS, DELETE_IMAGE } from "../../utils/queries";
 
-const CreatePostActive = ({ user, showModal }) => {
+const CreatePostActive = ({ user, closeModal }) => {
   const [body, setBody] = useState("");
   const [image, setImage] = useState({});
 
@@ -58,32 +58,36 @@ const CreatePostActive = ({ user, showModal }) => {
   const onSubmit = e => {
     e.preventDefault();
     createPost();
-    showModal(false);
+    closeModal();
     setImage("");
     setBody("");
   };
 
   return (
     <CreatePostNewContainer onSubmit={onSubmit}>
-      <CreatePostHeader type="flex" justify="center" align="middle">
+      <CreatePostHeader>
         <CreatePostHeading>Create Post</CreatePostHeading>
+        <CloseContainer
+          onClick={closeModal}
+          style={{ position: "absolute", right: "16px", top: "13px" }}
+        >
+          <CloseBtn width="20" height="20" fill="#62626a" />
+        </CloseContainer>
       </CreatePostHeader>
       <CreatePostBody>
-        <User type="flex" align="middle">
+        <User>
           <UserAvatar src={user.avatarImage} size={46} />
           <UserName>
             {user.firstName} {user.lastName}
           </UserName>
-          <div style={{ display: "flex", marginLeft: "auto" }}>
+          <AdditionalActions>
             <ImageContainer>
               <Image setImage={setImage} />
             </ImageContainer>
-            <Tooltip title="Markdown Enabled">
-              <MarkdownContainer>
-                <MarkdownIcon width={20} height={20} />
-              </MarkdownContainer>
-            </Tooltip>
-          </div>
+            <MarkdownContainer>
+              <MarkdownIcon width={20} height={20} />
+            </MarkdownContainer>
+          </AdditionalActions>
         </User>
         <CreatePostInputContainer>
           <CreatePostInput
@@ -92,7 +96,6 @@ const CreatePostActive = ({ user, showModal }) => {
             value={body}
             name="content"
             onChange={e => setBody(e.target.value)}
-            data-testid="createPostInput"
           />
           {image.secure_url && (
             <PostImage img={image.secure_url} alt="imagePreview">
@@ -103,6 +106,7 @@ const CreatePostActive = ({ user, showModal }) => {
                     deleteImage();
                     setImage({});
                   }}
+                  style={{ marginTop: "13px", marginRight: "16px" }}
                 >
                   <CloseBtn width="20" height="20" fill="#62626a" />
                 </CloseContainer>
@@ -123,7 +127,7 @@ const CreatePostActive = ({ user, showModal }) => {
 export default CreatePostActive;
 
 CreatePostActive.propTypes = {
-  showModal: PropTypes.func,
+  closeModal: PropTypes.func,
   user: PropTypes.shape({
     firstName: PropTypes.string,
     lastName: PropTypes.string,
@@ -133,5 +137,5 @@ CreatePostActive.propTypes = {
 
 CreatePostActive.defaultProps = {
   user: null,
-  showModal: () => null
+  closeModal: () => null
 };

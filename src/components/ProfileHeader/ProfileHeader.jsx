@@ -1,12 +1,17 @@
 import React from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { NavLink } from "react-router-dom";
-import { Skeleton, Popover } from "antd";
+import { NavLink, Link } from "react-router-dom";
+import Popup from "reactjs-popup";
 import PropTypes from "prop-types";
 import {
   ProfileHeaderContainer,
   ProfileBackgroundContainer,
   UserContainer,
+  MoreLinkContainer,
+  PopupFriendsLink,
+  PopupPhotosLink,
+  PopupLinkContainer,
+  MoreBtn,
   User,
   UserAvatar,
   UserName,
@@ -23,6 +28,7 @@ import {
   FriendActionContainer,
   FriendBtn,
   FriendText,
+  RespondContainer,
   RespondBtn,
   RespondText,
   ActionsContainer,
@@ -50,15 +56,12 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
   });
 
   // get single notification is changed: pass profileUser ( user ) and authUser ( authUser ) as creator and notifier once and the opposite and check if there is any data ( friend request sent )
-  const { data: notificationData, loading } = useQuery(
-    GET_SINGLE_NOTIFICATION,
-    {
-      variables: {
-        urlUser: user.id
-      },
-      skip: !readOnly
-    }
-  );
+  const { data: notificationData } = useQuery(GET_SINGLE_NOTIFICATION, {
+    variables: {
+      urlUser: user.id
+    },
+    skip: !readOnly
+  });
   // if user A already sent a friend request to user B => fetch the notification with status "pending" and action "Sent you a friend request" and if it returns data then show accept/rejectFriend buttons
   const [acceptFriend, { data: acceptFriendData }] = useMutation(
     ACCEPT_FRIEND,
@@ -140,8 +143,6 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
       }
     }
   });
-
-  if (loading) return <Skeleton />;
 
   const FriendActions = () => (
     <ActionsContainer>
@@ -240,8 +241,26 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
             }
           }}
         >
-          <PhotosContainerLink type="link">Photos</PhotosContainerLink>
+          <PhotosContainerLink>Photos</PhotosContainerLink>
         </NavLink>
+        <MoreLinkContainer>
+          <Popup
+            className="profileFriendPopup"
+            arrow={false}
+            trigger={<MoreBtn>More</MoreBtn>}
+            closeOnDocumentClick
+            on="click"
+          >
+            <PopupLinkContainer>
+              <Link to={`/${user.username}/friends`}>
+                <PopupFriendsLink>Friends</PopupFriendsLink>
+              </Link>
+              <Link to={`/${user.username}/photos`}>
+                <PopupPhotosLink>Photos</PopupPhotosLink>
+              </Link>
+            </PopupLinkContainer>
+          </Popup>
+        </MoreLinkContainer>
         {readOnly && (
           <>
             <FriendActionContainer>
@@ -250,19 +269,27 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
                 notificationData.getSingleNotification.status === "pending" &&
                 notificationData.getSingleNotification.notifier.id ===
                   authUser.id && (
-                  <Popover
-                    placement="bottomRight"
-                    content={<FriendActions />}
-                    trigger="click"
-                    overlayStyle={{
-                      width: "344px"
-                    }}
-                  >
-                    <RespondBtn type="link">
-                      <AddFriendIcon width={16} height={16} fill="#1876f2" />
-                      <RespondText>Respond</RespondText>
-                    </RespondBtn>
-                  </Popover>
+                  <RespondContainer>
+                    <Popup
+                      className="profileFriendPopup"
+                      arrow={false}
+                      trigger={
+                        // eslint-disable-next-line react/jsx-wrap-multilines
+                        <RespondBtn>
+                          <AddFriendIcon
+                            width={16}
+                            height={16}
+                            fill="#1876f2"
+                          />
+                          <RespondText>Respond</RespondText>
+                        </RespondBtn>
+                      }
+                      closeOnDocumentClick
+                      on="click"
+                    >
+                      <FriendActions />
+                    </Popup>
+                  </RespondContainer>
                 )}
               {((notificationData &&
                 notificationData.getSingleNotification &&
@@ -287,19 +314,23 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
                 notificationData.getSingleNotification &&
                 notificationData.getSingleNotification.status === "accepted") ||
                 acceptFriendData) && (
-                <Popover
-                  placement="bottomRight"
-                  content={<RemoveContainer />}
-                  trigger="click"
-                  overlayStyle={{
-                    width: "344px"
-                  }}
-                >
-                  <RespondBtn type="link">
-                    <AddFriendIcon width={16} height={16} fill="#1876f2" />
-                    <RespondText>Friends</RespondText>
-                  </RespondBtn>
-                </Popover>
+                <RespondContainer>
+                  <Popup
+                    className="profileFriendPopup"
+                    arrow={false}
+                    trigger={
+                      // eslint-disable-next-line react/jsx-wrap-multilines
+                      <RespondBtn>
+                        <AddFriendIcon width={16} height={16} fill="#1876f2" />
+                        <RespondText>Friends</RespondText>
+                      </RespondBtn>
+                    }
+                    closeOnDocumentClick
+                    on="click"
+                  >
+                    <RemoveContainer />
+                  </Popup>
+                </RespondContainer>
               )}
             </FriendActionContainer>
             <MessageContainer

@@ -36,9 +36,9 @@ const About = ({ readOnly, user }) => {
         </HomeContainer>
       )}
       {!readOnly && (
-        <StyledButton type="link">
-          <Link to={`${user.username}/about_overview`}>Edit Details</Link>
-        </StyledButton>
+        <Link to={`${user.username}/about_overview`}>
+          <StyledButton>Edit Details</StyledButton>
+        </Link>
       )}
     </AboutContainer>
   );

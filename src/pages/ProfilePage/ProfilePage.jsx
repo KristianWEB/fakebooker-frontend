@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
-import { Row } from "antd";
 import SingleChat from "../../components/Message/SingleChat";
 import CreatePostDefault from "../../components/Post/CreatePostDefault";
 import Post from "../../components/Post/Post";
@@ -61,7 +60,7 @@ const ProfilePage = () => {
   return (
     <>
       {userData && (
-        <Row>
+        <>
           <InfoContainer>
             <FixedContainer>
               <About
@@ -93,7 +92,7 @@ const ProfilePage = () => {
           {openChat.visible && (
             <SingleChat creator={openChat.creator} setOpenChat={setOpenChat} />
           )}
-        </Row>
+        </>
       )}
     </>
   );

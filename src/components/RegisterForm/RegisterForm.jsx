@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useMutation } from "@apollo/react-hooks";
+import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { message, Form, Radio } from "antd";
 import { REGISTER_USER } from "../../utils/queries";
 import {
   RegisterFormContainer,
@@ -18,127 +18,120 @@ import {
   PasswordInput,
   NameContainer,
   BirthdayLabel,
-  BirthdayInput
+  FirstNameContainer,
+  LastNameContainer,
+  EmailContainer,
+  PasswordContainer,
+  BirthdayContainer,
+  GenderContainer,
+  DayInput,
+  MonthInput,
+  YearInput,
+  FemaleGender,
+  MaleGender,
+  FemaleLabel,
+  MaleLabel,
+  FemaleContainer,
+  MaleContainer
 } from "./RegisterForm.styles";
 
 const RegisterForm = () => {
-  const [signUpState, setSignUpState] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    gender: ""
-  });
-
-  const [birthday, setBirthday] = useState(null);
-
-  const onChangeRegister = e =>
-    setSignUpState({ ...signUpState, [e.target.name]: e.target.value });
-
-  const onChangeBirthday = e => setBirthday(e && e.format());
+  const { register, handleSubmit, getValues } = useForm();
 
   const history = useHistory();
+
+  const { birthday } = getValues({ nest: true });
+
   const [registerUser] = useMutation(REGISTER_USER, {
     onCompleted: result => {
       const { token, username } = result.register;
       localStorage.setItem("token", token);
-      message.success("Registered successfully");
       history.push(`/${username}`);
     },
     variables: {
-      firstName: signUpState.firstName,
-      lastName: signUpState.lastName,
-      email: signUpState.email,
-      password: signUpState.password,
-      gender: signUpState.gender,
-      birthday
+      firstName: getValues("firstName"),
+      lastName: getValues("lastName"),
+      email: getValues("email"),
+      password: getValues("password"),
+      gender: getValues("gender"),
+      birthday:
+        birthday &&
+        new Date(birthday.birthDay + birthday.birthMonth + birthday.birthYear)
     }
   });
 
-  const onSubmitRegister = async e => {
-    e.preventDefault();
-
+  const onSubmitRegister = e => {
     registerUser();
-
-    setSignUpState({
-      email: "",
-      username: "",
-      password: "",
-      confirmPassword: ""
-    });
   };
+
   return (
     <RegisterFormContainer>
       <RegisterHeading>Sign Up to Fakebooker</RegisterHeading>
-      <Form onSubmit={onSubmitRegister} style={{ padding: "3px" }}>
+      <form
+        onSubmit={handleSubmit(onSubmitRegister)}
+        style={{ padding: "3px" }}
+      >
         <NameContainer>
-          <Form.Item
-            style={{ marginBottom: "15px", width: "50%", marginRight: "16px" }}
-          >
+          <FirstNameContainer>
             <FirstNameLabel>First name</FirstNameLabel>
-            <FirstNameInput
-              name="firstName"
-              value={signUpState.firstName}
-              onChange={onChangeRegister}
-              size="large"
-              required
-            />
-          </Form.Item>
-          <Form.Item style={{ marginBottom: "15px", width: "50%" }}>
+            <FirstNameInput name="firstName" ref={register} />
+          </FirstNameContainer>
+          <LastNameContainer>
             <LastNameLabel>Last name</LastNameLabel>
-            <LastNameInput
-              name="lastName"
-              value={signUpState.lastName}
-              onChange={onChangeRegister}
-              size="large"
-              required
-            />
-          </Form.Item>
+            <LastNameInput name="lastName" ref={register} />
+          </LastNameContainer>
         </NameContainer>
-        <Form.Item style={{ marginBottom: "15px" }}>
+        <EmailContainer>
           <EmailLabel>Email</EmailLabel>
-          <EmailInput
-            name="email"
-            value={signUpState.email}
-            onChange={onChangeRegister}
-            size="large"
-            required
-          />
-        </Form.Item>
-        <Form.Item style={{ marginBottom: "15px" }}>
+          <EmailInput name="email" ref={register} />
+        </EmailContainer>
+        <PasswordContainer>
           <PasswordLabel>Password</PasswordLabel>
-          <PasswordInput
-            name="password"
-            value={signUpState.password}
-            onChange={onChangeRegister}
-            size="large"
-            required
-          />
-        </Form.Item>
-        <Form.Item style={{ marginBottom: "15px" }}>
+          <PasswordInput name="password" type="password" ref={register} />
+        </PasswordContainer>
+        <BirthdayContainer>
           <BirthdayLabel>Birthday</BirthdayLabel>
-          <BirthdayInput
-            format="MMMM DD YYYY"
-            placeholder=""
-            name="birthday"
-            onChange={onChangeBirthday}
-          />
-        </Form.Item>
-        <Form.Item style={{ marginBottom: "15px" }}>
-          <GenderLabel>Gender</GenderLabel>
-          <Radio.Group
-            onChange={onChangeRegister}
-            value={signUpState.gender}
-            name="gender"
-          >
-            <Radio value="Female">Female</Radio>
-            <Radio value="Male">Male</Radio>
-          </Radio.Group>
-        </Form.Item>
-        <StyledButton type="link" htmlType="submit" block>
-          Create Account
-        </StyledButton>
-      </Form>
+          <div style={{ display: "flex" }}>
+            <DayInput
+              name="birthday.birthDay"
+              placeholder="30"
+              ref={register}
+            />
+            <MonthInput
+              name="birthday.birthMonth"
+              placeholder="April"
+              ref={register}
+            />
+            <YearInput
+              name="birthday.birthYear"
+              placeholder="1995"
+              ref={register}
+            />
+          </div>
+        </BirthdayContainer>
+        <GenderLabel>Gender</GenderLabel>
+        <GenderContainer>
+          <FemaleContainer>
+            <FemaleGender
+              name="gender"
+              value="Female"
+              type="radio"
+              ref={register}
+            />
+            <FemaleLabel htmlFor="female">Female</FemaleLabel>
+          </FemaleContainer>
+          <MaleContainer>
+            <MaleGender
+              value="Male"
+              name="gender"
+              type="radio"
+              ref={register}
+            />
+            <MaleLabel htmlFor="male">Male</MaleLabel>
+          </MaleContainer>
+        </GenderContainer>
+        <StyledButton htmlType="submit">Create Account</StyledButton>
+      </form>
     </RegisterFormContainer>
   );
 };

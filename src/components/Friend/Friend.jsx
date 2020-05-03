@@ -1,7 +1,7 @@
 import React from "react";
 import { useMutation } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
-import { Popover } from "antd";
+import Popup from "reactjs-popup";
 import {
   FriendContainer,
   UserContainer,
@@ -22,9 +22,7 @@ const Friend = ({ user, readOnly }) => {
 
   const RemoveFriend = () => (
     <ActionsContainer>
-      <RejectFriendBtn type="link" onClick={removeFriend}>
-        Unfriend
-      </RejectFriendBtn>
+      <RejectFriendBtn onClick={removeFriend}>Unfriend</RejectFriendBtn>
     </ActionsContainer>
   );
 
@@ -37,16 +35,15 @@ const Friend = ({ user, readOnly }) => {
         </UserName>
       </UserContainer>
       {!readOnly ? (
-        <Popover
-          placement="bottomRight"
-          content={<RemoveFriend />}
-          trigger="click"
-          overlayStyle={{
-            width: "344px"
-          }}
+        <Popup
+          className="deleteCommentPopup"
+          arrow={false}
+          trigger={<FriendBtn>Friends</FriendBtn>}
+          closeOnDocumentClick
+          on="click"
         >
-          <FriendBtn type="link">Friends</FriendBtn>
-        </Popover>
+          <RemoveFriend />
+        </Popup>
       ) : (
         <FriendBtn type="link">Friends</FriendBtn>
       )}

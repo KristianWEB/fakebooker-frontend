@@ -1,17 +1,15 @@
 import styled from "styled-components";
-import { Row } from "antd";
 
-export const InfoContainer = styled(Row)`
+export const InfoContainer = styled.div`
   display: flex;
   height: 100%;
-  padding-top: 28px;
-  padding-bottom: 28px;
-  background-color: ${props => props.theme.inputColor};
+  padding: 28px 8px;
   font-family: Roboto;
 `;
 
-export const FixedContainer = styled(Row)`
-  width: 882px;
+export const FixedContainer = styled.div`
+  width: 876px;
+  box-sizing: border-box;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -21,15 +19,15 @@ export const FixedContainer = styled(Row)`
   }
   margin: 0 auto;
   padding: 16px;
-  box-shadow: ${props => props.theme.boxShadow2};
-  border-radius: 8px;
+  box-shadow: ${(props) => props.theme.boxShadow2};
+  border-radius: 6px;
 `;
 
 export const PhotosHeading = styled.h1`
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 30px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const PhotosContainer = styled.div`

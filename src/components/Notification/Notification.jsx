@@ -1,9 +1,10 @@
 import React from "react";
+import moment from "moment/moment";
 import PropTypes from "prop-types";
 import {
   NotificationContainer,
-  CreatorFirstName,
-  CreatorLastName,
+  NotificationHeading,
+  CreatorFullName,
   CreatorAvatar,
   Body,
   PostBody,
@@ -11,26 +12,36 @@ import {
 } from "./Notification.styles";
 
 const Notification = ({
-  notification: { action, creator, actionId, createdAt }
+  notification: { action, creator, actionId, createdAt },
+  alert
 }) => (
-  <NotificationContainer data-testid="notification">
-    <CreatorAvatar src={creator.avatarImage} />
-    {actionId ? (
-      <Body>
-        <CreatorFirstName> {creator.firstName}</CreatorFirstName>
-        <CreatorLastName> {creator.lastName} </CreatorLastName>
-        {action}: <PostBody> {`"${actionId.body}"`}</PostBody>
-        <Timestamp>{createdAt}</Timestamp>
-      </Body>
-    ) : (
-      <Body>
-        <CreatorFirstName> {creator.firstName}</CreatorFirstName>
-        <CreatorLastName> {creator.lastName} </CreatorLastName>
-        {action}
-        <Timestamp>{createdAt}</Timestamp>
-      </Body>
-    )}
-  </NotificationContainer>
+  <>
+    {alert && <NotificationHeading>New Notification</NotificationHeading>}
+    <NotificationContainer>
+      <CreatorAvatar src={creator.avatarImage} />
+      {actionId ? (
+        <Body>
+          <div>
+            <CreatorFullName>
+              {creator.firstName} {creator.lastName}{" "}
+            </CreatorFullName>
+            {action}: <PostBody> {`"${actionId.body}"`}</PostBody>
+          </div>
+          <Timestamp>{moment(Number(createdAt)).fromNow()}</Timestamp>
+        </Body>
+      ) : (
+        <Body>
+          <div>
+            <CreatorFullName>
+              {creator.firstName} {creator.lastName}{" "}
+            </CreatorFullName>
+            {action}
+          </div>
+          <Timestamp>{createdAt}</Timestamp>
+        </Body>
+      )}
+    </NotificationContainer>
+  </>
 );
 export default Notification;
 
@@ -46,9 +57,11 @@ Notification.propTypes = {
       body: PropTypes.string
     }),
     createdAt: PropTypes.string
-  })
+  }),
+  alert: PropTypes.bool
 };
 
 Notification.defaultProps = {
-  notification: null
+  notification: null,
+  alert: null
 };

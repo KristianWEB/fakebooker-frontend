@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Row, Upload } from "antd";
 
-export const ImageContainer = styled(Row)`
+export const ImageContainer = styled.div`
   padding: 8px 5px;
   && {
     span {
@@ -12,4 +11,6 @@ export const ImageContainer = styled(Row)`
   }
 `;
 
-export const ImageUpload = styled(Upload)``;
+export const ImageUpload = styled.input`
+  display: none;
+`;

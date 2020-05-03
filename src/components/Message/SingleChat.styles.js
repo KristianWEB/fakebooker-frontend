@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Row, Button, Input, Form } from "antd";
 
 export const ChatContainer = styled.div`
   position: fixed;
@@ -13,7 +12,7 @@ export const ChatContainer = styled.div`
   z-index: 6;
 `;
 
-export const ChatHeader = styled(Row)`
+export const ChatHeader = styled.div`
   display: flex;
   align-items: center;
   font-family: "Roboto";
@@ -36,12 +35,11 @@ export const CreatorFullName = styled.h3`
 export const ChatBodyContainer = styled.div`
   border-top: 2px solid rgba(0, 0, 0, 0.1);
   padding: 8px;
-  width: 100%;
   height: 100%;
   font-family: "Roboto";
 `;
 
-export const CreatorContainer = styled(Row)`
+export const CreatorContainer = styled.div`
   display: inline-flex;
   align-items: flex-end;
   margin: 8px;
@@ -54,23 +52,23 @@ export const CreatorImg = styled.img`
   border-radius: 50%;
 `;
 
-export const CreatorMessage = styled(Row)`
+export const CreatorMessage = styled.div`
   font-size: 1.5rem;
   padding: 8px 12px;
   margin-left: 8px;
   font-family: "Roboto";
-  background-color: ${props => props.theme.secondaryBackground};
+  background-color: ${(props) => props.theme.secondaryBackground};
   border-radius: 18px;
 `;
 
-export const AuthUserContainer = styled(Row)`
+export const AuthUserContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   margin: 8px;
   margin-left: 20%;
 `;
 
-export const AuthUserMessage = styled(Row)`
+export const AuthUserMessage = styled.div`
   font-size: 1.5rem;
   padding: 8px 12px;
   margin-left: 8px;
@@ -80,33 +78,43 @@ export const AuthUserMessage = styled(Row)`
   border-radius: 18px;
 `;
 
-export const InputContainer = styled(Form)`
+export const InputContainer = styled.form`
   display: flex;
   font-family: "Roboto";
 `;
 
-export const MessageInput = styled(Input)`
-  && {
-    background-color: ${props => props.theme.inputColor};
-    border: none;
-    border-radius: 20px;
-
-    ::placeholder {
-      color: ${props => props.theme.placeholderColor};
-      font-size: 1.5rem;
-    }
+export const MessageInput = styled.input`
+  background-color: ${(props) => props.theme.inputColor};
+  border: none;
+  border-radius: 20px;
+  width: 100%;
+  height: 37px;
+  padding-left: 8px;
+  font-size: 1.5rem;
+  ::placeholder {
+    color: ${(props) => props.theme.placeholderColor};
+    font-size: 1.5rem;
+  }
+  &:focus {
+    outline: none;
   }
 `;
 
-export const SubmitMessageBtn = styled(Button)`
+export const SubmitMessageBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
   margin-left: 8px;
+  border: none;
+  background-color: #fff;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
-export const CloseContainer = styled(Row)`
+export const CloseContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,7 +122,7 @@ export const CloseContainer = styled(Row)`
   border-radius: 100%;
 
   &:hover {
-    background-color: ${props => props.theme.tertiaryBackground};
+    background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
   }
 
@@ -124,7 +132,7 @@ export const CloseContainer = styled(Row)`
   }
 
   &:active {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
     outline: none;
   }
 `;

@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import { Row } from "antd";
 
-export const InfoContainer = styled(Row)`
+export const InfoContainer = styled.div`
   display: flex;
   height: 100%;
   width: 100%;
   justify-content: flex-end;
   padding-top: 8px;
+  font-family: Roboto;
 `;
 
-export const PostContainer = styled(Row)`
+export const PostContainer = styled.div`
   display: flex;
   flex-basis: 75%;
   padding: 0 32px;
@@ -21,15 +21,15 @@ export const PostContainer = styled(Row)`
     width: 100%;
   }
 `;
-export const PostsSection = styled(Row)`
+export const PostsSection = styled.div`
   width: 680px;
   @media only screen and (max-width: 767px) {
     width: 100%;
-    margin: 0 5px;
+    margin: 0 8px;
   }
 `;
 
-export const ContactsSidebar = styled(Row)`
+export const ContactsSidebar = styled.div`
   display: none;
   @media only screen and (min-width: 992px) {
     display: flex;
@@ -38,7 +38,7 @@ export const ContactsSidebar = styled(Row)`
     max-width: 320px;
   }
 `;
-export const ContactsContainer = styled(Row)`
+export const ContactsContainer = styled.div`
   position: fixed;
   max-width: 320px;
   width: 320px;
@@ -47,7 +47,7 @@ export const ContactsContainer = styled(Row)`
   }
 `;
 
-export const ContactsHeader = styled(Row)`
+export const ContactsHeader = styled.div`
   display: flex;
   margin-right: 18px;
   margin-bottom: 16px;
@@ -57,10 +57,10 @@ export const ContactsHeading = styled.h1`
   font-size: 1.7rem;
   font-weight: medium;
   margin-right: auto;
-  color: ${props => props.theme.tertiaryText};
+  color: ${(props) => props.theme.tertiaryText};
 `;
 
-export const ContactsBody = styled(Row)`
+export const ContactsBody = styled.div`
   display: flex;
   align-items: center;
   margin-right: 8px;
@@ -69,10 +69,10 @@ export const ContactsBody = styled(Row)`
   cursor: pointer;
 
   &&:hover {
-    background-color: ${props => props.theme.secondaryBackground};
+    background-color: ${(props) => props.theme.secondaryBackground};
   }
   &&:active {
-    background-color: ${props => props.theme.secondaryHoverBackground};
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
   }
 `;
 
@@ -86,6 +86,6 @@ export const ContactAvatar = styled.img`
 export const ContactFullName = styled.h1`
   font-size: 1.5rem;
   margin-left: 12px;
-  color: ${props => props.theme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
   font-weight: medium;
 `;

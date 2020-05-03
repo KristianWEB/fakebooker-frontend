@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import moment from "moment/moment";
 import { useQuery, useMutation } from "@apollo/react-hooks";
+import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
-import { Radio } from "antd";
 import {
   AboutInfoContainer,
   AboutContainer,
@@ -17,7 +18,6 @@ import {
   ActionContainer,
   BirthdayAction,
   BirthdaySpan,
-  BirthdayInput,
   HomeplaceAction,
   HomeplaceSpan,
   GenderActionContainer,
@@ -27,6 +27,10 @@ import {
   SaveButton,
   Gender,
   Birthday,
+  BirthdayContainer,
+  DayInput,
+  MonthInput,
+  YearInput,
   SettingsContainer,
   HomeplaceActionContainer,
   HomeplaceInput,
@@ -39,7 +43,14 @@ import {
   UserHomeplace,
   HomeplaceCaption,
   BirthdayBody,
-  HomeplaceBody
+  HomeplaceBody,
+  FemaleContainer,
+  FemaleGender,
+  FemaleLabel,
+  MaleContainer,
+  MaleGender,
+  MaleLabel,
+  GenderContainer
 } from "./AboutContactAndBasicInfo.styles";
 import {
   LOAD_USER,
@@ -58,11 +69,13 @@ import { ReactComponent as BirthdayIcon } from "../../assets/icons/calendar.svg"
 import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
 
 const AboutContactAndBasicInfo = () => {
+  const { register, handleSubmit, getValues } = useForm();
   const [addGender, setAddGender] = useState(false);
   const [addBirthday, setAddBirthday] = useState(false);
   const [addHomeplace, setAddHomeplace] = useState(false);
 
-  const [birthdayBody, setBirthdayBody] = useState(null);
+  const { birthday } = getValues({ nest: true });
+
   const [genderBody, setGenderBody] = useState("");
   const [homePlaceBody, setHomePlaceBody] = useState("");
 
@@ -74,7 +87,9 @@ const AboutContactAndBasicInfo = () => {
 
   const [saveBirthday] = useMutation(ADD_BIRTHDAY, {
     variables: {
-      birthday: birthdayBody
+      birthday:
+        birthday &&
+        new Date(birthday.birthDay + birthday.birthMonth + birthday.birthYear)
     }
   });
 
@@ -132,7 +147,6 @@ const AboutContactAndBasicInfo = () => {
   };
 
   const onSubmitBirthday = e => {
-    e.preventDefault();
     saveBirthday();
     setAddBirthday(false);
   };
@@ -140,7 +154,6 @@ const AboutContactAndBasicInfo = () => {
   const deleteBirthdayCb = () => {
     deleteBirthday();
     setAddBirthday(false);
-    setBirthdayBody(null);
   };
 
   const onSubmitHomePlace = e => {
@@ -187,7 +200,9 @@ const AboutContactAndBasicInfo = () => {
                 <Birthday>
                   <BirthdayIcon width={20} height={20} fill="#65676b" />
                   <BirthdayBody>
-                    <UserBirthday>{profileUser.birthday}</UserBirthday>
+                    <UserBirthday>
+                      {moment.unix(profileUser.birthday).format()}
+                    </UserBirthday>
                     <BirthdayCaption>Birthday</BirthdayCaption>
                   </BirthdayBody>
                 </Birthday>
@@ -206,26 +221,36 @@ const AboutContactAndBasicInfo = () => {
             <ActionContainer>
               {addGender && (
                 <GenderActionContainer onSubmit={onSubmitGender}>
-                  <Radio.Group
-                    onChange={e => setGenderBody(e.target.value)}
-                    value={genderBody}
-                    name="gender"
-                  >
-                    <Radio value="Male">Male</Radio>
-                    <Radio value="Female">Female</Radio>
-                  </Radio.Group>
+                  <GenderContainer>
+                    <FemaleContainer>
+                      <FemaleGender
+                        name="gender"
+                        onChange={e => setGenderBody(e.target.value)}
+                        value="Female"
+                        type="radio"
+                      />
+                      <FemaleLabel htmlFor="female">Female</FemaleLabel>
+                    </FemaleContainer>
+                    <MaleContainer>
+                      <MaleGender
+                        value="Male"
+                        name="gender"
+                        type="radio"
+                        onChange={e => setGenderBody(e.target.value)}
+                      />
+                      <MaleLabel htmlFor="male">Male</MaleLabel>
+                    </MaleContainer>
+                  </GenderContainer>
                   <Footer>
                     <CancelButton onClick={() => setAddGender(false)}>
                       Cancel
                     </CancelButton>
-                    <SaveButton type="link" htmlType="submit">
-                      Save
-                    </SaveButton>
+                    <SaveButton htmlType="submit">Save</SaveButton>
                   </Footer>
                 </GenderActionContainer>
               )}
               {!addGender && !user.gender && (
-                <GenderAction type="link" onClick={() => setAddGender(true)}>
+                <GenderAction onClick={() => setAddGender(true)}>
                   <PlusIcon width={30} height={30} />
                   <GenderSpan>Gender</GenderSpan>
                 </GenderAction>
@@ -237,35 +262,45 @@ const AboutContactAndBasicInfo = () => {
                     <UserGender>{user.gender}</UserGender>
                     <GenderCaption>Gender</GenderCaption>
                   </GenderBody>
-                  <SettingsContainer type="link" onClick={deleteGenderCb}>
+                  <SettingsContainer onClick={deleteGenderCb}>
                     <CloseIcon width={20} height={20} />
                   </SettingsContainer>
                 </Gender>
               )}
               {addBirthday && (
-                <BirthdayActionContainer onSubmit={onSubmitBirthday}>
-                  <BirthdayInput
-                    format="MMMM DD YYYY"
-                    type="text"
-                    placeholder="Birthday"
-                    name="birthday"
-                    onChange={e => setBirthdayBody(e && e.format())}
-                  />
+                <BirthdayActionContainer
+                  onSubmit={handleSubmit(onSubmitBirthday)}
+                >
+                  <BirthdayContainer>
+                    <DayInput
+                      name="birthday.birthDay"
+                      type="text"
+                      placeholder="30"
+                      ref={register}
+                    />
+                    <MonthInput
+                      ref={register}
+                      name="birthday.birthMonth"
+                      type="text"
+                      placeholder="April"
+                    />
+                    <YearInput
+                      type="text"
+                      placeholder="1995"
+                      ref={register}
+                      name="birthday.birthYear"
+                    />
+                  </BirthdayContainer>
                   <Footer>
                     <CancelButton onClick={() => setAddBirthday(false)}>
                       Cancel
                     </CancelButton>
-                    <SaveButton type="link" htmlType="submit">
-                      Save
-                    </SaveButton>
+                    <SaveButton htmlType="submit">Save</SaveButton>
                   </Footer>
                 </BirthdayActionContainer>
               )}
               {!addBirthday && !user.birthday && (
-                <BirthdayAction
-                  type="link"
-                  onClick={() => setAddBirthday(true)}
-                >
+                <BirthdayAction onClick={() => setAddBirthday(true)}>
                   <PlusIcon width={30} height={30} />
                   <BirthdaySpan>Birthday</BirthdaySpan>
                 </BirthdayAction>
@@ -274,10 +309,12 @@ const AboutContactAndBasicInfo = () => {
                 <Birthday>
                   <BirthdayIcon width={20} height={20} fill="#65676b" />
                   <BirthdayBody>
-                    <UserBirthday>{user.birthday}</UserBirthday>
+                    <UserBirthday>
+                      {moment(Number(user.birthday)).format("DD MMMM YYYY")}
+                    </UserBirthday>
                     <BirthdayCaption>Birthday</BirthdayCaption>
                   </BirthdayBody>
-                  <SettingsContainer type="link" onClick={deleteBirthdayCb}>
+                  <SettingsContainer onClick={deleteBirthdayCb}>
                     <CloseIcon width={20} height={20} />
                   </SettingsContainer>
                 </Birthday>
@@ -293,17 +330,12 @@ const AboutContactAndBasicInfo = () => {
                     <CancelButton onClick={() => setAddHomeplace(false)}>
                       Cancel
                     </CancelButton>
-                    <SaveButton type="link" htmlType="submit">
-                      Save
-                    </SaveButton>
+                    <SaveButton htmlType="submit">Save</SaveButton>
                   </Footer>
                 </HomeplaceActionContainer>
               )}
               {!addHomeplace && !user.homePlace && (
-                <HomeplaceAction
-                  type="link"
-                  onClick={() => setAddHomeplace(true)}
-                >
+                <HomeplaceAction onClick={() => setAddHomeplace(true)}>
                   <PlusIcon width={30} height={30} />
                   <HomeplaceSpan>Homeplace</HomeplaceSpan>
                 </HomeplaceAction>
@@ -315,7 +347,7 @@ const AboutContactAndBasicInfo = () => {
                     <UserHomeplace>{user.homePlace}</UserHomeplace>
                     <HomeplaceCaption>Homeplace</HomeplaceCaption>
                   </HomeplaceBody>
-                  <SettingsContainer type="link" onClick={deleteHomeplaceCb}>
+                  <SettingsContainer onClick={deleteHomeplaceCb}>
                     <CloseIcon width={20} height={20} />
                   </SettingsContainer>
                 </Homeplace>

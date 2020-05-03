@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useQuery, useSubscription } from "@apollo/react-hooks";
-import { notification } from "antd";
 import { Route, Redirect } from "react-router-dom";
 import ProfileLayout from "./layouts/ProfileLayout";
-import Notification from "../components/Notification/Notification";
+import { notificationAlert } from "../utils/alerts";
 import {
   GET_NOTIFICATIONS,
   NEW_NOTIFICATION,
@@ -18,21 +17,6 @@ const ProfileRoute = ({ component: Component, ...rest }) => {
 
   useQuery(GET_NOTIFICATIONS);
 
-  const openNotification = newNotification => {
-    notification.info({
-      message: <span style={{ marginLeft: "40px" }}>Notification</span>,
-      description: (
-        <div style={{ marginTop: "12px" }}>
-          <Notification notification={newNotification} />
-        </div>
-      ),
-      placement: "bottomLeft",
-      style: {
-        padding: "16px 8px"
-      }
-    });
-  };
-
   useSubscription(NEW_NOTIFICATION, {
     onSubscriptionData: ({ client, subscriptionData }) => {
       const data = client.readQuery({
@@ -42,7 +26,8 @@ const ProfileRoute = ({ component: Component, ...rest }) => {
         subscriptionData.data.newNotification.notifier.id ===
         userData.loadUser.id
       ) {
-        openNotification(subscriptionData.data.newNotification);
+        notificationAlert(subscriptionData.data.newNotification);
+
         const newData = {
           getNotifications: [
             subscriptionData.data.newNotification,
@@ -84,7 +69,7 @@ const ProfileRoute = ({ component: Component, ...rest }) => {
             <Component {...props} />
           </ProfileLayout>
         ) : (
-          <Redirect to="/auth" />
+          <Redirect to="/login" />
         )
       }
     />

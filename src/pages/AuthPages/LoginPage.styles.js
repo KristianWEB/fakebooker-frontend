@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import { Row } from "antd";
 import { ReactComponent as BgImg } from "../../assets/icons/auth-background.svg";
 
 const inverseRotate = keyframes`
@@ -26,13 +25,11 @@ const dash = keyframes`
  }
 `;
 
-export const RegisterPageContainer = styled(Row)`
-  && {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-  }
+export const LoginPageContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
 `;
 export const SVGImgBackground = styled(BgImg)`
   display: none;
@@ -66,34 +63,28 @@ export const SVGImgBackground = styled(BgImg)`
   }
 `;
 
-export const RegisterPageBackground = styled(Row)`
+export const LoginPageBackground = styled.div`
   @media only screen and (min-width: 1100px) {
-    && {
-      display: flex;
-      width: 85%;
-      height: 100%;
-      background-color: rgba(25, 119, 243, 0.1);
-    }
-  }
-`;
-
-export const FormContainer = styled(Row)`
-  && {
     display: flex;
-    width: 100%;
+    width: 85%;
     height: 100%;
-    justify-content: center;
-    align-items: center;
+    background-color: rgba(25, 119, 243, 0.1);
   }
 `;
 
-export const ActionsContainer = styled(Row)`
-  && {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-  }
+export const FormContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ActionsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 `;

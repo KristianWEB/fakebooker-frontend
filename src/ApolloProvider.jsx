@@ -20,14 +20,14 @@ const wsLink = new WebSocketLink({
       headers: {
         Authorization: localStorage.getItem("token")
           ? `JWT ${localStorage.getItem("token")}`
-          : ""
-      }
-    }
-  }
+          : "",
+      },
+    },
+  },
 });
 
 const httpLink = createHttpLink({
-  uri: "https://damp-forest-43324.herokuapp.com"
+  uri: "https://damp-forest-43324.herokuapp.com",
   // uri: "http://localhost:8080/graphql"
 });
 
@@ -38,8 +38,8 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `JWT ${token}` : ""
-    }
+      authorization: token ? `JWT ${token}` : "",
+    },
   };
 });
 
@@ -58,7 +58,7 @@ const link = split(
 
 const client = new ApolloClient({
   link,
-  cache
+  cache,
 });
 
 export default (
