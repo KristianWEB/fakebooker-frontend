@@ -4,6 +4,9 @@ export const LoginFormContainer = styled.div`
   width: 500px;
   font-family: "Roboto";
   font-size: 1.5rem;
+  @media only screen and (max-width: 767px) {
+    padding: 0 20px;
+  }
 `;
 
 export const StyledButton = styled.button`
@@ -17,18 +20,24 @@ export const StyledButton = styled.button`
   border: none;
   cursor: pointer;
 
+  &:focus {
+    opacity: 0.9;
+    outline: none;
+  }
   &:focus,
   &:hover {
     background-color: ${(props) => props.theme.primaryText};
     color: #fff;
-    border-color: none;
-    outline: none;
   }
 
   &:active {
     color: #fff;
     border-color: none;
     transform: scale(0.96);
+  }
+
+  @media only screen and (max-width: 480px) {
+    width: 100%;
   }
 `;
 
@@ -108,4 +117,23 @@ export const ErrorMessageHeading = styled.h1`
   font-size: 1.2rem;
   font-weight: 500;
   margin-left: 7px;
+`;
+
+export const RegisterContainer = styled.div`
+  margin-top: 20px;
+  color: ${(props) => props.theme.secondaryText};
+  font-weight: 400;
+  font-size: 1.5rem;
+  align-items: center;
+  display: flex;
+
+  @media only screen and (max-width: 480px) {
+    justify-content: center;
+  }
+`;
+export const RegisterLink = styled.h1`
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-left: 4px;
+  color: ${(props) => props.theme.primaryText};
 `;

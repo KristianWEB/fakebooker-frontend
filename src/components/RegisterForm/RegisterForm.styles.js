@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const RegisterFormContainer = styled.div`
   width: 500px;
   font-family: "Roboto";
+
+  @media only screen and (max-width: 767px) {
+    padding: 0 20px;
+  }
 `;
 
 export const StyledButton = styled.button`
@@ -17,18 +21,24 @@ export const StyledButton = styled.button`
   cursor: pointer;
   border-radius: 4px;
 
-  &&:focus,
-  &&:hover {
+  &:focus {
+    opacity: 0.9;
+    outline: none;
+  }
+
+  &:hover {
     background-color: ${(props) => props.theme.primaryText};
     color: #fff;
-    border-color: none;
     outline: none;
   }
 
   &&:active {
     color: #fff;
-    border-color: none;
     transform: scale(0.96);
+  }
+
+  @media only screen and (max-width: 480px) {
+    width: 100%;
   }
 `;
 
@@ -217,6 +227,9 @@ export const NameContainer = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 20px;
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const FirstNameContainer = styled.div`
@@ -224,12 +237,19 @@ export const FirstNameContainer = styled.div`
   flex-direction: column;
   width: 50%;
   margin-right: 16px;
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 export const LastNameContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  @media only screen and (max-width: 767px) {
+    margin-top: 20px;
+    width: 100%;
+  }
 `;
 
 export const EmailContainer = styled.div`
@@ -304,4 +324,23 @@ export const ErrorMessageHeading = styled.h1`
   font-size: 1.2rem;
   font-weight: 500;
   margin-left: 7px;
+`;
+
+export const LoginContainer = styled.div`
+  margin-top: 20px;
+  color: ${(props) => props.theme.secondaryText};
+  font-weight: 400;
+  font-size: 1.5rem;
+  align-items: center;
+  display: flex;
+
+  @media only screen and (max-width: 480px) {
+    justify-content: center;
+  }
+`;
+export const LoginLink = styled.h1`
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-left: 4px;
+  color: ${(props) => props.theme.primaryText};
 `;

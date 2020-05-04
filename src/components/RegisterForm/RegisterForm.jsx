@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { REGISTER_USER } from "../../utils/queries";
 import {
   RegisterFormContainer,
@@ -33,6 +33,8 @@ import {
   MaleContainer,
   ErrorMessageContainer,
   ErrorMessageHeading,
+  LoginContainer,
+  LoginLink,
 } from "./RegisterForm.styles";
 import { ReactComponent as ErrorIcon } from "../../assets/icons/alert-circle.svg";
 
@@ -199,6 +201,12 @@ const RegisterForm = () => {
         </GenderContainer>
         <StyledButton htmlType="submit">Create Account</StyledButton>
       </form>
+      <LoginContainer>
+        Already a member?
+        <Link to="/login">
+          <LoginLink>Sign In</LoginLink>
+        </Link>
+      </LoginContainer>
     </RegisterFormContainer>
   );
 };

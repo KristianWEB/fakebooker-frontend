@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/react-hooks";
@@ -16,6 +16,8 @@ import {
   PasswordContainer,
   ErrorMessageContainer,
   ErrorMessageHeading,
+  RegisterContainer,
+  RegisterLink,
 } from "./LoginForm.styles";
 import { ReactComponent as ErrorIcon } from "../../assets/icons/alert-circle.svg";
 
@@ -87,6 +89,12 @@ const LoginForm = () => {
           </ErrorMessageContainer>
         )}
       </form>
+      <RegisterContainer>
+        Not a member?
+        <Link to="/register">
+          <RegisterLink>Sign up now</RegisterLink>
+        </Link>
+      </RegisterContainer>
     </LoginFormContainer>
   );
 };
