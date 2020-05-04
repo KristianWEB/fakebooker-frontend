@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
@@ -24,26 +24,26 @@ import {
   PasswordContainer,
   BirthdayContainer,
   GenderContainer,
-  DayInput,
-  MonthInput,
-  YearInput,
+  BirthdayInput,
   FemaleGender,
   MaleGender,
   FemaleLabel,
   MaleLabel,
   FemaleContainer,
-  MaleContainer
+  MaleContainer,
+  ErrorMessageContainer,
+  ErrorMessageHeading,
 } from "./RegisterForm.styles";
+import { ReactComponent as ErrorIcon } from "../../assets/icons/alert-circle.svg";
 
 const RegisterForm = () => {
-  const { register, handleSubmit, getValues } = useForm();
+  const { register, handleSubmit, getValues, errors } = useForm();
+  const [graphQLError, setGraphQLError] = useState(undefined);
 
   const history = useHistory();
 
-  const { birthday } = getValues({ nest: true });
-
   const [registerUser] = useMutation(REGISTER_USER, {
-    onCompleted: result => {
+    onCompleted: (result) => {
       const { token, username } = result.register;
       localStorage.setItem("token", token);
       history.push(`/${username}`);
@@ -54,13 +54,12 @@ const RegisterForm = () => {
       email: getValues("email"),
       password: getValues("password"),
       gender: getValues("gender"),
-      birthday:
-        birthday &&
-        new Date(birthday.birthDay + birthday.birthMonth + birthday.birthYear)
-    }
+      birthday: getValues("birthday"),
+    },
+    onError: (error) => setGraphQLError(error.graphQLErrors[0]),
   });
 
-  const onSubmitRegister = e => {
+  const onSubmitRegister = () => {
     registerUser();
   };
 
@@ -74,61 +73,129 @@ const RegisterForm = () => {
         <NameContainer>
           <FirstNameContainer>
             <FirstNameLabel>First name</FirstNameLabel>
-            <FirstNameInput name="firstName" ref={register} />
+            <FirstNameInput
+              name="firstName"
+              ref={register({
+                required: "First name is required",
+              })}
+            />
+            {errors.firstName && (
+              <ErrorMessageContainer>
+                <ErrorIcon width={20} height={20} fill="#d93025" />
+                <ErrorMessageHeading>
+                  {errors.firstName.message}
+                </ErrorMessageHeading>
+              </ErrorMessageContainer>
+            )}
           </FirstNameContainer>
           <LastNameContainer>
             <LastNameLabel>Last name</LastNameLabel>
-            <LastNameInput name="lastName" ref={register} />
+            <LastNameInput
+              name="lastName"
+              ref={register({
+                required: "Last name is required",
+              })}
+            />
+            {errors.lastName && (
+              <ErrorMessageContainer>
+                <ErrorIcon width={20} height={20} fill="#d93025" />
+                <ErrorMessageHeading>
+                  {errors.lastName.message}
+                </ErrorMessageHeading>
+              </ErrorMessageContainer>
+            )}
           </LastNameContainer>
         </NameContainer>
         <EmailContainer>
           <EmailLabel>Email</EmailLabel>
-          <EmailInput name="email" ref={register} />
+          <EmailInput
+            name="email"
+            ref={register({
+              required: "Email is required",
+            })}
+          />
+          {errors.email && (
+            <ErrorMessageContainer>
+              <ErrorIcon width={20} height={20} fill="#d93025" />
+              <ErrorMessageHeading>{errors.email.message}</ErrorMessageHeading>
+            </ErrorMessageContainer>
+          )}
+          {graphQLError && (
+            <ErrorMessageContainer>
+              <ErrorIcon width={20} height={20} fill="#d93025" />
+              <ErrorMessageHeading>{graphQLError.message}</ErrorMessageHeading>
+            </ErrorMessageContainer>
+          )}
         </EmailContainer>
         <PasswordContainer>
           <PasswordLabel>Password</PasswordLabel>
-          <PasswordInput name="password" type="password" ref={register} />
+          <PasswordInput
+            name="password"
+            type="password"
+            ref={register({
+              required: "Password is required",
+            })}
+          />
+          {errors.password && (
+            <ErrorMessageContainer>
+              <ErrorIcon width={20} height={20} fill="#d93025" />
+              <ErrorMessageHeading>
+                {errors.password.message}
+              </ErrorMessageHeading>
+            </ErrorMessageContainer>
+          )}
         </PasswordContainer>
         <BirthdayContainer>
           <BirthdayLabel>Birthday</BirthdayLabel>
-          <div style={{ display: "flex" }}>
-            <DayInput
-              name="birthday.birthDay"
-              placeholder="30"
-              ref={register}
-            />
-            <MonthInput
-              name="birthday.birthMonth"
-              placeholder="April"
-              ref={register}
-            />
-            <YearInput
-              name="birthday.birthYear"
-              placeholder="1995"
-              ref={register}
-            />
-          </div>
+          <BirthdayInput
+            name="birthday"
+            type="date"
+            placeholder="Birthday"
+            ref={register({
+              required: "Birthday is required",
+            })}
+          />
+          {errors.birthday && (
+            <ErrorMessageContainer>
+              <ErrorIcon width={20} height={20} fill="#d93025" />
+              <ErrorMessageHeading>
+                {errors.birthday.message}
+              </ErrorMessageHeading>
+            </ErrorMessageContainer>
+          )}
         </BirthdayContainer>
         <GenderLabel>Gender</GenderLabel>
         <GenderContainer>
-          <FemaleContainer>
-            <FemaleGender
-              name="gender"
-              value="Female"
-              type="radio"
-              ref={register}
-            />
-            <FemaleLabel htmlFor="female">Female</FemaleLabel>
-          </FemaleContainer>
-          <MaleContainer>
-            <MaleGender
-              value="Male"
-              name="gender"
-              type="radio"
-              ref={register}
-            />
-            <MaleLabel htmlFor="male">Male</MaleLabel>
-          </MaleContainer>
+          <div style={{ display: "flex" }}>
+            <FemaleContainer>
+              <FemaleGender
+                name="gender"
+                value="Female"
+                type="radio"
+                ref={register({
+                  required: "Gender is required",
+                })}
+              />
+              <FemaleLabel htmlFor="female">Female</FemaleLabel>
+            </FemaleContainer>
+            <MaleContainer>
+              <MaleGender
+                value="Male"
+                name="gender"
+                type="radio"
+                ref={register({
+                  required: "Gender is required",
+                })}
+              />
+              <MaleLabel htmlFor="male">Male</MaleLabel>
+            </MaleContainer>
+          </div>
+          {errors.gender && (
+            <ErrorMessageContainer>
+              <ErrorIcon width={20} height={20} fill="#d93025" />
+              <ErrorMessageHeading>{errors.gender.message}</ErrorMessageHeading>
+            </ErrorMessageContainer>
+          )}
         </GenderContainer>
         <StyledButton htmlType="submit">Create Account</StyledButton>
       </form>
