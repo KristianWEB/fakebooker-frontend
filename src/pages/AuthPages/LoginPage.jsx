@@ -7,7 +7,7 @@ import {
   LoginPageBackground,
   FormContainer,
   SVGImgBackground,
-  ActionsContainer
+  ActionsContainer,
 } from "./LoginPage.styles";
 import { LOAD_USER } from "../../utils/queries";
 

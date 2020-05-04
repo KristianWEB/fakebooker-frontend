@@ -10,12 +10,10 @@ export const GlobalStyle = createGlobalStyle`
     }
   html {
   overflow-y: scroll;
-  box-sizing: border-box;
   }
 
    html, body {
     font-size: 62.5%;
-    box-sizing: border-box;
    } 
    body {
      background-color: #f0f2f5;
