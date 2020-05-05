@@ -120,6 +120,9 @@ export const PublishBtn = styled.button`
   &:active {
     transform: scale(0.96);
   }
+  &:disabled {
+    opacity: 0.5;
+  }
 `;
 
 export const ImageContainer = styled.div`

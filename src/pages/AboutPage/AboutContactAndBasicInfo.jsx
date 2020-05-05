@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import {
   AboutInfoContainer,
   AboutContainer,
+  BirthdayInput,
   AboutSidebar,
   AboutHeading,
   Overview,
@@ -27,10 +28,6 @@ import {
   SaveButton,
   Gender,
   Birthday,
-  BirthdayContainer,
-  DayInput,
-  MonthInput,
-  YearInput,
   SettingsContainer,
   HomeplaceActionContainer,
   HomeplaceInput,
@@ -50,7 +47,7 @@ import {
   MaleContainer,
   MaleGender,
   MaleLabel,
-  GenderContainer
+  GenderContainer,
 } from "./AboutContactAndBasicInfo.styles";
 import {
   LOAD_USER,
@@ -60,7 +57,7 @@ import {
   DELETE_BIRTHDAY,
   ADD_HOMEPLACE,
   DELETE_HOMEPLACE,
-  LOAD_FROM_URL_USER
+  LOAD_FROM_URL_USER,
 } from "../../utils/queries";
 import { ReactComponent as PlusIcon } from "../../assets/icons/add-circle-outline.svg";
 import { ReactComponent as GenderIcon } from "../../assets/icons/person.svg";
@@ -74,29 +71,22 @@ const AboutContactAndBasicInfo = () => {
   const [addBirthday, setAddBirthday] = useState(false);
   const [addHomeplace, setAddHomeplace] = useState(false);
 
-  const { birthday } = getValues({ nest: true });
-
-  const [genderBody, setGenderBody] = useState("");
-  const [homePlaceBody, setHomePlaceBody] = useState("");
-
   const [saveGender] = useMutation(ADD_GENDER, {
     variables: {
-      gender: genderBody
-    }
+      gender: getValues("gender"),
+    },
   });
 
   const [saveBirthday] = useMutation(ADD_BIRTHDAY, {
     variables: {
-      birthday:
-        birthday &&
-        new Date(birthday.birthDay + birthday.birthMonth + birthday.birthYear)
-    }
+      birthday: getValues("birthday"),
+    },
   });
 
   const [saveHomeplace] = useMutation(ADD_HOMEPLACE, {
     variables: {
-      homePlace: homePlaceBody
-    }
+      homePlace: getValues("homePlace"),
+    },
   });
 
   const [deleteGender] = useMutation(DELETE_GENDER);
@@ -111,8 +101,8 @@ const AboutContactAndBasicInfo = () => {
 
   const { data: profileData } = useQuery(LOAD_FROM_URL_USER, {
     variables: {
-      username
-    }
+      username,
+    },
   });
 
   if (!userData || !profileData) {
@@ -134,8 +124,7 @@ const AboutContactAndBasicInfo = () => {
     }
   };
 
-  const onSubmitGender = e => {
-    e.preventDefault();
+  const onSubmitGender = () => {
     saveGender();
     setAddGender(false);
   };
@@ -143,10 +132,9 @@ const AboutContactAndBasicInfo = () => {
   const deleteGenderCb = () => {
     deleteGender();
     setAddGender(false);
-    setGenderBody("");
   };
 
-  const onSubmitBirthday = e => {
+  const onSubmitBirthday = () => {
     saveBirthday();
     setAddBirthday(false);
   };
@@ -156,8 +144,7 @@ const AboutContactAndBasicInfo = () => {
     setAddBirthday(false);
   };
 
-  const onSubmitHomePlace = e => {
-    e.preventDefault();
+  const onSubmitHomePlace = () => {
     saveHomeplace();
     setAddHomeplace("");
   };
@@ -165,7 +152,6 @@ const AboutContactAndBasicInfo = () => {
   const deleteHomeplaceCb = () => {
     deleteHomeplace();
     setAddHomeplace(false);
-    setHomePlaceBody("");
   };
 
   return (
@@ -220,14 +206,14 @@ const AboutContactAndBasicInfo = () => {
           ) : (
             <ActionContainer>
               {addGender && (
-                <GenderActionContainer onSubmit={onSubmitGender}>
+                <GenderActionContainer onSubmit={handleSubmit(onSubmitGender)}>
                   <GenderContainer>
                     <FemaleContainer>
                       <FemaleGender
                         name="gender"
-                        onChange={e => setGenderBody(e.target.value)}
                         value="Female"
                         type="radio"
+                        ref={register}
                       />
                       <FemaleLabel htmlFor="female">Female</FemaleLabel>
                     </FemaleContainer>
@@ -236,7 +222,7 @@ const AboutContactAndBasicInfo = () => {
                         value="Male"
                         name="gender"
                         type="radio"
-                        onChange={e => setGenderBody(e.target.value)}
+                        ref={register}
                       />
                       <MaleLabel htmlFor="male">Male</MaleLabel>
                     </MaleContainer>
@@ -271,26 +257,12 @@ const AboutContactAndBasicInfo = () => {
                 <BirthdayActionContainer
                   onSubmit={handleSubmit(onSubmitBirthday)}
                 >
-                  <BirthdayContainer>
-                    <DayInput
-                      name="birthday.birthDay"
-                      type="text"
-                      placeholder="30"
-                      ref={register}
-                    />
-                    <MonthInput
-                      ref={register}
-                      name="birthday.birthMonth"
-                      type="text"
-                      placeholder="April"
-                    />
-                    <YearInput
-                      type="text"
-                      placeholder="1995"
-                      ref={register}
-                      name="birthday.birthYear"
-                    />
-                  </BirthdayContainer>
+                  <BirthdayInput
+                    name="birthday"
+                    type="date"
+                    placeholder="Birthday"
+                    ref={register}
+                  />
                   <Footer>
                     <CancelButton onClick={() => setAddBirthday(false)}>
                       Cancel
@@ -320,11 +292,14 @@ const AboutContactAndBasicInfo = () => {
                 </Birthday>
               )}
               {addHomeplace && (
-                <HomeplaceActionContainer onSubmit={onSubmitHomePlace}>
+                <HomeplaceActionContainer
+                  onSubmit={handleSubmit(onSubmitHomePlace)}
+                >
                   <HomeplaceInput
                     type="text"
+                    name="homePlace"
                     placeholder="Homeplace"
-                    onChange={e => setHomePlaceBody(e.target.value)}
+                    ref={register}
                   />
                   <Footer>
                     <CancelButton onClick={() => setAddHomeplace(false)}>

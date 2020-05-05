@@ -8,12 +8,12 @@ import {
   CreatorAvatar,
   Body,
   PostBody,
-  Timestamp
+  Timestamp,
 } from "./Notification.styles";
 
 const Notification = ({
   notification: { action, creator, actionId, createdAt },
-  alert
+  alert,
 }) => (
   <>
     {alert && <NotificationHeading>New Notification</NotificationHeading>}
@@ -51,17 +51,17 @@ Notification.propTypes = {
     creator: PropTypes.shape({
       firstName: PropTypes.string,
       lastName: PropTypes.string,
-      avatarImage: PropTypes.string
+      avatarImage: PropTypes.string,
     }),
     actionId: PropTypes.shape({
-      body: PropTypes.string
+      body: PropTypes.string,
     }),
-    createdAt: PropTypes.string
+    createdAt: PropTypes.string,
   }),
-  alert: PropTypes.bool
+  alert: PropTypes.bool,
 };
 
 Notification.defaultProps = {
   notification: null,
-  alert: null
+  alert: null,
 };

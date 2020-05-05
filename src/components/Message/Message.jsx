@@ -1,11 +1,12 @@
 import React from "react";
+import moment from "moment/moment";
 import PropTypes from "prop-types";
 import {
   MessageContainer,
   CreatorFullName,
   CreatorAvatar,
   Body,
-  Footer
+  Footer,
 } from "./Message.styles";
 
 const Message = ({ message: { creator, body, createdAt }, setOpenChat }) => {
@@ -14,7 +15,7 @@ const Message = ({ message: { creator, body, createdAt }, setOpenChat }) => {
       onClick={() =>
         setOpenChat({
           visible: true,
-          creator
+          creator,
         })
       }
     >
@@ -24,7 +25,7 @@ const Message = ({ message: { creator, body, createdAt }, setOpenChat }) => {
           {creator.firstName} {creator.lastName}
         </CreatorFullName>
         <Footer>
-          {body} · {createdAt}
+          {body} · {moment(Number(createdAt)).fromNow()}
         </Footer>
       </Body>
     </MessageContainer>
@@ -38,15 +39,15 @@ Message.propTypes = {
     creator: PropTypes.shape({
       firstName: PropTypes.string,
       lastName: PropTypes.string,
-      avatarImage: PropTypes.string
+      avatarImage: PropTypes.string,
     }),
     createdAt: PropTypes.string,
-    body: PropTypes.string
+    body: PropTypes.string,
   }),
-  setOpenChat: PropTypes.func
+  setOpenChat: PropTypes.func,
 };
 
 Message.defaultProps = {
   message: null,
-  setOpenChat: null
+  setOpenChat: null,
 };

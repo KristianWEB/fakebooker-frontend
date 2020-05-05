@@ -1,36 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/react-hooks";
 import { CommentInput, CommentForm, UserAvatar } from "./CreateComment.styles";
 import {
   CREATE_COMMENT,
   GET_POSTS,
   GET_URL_POSTS,
-  GET_NEWSFEED
+  GET_NEWSFEED,
 } from "../../utils/queries";
 
 const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
-  const [body, setBody] = useState("");
   const { username } = useParams();
+  const { register, getValues, setValue, handleSubmit } = useForm();
 
   // you need to be able to comment on this guy's post ( implement getUrlposts and getPosts )
   const [createComment] = useMutation(CREATE_COMMENT, {
     variables: {
-      body,
-      postId
+      body: getValues("body"),
+      postId,
     },
     update: (proxy, result) => {
       if (!urlProfile && !onNewsfeed) {
         const data = proxy.readQuery({
-          query: GET_POSTS
+          query: GET_POSTS,
         });
 
-        const getPosts = data.getPosts.map(post => {
+        const getPosts = data.getPosts.map((post) => {
           if (post.id === postId) {
             return {
               ...post,
-              comments: [...post.comments, result.data.createComment]
+              comments: [...post.comments, result.data.createComment],
             };
           }
           return post;
@@ -38,22 +39,22 @@ const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
 
         proxy.writeQuery({
           query: GET_POSTS,
-          data: { getPosts }
+          data: { getPosts },
         });
       }
       if (urlProfile && !onNewsfeed) {
         const data = proxy.readQuery({
           query: GET_URL_POSTS,
           variables: {
-            username
-          }
+            username,
+          },
         });
 
-        const getUrlPosts = data.getUrlPosts.map(post => {
+        const getUrlPosts = data.getUrlPosts.map((post) => {
           if (post.id === postId) {
             return {
               ...post,
-              comments: [...post.comments, result.data.createComment]
+              comments: [...post.comments, result.data.createComment],
             };
           }
           return post;
@@ -62,20 +63,20 @@ const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
           query: GET_URL_POSTS,
           data: { getUrlPosts },
           variables: {
-            username
-          }
+            username,
+          },
         });
       }
       if (!urlProfile && onNewsfeed) {
         const data = proxy.readQuery({
-          query: GET_NEWSFEED
+          query: GET_NEWSFEED,
         });
 
-        const getNewsfeed = data.getNewsfeed.map(post => {
+        const getNewsfeed = data.getNewsfeed.map((post) => {
           if (post.id === postId) {
             return {
               ...post,
-              comments: [...post.comments, result.data.createComment]
+              comments: [...post.comments, result.data.createComment],
             };
           }
           return post;
@@ -83,27 +84,27 @@ const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
 
         proxy.writeQuery({
           query: GET_NEWSFEED,
-          data: { getNewsfeed }
+          data: { getNewsfeed },
         });
       }
-    }
+    },
   });
 
-  const onSubmit = e => {
-    e.preventDefault();
+  const onSubmit = () => {
     createComment();
-    setBody("");
+    setValue("body", "");
   };
 
   return (
     <>
-      <CommentForm onSubmit={onSubmit}>
+      <CommentForm onSubmit={handleSubmit(onSubmit)}>
         <UserAvatar src={user.avatarImage} />
         <CommentInput
-          name="content"
+          name="body"
           placeholder="Write in a comment.."
-          onChange={e => setBody(e.target.value)}
-          value={body}
+          ref={register({
+            required: true,
+          })}
         />
       </CommentForm>
     </>
@@ -122,16 +123,16 @@ CreateComment.propTypes = {
     email: PropTypes.string,
     birthday: PropTypes.string,
     gender: PropTypes.string,
-    coverImage: PropTypes.string
+    coverImage: PropTypes.string,
   }),
   postId: PropTypes.string,
   urlProfile: PropTypes.bool,
-  onNewsfeed: PropTypes.bool
+  onNewsfeed: PropTypes.bool,
 };
 
 CreateComment.defaultProps = {
   user: null,
   postId: null,
   urlProfile: null,
-  onNewsfeed: null
+  onNewsfeed: null,
 };

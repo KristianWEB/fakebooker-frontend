@@ -91,12 +91,15 @@ export const MessageInput = styled.input`
   height: 37px;
   padding-left: 8px;
   font-size: 1.5rem;
+  box-sizing: border-box;
+
   ::placeholder {
     color: ${(props) => props.theme.placeholderColor};
     font-size: 1.5rem;
   }
   &:focus {
     outline: none;
+    border: 2px solid ${(props) => props.theme.primaryText};
   }
 `;
 
@@ -109,8 +112,17 @@ export const SubmitMessageBtn = styled.button`
   border: none;
   background-color: #fff;
 
+  svg {
+    fill: #0084ff;
+  }
+
   &:focus {
     outline: none;
+  }
+  &:disabled {
+    svg {
+      opacity: 0.5;
+    }
   }
 `;
 

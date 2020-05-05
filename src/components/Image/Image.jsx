@@ -4,10 +4,10 @@ import { ImageContainer, ImageUpload } from "./Image.styles";
 import { ReactComponent as ImageIcon } from "../../assets/icons/images.svg";
 
 const Image = ({ setImage }) => {
-  const uploadImage = async e => {
+  const uploadImage = async (e) => {
     const data = new FormData();
     const {
-      target: { files }
+      target: { files },
     } = e;
 
     data.append("file", files[0]);
@@ -16,7 +16,7 @@ const Image = ({ setImage }) => {
       "https://api.cloudinary.com/v1_1/djsafwbaq/image/upload",
       {
         method: "POST",
-        body: data
+        body: data,
       }
     );
     const file = await res.json();
@@ -37,9 +37,9 @@ const Image = ({ setImage }) => {
 export default Image;
 
 Image.propTypes = {
-  setImage: PropTypes.func
+  setImage: PropTypes.func,
 };
 
 Image.defaultProps = {
-  setImage: null
+  setImage: null,
 };
