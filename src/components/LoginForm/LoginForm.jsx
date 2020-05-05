@@ -2,6 +2,8 @@ import { useHistory, Link } from "react-router-dom";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/react-hooks";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import { LOGIN_USER } from "../../utils/queries";
 
 import {
@@ -27,7 +29,7 @@ const LoginForm = () => {
 
   const history = useHistory();
 
-  const [loginUser] = useMutation(LOGIN_USER, {
+  const [loginUser, { loading }] = useMutation(LOGIN_USER, {
     onCompleted: (result) => {
       const { token, username } = result.login;
       localStorage.setItem("token", token);
@@ -81,7 +83,22 @@ const LoginForm = () => {
             </ErrorMessageContainer>
           )}
         </PasswordContainer>
-        <StyledButton htmlType="submit">Sign in</StyledButton>
+        <StyledButton htmlType="submit" disabled={loading}>
+          Sign in
+          {loading && (
+            <Loader
+              type="TailSpin"
+              color="#fff"
+              style={{
+                position: "absolute",
+                right: "16px",
+                top: "12px",
+              }}
+              height={20}
+              width={20}
+            />
+          )}
+        </StyledButton>
         {graphQLError && (
           <ErrorMessageContainer>
             <ErrorIcon width={20} height={20} fill="#d93025" />

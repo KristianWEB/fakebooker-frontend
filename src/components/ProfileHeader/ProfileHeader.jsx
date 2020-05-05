@@ -35,7 +35,7 @@ import {
   AcceptFriendBtn,
   RejectFriendBtn,
   MessageContainer,
-  MessageBtn
+  MessageBtn,
 } from "./ProfileHeader.styles";
 import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
 import { ReactComponent as AddFriendIcon } from "../../assets/icons/person-add.svg";
@@ -45,68 +45,67 @@ import {
   ACCEPT_FRIEND,
   REJECT_FRIEND,
   REMOVE_FRIEND,
-  GET_SINGLE_NOTIFICATION
+  GET_SINGLE_NOTIFICATION,
 } from "../../utils/queries";
 
 const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
   const [addFriend, { data: friendData }] = useMutation(ADD_FRIEND, {
     variables: {
-      notifier: user.username
-    }
+      notifier: user.username,
+    },
   });
-
   // get single notification is changed: pass profileUser ( user ) and authUser ( authUser ) as creator and notifier once and the opposite and check if there is any data ( friend request sent )
   const { data: notificationData } = useQuery(GET_SINGLE_NOTIFICATION, {
     variables: {
-      urlUser: user.id
+      urlUser: user.id,
     },
-    skip: !readOnly
+    skip: !readOnly,
   });
   // if user A already sent a friend request to user B => fetch the notification with status "pending" and action "Sent you a friend request" and if it returns data then show accept/rejectFriend buttons
   const [acceptFriend, { data: acceptFriendData }] = useMutation(
     ACCEPT_FRIEND,
     {
       variables: {
-        creator: user.username
+        creator: user.username,
       },
       update: async (proxy, result) => {
         const data = proxy.readQuery({
           query: GET_SINGLE_NOTIFICATION,
           variables: {
-            urlUser: user.id
-          }
+            urlUser: user.id,
+          },
         });
 
         const {
-          acceptFriend: { status }
+          acceptFriend: { status },
         } = result.data;
 
         const newData = {
           getSingleNotification: {
             ...data.getSingleNotification,
-            status
-          }
+            status,
+          },
         };
         proxy.writeQuery({
           query: GET_SINGLE_NOTIFICATION,
           data: newData,
           variables: {
-            urlUser: user.id
-          }
+            urlUser: user.id,
+          },
         });
-      }
+      },
     }
   );
   const [rejectFriend] = useMutation(REJECT_FRIEND, {
     variables: {
-      creator: user.username
+      creator: user.username,
     },
     update: async (proxy, result) => {
       const data = proxy.readQuery({
         query: GET_SINGLE_NOTIFICATION,
         variables: {
-          urlUser: user.id
-        }
+          urlUser: user.id,
+        },
       });
 
       const newData = { getSingleNotification: null };
@@ -119,15 +118,15 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
           query: GET_SINGLE_NOTIFICATION,
           data: newData,
           variables: {
-            urlUser: user.id
-          }
+            urlUser: user.id,
+          },
         });
       }
-    }
+    },
   });
   const [removeFriend] = useMutation(REMOVE_FRIEND, {
     variables: {
-      creator: user.username
+      creator: user.username,
     },
     update: async (proxy, result) => {
       if (user && authUser) {
@@ -137,11 +136,11 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
           query: GET_SINGLE_NOTIFICATION,
           data: newData,
           variables: {
-            urlUser: user.id
-          }
+            urlUser: user.id,
+          },
         });
       }
-    }
+    },
   });
 
   const FriendActions = () => (
@@ -356,7 +355,7 @@ ProfileHeader.propTypes = {
     avatarImage: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
-    username: PropTypes.string
+    username: PropTypes.string,
   }),
   authUser: PropTypes.shape({
     id: PropTypes.string,
@@ -364,15 +363,15 @@ ProfileHeader.propTypes = {
     avatarImage: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
-    username: PropTypes.string
+    username: PropTypes.string,
   }),
   readOnly: PropTypes.bool,
-  setOpenChat: PropTypes.func
+  setOpenChat: PropTypes.func,
 };
 
 ProfileHeader.defaultProps = {
   user: null,
   authUser: null,
   readOnly: null,
-  setOpenChat: null
+  setOpenChat: null,
 };

@@ -266,3 +266,20 @@ export const LikeButton = styled.button`
     outline: none;
   }
 `;
+
+export const PostSkeleton = styled.div`
+  display: flex;
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 13px;
+
+  /* svg {
+    width: 100%;
+    height: 56px;
+    rect {
+      width: 100%;
+      height: 56px;
+    }
+  } */
+`;

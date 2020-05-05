@@ -11,6 +11,7 @@ export const RegisterFormContainer = styled.div`
 
 export const StyledButton = styled.button`
   background-color: ${(props) => props.theme.primaryText};
+  position: relative;
   color: #fff;
   width: 50%;
   border: none;

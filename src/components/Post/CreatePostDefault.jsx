@@ -4,7 +4,7 @@ import {
   CreatePostContainer,
   UserAvatar,
   CreatePostButton,
-  StyledPopup
+  StyledPopup,
 } from "./CreatePostDefault.styles";
 import CreatePostActive from "./CreatePostActive";
 
@@ -16,7 +16,7 @@ const CreatePostDefault = ({ user }) => (
       modal
       closeOnDocumentClick
     >
-      {close => <CreatePostActive closeModal={close} user={user} />}
+      {(close) => <CreatePostActive closeModal={close} user={user} />}
     </StyledPopup>
   </CreatePostContainer>
 );
@@ -25,10 +25,10 @@ export default CreatePostDefault;
 
 CreatePostDefault.propTypes = {
   user: PropTypes.shape({
-    avatarImage: PropTypes.string
-  })
+    avatarImage: PropTypes.string,
+  }),
 };
 
 CreatePostDefault.defaultProps = {
-  user: null
+  user: null,
 };

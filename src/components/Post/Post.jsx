@@ -28,7 +28,7 @@ import {
   SharesHeading,
   CommentsContainer,
   PostImage,
-  LikeButton
+  LikeButton,
 } from "./Post.styles";
 import { ReactComponent as CommentsSVG } from "../../assets/icons/chatbox.svg";
 import { ReactComponent as LikesSVG } from "../../assets/icons/thumbs-up.svg";
@@ -40,58 +40,57 @@ import {
   DELETE_POST,
   LIKE_POST,
   GET_POSTS,
-  GET_NEWSFEED
+  GET_NEWSFEED,
 } from "../../utils/queries";
 
 const Post = ({ post, user, readOnly, onNewsfeed }) => {
   const [liked, setLiked] = useState(false);
-
   useEffect(() => {
-    if (user && post.likes.find(like => like.userId === user.id)) {
+    if (user && post.likes.find((like) => like.userId === user.id)) {
       setLiked(true);
     } else setLiked(false);
   }, [user, post]);
 
   const [deletePost] = useMutation(DELETE_POST, {
     variables: {
-      postId: post.id
+      postId: post.id,
     },
-    update: proxy => {
+    update: (proxy) => {
       if (!onNewsfeed) {
         const data = proxy.readQuery({
-          query: GET_POSTS
+          query: GET_POSTS,
         });
 
-        const newPostList = data.getPosts.filter(p => p.id !== post.id);
+        const newPostList = data.getPosts.filter((p) => p.id !== post.id);
 
         const newData = { getPosts: [...newPostList] };
 
         proxy.writeQuery({
           query: GET_POSTS,
-          data: newData
+          data: newData,
         });
       }
       if (onNewsfeed) {
         const data = proxy.readQuery({
-          query: GET_NEWSFEED
+          query: GET_NEWSFEED,
         });
 
-        const newPostList = data.getNewsfeed.filter(p => p.id !== post.id);
+        const newPostList = data.getNewsfeed.filter((p) => p.id !== post.id);
 
         const newData = { getNewsfeed: [...newPostList] };
 
         proxy.writeQuery({
           query: GET_NEWSFEED,
-          data: newData
+          data: newData,
         });
       }
-    }
+    },
   });
 
   const [likePost] = useMutation(LIKE_POST, {
     variables: {
-      postId: post.id
-    }
+      postId: post.id,
+    },
   });
 
   const SettingsPopup = () => (
@@ -126,7 +125,7 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
                     cursor: "pointer",
                     width: "25px",
                     height: "25px",
-                    fill: "#65676b"
+                    fill: "#65676b",
                   }}
                 />
               </SettingsContainer>
@@ -175,7 +174,7 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
         </SharesWrapper>
       </PostFooter>
       <CommentsContainer>
-        {post.comments.map(comment => (
+        {post.comments.map((comment) => (
           <Comment
             key={comment.id}
             comment={comment}
@@ -204,13 +203,13 @@ Post.propTypes = {
       id: PropTypes.string,
       avatarImage: PropTypes.string,
       firstName: PropTypes.string,
-      lastName: PropTypes.string
+      lastName: PropTypes.string,
     }),
     createdAt: PropTypes.string,
     body: PropTypes.string,
     image: PropTypes.string,
     likes: PropTypes.array,
-    comments: PropTypes.array
+    comments: PropTypes.array,
   }),
   user: PropTypes.shape({
     id: PropTypes.string,
@@ -220,15 +219,15 @@ Post.propTypes = {
     email: PropTypes.string,
     birthday: PropTypes.string,
     gender: PropTypes.string,
-    coverImage: PropTypes.string
+    coverImage: PropTypes.string,
   }),
   readOnly: PropTypes.bool,
-  onNewsfeed: PropTypes.bool
+  onNewsfeed: PropTypes.bool,
 };
 
 Post.defaultProps = {
   post: null,
   user: null,
   readOnly: null,
-  onNewsfeed: null
+  onNewsfeed: null,
 };
