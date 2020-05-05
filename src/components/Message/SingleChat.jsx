@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   ChatContainer,
@@ -15,7 +16,7 @@ import {
   InputContainer,
   MessageInput,
   SubmitMessageBtn,
-  CloseContainer
+  CloseContainer,
 } from "./SingleChat.styles";
 import { ReactComponent as CloseIcon } from "../../assets/icons/close.svg";
 import { ReactComponent as RightArrowBtn } from "../../assets/icons/play.svg";
@@ -25,24 +26,24 @@ import {
   CREATE_THREAD,
   GET_SINGLE_CHAT,
   GET_THREAD,
-  NEW_MESSAGE
+  NEW_MESSAGE,
 } from "../../utils/queries";
 
 const SingleChat = ({ creator, setOpenChat }) => {
-  const [message, setMessage] = useState("");
+  const { register, setValue, watch, handleSubmit } = useForm();
 
   const { data: authUser } = useQuery(LOAD_USER);
 
   const [createThread, { data: threadData }] = useMutation(CREATE_THREAD, {
     variables: {
-      urlUser: creator.id
-    }
+      urlUser: creator.id,
+    },
   });
   // get thread if it exists
   const { data: getThreadData } = useQuery(GET_THREAD, {
     variables: {
-      urlUser: creator.id
-    }
+      urlUser: creator.id,
+    },
   });
 
   const { data: conversationData, subscribeToMore } = useQuery(
@@ -50,8 +51,10 @@ const SingleChat = ({ creator, setOpenChat }) => {
     {
       variables: {
         threadId:
-          getThreadData && getThreadData.getThread && getThreadData.getThread.id
-      }
+          getThreadData &&
+          getThreadData.getThread &&
+          getThreadData.getThread.id,
+      },
     }
   );
 
@@ -76,23 +79,22 @@ const SingleChat = ({ creator, setOpenChat }) => {
             return { getSingleChat: [...prev.getSingleChat, msg] };
           }
         }
-      }
+      },
     });
   }, [subscribeToMore, authUser, creator]);
 
   const [createMessage] = useMutation(CREATE_MESSAGE, {
     variables: {
       notifier: creator.id,
-      body: message,
-      threadId: threadData && threadData.createThread.id
-    }
+      body: watch("message"),
+      threadId: threadData && threadData.createThread.id,
+    },
   });
 
-  const onSubmit = async e => {
-    e.preventDefault();
+  const onSubmit = async () => {
     await createThread();
     createMessage();
-    setMessage("");
+    setValue("message", "");
   };
 
   return (
@@ -105,7 +107,7 @@ const SingleChat = ({ creator, setOpenChat }) => {
         <CloseContainer
           onClick={() =>
             setOpenChat({
-              visible: false
+              visible: false,
             })
           }
         >
@@ -114,7 +116,7 @@ const SingleChat = ({ creator, setOpenChat }) => {
       </ChatHeader>
       <ChatBodyContainer>
         {conversationData &&
-          conversationData.getSingleChat.map(m =>
+          conversationData.getSingleChat.map((m) =>
             m.creator.id === authUser.loadUser.id ? (
               <AuthUserContainer key={m.id}>
                 <AuthUserMessage>{m.body}</AuthUserMessage>
@@ -126,14 +128,14 @@ const SingleChat = ({ creator, setOpenChat }) => {
               </CreatorContainer>
             )
           )}
-        <InputContainer onSubmit={onSubmit}>
-          <MessageInput
-            placeholder="Aa"
-            onChange={e => setMessage(e.target.value)}
-            value={message}
-          />
-          <SubmitMessageBtn type="link" htmlType="submit">
-            <RightArrowBtn width={25} height={25} fill="#0084FF" />
+        <InputContainer onSubmit={handleSubmit(onSubmit)}>
+          <MessageInput placeholder="Aa" name="message" ref={register} />
+          <SubmitMessageBtn
+            type="link"
+            htmlType="submit"
+            disabled={!watch("message")}
+          >
+            <RightArrowBtn width={25} height={25} />
           </SubmitMessageBtn>
         </InputContainer>
       </ChatBodyContainer>
@@ -148,12 +150,12 @@ SingleChat.propTypes = {
     id: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
-    avatarImage: PropTypes.string
+    avatarImage: PropTypes.string,
   }),
-  setOpenChat: PropTypes.func
+  setOpenChat: PropTypes.func,
 };
 
 SingleChat.defaultProps = {
   creator: null,
-  setOpenChat: null
+  setOpenChat: null,
 };

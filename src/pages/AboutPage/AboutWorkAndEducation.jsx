@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useForm } from "react-hook-form";
 import { Link, useParams } from "react-router-dom";
 import {
   AboutInfoContainer,
@@ -29,7 +30,7 @@ import {
   SchoolInput,
   CancelButton,
   SaveButton,
-  Footer
+  Footer,
 } from "./AboutWorkAndEducation.styles";
 import {
   ADD_WORKPLACE,
@@ -37,30 +38,32 @@ import {
   LOAD_USER,
   DELETE_WORKPLACE,
   DELETE_SCHOOL,
-  LOAD_FROM_URL_USER
+  LOAD_FROM_URL_USER,
 } from "../../utils/queries";
 import { ReactComponent as PlusIcon } from "../../assets/icons/add-circle-outline.svg";
 import { ReactComponent as CloseIcon } from "../../assets/icons/close.svg";
 
 const AboutPageWorkAndEducation = () => {
+  const { register, getValues, handleSubmit } = useForm();
   const [addWorkplace, setAddWorkplace] = useState(false);
-  const [workplaceBody, setWorkplaceBody] = useState("");
-  const [schoolBody, setSchoolBody] = useState("");
+
+  // const [workplaceBody, setWorkplaceBody] = useState("");
+  // const [schoolBody, setSchoolBody] = useState("");
 
   const [addSchool, setAddSchool] = useState(false);
 
   const [saveWorkplace] = useMutation(ADD_WORKPLACE, {
     variables: {
-      body: workplaceBody
-    }
+      body: getValues("workplace"),
+    },
   });
 
   const [deleteWorkplace] = useMutation(DELETE_WORKPLACE);
 
   const [saveSchool] = useMutation(ADD_SCHOOL, {
     variables: {
-      body: schoolBody
-    }
+      body: getValues("school"),
+    },
   });
 
   const [deleteSchool] = useMutation(DELETE_SCHOOL);
@@ -68,13 +71,11 @@ const AboutPageWorkAndEducation = () => {
   const deleteWorkplaceCb = () => {
     deleteWorkplace();
     setAddWorkplace(false);
-    setWorkplaceBody("");
   };
 
   const deleteSchoolCb = () => {
     deleteSchool();
     setAddSchool(false);
-    setSchoolBody("");
   };
 
   const { data: userData } = useQuery(LOAD_USER);
@@ -83,8 +84,8 @@ const AboutPageWorkAndEducation = () => {
   // skip this when on auth page
   const { data: profileData } = useQuery(LOAD_FROM_URL_USER, {
     variables: {
-      username
-    }
+      username,
+    },
   });
 
   if (!userData || !profileData) {
@@ -106,18 +107,14 @@ const AboutPageWorkAndEducation = () => {
     }
   };
 
-  const onSubmitWorkplace = e => {
-    e.preventDefault();
+  const onSubmitWorkplace = () => {
     saveWorkplace();
     setAddWorkplace(false);
-    setWorkplaceBody("");
   };
 
-  const onSubmitSchool = e => {
-    e.preventDefault();
+  const onSubmitSchool = () => {
     saveSchool();
     setAddSchool(false);
-    setSchoolBody("");
   };
 
   return (
@@ -169,25 +166,20 @@ const AboutPageWorkAndEducation = () => {
             <WorkplaceContainer>
               <WorkplaceHeading>Work</WorkplaceHeading>
               {addWorkplace && (
-                <WorkplaceActionContainer onSubmit={onSubmitWorkplace}>
+                <WorkplaceActionContainer
+                  onSubmit={handleSubmit(onSubmitWorkplace)}
+                >
                   <WorkplaceInput
                     type="text"
+                    name="workplace"
                     placeholder="Company"
-                    data-testid="workplaceInput"
-                    value={workplaceBody}
-                    onChange={e => setWorkplaceBody(e.target.value)}
+                    ref={register}
                   />
                   <Footer>
                     <CancelButton onClick={() => setAddWorkplace(false)}>
                       Cancel
                     </CancelButton>
-                    <SaveButton
-                      type="link"
-                      data-testid="saveWorkplace"
-                      htmlType="submit"
-                    >
-                      Save
-                    </SaveButton>
+                    <SaveButton htmlType="submit">Save</SaveButton>
                   </Footer>
                 </WorkplaceActionContainer>
               )}
@@ -203,11 +195,7 @@ const AboutPageWorkAndEducation = () => {
                     Works at{" "}
                     <span style={{ fontWeight: "bold" }}>{user.workPlace}</span>
                   </WorkPlaceBody>
-                  <SettingsContainer
-                    type="link"
-                    onClick={deleteWorkplaceCb}
-                    data-testid="deleteWorkplace"
-                  >
+                  <SettingsContainer onClick={deleteWorkplaceCb}>
                     <CloseIcon width={20} height={20} />
                   </SettingsContainer>
                 </WorkPlace>
@@ -216,12 +204,12 @@ const AboutPageWorkAndEducation = () => {
             <SchoolContainer>
               <SchoolHeading>High School</SchoolHeading>
               {addSchool && (
-                <SchoolActionContainer onSubmit={onSubmitSchool}>
+                <SchoolActionContainer onSubmit={handleSubmit(onSubmitSchool)}>
                   <SchoolInput
                     type="text"
                     placeholder="School"
-                    value={schoolBody}
-                    onChange={e => setSchoolBody(e.target.value)}
+                    name="school"
+                    ref={register}
                   />
                   <Footer>
                     <CancelButton onClick={() => setAddSchool(false)}>
@@ -234,7 +222,7 @@ const AboutPageWorkAndEducation = () => {
                 </SchoolActionContainer>
               )}
               {!addSchool && !user.school && (
-                <SchoolAction type="link" onClick={() => setAddSchool(true)}>
+                <SchoolAction onClick={() => setAddSchool(true)}>
                   <PlusIcon width={30} height={30} />
                   <SchoolSpan>Add a high school</SchoolSpan>
                 </SchoolAction>
@@ -245,7 +233,7 @@ const AboutPageWorkAndEducation = () => {
                     Studies at{" "}
                     <span style={{ fontWeight: "bold" }}>{user.school}</span>
                   </SchoolBody>
-                  <SettingsContainer type="link" onClick={deleteSchoolCb}>
+                  <SettingsContainer onClick={deleteSchoolCb}>
                     <CloseIcon width={20} height={20} />
                   </SettingsContainer>
                 </School>

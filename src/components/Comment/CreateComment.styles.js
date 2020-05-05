@@ -19,6 +19,7 @@ export const CommentInput = styled.input`
   width: 100%;
   padding-left: 8px;
   font-size: 1.5rem;
+  box-sizing: border-box;
   background-color: ${(props) => props.theme.inputColor};
 
   &::placeholder {
@@ -27,5 +28,6 @@ export const CommentInput = styled.input`
 
   &:focus {
     outline: none;
+    border: 2px solid ${(props) => props.theme.primaryText};
   }
 `;

@@ -163,12 +163,8 @@ export const BirthdaySpan = styled.span`
   margin-left: 12px;
 `;
 
-export const BirthdayContainer = styled.div`
-  display: flex;
-`;
-
-export const DayInput = styled.input`
-  width: 20%;
+export const BirthdayInput = styled.input`
+  width: 50%;
   color: ${(props) => props.theme.secondaryText};
   border: none;
   border-radius: 6px;
@@ -186,44 +182,6 @@ export const DayInput = styled.input`
     border: 1px solid ${(props) => props.theme.primaryText};
   }
 `;
-
-export const MonthInput = styled.input`
-  width: 20%;
-  color: ${(props) => props.theme.secondaryText};
-  border: none;
-  border-radius: 6px;
-  padding: 16px;
-  margin-right: 16px;
-  font-size: 1.5rem;
-  border: 1px solid #ced0d4;
-  &:hover {
-    border: 1px solid #8a8d91;
-  }
-
-  &:focus {
-    outline: none;
-    border: 1px solid ${(props) => props.theme.primaryText};
-  }
-`;
-
-export const YearInput = styled.input`
-  width: 20%;
-  color: ${(props) => props.theme.secondaryText};
-  border: none;
-  border-radius: 6px;
-  padding: 16px;
-  font-size: 1.5rem;
-  border: 1px solid #ced0d4;
-  &:hover {
-    border: 1px solid #8a8d91;
-  }
-
-  &:focus {
-    outline: none;
-    border: 1px solid ${(props) => props.theme.primaryText};
-  }
-`;
-
 export const HomeplaceAction = styled.button`
   border: none;
   cursor: pointer;
