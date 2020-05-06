@@ -66,7 +66,7 @@ const ProfileLayout = ({ children }) => {
         />
       ) : (
         <ProfileHeaderSkeleton>
-          <ContentLoader speed={2}>
+          <ContentLoader speed={1}>
             <rect x="0" y="0" rx="5" ry="5" width="100%" height="100%" />
           </ContentLoader>
         </ProfileHeaderSkeleton>

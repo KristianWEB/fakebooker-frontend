@@ -9,6 +9,7 @@ export const InfoContainer = styled.div`
 export const FriendsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 export const FixedContainer = styled.div`

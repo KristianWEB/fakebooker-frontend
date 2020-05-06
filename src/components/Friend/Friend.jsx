@@ -9,15 +9,15 @@ import {
   UserName,
   FriendBtn,
   ActionsContainer,
-  RejectFriendBtn
+  RejectFriendBtn,
 } from "./Friend.styles";
 import { REMOVE_FRIEND } from "../../utils/queries";
 
 const Friend = ({ user, readOnly }) => {
   const [removeFriend] = useMutation(REMOVE_FRIEND, {
     variables: {
-      creator: user.username
-    }
+      creator: user.username,
+    },
   });
 
   const RemoveFriend = () => (
@@ -58,12 +58,12 @@ Friend.propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     avatarImage: PropTypes.string,
-    username: PropTypes.string
+    username: PropTypes.string,
   }),
-  readOnly: PropTypes.bool
+  readOnly: PropTypes.bool,
 };
 
 Friend.defaultProps = {
   user: null,
-  readOnly: null
+  readOnly: null,
 };

@@ -5,7 +5,7 @@ import {
   InfoContainer,
   FixedContainer,
   FriendsHeading,
-  FriendsContainer
+  FriendsContainer,
 } from "./FriendsPage.styles";
 import { LOAD_USER, LOAD_FROM_URL_USER } from "../../utils/queries";
 import Friend from "../../components/Friend/Friend";
@@ -29,9 +29,9 @@ const FriendsPage = () => {
 
   const { data: profileData } = useQuery(LOAD_FROM_URL_USER, {
     variables: {
-      username
+      username,
     },
-    skip: !readOnly()
+    skip: !readOnly(),
   });
 
   return (
@@ -41,12 +41,12 @@ const FriendsPage = () => {
         <FriendsContainer>
           {!readOnly() &&
             userData &&
-            userData.loadUser.friends.map(friend => (
+            userData.loadUser.friends.map((friend) => (
               <Friend key={friend.id} user={friend} />
             ))}
           {readOnly() &&
             profileData &&
-            profileData.loadFromUrlUser.friends.map(friend => (
+            profileData.loadFromUrlUser.friends.map((friend) => (
               <Friend key={friend.id} user={friend} readOnly />
             ))}
         </FriendsContainer>

@@ -8,7 +8,7 @@ import {
   GET_NOTIFICATIONS,
   NEW_NOTIFICATION,
   DELETE_NOTIFICATION,
-  LOAD_USER
+  LOAD_USER,
 } from "../utils/queries";
 
 const ProfileRoute = ({ component: Component, ...rest }) => {
@@ -20,7 +20,7 @@ const ProfileRoute = ({ component: Component, ...rest }) => {
   useSubscription(NEW_NOTIFICATION, {
     onSubscriptionData: ({ client, subscriptionData }) => {
       const data = client.readQuery({
-        query: GET_NOTIFICATIONS
+        query: GET_NOTIFICATIONS,
       });
       if (
         subscriptionData.data.newNotification.notifier.id ===
@@ -31,39 +31,39 @@ const ProfileRoute = ({ component: Component, ...rest }) => {
         const newData = {
           getNotifications: [
             subscriptionData.data.newNotification,
-            ...data.getNotifications
-          ]
+            ...data.getNotifications,
+          ],
         };
 
         client.writeQuery({
           query: GET_NOTIFICATIONS,
-          data: newData
+          data: newData,
         });
       }
-    }
+    },
   });
 
   useSubscription(DELETE_NOTIFICATION, {
     onSubscriptionData: ({ client, subscriptionData }) => {
       const data = client.readQuery({
-        query: GET_NOTIFICATIONS
+        query: GET_NOTIFICATIONS,
       });
 
       const newNotificationList = data.getNotifications.filter(
-        item => item.id !== subscriptionData.data.deleteNotification
+        (item) => item.id !== subscriptionData.data.deleteNotification
       );
 
       client.writeQuery({
         query: GET_NOTIFICATIONS,
-        data: { getNotifications: newNotificationList }
+        data: { getNotifications: newNotificationList },
       });
-    }
+    },
   });
 
   return (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         token ? (
           <ProfileLayout>
             <Component {...props} />
@@ -79,9 +79,9 @@ const ProfileRoute = ({ component: Component, ...rest }) => {
 export default ProfileRoute;
 
 ProfileRoute.propTypes = {
-  component: PropTypes.func
+  component: PropTypes.func,
 };
 
 ProfileRoute.defaultProps = {
-  component: null
+  component: null,
 };

@@ -15,7 +15,7 @@ import {
   SchoolContainer,
   SchoolBody,
   HomeContainer,
-  HomeBody
+  HomeBody,
 } from "./AboutOverview.styles";
 import { LOAD_USER, LOAD_FROM_URL_USER } from "../../utils/queries";
 import { ReactComponent as WorkplaceIcon } from "../../assets/icons/briefcase.svg";
@@ -28,8 +28,8 @@ const AboutPageOverview = () => {
 
   const { data: profileData } = useQuery(LOAD_FROM_URL_USER, {
     variables: {
-      username
-    }
+      username,
+    },
   });
 
   if (!userData || !profileData) {

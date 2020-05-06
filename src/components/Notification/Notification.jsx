@@ -37,7 +37,7 @@ const Notification = ({
             </CreatorFullName>
             {action}
           </div>
-          <Timestamp>{createdAt}</Timestamp>
+          <Timestamp>{moment(Number(createdAt)).fromNow()}</Timestamp>
         </Body>
       )}
     </NotificationContainer>

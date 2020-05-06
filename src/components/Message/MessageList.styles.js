@@ -15,3 +15,7 @@ export const MessageListHeading = styled.h3`
 export const MessageRow = styled.div`
   padding: 8px;
 `;
+
+export const MessageListSkeleton = styled.div`
+  padding: 16px;
+`;
