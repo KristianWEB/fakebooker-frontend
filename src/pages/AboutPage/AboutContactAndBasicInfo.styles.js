@@ -217,11 +217,13 @@ export const GenderActionContainer = styled.form`
 `;
 
 export const BirthdayActionContainer = styled.form`
+  position: relative;
   margin-top: 15px;
 `;
 
 export const HomeplaceActionContainer = styled.form`
   margin-top: 15px;
+  position: relative;
   display: flex;
   flex-direction: column;
 `;
@@ -284,11 +286,12 @@ export const CancelButton = styled.button`
 export const SaveButton = styled.button`
   background-color: ${(props) => props.theme.primaryText};
   color: #fff;
+  position: relative;
   font-weight: 500;
   transition: 0.1s;
   font-size: 1.5rem;
   border: none;
-  padding: 8px 12px;
+  padding: 8px 30px;
   border-radius: 6px;
   cursor: pointer;
 

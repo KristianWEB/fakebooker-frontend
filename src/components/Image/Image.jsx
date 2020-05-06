@@ -1,27 +1,30 @@
 import React from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 import { ImageContainer, ImageUpload } from "./Image.styles";
 import { ReactComponent as ImageIcon } from "../../assets/icons/images.svg";
 
-const Image = ({ setImage }) => {
+const Image = ({ setImage, loading }) => {
   const uploadImage = async (e) => {
-    const data = new FormData();
+    const formData = new FormData();
     const {
       target: { files },
     } = e;
 
-    data.append("file", files[0]);
-    data.append("upload_preset", "kristian");
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/djsafwbaq/image/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const file = await res.json();
+    formData.append("file", files[0]);
+    formData.append("upload_preset", "kristian");
 
-    setImage(file);
+    const { data } = await axios.request({
+      method: "POST",
+      url: "https://api.cloudinary.com/v1_1/djsafwbaq/image/upload",
+      data: formData,
+      onUploadProgress: (p) => {
+        const progress = p.loaded / p.total;
+        loading(progress);
+      },
+    });
+
+    setImage(data);
   };
 
   return (
@@ -38,8 +41,10 @@ export default Image;
 
 Image.propTypes = {
   setImage: PropTypes.func,
+  loading: PropTypes.func,
 };
 
 Image.defaultProps = {
   setImage: null,
+  loading: null,
 };

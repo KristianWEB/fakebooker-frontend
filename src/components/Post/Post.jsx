@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
 import ReactMarkdown from "react-markdown";
 import Popup from "reactjs-popup";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import {
   PostContainer,
   SettingsContainer,
@@ -87,7 +89,7 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
     },
   });
 
-  const [likePost] = useMutation(LIKE_POST, {
+  const [likePost, { loading }] = useMutation(LIKE_POST, {
     variables: {
       postId: post.id,
     },
@@ -141,7 +143,7 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
       </PostContent>
       {post.image && <PostImage src={post.image} alt="post graphics" />}
       <PostFooter>
-        {liked ? (
+        {liked && !loading ? (
           <LikesWrapper onClick={likePost}>
             <LikeButton>
               <LikesSVG fill="#1876f2" width="25px" height="25px" />
@@ -149,10 +151,22 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
             </LikeButton>
           </LikesWrapper>
         ) : (
-          <LikesWrapper onClick={likePost}>
+          <LikesWrapper onClick={likePost} disabled={loading}>
             <LikeButton>
               <LikesSVG fill="#65676b" width="25px" height="25px" />
-              <LikesHeading>Like</LikesHeading>
+              {loading ? (
+                <Loader
+                  type="TailSpin"
+                  color="#1876f2"
+                  height={15}
+                  width={15}
+                  style={{
+                    marginTop: "5px",
+                  }}
+                />
+              ) : (
+                <LikesHeading>Like</LikesHeading>
+              )}
             </LikeButton>
           </LikesWrapper>
         )}

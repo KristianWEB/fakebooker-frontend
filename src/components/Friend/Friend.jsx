@@ -2,6 +2,8 @@ import React from "react";
 import { useMutation } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
 import Popup from "reactjs-popup";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import {
   FriendContainer,
   UserContainer,
@@ -14,7 +16,7 @@ import {
 import { REMOVE_FRIEND } from "../../utils/queries";
 
 const Friend = ({ user, readOnly }) => {
-  const [removeFriend] = useMutation(REMOVE_FRIEND, {
+  const [removeFriend, { loading }] = useMutation(REMOVE_FRIEND, {
     variables: {
       creator: user.username,
     },
@@ -22,7 +24,22 @@ const Friend = ({ user, readOnly }) => {
 
   const RemoveFriend = () => (
     <ActionsContainer>
-      <RejectFriendBtn onClick={removeFriend}>Unfriend</RejectFriendBtn>
+      <RejectFriendBtn onClick={removeFriend} disabled={loading}>
+        Unfriend
+        {loading && (
+          <Loader
+            type="TailSpin"
+            color="#1876f2"
+            style={{
+              position: "absolute",
+              top: "13px",
+              right: "16px",
+            }}
+            height={20}
+            width={20}
+          />
+        )}
+      </RejectFriendBtn>
     </ActionsContainer>
   );
 

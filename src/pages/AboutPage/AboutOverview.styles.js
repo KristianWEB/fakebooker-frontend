@@ -151,3 +151,7 @@ export const HomeBody = styled.h1`
   margin-left: 16px;
   font-weight: 400;
 `;
+
+export const AboutSkeleton = styled.div`
+  display: flex;
+`;

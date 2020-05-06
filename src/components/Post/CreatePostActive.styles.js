@@ -180,3 +180,18 @@ export const AdditionalActions = styled.div`
   display: flex;
   margin-left: auto;
 `;
+
+export const ImageSkeleton = styled.div`
+  display: flex;
+  height: 100%;
+  padding: 0 13px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    rect {
+      width: 100%;
+      height: 100%;
+    }
+  }
+`;
