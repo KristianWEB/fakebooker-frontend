@@ -3,6 +3,8 @@ import ContentLoader from "react-content-loader";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@apollo/react-hooks";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import {
   ChatBodySkeleton,
   ChatContainer,
@@ -19,6 +21,7 @@ import {
   MessageInput,
   SubmitMessageBtn,
   CloseContainer,
+  ChatDataContainer,
 } from "./SingleChat.styles";
 import { ReactComponent as CloseIcon } from "../../assets/icons/close.svg";
 import { ReactComponent as RightArrowBtn } from "../../assets/icons/play.svg";
@@ -84,13 +87,16 @@ const SingleChat = ({ creator, setOpenChat }) => {
     });
   }, [subscribeToMore, authUser, creator]);
 
-  const [createMessage] = useMutation(CREATE_MESSAGE, {
-    variables: {
-      notifier: creator.id,
-      body: watch("message"),
-      threadId: threadData && threadData.createThread.id,
-    },
-  });
+  const [createMessage, { loading: createMessageLoading }] = useMutation(
+    CREATE_MESSAGE,
+    {
+      variables: {
+        notifier: creator.id,
+        body: watch("message"),
+        threadId: threadData && threadData.createThread.id,
+      },
+    }
+  );
 
   const onSubmit = async () => {
     await createThread();
@@ -117,7 +123,7 @@ const SingleChat = ({ creator, setOpenChat }) => {
       </ChatHeader>
       <ChatBodyContainer>
         {!conversationLoading ? (
-          <>
+          <ChatDataContainer>
             {conversationData &&
               conversationData.getSingleChat.map((m) =>
                 m.creator.id === authUser.loadUser.id ? (
@@ -131,7 +137,7 @@ const SingleChat = ({ creator, setOpenChat }) => {
                   </CreatorContainer>
                 )
               )}
-          </>
+          </ChatDataContainer>
         ) : (
           <ChatBodySkeleton>
             <ContentLoader
@@ -149,7 +155,27 @@ const SingleChat = ({ creator, setOpenChat }) => {
           </ChatBodySkeleton>
         )}
         <InputContainer onSubmit={handleSubmit(onSubmit)}>
-          <MessageInput placeholder="Aa" name="message" ref={register} />
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+            }}
+          >
+            <MessageInput placeholder="Aa" name="message" ref={register} />
+            {createMessageLoading && (
+              <Loader
+                type="TailSpin"
+                color="#1876f2"
+                style={{
+                  position: "absolute",
+                  top: "8px",
+                  right: "16px",
+                }}
+                height={20}
+                width={20}
+              />
+            )}
+          </div>
           <SubmitMessageBtn
             type="link"
             htmlType="submit"

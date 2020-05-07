@@ -35,8 +35,13 @@ export const CreatorFullName = styled.h3`
 export const ChatBodyContainer = styled.div`
   border-top: 2px solid rgba(0, 0, 0, 0.1);
   padding: 8px;
-  height: 100%;
   font-family: "Roboto";
+`;
+export const ChatDataContainer = styled.div`
+  max-height: 310px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const CreatorContainer = styled.div`
