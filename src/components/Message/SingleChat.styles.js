@@ -148,3 +148,10 @@ export const CloseContainer = styled.div`
     outline: none;
   }
 `;
+
+export const ChatBodySkeleton = styled.div`
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import ContentLoader from "react-content-loader";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
 import { useForm } from "react-hook-form";
 import Image from "../Image/Image";
 import {
   CreatePostNewContainer,
+  ImageSkeleton,
   CreatePostHeader,
   CreatePostHeading,
   CloseContainer,
@@ -29,6 +31,7 @@ import { CREATE_POST, GET_POSTS, DELETE_IMAGE } from "../../utils/queries";
 const CreatePostActive = ({ user, closeModal }) => {
   const { register, watch, handleSubmit } = useForm();
   const [image, setImage] = useState(undefined);
+  const [imageLoading, setImageLoading] = useState(undefined);
 
   const [deleteImage] = useMutation(DELETE_IMAGE, {
     variables: {
@@ -81,7 +84,7 @@ const CreatePostActive = ({ user, closeModal }) => {
           </UserName>
           <AdditionalActions>
             <ImageContainer>
-              <Image setImage={setImage} />
+              <Image setImage={setImage} loading={setImageLoading} />
             </ImageContainer>
             <MarkdownContainer>
               <MarkdownIcon width={20} height={20} />
@@ -95,6 +98,17 @@ const CreatePostActive = ({ user, closeModal }) => {
             name="body"
             ref={register}
           />
+          {imageLoading && imageLoading !== 1 && (
+            <ImageSkeleton>
+              <ContentLoader
+                speed={1}
+                backgroundColor="#f3f3f3"
+                foregroundColor="#ecebeb"
+              >
+                <rect x="0" y="0" rx="3" ry="3" />
+              </ContentLoader>
+            </ImageSkeleton>
+          )}
           {image && (
             <PostImage img={image.secure_url} alt="imagePreview">
               <EndPositionContainer>

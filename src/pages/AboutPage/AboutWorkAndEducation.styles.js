@@ -227,6 +227,7 @@ export const SettingsContainer = styled.button`
 
 export const WorkplaceActionContainer = styled.form`
   display: flex;
+  position: relative;
   flex-direction: column;
 `;
 
@@ -251,6 +252,7 @@ export const WorkplaceInput = styled.input`
 
 export const SchoolActionContainer = styled.form`
   display: flex;
+  position: relative;
   flex-direction: column;
 `;
 
@@ -331,4 +333,8 @@ export const Footer = styled.div`
   display: flex;
   margin-top: 12px;
   justify-content: flex-end;
+`;
+
+export const AboutSkeleton = styled.div`
+  display: flex;
 `;

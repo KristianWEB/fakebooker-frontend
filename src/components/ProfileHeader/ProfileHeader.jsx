@@ -3,6 +3,8 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import { NavLink, Link } from "react-router-dom";
 import Popup from "reactjs-popup";
 import PropTypes from "prop-types";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import {
   ProfileHeaderContainer,
   ProfileBackgroundContainer,
@@ -35,7 +37,7 @@ import {
   AcceptFriendBtn,
   RejectFriendBtn,
   MessageContainer,
-  MessageBtn
+  MessageBtn,
 } from "./ProfileHeader.styles";
 import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
 import { ReactComponent as AddFriendIcon } from "../../assets/icons/person-add.svg";
@@ -45,120 +47,185 @@ import {
   ACCEPT_FRIEND,
   REJECT_FRIEND,
   REMOVE_FRIEND,
-  GET_SINGLE_NOTIFICATION
+  GET_SINGLE_NOTIFICATION,
 } from "../../utils/queries";
 
 const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
   const [addFriend, { data: friendData }] = useMutation(ADD_FRIEND, {
     variables: {
-      notifier: user.username
-    }
-  });
-
-  // get single notification is changed: pass profileUser ( user ) and authUser ( authUser ) as creator and notifier once and the opposite and check if there is any data ( friend request sent )
-  const { data: notificationData } = useQuery(GET_SINGLE_NOTIFICATION, {
-    variables: {
-      urlUser: user.id
+      notifier: user.username,
     },
-    skip: !readOnly
   });
-  // if user A already sent a friend request to user B => fetch the notification with status "pending" and action "Sent you a friend request" and if it returns data then show accept/rejectFriend buttons
-  const [acceptFriend, { data: acceptFriendData }] = useMutation(
-    ACCEPT_FRIEND,
+  // get single notification is changed: pass profileUser ( user ) and authUser ( authUser ) as creator and notifier once and the opposite and check if there is any data ( friend request sent )
+  const { data: notificationData, loading } = useQuery(
+    GET_SINGLE_NOTIFICATION,
     {
       variables: {
-        creator: user.username
+        urlUser: user.id,
       },
-      update: async (proxy, result) => {
-        const data = proxy.readQuery({
-          query: GET_SINGLE_NOTIFICATION,
-          variables: {
-            urlUser: user.id
-          }
-        });
-
-        const {
-          acceptFriend: { status }
-        } = result.data;
-
-        const newData = {
-          getSingleNotification: {
-            ...data.getSingleNotification,
-            status
-          }
-        };
-        proxy.writeQuery({
-          query: GET_SINGLE_NOTIFICATION,
-          data: newData,
-          variables: {
-            urlUser: user.id
-          }
-        });
-      }
+      skip: !readOnly,
     }
   );
-  const [rejectFriend] = useMutation(REJECT_FRIEND, {
+  // if user A already sent a friend request to user B => fetch the notification with status "pending" and action "Sent you a friend request" and if it returns data then show accept/rejectFriend buttons
+  const [
+    acceptFriend,
+    { data: acceptFriendData, loading: acceptFriendLoading },
+  ] = useMutation(ACCEPT_FRIEND, {
     variables: {
-      creator: user.username
+      creator: user.username,
     },
     update: async (proxy, result) => {
       const data = proxy.readQuery({
         query: GET_SINGLE_NOTIFICATION,
         variables: {
-          urlUser: user.id
-        }
+          urlUser: user.id,
+        },
       });
 
-      const newData = { getSingleNotification: null };
+      const {
+        acceptFriend: { status },
+      } = result.data;
 
-      if (
-        data.getSingleNotification.id.toString() ===
-        result.data.rejectFriend.toString()
-      ) {
-        proxy.writeQuery({
-          query: GET_SINGLE_NOTIFICATION,
-          data: newData,
-          variables: {
-            urlUser: user.id
-          }
-        });
-      }
-    }
-  });
-  const [removeFriend] = useMutation(REMOVE_FRIEND, {
-    variables: {
-      creator: user.username
+      const newData = {
+        getSingleNotification: {
+          ...data.getSingleNotification,
+          status,
+        },
+      };
+      proxy.writeQuery({
+        query: GET_SINGLE_NOTIFICATION,
+        data: newData,
+        variables: {
+          urlUser: user.id,
+        },
+      });
     },
-    update: async (proxy, result) => {
-      if (user && authUser) {
+  });
+  const [rejectFriend, { loading: rejectFriendLoading }] = useMutation(
+    REJECT_FRIEND,
+    {
+      variables: {
+        creator: user.username,
+      },
+      update: async (proxy, result) => {
+        const data = proxy.readQuery({
+          query: GET_SINGLE_NOTIFICATION,
+          variables: {
+            urlUser: user.id,
+          },
+        });
+
         const newData = { getSingleNotification: null };
 
-        proxy.writeQuery({
-          query: GET_SINGLE_NOTIFICATION,
-          data: newData,
-          variables: {
-            urlUser: user.id
-          }
-        });
-      }
+        if (
+          data.getSingleNotification.id.toString() ===
+          result.data.rejectFriend.toString()
+        ) {
+          proxy.writeQuery({
+            query: GET_SINGLE_NOTIFICATION,
+            data: newData,
+            variables: {
+              urlUser: user.id,
+            },
+          });
+        }
+      },
     }
-  });
+  );
+  const [removeFriend, { loading: removeFriendLoading }] = useMutation(
+    REMOVE_FRIEND,
+    {
+      variables: {
+        creator: user.username,
+      },
+      update: async (proxy, result) => {
+        if (user && authUser) {
+          const newData = { getSingleNotification: null };
+
+          proxy.writeQuery({
+            query: GET_SINGLE_NOTIFICATION,
+            data: newData,
+            variables: {
+              urlUser: user.id,
+            },
+          });
+        }
+      },
+    }
+  );
 
   const FriendActions = () => (
     <ActionsContainer>
-      <AcceptFriendBtn type="link" onClick={acceptFriend}>
+      <AcceptFriendBtn
+        type="link"
+        onClick={acceptFriend}
+        disabled={
+          removeFriendLoading || rejectFriendLoading || acceptFriendLoading
+        }
+      >
         Confirm
+        {acceptFriendLoading && (
+          <Loader
+            type="TailSpin"
+            color="#1876f2"
+            style={{
+              position: "absolute",
+              top: "5px",
+              right: "16px",
+            }}
+            height={20}
+            width={20}
+          />
+        )}
       </AcceptFriendBtn>
-      <RejectFriendBtn type="link" onClick={rejectFriend}>
+      <RejectFriendBtn
+        type="link"
+        onClick={rejectFriend}
+        disabled={
+          removeFriendLoading || rejectFriendLoading || acceptFriendLoading
+        }
+      >
         Reject Request
+        {rejectFriendLoading && (
+          <Loader
+            type="TailSpin"
+            color="#1876f2"
+            style={{
+              position: "absolute",
+              top: "5px",
+              right: "16px",
+            }}
+            height={20}
+            width={20}
+          />
+        )}
       </RejectFriendBtn>
     </ActionsContainer>
   );
 
   const RemoveContainer = () => (
     <ActionsContainer>
-      <RejectFriendBtn type="link" onClick={removeFriend}>
+      <RejectFriendBtn
+        type="link"
+        onClick={removeFriend}
+        disabled={
+          removeFriendLoading || rejectFriendLoading || acceptFriendLoading
+        }
+      >
         Remove Friend
+        {removeFriendLoading && (
+          <Loader
+            type="TailSpin"
+            color="#1876f2"
+            style={{
+              position: "absolute",
+              top: "5px",
+              right: "16px",
+            }}
+            height={20}
+            width={20}
+          />
+        )}
       </RejectFriendBtn>
     </ActionsContainer>
   );
@@ -304,12 +371,23 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
               )}
               {notificationData &&
                 !notificationData.getSingleNotification &&
-                !friendData && (
+                !friendData &&
+                !loading && (
                   <FriendBtn type="link" onClick={addFriend}>
                     <AddFriendIcon width={16} height={16} />
                     <FriendText>Add Friend</FriendText>
                   </FriendBtn>
                 )}
+              {loading && (
+                <FriendBtn>
+                  <Loader
+                    type="TailSpin"
+                    color="#050505"
+                    height={15}
+                    width={15}
+                  />
+                </FriendBtn>
+              )}
               {((notificationData &&
                 notificationData.getSingleNotification &&
                 notificationData.getSingleNotification.status === "accepted") ||
@@ -356,7 +434,7 @@ ProfileHeader.propTypes = {
     avatarImage: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
-    username: PropTypes.string
+    username: PropTypes.string,
   }),
   authUser: PropTypes.shape({
     id: PropTypes.string,
@@ -364,15 +442,15 @@ ProfileHeader.propTypes = {
     avatarImage: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string,
-    username: PropTypes.string
+    username: PropTypes.string,
   }),
   readOnly: PropTypes.bool,
-  setOpenChat: PropTypes.func
+  setOpenChat: PropTypes.func,
 };
 
 ProfileHeader.defaultProps = {
   user: null,
   authUser: null,
   readOnly: null,
-  setOpenChat: null
+  setOpenChat: null,
 };

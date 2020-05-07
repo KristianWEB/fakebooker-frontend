@@ -12,6 +12,7 @@ export const LoginFormContainer = styled.div`
 export const StyledButton = styled.button`
   background-color: ${(props) => props.theme.primaryText};
   color: #fff;
+  position: relative;
   width: 50%;
   height: auto;
   padding: 13px 50px;

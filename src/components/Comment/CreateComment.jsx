@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/react-hooks";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import { CommentInput, CommentForm, UserAvatar } from "./CreateComment.styles";
 import {
   CREATE_COMMENT,
@@ -16,7 +18,7 @@ const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
   const { register, getValues, setValue, handleSubmit } = useForm();
 
   // you need to be able to comment on this guy's post ( implement getUrlposts and getPosts )
-  const [createComment] = useMutation(CREATE_COMMENT, {
+  const [createComment, { loading }] = useMutation(CREATE_COMMENT, {
     variables: {
       body: getValues("body"),
       postId,
@@ -90,8 +92,8 @@ const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
     },
   });
 
-  const onSubmit = () => {
-    createComment();
+  const onSubmit = async () => {
+    await createComment();
     setValue("body", "");
   };
 
@@ -106,6 +108,19 @@ const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
             required: true,
           })}
         />
+        {loading && (
+          <Loader
+            type="TailSpin"
+            color="#1876f2"
+            style={{
+              position: "absolute",
+              top: "8px",
+              right: "16px",
+            }}
+            height={20}
+            width={20}
+          />
+        )}
       </CommentForm>
     </>
   );

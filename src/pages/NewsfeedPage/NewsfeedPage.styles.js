@@ -89,3 +89,32 @@ export const ContactFullName = styled.h1`
   color: ${(props) => props.theme.secondaryText};
   font-weight: medium;
 `;
+
+export const NavbarSkeleton = styled.div`
+  display: flex;
+
+  svg {
+    width: 100%;
+    height: 58px;
+    rect {
+      width: 100%;
+      height: 50px;
+    }
+  }
+`;
+
+export const PostSkeleton = styled.div`
+  display: flex;
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 13px;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const ContactSkeleton = styled.div`
+  padding: 8px;
+`;

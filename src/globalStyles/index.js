@@ -63,6 +63,19 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  .removeFriendPopup {
+    &-content {
+    width: 200px !important;
+    display: flex;
+    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2),0 2px 4px 0 rgba(0, 0, 0, 0.1),inset 0 0 0 1px rgba(255, 255, 255, 0.5) !important;
+    border-radius: 8px;
+    right: 20px !important;
+    left: auto !important;
+    border: none !important;
+    padding: 8px !important;
+    }
+  }
+
   .profileFriendPopup {
     &-content {
     width: 200px !important;
@@ -81,13 +94,15 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2),0 2px 4px 0 rgba(0, 0, 0, 0.1),inset 0 0 0 1px rgba(255, 255, 255, 0.5) !important;
     border-radius: 8px;
-    transform: translateX(-45%);
+    top: 48px !important;
+    right: 20px !important;
+    left: auto !important;
     border: none !important;
     padding: 0 !important;
 
     @media only screen and (max-width: 400px) {
       width: 100% !important;
-      left: calc(100% - 55%) !important;
+      right: 0px !important;
       }
     }
   }

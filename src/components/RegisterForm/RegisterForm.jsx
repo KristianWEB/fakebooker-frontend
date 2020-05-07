@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { useForm } from "react-hook-form";
 import { useHistory, Link } from "react-router-dom";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import { REGISTER_USER } from "../../utils/queries";
 import {
   RegisterFormContainer,
@@ -44,7 +46,7 @@ const RegisterForm = () => {
 
   const history = useHistory();
 
-  const [registerUser] = useMutation(REGISTER_USER, {
+  const [registerUser, { loading }] = useMutation(REGISTER_USER, {
     onCompleted: (result) => {
       const { token, username } = result.register;
       localStorage.setItem("token", token);
@@ -199,7 +201,22 @@ const RegisterForm = () => {
             </ErrorMessageContainer>
           )}
         </GenderContainer>
-        <StyledButton htmlType="submit">Create Account</StyledButton>
+        <StyledButton htmlType="submit" disabled={loading}>
+          Create Account
+          {loading && (
+            <Loader
+              type="TailSpin"
+              color="#fff"
+              style={{
+                position: "absolute",
+                right: "16px",
+                top: "12px",
+              }}
+              height={20}
+              width={20}
+            />
+          )}
+        </StyledButton>
       </form>
       <LoginContainer>
         Already a member?

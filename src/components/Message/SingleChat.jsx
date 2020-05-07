@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
+import ContentLoader from "react-content-loader";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
+  ChatBodySkeleton,
   ChatContainer,
   ChatHeader,
   CreatorAvatar,
@@ -46,17 +48,16 @@ const SingleChat = ({ creator, setOpenChat }) => {
     },
   });
 
-  const { data: conversationData, subscribeToMore } = useQuery(
-    GET_SINGLE_CHAT,
-    {
-      variables: {
-        threadId:
-          getThreadData &&
-          getThreadData.getThread &&
-          getThreadData.getThread.id,
-      },
-    }
-  );
+  const {
+    data: conversationData,
+    subscribeToMore,
+    loading: conversationLoading,
+  } = useQuery(GET_SINGLE_CHAT, {
+    variables: {
+      threadId:
+        getThreadData && getThreadData.getThread && getThreadData.getThread.id,
+    },
+  });
 
   useEffect(() => {
     subscribeToMore({
@@ -115,19 +116,38 @@ const SingleChat = ({ creator, setOpenChat }) => {
         </CloseContainer>
       </ChatHeader>
       <ChatBodyContainer>
-        {conversationData &&
-          conversationData.getSingleChat.map((m) =>
-            m.creator.id === authUser.loadUser.id ? (
-              <AuthUserContainer key={m.id}>
-                <AuthUserMessage>{m.body}</AuthUserMessage>
-              </AuthUserContainer>
-            ) : (
-              <CreatorContainer key={m.id}>
-                <CreatorImg src={m.creator.avatarImage} />
-                <CreatorMessage>{m.body}</CreatorMessage>
-              </CreatorContainer>
-            )
-          )}
+        {!conversationLoading ? (
+          <>
+            {conversationData &&
+              conversationData.getSingleChat.map((m) =>
+                m.creator.id === authUser.loadUser.id ? (
+                  <AuthUserContainer key={m.id}>
+                    <AuthUserMessage>{m.body}</AuthUserMessage>
+                  </AuthUserContainer>
+                ) : (
+                  <CreatorContainer key={m.id}>
+                    <CreatorImg src={m.creator.avatarImage} />
+                    <CreatorMessage>{m.body}</CreatorMessage>
+                  </CreatorContainer>
+                )
+              )}
+          </>
+        ) : (
+          <ChatBodySkeleton>
+            <ContentLoader
+              speed={1}
+              backgroundColor="#f3f3f3"
+              foregroundColor="#ecebeb"
+            >
+              <rect x="55" y="21" rx="3" ry="3" width="117" height="14" />
+              <circle cx="25" cy="28" r="20" />
+              <circle cx="285" cy="75" r="20" />
+              <rect x="180" y="72" rx="3" ry="3" width="78" height="13" />
+              <rect x="55" y="120" rx="3" ry="3" width="76" height="14" />
+              <circle cx="25" cy="127" r="20" />
+            </ContentLoader>
+          </ChatBodySkeleton>
+        )}
         <InputContainer onSubmit={handleSubmit(onSubmit)}>
           <MessageInput placeholder="Aa" name="message" ref={register} />
           <SubmitMessageBtn

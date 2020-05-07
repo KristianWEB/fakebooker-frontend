@@ -2,6 +2,8 @@ import React from "react";
 import { useMutation } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
 import Popup from "reactjs-popup";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import {
   FriendContainer,
   UserContainer,
@@ -9,20 +11,35 @@ import {
   UserName,
   FriendBtn,
   ActionsContainer,
-  RejectFriendBtn
+  RejectFriendBtn,
 } from "./Friend.styles";
 import { REMOVE_FRIEND } from "../../utils/queries";
 
 const Friend = ({ user, readOnly }) => {
-  const [removeFriend] = useMutation(REMOVE_FRIEND, {
+  const [removeFriend, { loading }] = useMutation(REMOVE_FRIEND, {
     variables: {
-      creator: user.username
-    }
+      creator: user.username,
+    },
   });
 
   const RemoveFriend = () => (
     <ActionsContainer>
-      <RejectFriendBtn onClick={removeFriend}>Unfriend</RejectFriendBtn>
+      <RejectFriendBtn onClick={removeFriend} disabled={loading}>
+        Unfriend
+        {loading && (
+          <Loader
+            type="TailSpin"
+            color="#1876f2"
+            style={{
+              position: "absolute",
+              top: "13px",
+              right: "16px",
+            }}
+            height={20}
+            width={20}
+          />
+        )}
+      </RejectFriendBtn>
     </ActionsContainer>
   );
 
@@ -36,7 +53,7 @@ const Friend = ({ user, readOnly }) => {
       </UserContainer>
       {!readOnly ? (
         <Popup
-          className="deleteCommentPopup"
+          className="removeFriendPopup"
           arrow={false}
           trigger={<FriendBtn>Friends</FriendBtn>}
           closeOnDocumentClick
@@ -58,12 +75,12 @@ Friend.propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     avatarImage: PropTypes.string,
-    username: PropTypes.string
+    username: PropTypes.string,
   }),
-  readOnly: PropTypes.bool
+  readOnly: PropTypes.bool,
 };
 
 Friend.defaultProps = {
   user: null,
-  readOnly: null
+  readOnly: null,
 };

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const CommentForm = styled.form`
   display: flex;
+  position: relative;
   font-family: Roboto;
   width: 100%;
 `;

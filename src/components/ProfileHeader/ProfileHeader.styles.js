@@ -372,6 +372,7 @@ export const ActionsContainer = styled.div`
 
 export const AcceptFriendBtn = styled.button`
   text-align: left;
+  position: relative;
   border: none;
   padding: 8px;
   border-radius: 6px;
@@ -401,6 +402,7 @@ export const AcceptFriendBtn = styled.button`
 
 export const RejectFriendBtn = styled.button`
   text-align: left;
+  position: relative;
   border: none;
   padding: 8px;
   border-radius: 6px;

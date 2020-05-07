@@ -2,12 +2,18 @@ import styled from "styled-components";
 
 export const FriendContainer = styled.div`
   display: inline-flex;
-  width: 419px;
+  width: calc(50% - 10px);
+  position: relative;
   align-items: center;
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   margin: 3px;
+  box-sizing: border-box;
+
+  @media only screen and (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 export const UserContainer = styled.div`

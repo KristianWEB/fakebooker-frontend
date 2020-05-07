@@ -3,6 +3,8 @@ import Popup from "reactjs-popup";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 import {
   CommentContainer,
   BodyContainer,
@@ -10,13 +12,13 @@ import {
   Username,
   PopButton,
   ActionsContainer,
-  CommentAvatar
+  CommentAvatar,
 } from "./Comment.styles";
 import {
   DELETE_COMMENT,
   GET_POSTS,
   GET_URL_POSTS,
-  GET_NEWSFEED
+  GET_NEWSFEED,
 } from "../../utils/queries";
 import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/ellipsis-horizontal.svg";
 
@@ -24,26 +26,26 @@ const Comment = ({
   comment: { userId, body, id },
   postId,
   urlProfile,
-  onNewsfeed
+  onNewsfeed,
 }) => {
   const { username } = useParams();
 
-  const [deleteComment] = useMutation(DELETE_COMMENT, {
+  const [deleteComment, { loading }] = useMutation(DELETE_COMMENT, {
     variables: {
       commentId: id,
-      postId
+      postId,
     },
     update: (proxy, result) => {
       if (!urlProfile && !onNewsfeed) {
         const data = proxy.readQuery({
-          query: GET_POSTS
+          query: GET_POSTS,
         });
 
-        const getPosts = data.getPosts.map(post => {
+        const getPosts = data.getPosts.map((post) => {
           if (post.id === postId) {
             return {
               ...post,
-              comments: post.comments.filter(c => c.id !== id)
+              comments: post.comments.filter((c) => c.id !== id),
             };
           }
           return post;
@@ -51,22 +53,22 @@ const Comment = ({
 
         proxy.writeQuery({
           query: GET_POSTS,
-          data: { getPosts }
+          data: { getPosts },
         });
       }
       if (urlProfile && !onNewsfeed) {
         const data = proxy.readQuery({
           query: GET_URL_POSTS,
           variables: {
-            username
-          }
+            username,
+          },
         });
 
-        const getUrlPosts = data.getUrlPosts.map(post => {
+        const getUrlPosts = data.getUrlPosts.map((post) => {
           if (post.id === postId) {
             return {
               ...post,
-              comments: post.comments.filter(c => c.id !== id)
+              comments: post.comments.filter((c) => c.id !== id),
             };
           }
           return post;
@@ -76,20 +78,20 @@ const Comment = ({
           query: GET_URL_POSTS,
           data: { getUrlPosts },
           variables: {
-            username
-          }
+            username,
+          },
         });
       }
       if (onNewsfeed && !urlProfile) {
         const data = proxy.readQuery({
-          query: GET_NEWSFEED
+          query: GET_NEWSFEED,
         });
 
-        const getNewsfeed = data.getNewsfeed.map(post => {
+        const getNewsfeed = data.getNewsfeed.map((post) => {
           if (post.id === postId) {
             return {
               ...post,
-              comments: post.comments.filter(c => c.id !== id)
+              comments: post.comments.filter((c) => c.id !== id),
             };
           }
           return post;
@@ -97,15 +99,30 @@ const Comment = ({
 
         proxy.writeQuery({
           query: GET_NEWSFEED,
-          data: { getNewsfeed }
+          data: { getNewsfeed },
         });
       }
-    }
+    },
   });
 
   const SettingsPopup = () => (
     <ActionsContainer>
-      <PopButton onClick={deleteComment}>Delete Comment</PopButton>
+      <PopButton onClick={deleteComment} disabled={loading}>
+        Delete Comment
+        {loading && (
+          <Loader
+            type="TailSpin"
+            color="#1876f2"
+            style={{
+              position: "absolute",
+              top: "13px",
+              right: "16px",
+            }}
+            height={20}
+            width={20}
+          />
+        )}
+      </PopButton>
     </ActionsContainer>
   );
   return (
@@ -128,7 +145,7 @@ const Comment = ({
                 cursor: "pointer",
                 width: "20px",
                 height: "20px",
-                fill: "#65676b"
+                fill: "#65676b",
               }}
             />
           }
@@ -148,19 +165,19 @@ Comment.propTypes = {
     userId: PropTypes.shape({
       avatarImage: PropTypes.string,
       firstName: PropTypes.string,
-      lastName: PropTypes.string
+      lastName: PropTypes.string,
     }),
     body: PropTypes.string,
-    id: PropTypes.string
+    id: PropTypes.string,
   }),
   postId: PropTypes.string,
   urlProfile: PropTypes.bool,
-  onNewsfeed: PropTypes.bool
+  onNewsfeed: PropTypes.bool,
 };
 
 Comment.defaultProps = {
   comment: null,
   postId: null,
   urlProfile: null,
-  onNewsfeed: null
+  onNewsfeed: null,
 };
