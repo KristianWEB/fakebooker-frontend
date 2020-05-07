@@ -552,7 +552,7 @@ export const CREATE_THREAD = gql`
 `;
 
 export const GET_THREAD = gql`
-  query getThread($urlUser: String!) {
+  query getThread($urlUser: String) {
     getThread(urlUser: $urlUser) {
       id
       participantsIds
