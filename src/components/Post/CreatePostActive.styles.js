@@ -100,6 +100,7 @@ export const PublishBtnContainer = styled.div`
 `;
 
 export const PublishBtn = styled.button`
+  position: relative;
   width: 100%;
   border: none;
   border-radius: 6px;

@@ -53,41 +53,44 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
     } else setLiked(false);
   }, [user, post]);
 
-  const [deletePost] = useMutation(DELETE_POST, {
-    variables: {
-      postId: post.id,
-    },
-    update: (proxy) => {
-      if (!onNewsfeed) {
-        const data = proxy.readQuery({
-          query: GET_POSTS,
-        });
+  const [deletePost, { loading: deletePostLoading }] = useMutation(
+    DELETE_POST,
+    {
+      variables: {
+        postId: post.id,
+      },
+      update: (proxy) => {
+        if (!onNewsfeed) {
+          const data = proxy.readQuery({
+            query: GET_POSTS,
+          });
 
-        const newPostList = data.getPosts.filter((p) => p.id !== post.id);
+          const newPostList = data.getPosts.filter((p) => p.id !== post.id);
 
-        const newData = { getPosts: [...newPostList] };
+          const newData = { getPosts: [...newPostList] };
 
-        proxy.writeQuery({
-          query: GET_POSTS,
-          data: newData,
-        });
-      }
-      if (onNewsfeed) {
-        const data = proxy.readQuery({
-          query: GET_NEWSFEED,
-        });
+          proxy.writeQuery({
+            query: GET_POSTS,
+            data: newData,
+          });
+        }
+        if (onNewsfeed) {
+          const data = proxy.readQuery({
+            query: GET_NEWSFEED,
+          });
 
-        const newPostList = data.getNewsfeed.filter((p) => p.id !== post.id);
+          const newPostList = data.getNewsfeed.filter((p) => p.id !== post.id);
 
-        const newData = { getNewsfeed: [...newPostList] };
+          const newData = { getNewsfeed: [...newPostList] };
 
-        proxy.writeQuery({
-          query: GET_NEWSFEED,
-          data: newData,
-        });
-      }
-    },
-  });
+          proxy.writeQuery({
+            query: GET_NEWSFEED,
+            data: newData,
+          });
+        }
+      },
+    }
+  );
 
   const [likePost, { loading }] = useMutation(LIKE_POST, {
     variables: {
@@ -97,7 +100,22 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
 
   const SettingsPopup = () => (
     <PopContainer>
-      <PopButton onClick={deletePost}>Delete Post</PopButton>
+      <PopButton onClick={deletePost} disabled={deletePostLoading}>
+        Delete Post
+        {deletePostLoading && (
+          <Loader
+            type="TailSpin"
+            color="#1876f2"
+            style={{
+              position: "absolute",
+              top: "13px",
+              right: "16px",
+            }}
+            height={20}
+            width={20}
+          />
+        )}
+      </PopButton>
     </PopContainer>
   );
 

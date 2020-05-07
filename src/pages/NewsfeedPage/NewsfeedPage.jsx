@@ -30,7 +30,10 @@ const NewsfeedPage = () => {
     creator: null,
   });
   const { data: newsfeedData, subscribeToMore, loading } = useQuery(
-    GET_NEWSFEED
+    GET_NEWSFEED,
+    {
+      fetchPolicy: "network-only",
+    }
   );
 
   useEffect(() => {
