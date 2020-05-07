@@ -65,24 +65,13 @@ const SingleChat = ({ creator, setOpenChat }) => {
   useEffect(() => {
     subscribeToMore({
       document: NEW_MESSAGE,
-      // eslint-disable-next-line consistent-return
+      variables: {
+        notifierId: authUser.loadUser.id,
+      },
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data) return prev;
-        if (authUser) {
-          // check  if the creator and the notifier of the message are either url user / auth user
-          // this is going to be fixed later as I dont know any better solution yet.
-          if (
-            (subscriptionData.data.newMessage.notifier.id === creator.id &&
-              subscriptionData.data.newMessage.creator.id ===
-                authUser.loadUser.id) ||
-            (subscriptionData.data.newMessage.notifier.id ===
-              authUser.loadUser.id &&
-              subscriptionData.data.newMessage.creator.id === creator.id)
-          ) {
-            const msg = subscriptionData.data.newMessage;
-            return { getSingleChat: [...prev.getSingleChat, msg] };
-          }
-        }
+        const msg = subscriptionData.data.newMessage;
+        return { getSingleChat: [...prev.getSingleChat, msg] };
       },
     });
   }, [subscribeToMore, authUser, creator]);
@@ -94,6 +83,26 @@ const SingleChat = ({ creator, setOpenChat }) => {
         notifier: creator.id,
         body: watch("message"),
         threadId: threadData && threadData.createThread.id,
+      },
+      update: async (proxy, result) => {
+        const data = proxy.readQuery({
+          query: GET_SINGLE_CHAT,
+          variables: {
+            threadId: getThreadData.getThread.id,
+          },
+        });
+
+        const newData = {
+          getSingleChat: [...data.getSingleChat, result.data.createMessage],
+        };
+
+        proxy.writeQuery({
+          query: GET_SINGLE_CHAT,
+          data: newData,
+          variables: {
+            threadId: getThreadData.getThread.id,
+          },
+        });
       },
     }
   );
