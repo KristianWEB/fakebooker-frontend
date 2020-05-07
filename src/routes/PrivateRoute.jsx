@@ -8,6 +8,9 @@ import {
   NEW_NOTIFICATION,
   DELETE_NOTIFICATION,
   LOAD_USER,
+  NEW_MESSAGE,
+  GET_THREAD,
+  GET_SINGLE_CHAT,
 } from "../utils/queries";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -15,6 +18,40 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
   useQuery(GET_NOTIFICATIONS);
   const { data: userData } = useQuery(LOAD_USER);
+
+  const { refetch: threadRefetch } = useQuery(GET_THREAD);
+
+  const { refetch: singleChatRefetch } = useQuery(GET_SINGLE_CHAT);
+
+  useSubscription(NEW_MESSAGE, {
+    variables: {
+      notifierId: userData && userData.loadUser.id,
+    },
+    onSubscriptionData: async ({ client, subscriptionData }) => {
+      const { data: threadData } = await threadRefetch({
+        urlUser: subscriptionData.data.newMessage.creator.id,
+      });
+
+      await singleChatRefetch({
+        threadId: threadData && threadData.getThread.id,
+      });
+
+      const data = client.readQuery({
+        query: GET_SINGLE_CHAT,
+        variables: {
+          threadId: threadData && threadData.getThread.id,
+        },
+      });
+
+      client.writeQuery({
+        query: GET_SINGLE_CHAT,
+        variables: {
+          threadId: threadData && threadData.getThread.id,
+        },
+        data: [...data.getSingleChat, subscriptionData.data.newMessage],
+      });
+    },
+  });
 
   useSubscription(NEW_NOTIFICATION, {
     onSubscriptionData: ({ client, subscriptionData }) => {
