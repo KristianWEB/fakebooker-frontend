@@ -498,8 +498,8 @@ export const CREATE_MESSAGE = gql`
 `;
 
 export const NEW_MESSAGE = gql`
-  subscription {
-    newMessage {
+  subscription newMessage($notifierId: String!) {
+    newMessage(notifierId: $notifierId) {
       id
       creator {
         id
