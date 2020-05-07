@@ -14,6 +14,8 @@ export const MessageListHeading = styled.h3`
 `;
 export const MessageRow = styled.div`
   padding: 8px;
+  max-height: 350px;
+  overflow-y: auto;
 `;
 
 export const MessageListSkeleton = styled.div`

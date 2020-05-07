@@ -17,4 +17,6 @@ export const NotificationListHeading = styled.h3`
 
 export const NotificationRow = styled.div`
   padding: 8px;
+  max-height: 350px;
+  overflow-y: auto;
 `;
