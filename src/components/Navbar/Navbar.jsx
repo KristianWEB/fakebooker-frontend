@@ -18,7 +18,7 @@ import {
   SearchContainer,
   UserAvatar,
   SearchInputContainer,
-  IconContainer
+  IconContainer,
 } from "./Navbar.styles";
 import { ReactComponent as Logo } from "../../assets/icons/logo.svg";
 import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
@@ -45,7 +45,7 @@ const Navbar = ({ onProfile, user, setOpenChat }) => {
               style={{
                 position: "absolute",
                 top: "10px",
-                left: "15px"
+                left: "15px",
               }}
             />
           </IconContainer>
@@ -117,13 +117,13 @@ Navbar.propTypes = {
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     avatarImage: PropTypes.string,
-    username: PropTypes.string
+    username: PropTypes.string,
   }),
-  setOpenChat: PropTypes.func
+  setOpenChat: PropTypes.func,
 };
 
 Navbar.defaultProps = {
   onProfile: null,
   user: null,
-  setOpenChat: null
+  setOpenChat: null,
 };

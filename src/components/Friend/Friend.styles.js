@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const FriendContainer = styled.div`
   display: inline-flex;
   width: calc(50% - 10px);
+  position: relative;
   align-items: center;
   padding: 16px;
   border-radius: 8px;

@@ -53,7 +53,7 @@ const Friend = ({ user, readOnly }) => {
       </UserContainer>
       {!readOnly ? (
         <Popup
-          className="deleteCommentPopup"
+          className="removeFriendPopup"
           arrow={false}
           trigger={<FriendBtn>Friends</FriendBtn>}
           closeOnDocumentClick

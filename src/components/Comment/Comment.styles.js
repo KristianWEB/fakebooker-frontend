@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const CommentContainer = styled.div`
   display: flex;
   margin: 10px 0;
+  position: relative;
   font-family: Roboto;
   align-items: center;
 `;

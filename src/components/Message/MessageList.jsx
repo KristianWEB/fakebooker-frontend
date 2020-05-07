@@ -13,7 +13,6 @@ import { GET_MESSAGES } from "../../utils/queries";
 
 const MessageList = ({ setOpenChat }) => {
   const { data, loading } = useQuery(GET_MESSAGES);
-
   return (
     <MessageListContainer>
       <MessageListHeading>Messenger</MessageListHeading>
