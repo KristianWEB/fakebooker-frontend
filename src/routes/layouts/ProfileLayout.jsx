@@ -4,7 +4,6 @@ import ContentLoader from "react-content-loader";
 import PropTypes from "prop-types";
 import { useQuery } from "@apollo/react-hooks";
 import Navbar from "../../components/Navbar/Navbar";
-import SingleChat from "../../components/Message/SingleChat";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import { LOAD_USER, LOAD_FROM_URL_USER } from "../../utils/queries";
 import { ProfileHeaderSkeleton, NavbarSkeleton } from "./ProfileLayout.styles";
@@ -13,10 +12,6 @@ const ProfileLayout = ({ children }) => {
   const [pageLoading, setPageLoading] = useState(true);
 
   const { data: userData } = useQuery(LOAD_USER);
-  const [openChat, setOpenChat] = useState({
-    visible: false,
-    creator: null,
-  });
   useEffect(() => {
     setPageLoading(false);
   }, []);
@@ -45,11 +40,7 @@ const ProfileLayout = ({ children }) => {
   return (
     <>
       {!pageLoading && userData ? (
-        <Navbar
-          onProfile
-          user={userData && userData.loadUser}
-          setOpenChat={setOpenChat}
-        />
+        <Navbar onProfile user={userData && userData.loadUser} />
       ) : (
         <NavbarSkeleton>
           <ContentLoader speed={1}>
@@ -62,7 +53,6 @@ const ProfileLayout = ({ children }) => {
           user={profileData ? profileData.loadFromUrlUser : userData.loadUser}
           authUser={userData.loadUser}
           readOnly={readOnly()}
-          setOpenChat={setOpenChat}
         />
       ) : (
         <ProfileHeaderSkeleton>
@@ -72,9 +62,6 @@ const ProfileLayout = ({ children }) => {
         </ProfileHeaderSkeleton>
       )}
       {children}
-      {openChat.visible && (
-        <SingleChat creator={openChat.creator} setOpenChat={setOpenChat} />
-      )}
     </>
   );
 };

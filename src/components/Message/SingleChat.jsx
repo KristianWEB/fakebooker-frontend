@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ContentLoader from "react-content-loader";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery, useApolloClient } from "@apollo/react-hooks";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import {
@@ -34,8 +34,10 @@ import {
   NEW_MESSAGE,
 } from "../../utils/queries";
 
-const SingleChat = ({ creator, setOpenChat }) => {
+const SingleChat = ({ creator }) => {
   const { register, setValue, watch, handleSubmit } = useForm();
+
+  const client = useApolloClient();
 
   const { data: authUser } = useQuery(LOAD_USER);
 
@@ -122,8 +124,14 @@ const SingleChat = ({ creator, setOpenChat }) => {
         </CreatorFullName>
         <CloseContainer
           onClick={() =>
-            setOpenChat({
-              visible: false,
+            client.writeData({
+              data: {
+                chat: {
+                  visible: false,
+                  __typename: "Chat",
+                  user: null,
+                },
+              },
             })
           }
         >
@@ -207,10 +215,8 @@ SingleChat.propTypes = {
     lastName: PropTypes.string,
     avatarImage: PropTypes.string,
   }),
-  setOpenChat: PropTypes.func,
 };
 
 SingleChat.defaultProps = {
   creator: null,
-  setOpenChat: null,
 };

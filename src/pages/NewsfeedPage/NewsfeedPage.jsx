@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useApolloClient } from "@apollo/react-hooks";
 import ContentLoader from "react-content-loader";
 import Navbar from "../../components/Navbar/Navbar";
-import SingleChat from "../../components/Message/SingleChat";
 import Post from "../../components/Post/Post";
 import { LOAD_USER, GET_NEWSFEED, NEW_POST } from "../../utils/queries";
 import {
@@ -24,11 +23,8 @@ import { ReactComponent as SearchIcon } from "../../assets/icons/search-outline.
 
 const NewsfeedPage = () => {
   const { data: userData } = useQuery(LOAD_USER);
+  const client = useApolloClient();
   const [pageLoading, setPageLoading] = useState(true);
-  const [openChat, setOpenChat] = useState({
-    visible: false,
-    creator: null,
-  });
   const { data: newsfeedData, subscribeToMore, loading } = useQuery(
     GET_NEWSFEED,
     {
@@ -51,7 +47,7 @@ const NewsfeedPage = () => {
   return (
     <>
       {!pageLoading && userData ? (
-        <Navbar user={userData.loadUser} setOpenChat={setOpenChat} />
+        <Navbar user={userData.loadUser} />
       ) : (
         <NavbarSkeleton>
           <ContentLoader speed={1}>
@@ -144,9 +140,17 @@ const NewsfeedPage = () => {
                 <ContactsBody
                   key={friend.id}
                   onClick={() =>
-                    setOpenChat({
-                      visible: true,
-                      creator: friend,
+                    client.writeData({
+                      data: {
+                        chat: {
+                          visible: true,
+                          __typename: "Chat",
+                          user: {
+                            ...friend,
+                            __typename: "User",
+                          },
+                        },
+                      },
                     })
                   }
                 >
@@ -205,9 +209,6 @@ const NewsfeedPage = () => {
           </ContactsContainer>
         </ContactsSidebar>
       </InfoContainer>
-      {openChat.visible && (
-        <SingleChat creator={openChat.creator} setOpenChat={setOpenChat} />
-      )}
     </>
   );
 };

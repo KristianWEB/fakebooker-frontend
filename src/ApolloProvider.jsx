@@ -61,6 +61,21 @@ const client = new ApolloClient({
   cache,
 });
 
+cache.writeData({
+  data: {
+    chat: {
+      visible: false,
+      user: {
+        firstName: null,
+        lastName: null,
+        avatarImage: null,
+        id: null,
+        __typename: "User",
+      },
+      __typename: "Chat",
+    },
+  },
+});
 export default (
   <ApolloProvider client={client}>
     <App />

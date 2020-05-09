@@ -1,7 +1,6 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
 import { useQuery } from "@apollo/react-hooks";
-import PropTypes from "prop-types";
 import Message from "./Message";
 import {
   MessageListContainer,
@@ -11,8 +10,9 @@ import {
 } from "./MessageList.styles";
 import { GET_MESSAGES } from "../../utils/queries";
 
-const MessageList = ({ setOpenChat }) => {
+const MessageList = () => {
   const { data, loading } = useQuery(GET_MESSAGES);
+
   return (
     <MessageListContainer>
       <MessageListHeading>Messenger</MessageListHeading>
@@ -20,11 +20,7 @@ const MessageList = ({ setOpenChat }) => {
         <MessageRow>
           {data &&
             data.getMessages.map((message) => (
-              <Message
-                key={message.id}
-                message={message}
-                setOpenChat={setOpenChat}
-              />
+              <Message key={message.id} message={message} />
             ))}
         </MessageRow>
       ) : (
@@ -75,11 +71,3 @@ const MessageList = ({ setOpenChat }) => {
 };
 
 export default MessageList;
-
-MessageList.propTypes = {
-  setOpenChat: PropTypes.func,
-};
-
-MessageList.defaultProps = {
-  setOpenChat: null,
-};
