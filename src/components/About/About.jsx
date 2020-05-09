@@ -8,7 +8,7 @@ import {
   HomeplaceBody,
   StyledButton,
   WorkplaceContainer,
-  WorkplaceBody
+  WorkplaceBody,
 } from "./About.styles";
 import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
 import { ReactComponent as WorkplaceIcon } from "../../assets/icons/briefcase.svg";
@@ -54,12 +54,12 @@ About.propTypes = {
     lastName: PropTypes.string,
     workPlace: PropTypes.string,
     homePlace: PropTypes.string,
-    username: PropTypes.string
+    username: PropTypes.string,
   }),
-  readOnly: PropTypes.bool
+  readOnly: PropTypes.bool,
 };
 
 About.defaultProps = {
   user: null,
-  readOnly: null
+  readOnly: null,
 };

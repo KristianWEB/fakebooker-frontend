@@ -67,6 +67,8 @@ const RegisterForm = () => {
     registerUser();
   };
 
+  console.log(errors);
+
   return (
     <RegisterFormContainer>
       <RegisterHeading>Sign Up to Fakebooker</RegisterHeading>
@@ -116,6 +118,10 @@ const RegisterForm = () => {
             name="email"
             ref={register({
               required: "Email is required",
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Email is not valid",
+              },
             })}
           />
           {errors.email && (
