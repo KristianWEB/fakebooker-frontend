@@ -59,6 +59,7 @@ const link = split(
 const client = new ApolloClient({
   link,
   cache,
+  resolvers: {},
 });
 
 cache.writeData({

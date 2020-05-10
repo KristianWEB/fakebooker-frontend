@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import ContentLoader from "react-content-loader";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
@@ -12,6 +12,7 @@ import {
   CreatorAvatar,
   CreatorFullName,
   ChatBodyContainer,
+  ChatFooterContainer,
   CreatorContainer,
   AuthUserContainer,
   CreatorImg,
@@ -31,23 +32,31 @@ import {
   CREATE_THREAD,
   GET_SINGLE_CHAT,
   GET_THREAD,
-  NEW_MESSAGE,
 } from "../../utils/queries";
 
 const SingleChat = ({ creator }) => {
+  const el = useRef(null);
   const { register, setValue, watch, handleSubmit } = useForm();
 
   const client = useApolloClient();
 
   const { data: authUser } = useQuery(LOAD_USER);
 
-  const [createThread, { data: threadData }] = useMutation(CREATE_THREAD, {
-    variables: {
-      urlUser: creator.id,
-    },
+  useEffect(() => {
+    el.current.scrollTop = el.current.scrollHeight;
   });
+
   // get thread if it exists
-  const { data: getThreadData } = useQuery(GET_THREAD, {
+  const { data: getThreadData, refetch: refetchThreadQuery } = useQuery(
+    GET_THREAD,
+    {
+      variables: {
+        urlUser: creator.id,
+      },
+    }
+  );
+
+  const [createThread, { data: threadData }] = useMutation(CREATE_THREAD, {
     variables: {
       urlUser: creator.id,
     },
@@ -55,28 +64,14 @@ const SingleChat = ({ creator }) => {
 
   const {
     data: conversationData,
-    subscribeToMore,
     loading: conversationLoading,
+    refetch: refetchSingleChat,
   } = useQuery(GET_SINGLE_CHAT, {
     variables: {
       threadId:
         getThreadData && getThreadData.getThread && getThreadData.getThread.id,
     },
   });
-
-  useEffect(() => {
-    subscribeToMore({
-      document: NEW_MESSAGE,
-      variables: {
-        notifierId: authUser.loadUser.id,
-      },
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) return prev;
-        const msg = subscriptionData.data.newMessage;
-        return { getSingleChat: [...prev.getSingleChat, msg] };
-      },
-    });
-  }, [subscribeToMore, authUser, creator]);
 
   const [createMessage, { loading: createMessageLoading }] = useMutation(
     CREATE_MESSAGE,
@@ -87,24 +82,32 @@ const SingleChat = ({ creator }) => {
         threadId: threadData && threadData.createThread.id,
       },
       update: async (proxy, result) => {
-        const data = proxy.readQuery({
-          query: GET_SINGLE_CHAT,
-          variables: {
-            threadId: getThreadData.getThread.id,
-          },
-        });
+        // We are checking if there is no thread and if its true then refetch the thread and the single chat which update the apollo cache automatically so we dont have to add the message manually
+        if (getThreadData && !getThreadData.getThread) {
+          const { data: newData } = await refetchThreadQuery();
 
-        const newData = {
-          getSingleChat: [...data.getSingleChat, result.data.createMessage],
-        };
-
-        proxy.writeQuery({
-          query: GET_SINGLE_CHAT,
-          data: newData,
-          variables: {
-            threadId: getThreadData.getThread.id,
-          },
-        });
+          await refetchSingleChat({
+            threadId: newData.getThread.id,
+          });
+        } else {
+          // if there is a thread + single chat that means that we can add the message manually on the creator ( the notifier gets the message by a subscription => check ProfileRoute:31)
+          const data = proxy.readQuery({
+            query: GET_SINGLE_CHAT,
+            variables: {
+              threadId: threadData.createThread.id,
+            },
+          });
+          const newData = {
+            getSingleChat: [...data.getSingleChat, result.data.createMessage],
+          };
+          proxy.writeQuery({
+            query: GET_SINGLE_CHAT,
+            data: newData,
+            variables: {
+              threadId: threadData.createThread.id,
+            },
+          });
+        }
       },
     }
   );
@@ -138,7 +141,7 @@ const SingleChat = ({ creator }) => {
           <CloseIcon width={25} height={25} fill="#BEC2C9" />
         </CloseContainer>
       </ChatHeader>
-      <ChatBodyContainer>
+      <ChatBodyContainer ref={el}>
         {!conversationLoading ? (
           <ChatDataContainer>
             {conversationData &&
@@ -171,37 +174,41 @@ const SingleChat = ({ creator }) => {
             </ContentLoader>
           </ChatBodySkeleton>
         )}
-        <InputContainer onSubmit={handleSubmit(onSubmit)}>
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-            }}
-          >
-            <MessageInput placeholder="Aa" name="message" ref={register} />
-            {createMessageLoading && (
-              <Loader
-                type="TailSpin"
-                color="#1876f2"
-                style={{
-                  position: "absolute",
-                  top: "8px",
-                  right: "16px",
-                }}
-                height={20}
-                width={20}
-              />
-            )}
-          </div>
-          <SubmitMessageBtn
-            type="link"
-            htmlType="submit"
-            disabled={!watch("message")}
-          >
-            <RightArrowBtn width={25} height={25} />
-          </SubmitMessageBtn>
-        </InputContainer>
       </ChatBodyContainer>
+      <ChatFooterContainer>
+        <>
+          <InputContainer onSubmit={handleSubmit(onSubmit)}>
+            <div
+              style={{
+                position: "relative",
+                width: "100%",
+              }}
+            >
+              <MessageInput placeholder="Aa" name="message" ref={register} />
+              {createMessageLoading && (
+                <Loader
+                  type="TailSpin"
+                  color="#1876f2"
+                  style={{
+                    position: "absolute",
+                    top: "8px",
+                    right: "16px",
+                  }}
+                  height={20}
+                  width={20}
+                />
+              )}
+            </div>
+            <SubmitMessageBtn
+              type="link"
+              htmlType="submit"
+              disabled={!watch("message")}
+            >
+              <RightArrowBtn width={25} height={25} />
+            </SubmitMessageBtn>
+          </InputContainer>
+        </>
+      </ChatFooterContainer>
     </ChatContainer>
   );
 };

@@ -10,6 +10,16 @@ export const ChatContainer = styled.div`
   border-radius: 8px;
   width: 330px;
   z-index: 6;
+  height: 325px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @media only screen and (max-width: 400px) {
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 
 export const ChatHeader = styled.div`
@@ -34,13 +44,16 @@ export const CreatorFullName = styled.h3`
 
 export const ChatBodyContainer = styled.div`
   border-top: 2px solid rgba(0, 0, 0, 0.1);
+  justify-self: flex-start;
+  height: 100%;
   padding: 8px;
   font-family: "Roboto";
+  overflow-y: auto;
 `;
 export const ChatDataContainer = styled.div`
   max-height: 310px;
-  overflow-y: auto;
   display: flex;
+  /* overflow-y: auto; */
   flex-direction: column;
 `;
 
@@ -159,4 +172,8 @@ export const ChatBodySkeleton = styled.div`
     width: 100%;
     height: 100%;
   }
+`;
+
+export const ChatFooterContainer = styled.div`
+  padding: 8px;
 `;
