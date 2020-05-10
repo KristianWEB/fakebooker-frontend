@@ -648,3 +648,17 @@ export const NEW_POST = gql`
     }
   }
 `;
+
+export const OPEN_CHAT = gql`
+  {
+    chat @client {
+      visible
+      user {
+        firstName
+        lastName
+        avatarImage
+        id
+      }
+    }
+  }
+`;

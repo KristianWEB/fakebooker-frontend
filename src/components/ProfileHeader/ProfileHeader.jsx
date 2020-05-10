@@ -1,5 +1,5 @@
 import React from "react";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery, useApolloClient } from "@apollo/react-hooks";
 import { NavLink, Link } from "react-router-dom";
 import Popup from "reactjs-popup";
 import PropTypes from "prop-types";
@@ -50,7 +50,9 @@ import {
   GET_SINGLE_NOTIFICATION,
 } from "../../utils/queries";
 
-const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
+const ProfileHeader = ({ user, authUser, readOnly }) => {
+  const client = useApolloClient();
+
   const [addFriend, { data: friendData }] = useMutation(ADD_FRIEND, {
     variables: {
       notifier: user.username,
@@ -412,7 +414,20 @@ const ProfileHeader = ({ user, authUser, readOnly, setOpenChat }) => {
               )}
             </FriendActionContainer>
             <MessageContainer
-              onClick={() => setOpenChat({ visible: true, creator: user })}
+              onClick={() => {
+                client.writeData({
+                  data: {
+                    chat: {
+                      visible: true,
+                      __typename: "Chat",
+                      user: {
+                        ...user,
+                        __typename: "User",
+                      },
+                    },
+                  },
+                });
+              }}
             >
               <MessageBtn type="link">
                 <ChatIcon width={20} height={20} />
@@ -445,12 +460,10 @@ ProfileHeader.propTypes = {
     username: PropTypes.string,
   }),
   readOnly: PropTypes.bool,
-  setOpenChat: PropTypes.func,
 };
 
 ProfileHeader.defaultProps = {
   user: null,
   authUser: null,
   readOnly: null,
-  setOpenChat: null,
 };

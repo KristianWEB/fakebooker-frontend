@@ -59,8 +59,24 @@ const link = split(
 const client = new ApolloClient({
   link,
   cache,
+  resolvers: {},
 });
 
+cache.writeData({
+  data: {
+    chat: {
+      visible: false,
+      user: {
+        firstName: null,
+        lastName: null,
+        avatarImage: null,
+        id: null,
+        __typename: "User",
+      },
+      __typename: "Chat",
+    },
+  },
+});
 export default (
   <ApolloProvider client={client}>
     <App />

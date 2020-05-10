@@ -8,6 +8,7 @@ import {
   PhotosHeading,
   PhotosContainer,
   Photo,
+  PhotosSkeleton,
 } from "./PhotosPage.styles";
 import { LOAD_USER, GET_POSTS, GET_URL_POSTS } from "../../utils/queries";
 
@@ -50,16 +51,15 @@ const PhotosPage = () => {
               (post) => post.image && <Photo key={post.id} src={post.image} />
             )}
           {!readOnly() && postsLoading && (
-            <ContentLoader
-              speed={1}
-              width={844}
-              height={300}
-              viewBox="0 0 844 300"
-              backgroundColor="#f3f3f3"
-              foregroundColor="#ecebeb"
-            >
-              <rect x="21" y="33" rx="3" ry="3" width="769" height="254" />
-            </ContentLoader>
+            <PhotosSkeleton>
+              <ContentLoader
+                speed={1}
+                backgroundColor="#f3f3f3"
+                foregroundColor="#ecebeb"
+              >
+                <rect x="0" y="0" rx="3" ry="3" />
+              </ContentLoader>
+            </PhotosSkeleton>
           )}
           {readOnly() &&
             urlPostsData &&
@@ -67,16 +67,15 @@ const PhotosPage = () => {
               (post) => post.image && <Photo key={post.id} src={post.image} />
             )}
           {readOnly() && urlPostsLoading && (
-            <ContentLoader
-              speed={1}
-              width={844}
-              height={300}
-              viewBox="0 0 844 300"
-              backgroundColor="#f3f3f3"
-              foregroundColor="#ecebeb"
-            >
-              <rect x="21" y="33" rx="3" ry="3" width="769" height="254" />
-            </ContentLoader>
+            <PhotosSkeleton>
+              <ContentLoader
+                speed={1}
+                backgroundColor="#f3f3f3"
+                foregroundColor="#ecebeb"
+              >
+                <rect x="0" y="0" rx="3" ry="3" />
+              </ContentLoader>
+            </PhotosSkeleton>
           )}
         </PhotosContainer>
       </FixedContainer>

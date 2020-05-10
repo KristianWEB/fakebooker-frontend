@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment/moment";
+import { useApolloClient } from "@apollo/react-hooks";
 import PropTypes from "prop-types";
 import {
   MessageContainer,
@@ -9,13 +10,23 @@ import {
   Footer,
 } from "./Message.styles";
 
-const Message = ({ message: { creator, body, createdAt }, setOpenChat }) => {
+const Message = ({ message: { creator, body, createdAt } }) => {
+  const client = useApolloClient();
+
   return (
     <MessageContainer
       onClick={() =>
-        setOpenChat({
-          visible: true,
-          creator,
+        client.writeData({
+          data: {
+            chat: {
+              visible: true,
+              __typename: "Chat",
+              user: {
+                ...creator,
+                __typename: "User",
+              },
+            },
+          },
         })
       }
     >
@@ -44,10 +55,8 @@ Message.propTypes = {
     createdAt: PropTypes.string,
     body: PropTypes.string,
   }),
-  setOpenChat: PropTypes.func,
 };
 
 Message.defaultProps = {
   message: null,
-  setOpenChat: null,
 };

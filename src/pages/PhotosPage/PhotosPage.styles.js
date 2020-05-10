@@ -40,3 +40,14 @@ export const Photo = styled.img`
   min-height: 20rem;
   object-fit: cover;
 `;
+
+export const PhotosSkeleton = styled.div`
+  svg {
+    width: 100%;
+    height: 100%;
+    rect {
+      width: 100%;
+      height: 100%;
+    }
+  }
+`;

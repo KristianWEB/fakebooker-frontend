@@ -27,7 +27,7 @@ import { ReactComponent as BellIcon } from "../../assets/icons/notifications.svg
 import { ReactComponent as SettingsIcon } from "../../assets/icons/caret-down-outline.svg";
 import { ReactComponent as SearchIcon } from "../../assets/icons/search-outline.svg";
 
-const Navbar = ({ onProfile, user, setOpenChat }) => {
+const Navbar = ({ onProfile, user }) => {
   const { username } = useParams();
 
   return (
@@ -85,7 +85,7 @@ const Navbar = ({ onProfile, user, setOpenChat }) => {
           arrow={false}
           on="click"
         >
-          <MessageList setOpenChat={setOpenChat} />
+          <MessageList />
         </Popup>
         <Popup
           className="notificationPopup"
@@ -99,7 +99,7 @@ const Navbar = ({ onProfile, user, setOpenChat }) => {
           closeOnDocumentClick
           arrow={false}
         >
-          <NotificationList setOpenChat={setOpenChat} />
+          <NotificationList />
         </Popup>
         <SettingsContainer>
           <SettingsIcon width={25} height={25} />
@@ -119,11 +119,9 @@ Navbar.propTypes = {
     avatarImage: PropTypes.string,
     username: PropTypes.string,
   }),
-  setOpenChat: PropTypes.func,
 };
 
 Navbar.defaultProps = {
   onProfile: null,
   user: null,
-  setOpenChat: null,
 };
