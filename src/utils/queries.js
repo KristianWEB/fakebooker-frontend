@@ -519,24 +519,27 @@ export const NEW_MESSAGE = gql`
   }
 `;
 
-export const GET_MESSAGES = gql`
+export const GET_CONVERSATIONS = gql`
   {
-    getMessages {
-      id
-      creator {
-        id
-        firstName
-        lastName
-        avatarImage
+    getConversations {
+      _id
+      participantsIds
+      latestMessage {
+        creator {
+          _id
+          firstName
+          lastName
+          avatarImage
+        }
+        notifier {
+          _id
+          firstName
+          lastName
+          avatarImage
+        }
+        body
+        createdAt
       }
-      notifier {
-        id
-        firstName
-        lastName
-        avatarImage
-      }
-      body
-      createdAt
     }
   }
 `;

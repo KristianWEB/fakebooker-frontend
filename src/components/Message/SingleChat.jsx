@@ -83,7 +83,7 @@ const SingleChat = ({ creator }) => {
       },
       update: async (proxy, result) => {
         // We are checking if there is no thread and if its true then refetch the thread and the single chat which update the apollo cache automatically so we dont have to add the message manually
-        if (getThreadData && !getThreadData.getThread) {
+        if (!getThreadData) {
           const { data: newData } = await refetchThreadQuery();
 
           await refetchSingleChat({

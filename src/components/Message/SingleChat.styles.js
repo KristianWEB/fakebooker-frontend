@@ -46,14 +46,13 @@ export const ChatBodyContainer = styled.div`
   border-top: 2px solid rgba(0, 0, 0, 0.1);
   justify-self: flex-start;
   height: 100%;
-  padding: 8px;
+  padding: 0 8px;
   font-family: "Roboto";
   overflow-y: auto;
 `;
 export const ChatDataContainer = styled.div`
   max-height: 310px;
   display: flex;
-  /* overflow-y: auto; */
   flex-direction: column;
 `;
 

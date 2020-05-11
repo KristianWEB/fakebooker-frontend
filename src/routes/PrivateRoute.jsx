@@ -27,28 +27,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     variables: {
       notifierId: userData && userData.loadUser.id,
     },
-    onSubscriptionData: async ({ client, subscriptionData }) => {
-      const { data: threadData } = await threadRefetch({
+    onSubscriptionData: async ({ subscriptionData }) => {
+      const { data: newThreadData } = await threadRefetch({
         urlUser: subscriptionData.data.newMessage.creator.id,
       });
 
       await singleChatRefetch({
-        threadId: threadData && threadData.getThread.id,
-      });
-
-      const data = client.readQuery({
-        query: GET_SINGLE_CHAT,
-        variables: {
-          threadId: threadData && threadData.getThread.id,
-        },
-      });
-
-      client.writeQuery({
-        query: GET_SINGLE_CHAT,
-        variables: {
-          threadId: threadData && threadData.getThread.id,
-        },
-        data: [...data.getSingleChat, subscriptionData.data.newMessage],
+        threadId: newThreadData.getThread.id,
       });
     },
   });

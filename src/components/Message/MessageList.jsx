@@ -8,10 +8,10 @@ import {
   MessageRow,
   MessageListSkeleton,
 } from "./MessageList.styles";
-import { GET_MESSAGES } from "../../utils/queries";
+import { GET_CONVERSATIONS } from "../../utils/queries";
 
 const MessageList = () => {
-  const { data, loading } = useQuery(GET_MESSAGES);
+  const { data, loading } = useQuery(GET_CONVERSATIONS);
 
   return (
     <MessageListContainer>
@@ -19,8 +19,9 @@ const MessageList = () => {
       {!loading ? (
         <MessageRow>
           {data &&
-            data.getMessages.map((message) => (
-              <Message key={message.id} message={message} />
+            data.getConversations.map((conversation) => (
+              // eslint-disable-next-line no-underscore-dangle
+              <Message key={conversation._id} conversation={conversation} />
             ))}
         </MessageRow>
       ) : (

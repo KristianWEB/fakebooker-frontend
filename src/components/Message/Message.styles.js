@@ -20,7 +20,7 @@ export const MessageContainer = styled.div`
   }
 `;
 
-export const CreatorAvatar = styled.img`
+export const NotifierAvatar = styled.img`
   width: 56px;
   height: 56px;
   border-radius: 100%;
@@ -28,7 +28,7 @@ export const CreatorAvatar = styled.img`
   margin-right: 12px;
 `;
 
-export const CreatorFullName = styled.span`
+export const NotifierFullName = styled.span`
   font-weight: bold;
   color: ${(props) => props.theme.secondaryText};
   font-size: 1.5rem;
