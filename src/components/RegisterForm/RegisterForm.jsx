@@ -67,8 +67,6 @@ const RegisterForm = () => {
     registerUser();
   };
 
-  console.log(errors);
-
   return (
     <RegisterFormContainer>
       <RegisterHeading>Sign Up to Fakebooker</RegisterHeading>
