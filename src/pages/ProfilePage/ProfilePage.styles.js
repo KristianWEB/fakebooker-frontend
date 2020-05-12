@@ -3,15 +3,13 @@ import styled from "styled-components";
 export const InfoContainer = styled.div`
   display: flex;
   height: 100%;
-  padding: 28px 8px;
+  padding: 28px 0;
   justify-content: center;
 `;
 
 export const PostsSection = styled.div`
-  margin-left: 8px;
   width: 500px;
   @media only screen and (max-width: 575px) {
-    margin: 0 5px;
     width: 100%;
   }
 `;
@@ -30,6 +28,9 @@ export const CreatePostSkeleton = styled.div`
   background-color: #fff;
   padding: 13px;
   border-radius: 8px;
+  @media only screen and (max-width: 575px) {
+    border-radius: 0;
+  }
 
   svg {
     width: 100%;
@@ -80,5 +81,8 @@ export const PostSkeleton = styled.div`
   margin-top: 20px;
   background: #fff;
   border-radius: 8px;
+  @media only screen and (max-width: 575px) {
+    border-radius: 0;
+  }
   padding: 13px;
 `;

@@ -9,6 +9,9 @@ export const CreatePostContainer = styled.div`
   max-width: 500px;
   box-shadow: ${(props) => props.theme.boxShadow2};
   border-radius: 8px;
+  @media only screen and (max-width: 575px) {
+    border-radius: 0;
+  }
   align-items: center;
   @media only screen and (max-width: 575px) {
     margin: 0 auto;

@@ -36,11 +36,6 @@ export const CreatorFullName = styled.span`
   color: ${(props) => props.theme.secondaryText};
 `;
 
-export const PostBody = styled.span`
-  font-weight: bold;
-  color: ${(props) => props.theme.secondaryText};
-`;
-
 export const Body = styled.div`
   font-size: 1.5rem;
   color: ${(props) => props.theme.secondaryText};

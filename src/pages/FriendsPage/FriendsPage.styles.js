@@ -4,7 +4,7 @@ export const InfoContainer = styled.div`
   display: flex;
   height: 100%;
   font-family: Roboto;
-  padding: 28px 8px;
+  padding: 28px 0;
 `;
 export const FriendsContainer = styled.div`
   display: flex;
@@ -27,6 +27,9 @@ export const FixedContainer = styled.div`
   padding: 16px;
   box-shadow: ${(props) => props.theme.boxShadow2};
   border-radius: 6px;
+  @media only screen and (max-width: 575px) {
+    border-radius: 0;
+  }
 `;
 
 export const FriendsHeading = styled.h1`

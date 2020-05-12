@@ -9,7 +9,7 @@ export const AboutContainer = styled.div`
   background-color: #fff;
   box-shadow: ${(props) => props.theme.boxShadow2};
   border-radius: 6px;
-  margin-right: 8px;
+  margin-right: 16px;
   padding: 12px;
   font-family: Roboto;
   @media only screen and (max-width: 767px) {

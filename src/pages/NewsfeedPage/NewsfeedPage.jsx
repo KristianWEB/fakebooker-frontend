@@ -129,86 +129,83 @@ const NewsfeedPage = () => {
             )}
           </PostsSection>
         </PostContainer>
-        <ContactsSidebar>
-          <ContactsContainer>
-            <ContactsHeader>
-              <ContactsHeading>Contacts</ContactsHeading>
-              <SearchIcon width={25} height={25} />
-            </ContactsHeader>
-            {userData && !pageLoading ? (
-              userData.loadUser.friends.map((friend) => (
-                <ContactsBody
-                  key={friend.id}
-                  onClick={() =>
-                    client.writeData({
-                      data: {
-                        chat: {
-                          visible: true,
-                          __typename: "Chat",
-                          user: {
-                            ...friend,
-                            __typename: "User",
-                          },
+      </InfoContainer>
+      <ContactsSidebar>
+        <ContactsContainer>
+          <ContactsHeader>
+            <ContactsHeading>Contacts</ContactsHeading>
+            <SearchIcon width={25} height={25} />
+          </ContactsHeader>
+          {userData && !pageLoading ? (
+            userData.loadUser.friends.map((friend) => (
+              <ContactsBody
+                key={friend.id}
+                onClick={() =>
+                  client.writeData({
+                    data: {
+                      chat: {
+                        visible: true,
+                        __typename: "Chat",
+                        user: {
+                          ...friend,
+                          __typename: "User",
                         },
                       },
-                    })
-                  }
+                    },
+                  })
+                }
+              >
+                <ContactAvatar src={friend.avatarImage} alt="contact avatar" />
+                <ContactFullName>
+                  {friend.firstName} {friend.lastName}
+                </ContactFullName>
+              </ContactsBody>
+            ))
+          ) : (
+            <>
+              <ContactSkeleton>
+                <ContentLoader
+                  speed={1}
+                  width={304}
+                  height={52}
+                  viewBox="0 0 304 52"
+                  backgroundColor="#f3f3f3"
+                  foregroundColor="#ecebeb"
                 >
-                  <ContactAvatar
-                    src={friend.avatarImage}
-                    alt="contact avatar"
-                  />
-                  <ContactFullName>
-                    {friend.firstName} {friend.lastName}
-                  </ContactFullName>
-                </ContactsBody>
-              ))
-            ) : (
-              <>
-                <ContactSkeleton>
-                  <ContentLoader
-                    speed={1}
-                    width={304}
-                    height={52}
-                    viewBox="0 0 304 52"
-                    backgroundColor="#f3f3f3"
-                    foregroundColor="#ecebeb"
-                  >
-                    <rect x="48" y="13" rx="3" ry="3" width="120" height="8" />
-                    <circle cx="20" cy="20" r="20" />
-                  </ContentLoader>
-                </ContactSkeleton>
-                <ContactSkeleton>
-                  <ContentLoader
-                    speed={1}
-                    width={304}
-                    height={52}
-                    viewBox="0 0 304 52"
-                    backgroundColor="#f3f3f3"
-                    foregroundColor="#ecebeb"
-                  >
-                    <rect x="48" y="13" rx="3" ry="3" width="120" height="8" />
-                    <circle cx="20" cy="20" r="20" />
-                  </ContentLoader>
-                </ContactSkeleton>
-                <ContactSkeleton>
-                  <ContentLoader
-                    speed={1}
-                    width={304}
-                    height={52}
-                    viewBox="0 0 304 52"
-                    backgroundColor="#f3f3f3"
-                    foregroundColor="#ecebeb"
-                  >
-                    <rect x="48" y="13" rx="3" ry="3" width="120" height="8" />
-                    <circle cx="20" cy="20" r="20" />
-                  </ContentLoader>
-                </ContactSkeleton>
-              </>
-            )}
-          </ContactsContainer>
-        </ContactsSidebar>
-      </InfoContainer>
+                  <rect x="48" y="13" rx="3" ry="3" width="120" height="8" />
+                  <circle cx="20" cy="20" r="20" />
+                </ContentLoader>
+              </ContactSkeleton>
+              <ContactSkeleton>
+                <ContentLoader
+                  speed={1}
+                  width={304}
+                  height={52}
+                  viewBox="0 0 304 52"
+                  backgroundColor="#f3f3f3"
+                  foregroundColor="#ecebeb"
+                >
+                  <rect x="48" y="13" rx="3" ry="3" width="120" height="8" />
+                  <circle cx="20" cy="20" r="20" />
+                </ContentLoader>
+              </ContactSkeleton>
+              <ContactSkeleton>
+                <ContentLoader
+                  speed={1}
+                  width={304}
+                  height={52}
+                  viewBox="0 0 304 52"
+                  backgroundColor="#f3f3f3"
+                  foregroundColor="#ecebeb"
+                >
+                  <rect x="48" y="13" rx="3" ry="3" width="120" height="8" />
+                  <circle cx="20" cy="20" r="20" />
+                </ContentLoader>
+              </ContactSkeleton>
+            </>
+          )}
+        </ContactsContainer>
+      </ContactsSidebar>
     </>
   );
 };

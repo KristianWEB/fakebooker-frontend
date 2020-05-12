@@ -4,7 +4,7 @@ export const AboutInfoContainer = styled.div`
   display: flex;
   font-family: Roboto;
   justify-content: center;
-  padding: 28px 8px;
+  padding: 28px 0;
 `;
 
 export const AboutContainer = styled.div`
@@ -12,6 +12,9 @@ export const AboutContainer = styled.div`
   width: 876px;
   background-color: #fff;
   border-radius: 6px;
+  @media only screen and (max-width: 575px) {
+    border-radius: 0;
+  }
   box-shadow: ${(props) => props.theme.boxShadow2};
 `;
 

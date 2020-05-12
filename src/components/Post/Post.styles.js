@@ -10,6 +10,9 @@ export const PostContainer = styled.div`
   box-shadow: ${(props) => props.theme.boxShadow2};
   border-radius: 8px;
   font-family: "Roboto";
+  @media only screen and (max-width: 575px) {
+    border-radius: 0;
+  }
   background-color: #fff;
 `;
 
@@ -128,6 +131,9 @@ export const PostFooter = styled.div`
   border-top: 1px solid ${(props) => props.theme.secondaryHoverBackground};
   border-bottom: 1px solid ${(props) => props.theme.secondaryHoverBackground};
   margin: 0 16px;
+  @media only screen and (max-width: 575px) {
+    margin: 0;
+  }
 `;
 export const LikesWrapper = styled.div`
   display: flex;
