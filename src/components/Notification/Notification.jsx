@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import moment from "moment/moment";
 import PropTypes from "prop-types";
 import {
@@ -7,7 +8,6 @@ import {
   CreatorFullName,
   CreatorAvatar,
   Body,
-  PostBody,
   Timestamp,
 } from "./Notification.styles";
 
@@ -17,30 +17,37 @@ const Notification = ({
 }) => (
   <>
     {alert && <NotificationHeading>New Notification</NotificationHeading>}
-    <NotificationContainer>
-      <CreatorAvatar src={creator.avatarImage} />
-      {actionId ? (
-        <Body>
-          <div>
-            <CreatorFullName>
-              {creator.firstName} {creator.lastName}{" "}
-            </CreatorFullName>
-            {action}: <PostBody> {`"${actionId.body}"`}</PostBody>
-          </div>
-          <Timestamp>{moment(Number(createdAt)).fromNow()}</Timestamp>
-        </Body>
-      ) : (
-        <Body>
-          <div>
-            <CreatorFullName>
-              {creator.firstName} {creator.lastName}{" "}
-            </CreatorFullName>
-            {action}
-          </div>
-          <Timestamp>{moment(Number(createdAt)).fromNow()}</Timestamp>
-        </Body>
-      )}
-    </NotificationContainer>
+    {actionId ? (
+      <Link to={`/post/${actionId.id}`}>
+        <NotificationContainer>
+          <CreatorAvatar src={creator.avatarImage} />
+          <Body>
+            <div>
+              <CreatorFullName>
+                {creator.firstName} {creator.lastName}{" "}
+              </CreatorFullName>
+              {action}
+            </div>
+            <Timestamp>{moment(Number(createdAt)).fromNow()}</Timestamp>
+          </Body>
+        </NotificationContainer>
+      </Link>
+    ) : (
+      <Link to={`/${creator.username}`}>
+        <NotificationContainer>
+          <CreatorAvatar src={creator.avatarImage} />
+          <Body>
+            <div>
+              <CreatorFullName>
+                {creator.firstName} {creator.lastName}{" "}
+              </CreatorFullName>
+              {action}
+            </div>
+            <Timestamp>{moment(Number(createdAt)).fromNow()}</Timestamp>
+          </Body>
+        </NotificationContainer>
+      </Link>
+    )}
   </>
 );
 export default Notification;
@@ -52,9 +59,11 @@ Notification.propTypes = {
       firstName: PropTypes.string,
       lastName: PropTypes.string,
       avatarImage: PropTypes.string,
+      username: PropTypes.string,
     }),
     actionId: PropTypes.shape({
       body: PropTypes.string,
+      id: PropTypes.string,
     }),
     createdAt: PropTypes.string,
   }),

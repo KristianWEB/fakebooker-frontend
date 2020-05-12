@@ -5,6 +5,8 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import RegisterPage from "../pages/AuthPages/RegisterPage";
 import LoginPage from "../pages/AuthPages/LoginPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
@@ -16,6 +18,7 @@ import AboutContactAndBasicInfo from "../pages/AboutPage/AboutContactAndBasicInf
 import PrivateRoute from "./PrivateRoute";
 import ProfileRoute from "./ProfileRoute";
 import NewsfeedPage from "../pages/NewsfeedPage/NewsfeedPage";
+import SinglePostPage from "../pages/SinglePostPage/SinglePostPage";
 
 const Routes = () => {
   return (
@@ -41,8 +44,10 @@ const Routes = () => {
           component={AboutContactAndBasicInfo}
         />
         <PrivateRoute exact path="/" component={NewsfeedPage} />
+        <PrivateRoute exact path="/post/:postId" component={SinglePostPage} />
         <Route render={() => <Redirect to="/login" />} />
       </Switch>
+      <ToastContainer draggable={false} />
     </Router>
   );
 };

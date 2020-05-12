@@ -48,6 +48,7 @@ const ProfileRoute = ({ component: Component, ...rest }) => {
         subscriptionData.data.newNotification.notifier.id ===
         userData.loadUser.id
       ) {
+        console.log(subscriptionData);
         notificationAlert(subscriptionData.data.newNotification);
 
         const newData = {

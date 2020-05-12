@@ -134,6 +134,39 @@ export const GET_POSTS = gql`
   }
 `;
 
+export const GET_SINGLE_POST = gql`
+  query getSinglePost($postId: String!) {
+    getSinglePost(postId: $postId) {
+      id
+      userId {
+        id
+        firstName
+        lastName
+        avatarImage
+      }
+      body
+      image
+      createdAt
+      comments {
+        id
+        userId {
+          firstName
+          lastName
+          avatarImage
+        }
+        postId
+        body
+        createdAt
+      }
+      likes {
+        userId
+        postId
+        createdAt
+      }
+    }
+  }
+`;
+
 export const GET_NOTIFICATIONS = gql`
   {
     getNotifications {
@@ -143,16 +176,18 @@ export const GET_NOTIFICATIONS = gql`
         firstName
         lastName
         avatarImage
+        username
       }
       notifier {
         id
         firstName
         lastName
         avatarImage
+        username
       }
       action
       actionId {
-        body
+        id
       }
       createdAt
     }
@@ -168,16 +203,18 @@ export const NEW_NOTIFICATION = gql`
         firstName
         lastName
         avatarImage
+        username
       }
       notifier {
         id
         firstName
         lastName
         avatarImage
+        username
       }
       action
       actionId {
-        body
+        id
       }
       createdAt
     }

@@ -131,7 +131,7 @@ export const TimelineContainerLink = styled.button`
     outline: none;
   }
   @media only screen and (max-width: 480px) {
-    padding: 0 6px;
+    padding: 0 12px;
   }
 `;
 
@@ -160,7 +160,7 @@ export const AboutContainerLink = styled.button`
     background-color: ${(props) => props.theme.secondaryBackground};
   }
   @media only screen and (max-width: 480px) {
-    padding: 0 6px;
+    padding: 0 12px;
   }
 `;
 
@@ -567,6 +567,6 @@ export const MoreBtn = styled.button`
   }
 
   @media only screen and (max-width: 480px) {
-    padding: 0 6px;
+    padding: 0 12px;
   }
 `;

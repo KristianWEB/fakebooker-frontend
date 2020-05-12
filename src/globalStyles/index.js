@@ -103,6 +103,7 @@ export const GlobalStyle = createGlobalStyle`
     @media only screen and (max-width: 400px) {
       width: 100% !important;
       right: 0px !important;
+      border-radius: 0 !important;
       }
     }
   }

@@ -2,16 +2,16 @@ import styled from "styled-components";
 
 export const InfoContainer = styled.div`
   display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
   padding-top: 8px;
   font-family: Roboto;
 `;
 
 export const PostContainer = styled.div`
   display: flex;
-  flex-basis: 75%;
   padding: 0 32px;
   justify-content: center;
 
@@ -25,25 +25,26 @@ export const PostsSection = styled.div`
   width: 680px;
   @media only screen and (max-width: 767px) {
     width: 100%;
-    margin: 0 8px;
+    /* margin: 0 8px; */
   }
 `;
 
 export const ContactsSidebar = styled.div`
   display: none;
-  @media only screen and (min-width: 992px) {
+  @media only screen and (min-width: 1250px) {
     display: flex;
-    flex-basis: 25%;
     margin-top: 50px;
     max-width: 320px;
+    font-family: Roboto;
   }
 `;
 export const ContactsContainer = styled.div`
   position: fixed;
-  max-width: 320px;
-  width: 320px;
-  @media only screen and (max-width: 1250px) {
-    width: 250px;
+  width: 250px;
+  top: 120px;
+  right: 10px;
+  @media only screen and (min-width: 1450px) {
+    width: 320px;
   }
 `;
 
@@ -108,6 +109,9 @@ export const PostSkeleton = styled.div`
   margin-top: 20px;
   background: #fff;
   border-radius: 8px;
+  @media only screen and (max-width: 575px) {
+    border-radius: 0;
+  }
   padding: 13px;
   svg {
     width: 100%;
