@@ -17,7 +17,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem("token");
 
   useQuery(GET_NOTIFICATIONS);
-  const { data: userData } = useQuery(LOAD_USER);
+  const { data: userData, loading } = useQuery(LOAD_USER);
 
   const { refetch: threadRefetch } = useQuery(GET_THREAD);
 
@@ -79,6 +79,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       });
     },
   });
+  if (!loading && !userData) {
+    localStorage.removeItem("token");
+    return <Redirect to="/login" />;
+  }
   return (
     <Route
       {...rest}

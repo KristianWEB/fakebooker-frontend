@@ -16,7 +16,7 @@ import {
 
 const ProfileRoute = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem("token");
-  const { data: userData } = useQuery(LOAD_USER);
+  const { data: userData, loading } = useQuery(LOAD_USER);
 
   useQuery(GET_NOTIFICATIONS);
 
@@ -81,6 +81,11 @@ const ProfileRoute = ({ component: Component, ...rest }) => {
       });
     },
   });
+
+  if (!loading && !userData) {
+    localStorage.removeItem("token");
+    return <Redirect to="/login" />;
+  }
 
   return (
     <Route
