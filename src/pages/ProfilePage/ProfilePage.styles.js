@@ -62,6 +62,7 @@ export const AboutSkeleton = styled.div`
   height: 100%;
   padding: 13px;
   border-radius: 8px;
+  margin-right: 16px;
   @media only screen and (max-width: 767px) {
     display: none;
   }

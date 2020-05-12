@@ -17,7 +17,8 @@ export const NavContainer = styled.div`
 export const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  /* align-items: center; */
   padding: 0.5rem 0.5rem 0.5rem 1rem;
 `;
 
@@ -249,7 +250,7 @@ export const UserAvatar = styled.img`
   margin-right: 6px;
 `;
 
-export const SearchInputContainer = styled.div`
+export const SearchInputContainer = styled.form`
   position: relative;
 `;
 
@@ -258,4 +259,61 @@ export const IconContainer = styled.div`
   @media only screen and (min-width: 767px) {
     display: block;
   }
+`;
+
+export const UsersContainer = styled.div`
+  background-color: #fff;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  position: absolute;
+  top: 50px;
+  box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5) !important;
+  left: 10px;
+  display: flex;
+  padding: 8px;
+  width: 320px;
+  flex-direction: column;
+`;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const UserContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &&:hover {
+    background-color: ${(props) => props.theme.secondaryBackground};
+  }
+  &&:active {
+    background-color: ${(props) => props.theme.secondaryHoverBackground};
+  }
+`;
+
+export const GetUserAvatar = styled.img`
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  object-fit: cover;
+`;
+
+export const UserFullName = styled.p`
+  font-size: 1.5rem;
+  margin: 0;
+  line-height: 1;
+  margin-left: 12px;
+  color: ${(props) => props.theme.secondaryText};
+  font-weight: 500;
+`;
+
+export const GetUserContainer = styled.div`
+  height: 320px;
+  overflow-y: auto;
 `;

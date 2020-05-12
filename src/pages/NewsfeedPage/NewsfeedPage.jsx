@@ -19,7 +19,6 @@ import {
   PostSkeleton,
   ContactSkeleton,
 } from "./NewsfeedPage.styles";
-import { ReactComponent as SearchIcon } from "../../assets/icons/search-outline.svg";
 
 const NewsfeedPage = () => {
   const { data: userData } = useQuery(LOAD_USER);
@@ -134,7 +133,6 @@ const NewsfeedPage = () => {
         <ContactsContainer>
           <ContactsHeader>
             <ContactsHeading>Contacts</ContactsHeading>
-            <SearchIcon width={25} height={25} />
           </ContactsHeader>
           {userData && !pageLoading ? (
             userData.loadUser.friends.map((friend) => (
