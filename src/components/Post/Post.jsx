@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import moment from "moment/moment";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
@@ -41,11 +42,12 @@ import CreateComment from "../Comment/CreateComment";
 import {
   DELETE_POST,
   LIKE_POST,
+  GET_SINGLE_POST,
   GET_POSTS,
   GET_NEWSFEED,
 } from "../../utils/queries";
 
-const Post = ({ post, user, readOnly, onNewsfeed }) => {
+const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
   const [liked, setLiked] = useState(false);
   useEffect(() => {
     if (user && post.likes.find((like) => like.userId === user.id)) {
@@ -53,14 +55,25 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
     } else setLiked(false);
   }, [user, post]);
 
+  const history = useHistory();
   const [deletePost, { loading: deletePostLoading }] = useMutation(
     DELETE_POST,
     {
       variables: {
         postId: post.id,
       },
+      onCompleted: () => {
+        if (history.location.pathname === `/post/${post.id}`) {
+          history.push("/");
+        }
+      },
+      onError: () => {
+        if (history.location.pathname === `/post/${post.id}`) {
+          history.push("/");
+        }
+      },
       update: (proxy) => {
-        if (!onNewsfeed) {
+        if (!onNewsfeed && !onSinglePost) {
           const data = proxy.readQuery({
             query: GET_POSTS,
           });
@@ -86,6 +99,17 @@ const Post = ({ post, user, readOnly, onNewsfeed }) => {
           proxy.writeQuery({
             query: GET_NEWSFEED,
             data: newData,
+          });
+        }
+        if (onSinglePost) {
+          const newData = { getSinglePost: null };
+
+          proxy.writeQuery({
+            query: GET_SINGLE_POST,
+            data: newData,
+            variables: {
+              postId: post.id,
+            },
           });
         }
       },
@@ -262,4 +286,5 @@ Post.defaultProps = {
   user: null,
   readOnly: null,
   onNewsfeed: null,
+  onSinglePost: null,
 };
