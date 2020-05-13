@@ -32,7 +32,7 @@ export const NewsFeedContainer = styled.div`
   justify-content: center;
   border-bottom: 2px solid ${(props) => props.theme.primaryText};
 
-  @media only screen and (max-width: 575px) {
+  @media only screen and (max-width: 700px) {
     display: none;
   }
 `;
@@ -46,8 +46,32 @@ export const SearchBar = styled.input`
     border-radius: 50px;
     background-color: ${(props) => props.theme.inputColor};
     border: none;
-    margin-left: 8px;
-    padding: 0 30px;
+    box-sizing: border-box;
+    margin-right: 8px;
+    padding-left: 40px;
+    font-size: 1.5rem;
+    transition: 0.2s;
+
+    ::placeholder {
+      color: #8f9296;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+`;
+
+export const SearchBarMobile = styled.input`
+  display: none;
+  @media only screen and (max-width: 767px) {
+    display: block;
+    height: 41px;
+    border-radius: 50px;
+    background-color: ${(props) => props.theme.inputColor};
+    border: none;
+    /* margin-left: 8px; */
+    /* width: 100%; */
+    padding-left: 15px;
     font-size: 1.5rem;
 
     ::placeholder {
@@ -213,12 +237,12 @@ export const SearchContainer = styled.button`
   display: none;
   @media only screen and (max-width: 767px) {
     padding: 0;
+    margin-left: 8px;
     background-color: ${(props) => props.theme.secondaryBackground};
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 8px;
     width: 41px;
     height: 41px;
     border: 0;
@@ -226,10 +250,6 @@ export const SearchContainer = styled.button`
     cursor: pointer;
 
     &:focus {
-      background-color: ${(props) => props.theme.primaryBackground};
-      svg {
-        fill: ${(props) => props.theme.primaryText};
-      }
       outline: none;
     }
     &:active {
@@ -271,6 +291,7 @@ export const UsersContainer = styled.div`
     inset 0 0 0 1px rgba(255, 255, 255, 0.5) !important;
   left: 10px;
   display: flex;
+  box-sizing: border-box;
   padding: 8px;
   width: 320px;
   flex-direction: column;
@@ -278,8 +299,9 @@ export const UsersContainer = styled.div`
 
 export const FlexContainer = styled.div`
   display: flex;
-  justify-content: center;
+  position: relative;
   align-items: center;
+  justify-content: center;
 `;
 
 export const UserContainer = styled.div`
@@ -316,4 +338,43 @@ export const UserFullName = styled.p`
 export const GetUserContainer = styled.div`
   height: 320px;
   overflow-y: auto;
+`;
+
+export const ArrowContainer = styled.div`
+  display: none;
+  @media only screen and (min-width: 767px) {
+    display: block;
+    padding: 5px 6px;
+    border-radius: 100%;
+    margin-right: 12px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${(props) => props.theme.tertiaryBackground};
+    }
+
+    &::after,
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      background-color: ${(props) => props.theme.secondaryBackground};
+      outline: none;
+    }
+  }
+`;
+
+export const MobileLogoContainer = styled.div`
+  display: none;
+  @media only screen and (max-width: 760px) {
+    display: block;
+  }
+`;
+
+export const DesktopLogoContainer = styled.div`
+  display: none;
+  @media only screen and (min-width: 760px) {
+    display: block;
+  }
 `;
