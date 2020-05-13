@@ -21,9 +21,6 @@ export const PostContainer = styled.div`
 `;
 export const PostsSection = styled.div`
   width: 680px;
-  @media only screen and (max-width: 767px) {
-    width: 100%;
-  }
 `;
 
 export const NavbarSkeleton = styled.div`
