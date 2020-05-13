@@ -23,10 +23,6 @@ export const PostContainer = styled.div`
 `;
 export const PostsSection = styled.div`
   width: 680px;
-  @media only screen and (max-width: 767px) {
-    width: 100%;
-    /* margin: 0 8px; */
-  }
 `;
 
 export const ContactsSidebar = styled.div`
@@ -43,9 +39,6 @@ export const ContactsContainer = styled.div`
   width: 250px;
   top: 120px;
   right: 10px;
-  @media only screen and (min-width: 1450px) {
-    width: 320px;
-  }
 `;
 
 export const ContactsHeader = styled.div`

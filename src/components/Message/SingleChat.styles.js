@@ -9,7 +9,7 @@ export const ChatContainer = styled.div`
   box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 330px;
-  z-index: 6;
+  z-index: 30;
   height: 325px;
   display: flex;
   flex-direction: column;

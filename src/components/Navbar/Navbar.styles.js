@@ -32,7 +32,7 @@ export const NewsFeedContainer = styled.div`
   justify-content: center;
   border-bottom: 2px solid ${(props) => props.theme.primaryText};
 
-  @media only screen and (max-width: 700px) {
+  @media only screen and (max-width: 767px) {
     display: none;
   }
 `;
