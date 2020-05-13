@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ContentLoader from "react-content-loader";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import CreatePostDefault from "../../components/Post/CreatePostDefault";
 import Post from "../../components/Post/Post";
@@ -14,14 +14,27 @@ import {
 import {
   InfoContainer,
   PostsSection,
+  AboutInfoContainer,
+  Friends,
+  FriendsGrid,
+  FriendsHeading,
+  FriendContainer,
+  FriendAvatar,
+  FriendFullname,
+  CreatePostMobile,
+  CreatePostDesktop,
+  PhotosGrid,
   FixedContainer,
+  Photos,
+  PhotosHeading,
+  Photo,
   CreatePostSkeleton,
   AboutSkeleton,
   PostSkeleton,
 } from "./ProfilePage.styles";
 
 const ProfilePage = () => {
-  const { data: userData } = useQuery(LOAD_USER);
+  const { data: userData, loading: authUserLoading } = useQuery(LOAD_USER);
   const [pageLoading, setPageLoading] = useState(true);
 
   useEffect(() => {
@@ -63,23 +76,132 @@ const ProfilePage = () => {
   return (
     <InfoContainer>
       <FixedContainer>
-        {!pageLoading && userData ? (
-          <About
-            user={profileData ? profileData.loadFromUrlUser : userData.loadUser}
-            readOnly={readOnly()}
-          />
-        ) : (
-          <AboutSkeleton>
-            <ContentLoader speed={1}>
-              <rect x="0" y="0" rx="5" ry="5" />
-            </ContentLoader>
-          </AboutSkeleton>
+        {!pageLoading && !readOnly() && userData && (
+          <CreatePostMobile>
+            <CreatePostDefault user={userData.loadUser} />
+          </CreatePostMobile>
         )}
+        <AboutInfoContainer>
+          {!pageLoading && userData && !readOnly() && (
+            <About user={userData.loadUser} readOnly={readOnly()} />
+          )}
+          {!pageLoading && !userData && !readOnly() && (
+            <AboutSkeleton>
+              <ContentLoader speed={1}>
+                <rect x="0" y="0" rx="5" ry="5" />
+              </ContentLoader>
+            </AboutSkeleton>
+          )}
+          {!pageLoading && profileData && readOnly() && (
+            <About user={profileData.loadFromUrlUser} readOnly={readOnly()} />
+          )}
+          {!pageLoading && !profileData && readOnly() && (
+            <AboutSkeleton>
+              <ContentLoader speed={1}>
+                <rect x="0" y="0" rx="5" ry="5" />
+              </ContentLoader>
+            </AboutSkeleton>
+          )}
+          {!pageLoading && postsData && !readOnly() && (
+            <Photos>
+              <PhotosHeading>Photos</PhotosHeading>
+              <PhotosGrid>
+                {postsData.getPosts.map(
+                  (post) =>
+                    post.image && (
+                      <Link to={`/post/${post.id}`} key={post.id}>
+                        <Photo src={post.image} />
+                      </Link>
+                    )
+                )}
+              </PhotosGrid>
+            </Photos>
+          )}
+          {!pageLoading && !postsData && !readOnly() && (
+            <AboutSkeleton style={{ marginTop: "16px" }}>
+              <ContentLoader speed={1}>
+                <rect x="0" y="0" rx="5" ry="5" />
+              </ContentLoader>
+            </AboutSkeleton>
+          )}
+          {!pageLoading && urlPostsData && userData && readOnly() && (
+            <Photos>
+              <PhotosHeading>Photos</PhotosHeading>
+              <PhotosGrid>
+                {urlPostsData.getUrlPosts.map(
+                  (post) =>
+                    post.image && (
+                      <Link to={`/post/${post.id}`} key={post.id}>
+                        <Photo src={post.image} />
+                      </Link>
+                    )
+                )}
+              </PhotosGrid>
+            </Photos>
+          )}
+          {!pageLoading && !urlPostsData && userData && readOnly() && (
+            <AboutSkeleton style={{ marginTop: "16px" }}>
+              <ContentLoader speed={1}>
+                <rect x="0" y="0" rx="5" ry="5" />
+              </ContentLoader>
+            </AboutSkeleton>
+          )}
+          {!pageLoading && userData && !readOnly() && (
+            <Friends>
+              <FriendsHeading>Friends</FriendsHeading>
+              <FriendsGrid>
+                {userData.loadUser.friends.map((friend) => (
+                  <Link to={`/${friend.username}`} key={friend.id}>
+                    <FriendContainer>
+                      <FriendAvatar src={friend.avatarImage} />
+                      <FriendFullname>
+                        {friend.firstName} {friend.lastName}
+                      </FriendFullname>
+                    </FriendContainer>
+                  </Link>
+                ))}
+              </FriendsGrid>
+            </Friends>
+          )}
+          {!pageLoading && !userData && !readOnly() && (
+            <AboutSkeleton style={{ marginTop: "16px" }}>
+              <ContentLoader speed={1}>
+                <rect x="0" y="0" rx="5" ry="5" />
+              </ContentLoader>
+            </AboutSkeleton>
+          )}
+          {!pageLoading && profileData && readOnly() && (
+            <Friends>
+              <FriendsHeading>Friends</FriendsHeading>
+              <FriendsGrid>
+                {profileData.loadFromUrlUser.friends.map((friend) => (
+                  <Link to={`/${friend.username}`} key={friend.id}>
+                    <FriendContainer>
+                      <FriendAvatar src={friend.avatarImage} />
+                      <FriendFullname>
+                        {friend.firstName} {friend.lastName}
+                      </FriendFullname>
+                    </FriendContainer>
+                  </Link>
+                ))}
+              </FriendsGrid>
+            </Friends>
+          )}
+          {!pageLoading && !profileData && readOnly() && (
+            <AboutSkeleton style={{ marginTop: "16px" }}>
+              <ContentLoader speed={1}>
+                <rect x="0" y="0" rx="5" ry="5" />
+              </ContentLoader>
+            </AboutSkeleton>
+          )}
+        </AboutInfoContainer>
         <PostsSection>
           {!pageLoading && !readOnly() && userData && (
-            <CreatePostDefault user={userData.loadUser} />
+            <CreatePostDesktop>
+              <CreatePostDefault user={userData.loadUser} />
+            </CreatePostDesktop>
           )}
-          {!readOnly() && !userData && (
+          {!readOnly() && !userData && !pageLoading && (
             <CreatePostSkeleton>
               <ContentLoader speed={1}>
                 <rect x="0" y="0" rx="5" ry="5" />
@@ -93,7 +215,7 @@ const ProfilePage = () => {
             postsData.getPosts.map((post) => (
               <Post key={post.id} post={post} user={userData.loadUser} />
             ))}
-          {!postsData && !readOnly() && (
+          {!postsData && !readOnly() && authUserLoading && (
             <>
               <PostSkeleton>
                 <ContentLoader
