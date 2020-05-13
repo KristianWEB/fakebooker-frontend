@@ -63,7 +63,7 @@ export const SearchBar = styled.input`
 
 export const SearchBarMobile = styled.input`
   display: none;
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 766px) {
     display: block;
     height: 41px;
     border-radius: 50px;
@@ -235,7 +235,7 @@ export const SettingsContainer = styled.button`
 
 export const SearchContainer = styled.button`
   display: none;
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 766px) {
     padding: 0;
     margin-left: 8px;
     background-color: ${(props) => props.theme.secondaryBackground};

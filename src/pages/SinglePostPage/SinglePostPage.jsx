@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import ContentLoader from "react-content-loader";
 import Navbar from "../../components/Navbar/Navbar";
@@ -18,11 +18,14 @@ const SinglePostPage = () => {
   const [pageLoading, setPageLoading] = useState(true);
 
   const { postId } = useParams();
+  const history = useHistory();
 
   const { data: postData, loading } = useQuery(GET_SINGLE_POST, {
     variables: {
       postId,
     },
+    // eslint-disable-next-line react/display-name
+    onError: () => history.push("/"),
   });
 
   useEffect(() => {
@@ -43,12 +46,16 @@ const SinglePostPage = () => {
       <InfoContainer>
         <PostContainer>
           <PostsSection>
-            {postData && !pageLoading && !loading && userData ? (
+            {postData &&
+            postData.getSinglePost &&
+            !pageLoading &&
+            !loading &&
+            userData ? (
               <Post
                 key={postData.getSinglePost.id}
                 post={postData.getSinglePost}
                 user={userData.loadUser}
-                onNewsfeed
+                onSinglePost
               />
             ) : (
               <PostSkeleton>
