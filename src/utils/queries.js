@@ -702,3 +702,15 @@ export const OPEN_CHAT = gql`
     }
   }
 `;
+
+export const GET_USERS = gql`
+  {
+    getUsers {
+      id
+      firstName
+      avatarImage
+      lastName
+      username
+    }
+  }
+`;
