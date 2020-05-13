@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const AboutContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 360px;
+  width: 370px;
   box-sizing: border-box;
   height: 100%;
   background-color: #fff;
@@ -12,8 +12,12 @@ export const AboutContainer = styled.div`
   margin-right: 16px;
   padding: 12px;
   font-family: Roboto;
-  @media only screen and (max-width: 767px) {
-    display: none;
+
+  @media only screen and (max-width: 1000px) {
+    width: 100%;
+  }
+  @media only screen and (max-width: 575px) {
+    border-radius: 0;
   }
 `;
 

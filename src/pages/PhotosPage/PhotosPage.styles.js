@@ -40,6 +40,7 @@ export const PhotosContainer = styled.div`
 `;
 export const Photo = styled.img`
   width: 100%;
+  border-radius: 8px;
   min-height: 20rem;
   object-fit: cover;
 `;
