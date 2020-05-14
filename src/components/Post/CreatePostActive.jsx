@@ -28,7 +28,7 @@ import { ReactComponent as CloseBtn } from "../../assets/icons/close.svg";
 import { ReactComponent as MarkdownIcon } from "../../assets/icons/logo-markdown.svg";
 import { CREATE_POST, GET_POSTS, DELETE_IMAGE } from "../../utils/queries";
 
-const CreatePostActive = ({ user, closeModal }) => {
+const CreatePostActive = ({ user, closeModal, onNewsfeed }) => {
   const { register, watch, handleSubmit } = useForm();
   const [image, setImage] = useState(undefined);
   const [imageLoading, setImageLoading] = useState(undefined);
@@ -45,17 +45,19 @@ const CreatePostActive = ({ user, closeModal }) => {
       image: image && image.secure_url,
     },
     update: async (proxy, result) => {
-      const data = proxy.readQuery({
-        query: GET_POSTS,
-      });
-      const newData = {
-        getPosts: [result.data.createPost, ...data.getPosts],
-      };
+      if (!onNewsfeed) {
+        const data = proxy.readQuery({
+          query: GET_POSTS,
+        });
+        const newData = {
+          getPosts: [result.data.createPost, ...data.getPosts],
+        };
 
-      proxy.writeQuery({
-        query: GET_POSTS,
-        data: newData,
-      });
+        proxy.writeQuery({
+          query: GET_POSTS,
+          data: newData,
+        });
+      }
     },
   });
 
@@ -145,9 +147,11 @@ CreatePostActive.propTypes = {
     lastName: PropTypes.string,
     avatarImage: PropTypes.string,
   }),
+  onNewsfeed: PropTypes.bool,
 };
 
 CreatePostActive.defaultProps = {
   user: null,
   closeModal: () => null,
+  onNewsfeed: null,
 };
