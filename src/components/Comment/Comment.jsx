@@ -1,8 +1,8 @@
 import React from "react";
 import Popup from "reactjs-popup";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import {
@@ -18,25 +18,33 @@ import {
   DELETE_COMMENT,
   GET_POSTS,
   GET_URL_POSTS,
+  GET_SINGLE_POST,
   GET_NEWSFEED,
+  LOAD_USER,
 } from "../../utils/queries";
 import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/ellipsis-horizontal.svg";
 
 const Comment = ({
   comment: { userId, body, id },
-  postId,
+  post: {
+    id: postId,
+    userId: { id: postCreatorId },
+  },
   urlProfile,
   onNewsfeed,
+  onSinglePost,
 }) => {
   const { username } = useParams();
+
+  const { data: userData } = useQuery(LOAD_USER);
 
   const [deleteComment, { loading }] = useMutation(DELETE_COMMENT, {
     variables: {
       commentId: id,
       postId,
     },
-    update: (proxy, result) => {
-      if (!urlProfile && !onNewsfeed) {
+    update: (proxy) => {
+      if (!urlProfile && !onNewsfeed && !onSinglePost) {
         const data = proxy.readQuery({
           query: GET_POSTS,
         });
@@ -56,7 +64,7 @@ const Comment = ({
           data: { getPosts },
         });
       }
-      if (urlProfile && !onNewsfeed) {
+      if (urlProfile && !onNewsfeed && !onSinglePost) {
         const data = proxy.readQuery({
           query: GET_URL_POSTS,
           variables: {
@@ -82,7 +90,7 @@ const Comment = ({
           },
         });
       }
-      if (onNewsfeed && !urlProfile) {
+      if (onNewsfeed && !urlProfile && !onSinglePost) {
         const data = proxy.readQuery({
           query: GET_NEWSFEED,
         });
@@ -100,6 +108,28 @@ const Comment = ({
         proxy.writeQuery({
           query: GET_NEWSFEED,
           data: { getNewsfeed },
+        });
+      }
+      if (!onNewsfeed && !urlProfile && onSinglePost) {
+        const data = proxy.readQuery({
+          query: GET_SINGLE_POST,
+          variables: {
+            postId,
+          },
+        });
+
+        const newComments = data.getSinglePost.comments.filter(
+          (c) => c.id !== id
+        );
+
+        const getSinglePost = {
+          ...data.getSinglePost,
+          comments: newComments,
+        };
+
+        proxy.writeQuery({
+          query: GET_SINGLE_POST,
+          data: { getSinglePost },
         });
       }
     },
@@ -130,29 +160,35 @@ const Comment = ({
       <CommentContainer>
         <CommentAvatar src={userId.avatarImage} />
         <BodyContainer>
-          <Username>
-            {userId.firstName} {userId.lastName}
-          </Username>
+          <Link to={`/${userId.username}`}>
+            <Username>
+              {userId.firstName} {userId.lastName}
+            </Username>
+          </Link>
           <Body>{body}</Body>
         </BodyContainer>
-        <Popup
-          className="deleteCommentPopup"
-          arrow={false}
-          trigger={
-            // eslint-disable-next-line react/jsx-wrap-multilines
-            <ThreeDotsSvg
-              style={{
-                cursor: "pointer",
-                width: "20px",
-                height: "20px",
-                fill: "#65676b",
-              }}
-            />
-          }
-          closeOnDocumentClick
-        >
-          <SettingsPopup />
-        </Popup>
+        {userData &&
+          (userData.loadUser.id === userId.id ||
+            postCreatorId === userData.loadUser.id) && (
+            <Popup
+              className="deleteCommentPopup"
+              arrow={false}
+              trigger={
+                // eslint-disable-next-line react/jsx-wrap-multilines
+                <ThreeDotsSvg
+                  style={{
+                    cursor: "pointer",
+                    width: "20px",
+                    height: "20px",
+                    fill: "#65676b",
+                  }}
+                />
+              }
+              closeOnDocumentClick
+            >
+              <SettingsPopup />
+            </Popup>
+          )}
       </CommentContainer>
     </>
   );
@@ -170,14 +206,19 @@ Comment.propTypes = {
     body: PropTypes.string,
     id: PropTypes.string,
   }),
-  postId: PropTypes.string,
+  post: PropTypes.shape({
+    postId: PropTypes.string,
+    postCreatorId: PropTypes.string,
+  }),
   urlProfile: PropTypes.bool,
   onNewsfeed: PropTypes.bool,
+  onSinglePost: PropTypes.bool,
 };
 
 Comment.defaultProps = {
   comment: null,
-  postId: null,
+  post: null,
   urlProfile: null,
   onNewsfeed: null,
+  onSinglePost: null,
 };

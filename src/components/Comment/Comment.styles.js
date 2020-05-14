@@ -72,9 +72,14 @@ export const BodyContainer = styled.div`
 `;
 
 export const Username = styled.span`
-  color: ${(props) => props.theme.primaryTextColor};
+  color: ${(props) => props.theme.secondaryText};
   font-weight: 600;
   font-size: 1.5rem;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const Body = styled.span`

@@ -11,9 +11,16 @@ import {
   GET_POSTS,
   GET_URL_POSTS,
   GET_NEWSFEED,
+  GET_SINGLE_POST,
 } from "../../utils/queries";
 
-const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
+const CreateComment = ({
+  user,
+  postId,
+  urlProfile,
+  onNewsfeed,
+  onSinglePost,
+}) => {
   const { username } = useParams();
   const { register, getValues, setValue, handleSubmit } = useForm();
 
@@ -24,7 +31,7 @@ const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
       postId,
     },
     update: (proxy, result) => {
-      if (!urlProfile && !onNewsfeed) {
+      if (!urlProfile && !onNewsfeed && !onSinglePost) {
         const data = proxy.readQuery({
           query: GET_POSTS,
         });
@@ -44,7 +51,7 @@ const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
           data: { getPosts },
         });
       }
-      if (urlProfile && !onNewsfeed) {
+      if (urlProfile && !onNewsfeed && !onSinglePost) {
         const data = proxy.readQuery({
           query: GET_URL_POSTS,
           variables: {
@@ -69,7 +76,7 @@ const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
           },
         });
       }
-      if (!urlProfile && onNewsfeed) {
+      if (!onSinglePost && !urlProfile && onNewsfeed) {
         const data = proxy.readQuery({
           query: GET_NEWSFEED,
         });
@@ -87,6 +94,24 @@ const CreateComment = ({ user, postId, urlProfile, onNewsfeed }) => {
         proxy.writeQuery({
           query: GET_NEWSFEED,
           data: { getNewsfeed },
+        });
+      }
+      if (onSinglePost && !urlProfile && !onNewsfeed) {
+        const data = proxy.readQuery({
+          query: GET_SINGLE_POST,
+          variables: {
+            postId,
+          },
+        });
+
+        const getSinglePost = {
+          ...data.getSinglePost,
+          comments: [...data.getSinglePost.comments, result.data.createComment],
+        };
+
+        proxy.writeQuery({
+          query: GET_SINGLE_POST,
+          data: { getSinglePost },
         });
       }
     },
@@ -143,6 +168,7 @@ CreateComment.propTypes = {
   postId: PropTypes.string,
   urlProfile: PropTypes.bool,
   onNewsfeed: PropTypes.bool,
+  onSinglePost: PropTypes.bool,
 };
 
 CreateComment.defaultProps = {
@@ -150,4 +176,5 @@ CreateComment.defaultProps = {
   postId: null,
   urlProfile: null,
   onNewsfeed: null,
+  onSinglePost: null,
 };

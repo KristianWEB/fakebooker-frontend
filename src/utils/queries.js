@@ -110,6 +110,7 @@ export const GET_POSTS = gql`
         firstName
         lastName
         avatarImage
+        username
       }
       body
       image
@@ -120,6 +121,7 @@ export const GET_POSTS = gql`
           firstName
           lastName
           avatarImage
+          username
         }
         postId
         body
@@ -143,6 +145,7 @@ export const GET_SINGLE_POST = gql`
         firstName
         lastName
         avatarImage
+        username
       }
       body
       image
@@ -153,6 +156,7 @@ export const GET_SINGLE_POST = gql`
           firstName
           lastName
           avatarImage
+          username
         }
         postId
         body
@@ -235,6 +239,7 @@ export const GET_URL_POSTS = gql`
         firstName
         lastName
         avatarImage
+        username
       }
       body
       image
@@ -245,6 +250,7 @@ export const GET_URL_POSTS = gql`
           firstName
           lastName
           avatarImage
+          username
         }
         postId
         body
@@ -268,6 +274,7 @@ export const CREATE_POST = gql`
         firstName
         lastName
         avatarImage
+        username
       }
       body
       image
@@ -278,6 +285,7 @@ export const CREATE_POST = gql`
           firstName
           lastName
           avatarImage
+          username
         }
         postId
         body
@@ -297,9 +305,11 @@ export const CREATE_COMMENT = gql`
     createComment(postId: $postId, body: $body) {
       id
       userId {
+        id
         firstName
         lastName
         avatarImage
+        username
       }
       postId
       body
@@ -632,6 +642,7 @@ export const GET_NEWSFEED = gql`
         firstName
         lastName
         avatarImage
+        username
       }
       body
       image
@@ -639,9 +650,11 @@ export const GET_NEWSFEED = gql`
       comments {
         id
         userId {
+          id
           firstName
           lastName
           avatarImage
+          username
         }
         postId
         body
@@ -665,6 +678,7 @@ export const NEW_POST = gql`
         firstName
         lastName
         avatarImage
+        username
       }
       body
       image
@@ -675,6 +689,7 @@ export const NEW_POST = gql`
           firstName
           lastName
           avatarImage
+          username
         }
         postId
         body
