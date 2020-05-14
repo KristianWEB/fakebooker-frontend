@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import moment from "moment/moment";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/react-hooks";
@@ -24,18 +24,14 @@ import {
   LikesCount,
   CommentsWrapper,
   CommentsCount,
-  SharesWrapper,
-  SharesCount,
   LikesHeading,
   CommentsHeading,
-  SharesHeading,
   CommentsContainer,
   PostImage,
   LikeButton,
 } from "./Post.styles";
 import { ReactComponent as CommentsSVG } from "../../assets/icons/chatbox.svg";
 import { ReactComponent as LikesSVG } from "../../assets/icons/thumbs-up.svg";
-import { ReactComponent as SharesSVG } from "../../assets/icons/share-social.svg";
 import { ReactComponent as ThreeDotsSvg } from "../../assets/icons/ellipsis-horizontal.svg";
 import Comment from "../Comment/Comment";
 import CreateComment from "../Comment/CreateComment";
@@ -149,9 +145,11 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
         <ProfileWrapper>
           <ProfileAvatar src={post.userId.avatarImage} />
           <NameWrapper>
-            <ProfileName>
-              {post.userId.firstName} {post.userId.lastName}
-            </ProfileName>
+            <Link to={`/${post.userId.username}`}>
+              <ProfileName>
+                {post.userId.firstName} {post.userId.lastName}
+              </ProfileName>
+            </Link>
             <PostCreation>
               {moment(Number(post.createdAt)).fromNow()}
             </PostCreation>
@@ -222,21 +220,16 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
             )}
           </CommentsCount>
         </CommentsWrapper>
-        <SharesWrapper>
-          <SharesSVG fill="#65676b" width="25px" height="25px" />
-          <SharesCount>
-            <SharesHeading>Share</SharesHeading>
-          </SharesCount>
-        </SharesWrapper>
       </PostFooter>
       <CommentsContainer>
         {post.comments.map((comment) => (
           <Comment
             key={comment.id}
             comment={comment}
-            postId={post.id}
+            post={post}
             urlProfile={readOnly}
             onNewsfeed={onNewsfeed}
+            onSinglePost={onSinglePost}
           />
         ))}
         <CreateComment
@@ -244,6 +237,7 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
           postId={post.id}
           urlProfile={readOnly}
           onNewsfeed={onNewsfeed}
+          onSinglePost={onSinglePost}
         />
       </CommentsContainer>
     </PostContainer>

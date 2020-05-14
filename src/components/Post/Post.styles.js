@@ -109,6 +109,10 @@ export const ProfileName = styled.h3`
   color: ${(props) => props.theme.secondaryText};
   font-weight: 500;
   font-family: "Roboto";
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const PostCreation = styled.p`

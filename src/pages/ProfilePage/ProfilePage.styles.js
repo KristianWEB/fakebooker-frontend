@@ -173,6 +173,7 @@ export const PhotosHeading = styled.h1`
 
 export const Friends = styled.div`
   font-family: Roboto;
+  margin-bottom: 16px;
   background-color: #fff;
   box-shadow: ${(props) => props.theme.boxShadow2};
   border-radius: 6px;
