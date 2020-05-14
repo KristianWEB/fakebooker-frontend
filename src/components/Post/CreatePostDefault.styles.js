@@ -6,7 +6,7 @@ export const CreatePostContainer = styled.div`
   font-family: "Roboto";
   background-color: #fff;
   padding: 8px 12px;
-  max-width: 500px;
+  max-width: ${(props) => (props.newsfeed ? "680px" : "500px")};
   box-shadow: ${(props) => props.theme.boxShadow2};
   border-radius: 8px;
   @media only screen and (max-width: 575px) {

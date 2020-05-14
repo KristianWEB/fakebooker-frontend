@@ -3,6 +3,7 @@ import { useQuery, useApolloClient } from "@apollo/react-hooks";
 import ContentLoader from "react-content-loader";
 import Navbar from "../../components/Navbar/Navbar";
 import Post from "../../components/Post/Post";
+import CreatePostDefault from "../../components/Post/CreatePostDefault";
 import { LOAD_USER, GET_NEWSFEED, NEW_POST } from "../../utils/queries";
 import {
   InfoContainer,
@@ -10,6 +11,7 @@ import {
   PostContainer,
   ContactsSidebar,
   ContactsContainer,
+  CreatePostSkeleton,
   ContactsHeader,
   ContactsHeading,
   ContactsBody,
@@ -57,6 +59,15 @@ const NewsfeedPage = () => {
       <InfoContainer>
         <PostContainer>
           <PostsSection>
+            {!pageLoading && !loading && userData ? (
+              <CreatePostDefault user={userData.loadUser} onNewsfeed />
+            ) : (
+              <CreatePostSkeleton>
+                <ContentLoader speed={1}>
+                  <rect x="0" y="0" rx="5" ry="5" />
+                </ContentLoader>
+              </CreatePostSkeleton>
+            )}
             {newsfeedData && !pageLoading && !loading && userData ? (
               newsfeedData.getNewsfeed.map((post) => (
                 <Post

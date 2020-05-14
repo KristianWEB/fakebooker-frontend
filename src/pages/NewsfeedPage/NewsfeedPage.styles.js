@@ -115,3 +115,22 @@ export const PostSkeleton = styled.div`
 export const ContactSkeleton = styled.div`
   padding: 8px;
 `;
+
+export const CreatePostSkeleton = styled.div`
+  display: flex;
+  background-color: #fff;
+  padding: 13px;
+  border-radius: 8px;
+  @media only screen and (max-width: 575px) {
+    border-radius: 0;
+  }
+
+  svg {
+    width: 100%;
+    height: 56px;
+    rect {
+      width: 100%;
+      height: 56px;
+    }
+  }
+`;

@@ -8,15 +8,21 @@ import {
 } from "./CreatePostDefault.styles";
 import CreatePostActive from "./CreatePostActive";
 
-const CreatePostDefault = ({ user }) => (
-  <CreatePostContainer>
+const CreatePostDefault = ({ user, onNewsfeed }) => (
+  <CreatePostContainer newsfeed={onNewsfeed}>
     <UserAvatar src={user.avatarImage} />
     <StyledPopup
       trigger={<CreatePostButton>Add a Post</CreatePostButton>}
       modal
       closeOnDocumentClick
     >
-      {(close) => <CreatePostActive closeModal={close} user={user} />}
+      {(close) => (
+        <CreatePostActive
+          closeModal={close}
+          user={user}
+          onNewsfeed={onNewsfeed}
+        />
+      )}
     </StyledPopup>
   </CreatePostContainer>
 );
@@ -27,8 +33,10 @@ CreatePostDefault.propTypes = {
   user: PropTypes.shape({
     avatarImage: PropTypes.string,
   }),
+  onNewsfeed: PropTypes.bool,
 };
 
 CreatePostDefault.defaultProps = {
   user: null,
+  onNewsfeed: null,
 };
