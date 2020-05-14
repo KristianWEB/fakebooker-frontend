@@ -729,3 +729,21 @@ export const GET_USERS = gql`
     }
   }
 `;
+
+export const CHANGE_AVATAR_IMAGE = gql`
+  mutation changeAvatarImage($avatarImage: String!) {
+    changeAvatarImage(avatarImage: $avatarImage) {
+      id
+      avatarImage
+    }
+  }
+`;
+
+export const CHANGE_COVER_IMAGE = gql`
+  mutation changeCoverImage($coverImage: String!) {
+    changeCoverImage(coverImage: $coverImage) {
+      id
+      coverImage
+    }
+  }
+`;

@@ -4,7 +4,7 @@ export const ProfileHeaderContainer = styled.div`
   margin-top: -60px;
   background-image: linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.9) 0%,
       rgba(255, 255, 255, 1) 100%
     ),
     url(${(props) => props.img});
@@ -254,40 +254,6 @@ export const ChangeAvatarContainer = styled.button`
   &&:active {
     transform: scale(0.96);
   }
-`;
-
-export const ChangePhotoContainer = styled.button`
-  background-color: ${(props) => props.theme.secondaryBackground};
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 6px;
-  margin-right: 40px;
-  margin-bottom: 15px;
-  cursor: pointer;
-  position: absolute;
-  right: 0;
-  top: 85%;
-  border: 0;
-  padding: 5px 8px;
-  transition: 0.1s;
-  &&:focus {
-    background-color: ${(props) => props.theme.secondaryBackground};
-    outline: none;
-  }
-  &&:hover {
-    background-color: ${(props) => props.theme.secondaryHoverBackground};
-    outline: none;
-  }
-  &&:active {
-    transform: scale(0.96);
-  }
-`;
-
-export const ChangeBackgroundHeading = styled.h3`
-  margin-left: 4px;
-  margin-bottom: 0;
-  font-size: 1.5rem;
 `;
 
 export const FriendActionContainer = styled.div`
@@ -569,4 +535,8 @@ export const MoreBtn = styled.button`
   @media only screen and (max-width: 480px) {
     padding: 0 12px;
   }
+`;
+
+export const ImageUpload = styled.input`
+  display: none;
 `;
