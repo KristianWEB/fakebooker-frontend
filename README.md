@@ -16,7 +16,7 @@ Fakebooker is an extensive open-source project that is essentially a clone of th
 * Loading spinners for smaller actions: `react-loader-spinner`
 
 
-### Backend
+### Backend [link](https://github.com/KristianWEB/fakebooker-backend)
 * The NoSQL database for modern applications: `mongodb`
 * Elegant MongoDB object modeling for node.js: `mongoose`
 * GraphQLServer: `apollo-server`
