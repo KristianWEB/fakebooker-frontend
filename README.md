@@ -1,68 +1,96 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Fakebooker 1.0.0
 
-## Available Scripts
+Fakebooker is an extensive open-source project that is essentially a clone of the real Facebook. Now Fakebooker is not one of those little pet projects that just prove the concept, the Fakebooker UI is almost identical to the real Facebook Beta which makes it even more unique. The idea of this project is to try to implement Facebook's design patterns using the MERN stack. It is made for educational purposes only and nothing else!
 
-In the project directory, you can run:
+## Technologies
 
-### `yarn start`
+### Frontend
+* Javascript library for building User Interfaces: `React`
+* Client for handling GraphQL queries + caching + local state management: `ApolloClient`
+* CSS-in-JS library for handling Fakebooker's styles: `styled-components`
+* Performant, flexible and extensible forms with easy-to-use validation: `react-hook-form`
+* Notifications are built on top of: `react-toastify`
+* Popups are made using: `reactjs-popup`
+* Handling time properly: `momentjs`
+* Skeletons for loading components: `react-content-loader`
+* Loading spinners for smaller actions: `react-loader-spinner`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Backend
+* The NoSQL database for modern applications: `mongodb`
+* Elegant MongoDB object modeling for node.js: `mongoose`
+* GraphQLServer: `apollo-server`
+* Authentication built on top of tokens: `jwt`
+* Image Upload: `cloudinary`
+* Easily faking data: `faker`
+* Testing framework: `jest`
+* Integration testing package: `apollo-server-testing`
 
-### `yarn test`
+**Most of the backend code is test covered except some resolvers and the subscription ones**
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features ( 1.0.0 )
+**I've tried my best to clone the real Facebook Beta even with the same colors provided in theme.js**
+### Login / Register
+* You can `login` or `register` easily, and if something goes wrong there are cool validations to help you get on
 
-### `yarn build`
+### Post
+* You can create a post in which you can also use `markdown` and upload an image if you want to just like Facebook
+* You can like or comment on a post and if the post is not yours the person who created it will receive an instant realtime notification about your particular action ( `apollo subscriptions` )
+* You can delete a post ( `if it's yours all comments and likes associated to it will get deleted` )
+* You can unlike or delete your comment ( `the notifications related to your like or comment will get deleted` )
+* You can delete anyone's comment as long as you are the post creator
+* On every post or comment if you hover on the post's / comment's creator you can go to his profile page
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### ProfileHeader
+* You can make friends: send friend requests to other users and they can respond to your request ( a friend notification is fired through subscriptions once again )
+* You can open up a chat with that particular user
+* You can change your avatarImage ( cloudinary )
+* You can change your coverImage ( cloudinary )
+* You can view your Timeline, About, Friends and Photos pages ( `refer to ProfilePage` )
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Navbar
+* You can search for users with filter on.
+* You can chat with people ( `again through subscriptions` ) and the ProfilePage corresponds with that user's data
+* You can see all your conversations ( `chat button on Navbar` )
+* You can see all your notifications ( `notification button on Navbar` )
+* When you click on a notification it redirects you to the SinglePostPage if it's a post type or user if it's a friend request type
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Loading
+* Loading states and skeletons for every single component/page on the app
 
-### `yarn eject`
+### SinglePostPage
+* Navbar
+* Consists of the single post that the notification is pointing to
+### Newsfeed
+* The newsfeed contains all posts from the app, which again you can interact with them
+* Contacts: Your friends ( if you click on a friend, a chat tab is going to be opened for a quick chat with him )
+* Navbar
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### ProfilePage
+* Navbar
+* ProfileHeader
+#### You've read most of the features, go to [fakebooker.com](https://fakebooker.com) and then check in real time the features that I'm explaining
+ #### Timeline Page
+  * Consists of all your information: About, Photos, Friends and your posts
+ #### About Page
+  * Consists of all your personal information such as:
+    - Workplace
+    - School
+    - Homeplace
+    - Birthday
+    - Gender
+ #### Friends Page
+   * Consists of all your friends ( `each friend has a button to remove him from your friends' list` )
+ #### Photos Page
+   * Consists of all your posts that contain images
+   
+## Setup
+ ```sh
+ npm install && npm start
+ ```
+ 
+ ## Contribute
+ Contribution is accepted and I encourage you to do so as long as you follow my Github worklfow
+ 
+ ## Issues / Problems
+ Check out `Projects` tab in both frontend and backend repos and if you don't find that issue that you are having, better create one and  I will make sure everything is alright!
