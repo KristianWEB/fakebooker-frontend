@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-for */
 import React, { useState } from "react";
 import axios from "axios";
 import { useMutation } from "@apollo/react-hooks";
@@ -7,9 +8,8 @@ import { CHANGE_COVER_IMAGE } from "../../utils/queries";
 import {
   ChangePhotoContainer,
   ChangeBackgroundHeading,
-  // ChangeAvatarContainer,
-  ImageUpload,
-} from "./ChangePhoto.styles";
+  CoverImageUpload,
+} from "./ChangeCoverPhoto.styles";
 import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
 
 const ChangeCoverPhoto = () => {
@@ -45,7 +45,7 @@ const ChangeCoverPhoto = () => {
   return (
     <ChangePhotoContainer>
       <label
-        htmlFor="upload-photo"
+        htmlFor="upload-photo-cover"
         style={{
           display: "flex",
           alignItems: "center",
@@ -53,7 +53,11 @@ const ChangeCoverPhoto = () => {
         }}
       >
         <CameraIcon width="20" height="20" />
-        <ImageUpload type="file" id="upload-photo" onChange={uploadImage} />
+        <CoverImageUpload
+          type="file"
+          id="upload-photo-cover"
+          onChange={uploadImage}
+        />
         <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
         {coverImageLoading && coverImageLoading !== 1 && (
           <Loader

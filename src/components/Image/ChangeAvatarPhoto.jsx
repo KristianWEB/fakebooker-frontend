@@ -1,10 +1,14 @@
+/* eslint-disable jsx-a11y/label-has-for */
 import React, { useState } from "react";
 import axios from "axios";
 import { useMutation } from "@apollo/react-hooks";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 import { CHANGE_AVATAR_IMAGE } from "../../utils/queries";
-import { ChangeAvatarContainer, ImageUpload } from "./ChangePhoto.styles";
+import {
+  ChangeAvatarContainer,
+  AvatarImageUpload,
+} from "./ChangeAvatarPhoto.styles";
 import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
 
 const ChangeAvatarPhoto = () => {
@@ -40,7 +44,7 @@ const ChangeAvatarPhoto = () => {
   return (
     <ChangeAvatarContainer>
       <label
-        htmlFor="upload-photo"
+        htmlFor="upload-photo-avatar"
         style={{
           display: "flex",
           alignItems: "center",
@@ -48,7 +52,11 @@ const ChangeAvatarPhoto = () => {
         }}
       >
         <CameraIcon width="20" height="20" />
-        <ImageUpload type="file" id="upload-photo" onChange={uploadImage} />
+        <AvatarImageUpload
+          type="file"
+          id="upload-photo-avatar"
+          onChange={uploadImage}
+        />
         {avatarImageLoading && avatarImageLoading !== 1 && (
           <Loader
             type="TailSpin"
