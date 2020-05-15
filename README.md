@@ -1,4 +1,4 @@
-# Fakebooker 1.0.0
+# Fakebooker 1.0.0 ![Frontend](https://github.com/KristianWEB/fakebooker-frontend/workflows/Node%20CI/badge.svg) ![Fakebooker-Backend](https://github.com/KristianWEB/fakebooker-backend/workflows/Fakebooker-Backend/badge.svg)
 
 Fakebooker is an extensive open-source project that is essentially a clone of the real Facebook. Now Fakebooker is not one of those little pet projects that just prove the concept, the Fakebooker UI is almost identical to the real Facebook Beta which makes it even more unique. The idea of this project is to try to implement Facebook's design patterns using the MERN stack. It is made for educational purposes only and nothing else!
 
@@ -31,7 +31,7 @@ Fakebooker is an extensive open-source project that is essentially a clone of th
 ## Features ( 1.0.0 )
 **I've tried my best to clone the real Facebook Beta even with the same colors provided in theme.js**
 ### Login / Register
-* You can `login` or `register` easily, and if something goes wrong there are cool validations to help you get on
+* You can `login` or `register` easily, and if something goes wrong there are cool validations to help you get on ( every input is validated on the app )
 
 ### Post
 * You can create a post in which you can also use `markdown` and upload an image if you want to just like Facebook
@@ -42,10 +42,10 @@ Fakebooker is an extensive open-source project that is essentially a clone of th
 * On every post or comment if you hover on the post's / comment's creator you can go to his profile page
 
 ### ProfileHeader
-* You can make friends: send friend requests to other users and they can respond to your request ( a friend notification is fired through subscriptions once again )
+* You can make friends: send friend requests to other users and they can respond to your request ( `a friend notification is fired through subscriptions once again` )
 * You can open up a chat with that particular user
-* You can change your avatarImage ( cloudinary )
-* You can change your coverImage ( cloudinary )
+* You can change your avatarImage ( `cloudinary` )
+* You can change your coverImage ( `cloudinary` )
 * You can view your Timeline, About, Friends and Photos pages ( `refer to ProfilePage` )
 
 ### Navbar
@@ -63,7 +63,7 @@ Fakebooker is an extensive open-source project that is essentially a clone of th
 * Consists of the single post that the notification is pointing to
 ### Newsfeed
 * The newsfeed contains all posts from the app, which again you can interact with them
-* Contacts: Your friends ( if you click on a friend, a chat tab is going to be opened for a quick chat with him )
+* Contacts: Your friends ( `if you click on a friend, a chat tab is going to be opened for a quick chat with him` )
 * Navbar
 
 ### ProfilePage
