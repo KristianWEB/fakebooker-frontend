@@ -3,8 +3,10 @@ import { useMutation, useQuery, useApolloClient } from "@apollo/react-hooks";
 import { NavLink, Link } from "react-router-dom";
 import Popup from "reactjs-popup";
 import PropTypes from "prop-types";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
+import ChangeAvatarPhoto from "../Image/ChangeAvatarPhoto";
+import ChangeCoverPhoto from "../Image/ChangeCoverPhoto";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import {
   ProfileHeaderContainer,
   ProfileBackgroundContainer,
@@ -24,9 +26,6 @@ import {
   AboutContainerLink,
   FriendsContainerLink,
   PhotosContainerLink,
-  ChangePhotoContainer,
-  ChangeBackgroundHeading,
-  ChangeAvatarContainer,
   FriendActionContainer,
   FriendBtn,
   FriendText,
@@ -39,7 +38,6 @@ import {
   MessageContainer,
   MessageBtn,
 } from "./ProfileHeader.styles";
-import { ReactComponent as CameraIcon } from "../../assets/icons/camera.svg";
 import { ReactComponent as AddFriendIcon } from "../../assets/icons/person-add.svg";
 import { ReactComponent as ChatIcon } from "../../assets/icons/chatbox.svg";
 import {
@@ -52,7 +50,6 @@ import {
 
 const ProfileHeader = ({ user, authUser, readOnly }) => {
   const client = useApolloClient();
-
   const [addFriend, { data: friendData }] = useMutation(ADD_FRIEND, {
     variables: {
       notifier: user.username,
@@ -235,21 +232,12 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
   return (
     <ProfileHeaderContainer img={user.coverImage}>
       <ProfileBackgroundContainer img={user.coverImage}>
-        {!readOnly && (
-          <ChangePhotoContainer type="link">
-            <CameraIcon width="20" height="20" />
-            <ChangeBackgroundHeading>Edit</ChangeBackgroundHeading>
-          </ChangePhotoContainer>
-        )}
+        {!readOnly && <ChangeCoverPhoto />}
       </ProfileBackgroundContainer>
       <UserContainer>
         <User>
           <UserAvatar src={user.avatarImage} />
-          {!readOnly && (
-            <ChangeAvatarContainer type="link">
-              <CameraIcon width="20" height="20" />
-            </ChangeAvatarContainer>
-          )}
+          {!readOnly && <ChangeAvatarPhoto />}
         </User>
         <UserName data-testid="username">
           {user.firstName} {user.lastName}
