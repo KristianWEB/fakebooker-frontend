@@ -68,6 +68,7 @@ export const BodyContainer = styled.div`
   color: ${(props) => props.theme.secondaryText};
   background-color: ${(props) => props.theme.inputColor};
   margin-left: 5px;
+  width: 100%;
   margin-right: 10px;
 `;
 
@@ -84,4 +85,5 @@ export const Username = styled.span`
 
 export const Body = styled.span`
   font-size: 1.5rem;
+  word-break: break-all;
 `;
