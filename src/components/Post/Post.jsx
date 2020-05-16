@@ -182,6 +182,7 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
         <div
           style={{
             padding: "2px 12px",
+            wordBreak: "break-word",
           }}
         >
           <ReactMarkdown source={post.body} />

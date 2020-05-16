@@ -84,5 +84,5 @@ export const Username = styled.span`
 
 export const Body = styled.span`
   font-size: 1.5rem;
-  word-break: break-all;
+  word-break: break-word;
 `;
