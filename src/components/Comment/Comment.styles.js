@@ -68,7 +68,6 @@ export const BodyContainer = styled.div`
   color: ${(props) => props.theme.secondaryText};
   background-color: ${(props) => props.theme.inputColor};
   margin-left: 5px;
-  width: 100%;
   margin-right: 10px;
 `;
 
