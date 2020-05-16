@@ -180,6 +180,7 @@ const Comment = ({
                     cursor: "pointer",
                     width: "20px",
                     height: "20px",
+                    flexShrink: "0",
                     fill: "#65676b",
                   }}
                 />

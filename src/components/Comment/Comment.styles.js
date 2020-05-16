@@ -12,6 +12,7 @@ export const CommentAvatar = styled.img`
   border-radius: 100%;
   width: 32px;
   height: 32px;
+  flex-shrink: 0;
   align-self: flex-start;
 `;
 
