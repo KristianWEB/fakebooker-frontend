@@ -9,9 +9,6 @@ Fakebooker is an extensive open-source project that is essentially a clone of th
 **ProfilePage:**
 ![profilepage](https://github.com/KristianWEB/fakebooker-frontend/blob/master/src/assets/screenshots/profilepage.PNG)
 
-
-**ProfilePage:**
-
 ## Technologies
 
 ### Frontend
