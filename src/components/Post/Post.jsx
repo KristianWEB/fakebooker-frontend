@@ -179,7 +179,13 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
         )}
       </PostHeader>
       <PostContent>
-        <ReactMarkdown source={post.body} />
+        <div
+          style={{
+            padding: "2px 12px",
+          }}
+        >
+          <ReactMarkdown source={post.body} />
+        </div>
       </PostContent>
       {post.image && <PostImage src={post.image} alt="post graphics" />}
       <PostFooter>

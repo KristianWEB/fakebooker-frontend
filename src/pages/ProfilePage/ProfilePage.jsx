@@ -120,11 +120,11 @@ const ProfilePage = () => {
           {!pageLoading && !postsData && !readOnly() && (
             <AboutSkeleton style={{ marginTop: "16px" }}>
               <ContentLoader speed={1}>
-                <rect x="0" y="0" rx="5" ry="5" />
+                <rect x="0" y="0" rx="0" ry="0" />
               </ContentLoader>
             </AboutSkeleton>
           )}
-          {!pageLoading && urlPostsData && userData && readOnly() && (
+          {!pageLoading && urlPostsData && readOnly() && (
             <Photos>
               <PhotosHeading>Photos</PhotosHeading>
               <PhotosGrid>
@@ -139,10 +139,10 @@ const ProfilePage = () => {
               </PhotosGrid>
             </Photos>
           )}
-          {!pageLoading && !urlPostsData && userData && readOnly() && (
+          {!pageLoading && !urlPostsData && readOnly() && (
             <AboutSkeleton style={{ marginTop: "16px" }}>
               <ContentLoader speed={1}>
-                <rect x="0" y="0" rx="5" ry="5" />
+                <rect x="0" y="0" rx="0" ry="0" />
               </ContentLoader>
             </AboutSkeleton>
           )}

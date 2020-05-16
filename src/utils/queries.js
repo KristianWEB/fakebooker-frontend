@@ -118,6 +118,7 @@ export const GET_POSTS = gql`
       comments {
         id
         userId {
+          id
           firstName
           lastName
           avatarImage
@@ -153,6 +154,7 @@ export const GET_SINGLE_POST = gql`
       comments {
         id
         userId {
+          id
           firstName
           lastName
           avatarImage
@@ -247,6 +249,7 @@ export const GET_URL_POSTS = gql`
       comments {
         id
         userId {
+          id
           firstName
           lastName
           avatarImage
@@ -282,6 +285,7 @@ export const CREATE_POST = gql`
       comments {
         id
         userId {
+          id
           firstName
           lastName
           avatarImage
@@ -686,6 +690,7 @@ export const NEW_POST = gql`
       comments {
         id
         userId {
+          id
           firstName
           lastName
           avatarImage

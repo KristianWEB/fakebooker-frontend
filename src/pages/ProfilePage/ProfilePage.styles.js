@@ -84,18 +84,25 @@ export const AboutSkeleton = styled.div`
   background-color: #fff;
   display: flex;
   height: 100%;
+  box-sizing: border-box;
   padding: 13px;
   border-radius: 8px;
+
   @media only screen and (min-width: 1000px) {
     margin-right: 16px;
+    width: 370px;
+  }
+
+  @media only screen and (max-width: 1000px) {
+    width: 100%;
   }
 
   svg {
     width: 100%;
     height: 100%;
+
     rect {
       width: 100%;
-      height: 100%;
     }
   }
 `;
@@ -113,13 +120,11 @@ export const PostSkeleton = styled.div`
 
 export const Photos = styled.div`
   margin-top: 16px;
-  margin-bottom: 16px;
   font-family: Roboto;
   background-color: #fff;
   box-shadow: ${(props) => props.theme.boxShadow2};
   border-radius: 6px;
   padding: 12px;
-  margin-bottom: 16px;
 
   @media only screen and (max-width: 575px) {
     margin-right: 0px;
@@ -173,6 +178,7 @@ export const PhotosHeading = styled.h1`
 
 export const Friends = styled.div`
   font-family: Roboto;
+  margin-top: 16px;
   margin-bottom: 16px;
   background-color: #fff;
   box-shadow: ${(props) => props.theme.boxShadow2};
