@@ -27,7 +27,7 @@ const ChangeCoverPhoto = () => {
 
     const { data } = await axios.request({
       method: "POST",
-      url: "https://api.cloudinary.com/v1_1/djsafwbaq/image/upload",
+      url: process.env.REACT_APP_CLOUDINARY_URL,
       data: formData,
       onUploadProgress: (p) => {
         const progress = p.loaded / p.total;

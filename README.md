@@ -3,6 +3,7 @@
 Fakebooker is an extensive open-source project that is essentially a clone of the real Facebook. Now Fakebooker is not one of those little pet projects that just prove the concept, the Fakebooker UI is almost identical to the real Facebook Beta which makes it even more unique. The idea of this project is to try to implement Facebook's design patterns using the MERN stack. It is made for educational purposes only and nothing else!
 
 ## Screenshots
+
 **Newsfeed:**
 ![newsfeed](https://github.com/KristianWEB/fakebooker-frontend/blob/master/src/assets/screenshots/newsfeed.PNG)
 
@@ -113,6 +114,8 @@ Fakebooker is an extensive open-source project that is essentially a clone of th
 - Consists of all your posts that contain images
 
 ## Setup a local environment
+
+- Copy the `.env.example` file into `.env.local` and fill in the actual values ( `you need to have a cloudinary account` )
 
 ```sh
 npm install && npm start
