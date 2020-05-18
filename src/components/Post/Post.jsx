@@ -18,7 +18,7 @@ import {
   PostCreation,
   PostContent,
   PostFooter,
-  LikesWrapper,
+  LikesButton,
   PopContainer,
   PopButton,
   LikesCount,
@@ -190,12 +190,12 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
       {post.image && <PostImage src={post.image} alt="post graphics" />}
       <PostFooter>
         {liked && !loading ? (
-          <LikesWrapper onClick={likePost}>
+          <LikesButton onClick={likePost}>
             <LikesSVG fill="#1876f2" width="25px" height="25px" />
             <LikesCount>{post.likes.length}</LikesCount>
-          </LikesWrapper>
+          </LikesButton>
         ) : (
-          <LikesWrapper onClick={likePost} disabled={loading}>
+          <LikesButton onClick={likePost} disabled={loading}>
             <LikesSVG fill="#65676b" width="25px" height="25px" />
             {loading ? (
               <Loader
@@ -210,7 +210,7 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
             ) : (
               <LikesHeading>Like</LikesHeading>
             )}
-          </LikesWrapper>
+          </LikesButton>
         )}
         <CommentsWrapper>
           <CommentsSVG fill="#65676b" width="25px" height="25px" />

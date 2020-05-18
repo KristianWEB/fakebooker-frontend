@@ -139,7 +139,7 @@ export const PostFooter = styled.div`
     margin: 0;
   }
 `;
-export const LikesWrapper = styled.button`
+export const LikesButton = styled.button`
   display: flex;
   cursor: pointer;
   align-items: center;
