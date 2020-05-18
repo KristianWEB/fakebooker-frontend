@@ -272,10 +272,6 @@ export const ProfileAvatar = styled.img`
   border-radius: 100%;
 `;
 
-export const LikeButton = styled.button`
-
-`;
-
 export const PostSkeleton = styled.div`
   display: flex;
   margin-top: 20px;
