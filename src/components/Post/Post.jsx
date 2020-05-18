@@ -27,7 +27,7 @@ import {
   LikesHeading,
   CommentsHeading,
   CommentsContainer,
-  PostImage
+  PostImage,
 } from "./Post.styles";
 import { ReactComponent as CommentsSVG } from "../../assets/icons/chatbox.svg";
 import { ReactComponent as LikesSVG } from "../../assets/icons/thumbs-up.svg";
@@ -191,25 +191,25 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
       <PostFooter>
         {liked && !loading ? (
           <LikesWrapper onClick={likePost}>
-              <LikesSVG fill="#1876f2" width="25px" height="25px" />
-              <LikesCount>{post.likes.length}</LikesCount>
+            <LikesSVG fill="#1876f2" width="25px" height="25px" />
+            <LikesCount>{post.likes.length}</LikesCount>
           </LikesWrapper>
         ) : (
           <LikesWrapper onClick={likePost} disabled={loading}>
-              <LikesSVG fill="#65676b" width="25px" height="25px" />
-              {loading ? (
-                <Loader
-                  type="TailSpin"
-                  color="#1876f2"
-                  height={15}
-                  width={15}
-                  style={{
-                    marginTop: "5px",
-                  }}
-                />
-              ) : (
-                <LikesHeading>Like</LikesHeading>
-              )}
+            <LikesSVG fill="#65676b" width="25px" height="25px" />
+            {loading ? (
+              <Loader
+                type="TailSpin"
+                color="#1876f2"
+                height={15}
+                width={15}
+                style={{
+                  marginTop: "5px",
+                }}
+              />
+            ) : (
+              <LikesHeading>Like</LikesHeading>
+            )}
           </LikesWrapper>
         )}
         <CommentsWrapper>
@@ -282,5 +282,6 @@ Post.defaultProps = {
   user: null,
   readOnly: null,
   onNewsfeed: null,
+  // eslint-disable-next-line react/default-props-match-prop-types
   onSinglePost: null,
 };
