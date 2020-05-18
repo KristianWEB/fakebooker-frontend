@@ -27,8 +27,7 @@ import {
   LikesHeading,
   CommentsHeading,
   CommentsContainer,
-  PostImage,
-  LikeButton,
+  PostImage
 } from "./Post.styles";
 import { ReactComponent as CommentsSVG } from "../../assets/icons/chatbox.svg";
 import { ReactComponent as LikesSVG } from "../../assets/icons/thumbs-up.svg";
@@ -192,14 +191,11 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
       <PostFooter>
         {liked && !loading ? (
           <LikesWrapper onClick={likePost}>
-            <LikeButton>
               <LikesSVG fill="#1876f2" width="25px" height="25px" />
               <LikesCount>{post.likes.length}</LikesCount>
-            </LikeButton>
           </LikesWrapper>
         ) : (
           <LikesWrapper onClick={likePost} disabled={loading}>
-            <LikeButton>
               <LikesSVG fill="#65676b" width="25px" height="25px" />
               {loading ? (
                 <Loader
@@ -214,7 +210,6 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
               ) : (
                 <LikesHeading>Like</LikesHeading>
               )}
-            </LikeButton>
           </LikesWrapper>
         )}
         <CommentsWrapper>
