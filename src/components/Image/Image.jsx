@@ -12,7 +12,7 @@ const Image = ({ setImage, loading }) => {
     } = e;
 
     formData.append("file", files[0]);
-    formData.append("upload_preset", "kristian");
+    formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET);
 
     const { data } = await axios.request({
       method: "POST",
