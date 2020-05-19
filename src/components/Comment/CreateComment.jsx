@@ -132,6 +132,7 @@ const CreateComment = ({
           ref={register({
             required: true,
           })}
+          disabled={loading}
         />
         {loading && (
           <Loader
