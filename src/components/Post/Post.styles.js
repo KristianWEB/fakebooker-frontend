@@ -139,7 +139,7 @@ export const PostFooter = styled.div`
     margin: 0;
   }
 `;
-export const LikesWrapper = styled.div`
+export const LikeButton = styled.button`
   display: flex;
   cursor: pointer;
   align-items: center;
@@ -148,6 +148,8 @@ export const LikesWrapper = styled.div`
   padding: 5px;
   justify-content: center;
   flex: 3;
+  border: none;
+  background-color: transparent;
 
   &:hover {
     background-color: ${(props) => props.theme.tertiaryBackground};
@@ -264,17 +266,6 @@ export const ProfileAvatar = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 100%;
-`;
-
-export const LikeButton = styled.button`
-  border: none;
-  background-color: transparent;
-  display: flex;
-  cursor: pointer;
-  align-items: center;
-  &:focus {
-    outline: none;
-  }
 `;
 
 export const PostSkeleton = styled.div`

@@ -18,7 +18,6 @@ import {
   PostCreation,
   PostContent,
   PostFooter,
-  LikesWrapper,
   PopContainer,
   PopButton,
   LikesCount,
@@ -191,31 +190,27 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
       {post.image && <PostImage src={post.image} alt="post graphics" />}
       <PostFooter>
         {liked && !loading ? (
-          <LikesWrapper onClick={likePost}>
-            <LikeButton>
-              <LikesSVG fill="#1876f2" width="25px" height="25px" />
-              <LikesCount>{post.likes.length}</LikesCount>
-            </LikeButton>
-          </LikesWrapper>
+          <LikeButton onClick={likePost}>
+            <LikesSVG fill="#1876f2" width="25px" height="25px" />
+            <LikesCount>{post.likes.length}</LikesCount>
+          </LikeButton>
         ) : (
-          <LikesWrapper onClick={likePost} disabled={loading}>
-            <LikeButton>
-              <LikesSVG fill="#65676b" width="25px" height="25px" />
-              {loading ? (
-                <Loader
-                  type="TailSpin"
-                  color="#1876f2"
-                  height={15}
-                  width={15}
-                  style={{
-                    marginTop: "5px",
-                  }}
-                />
-              ) : (
-                <LikesHeading>Like</LikesHeading>
-              )}
-            </LikeButton>
-          </LikesWrapper>
+          <LikeButton onClick={likePost} disabled={loading}>
+            <LikesSVG fill="#65676b" width="25px" height="25px" />
+            {loading ? (
+              <Loader
+                type="TailSpin"
+                color="#1876f2"
+                height={15}
+                width={15}
+                style={{
+                  marginTop: "5px",
+                }}
+              />
+            ) : (
+              <LikesHeading>Like</LikesHeading>
+            )}
+          </LikeButton>
         )}
         <CommentsWrapper>
           <CommentsSVG fill="#65676b" width="25px" height="25px" />
