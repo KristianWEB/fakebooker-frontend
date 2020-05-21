@@ -35,17 +35,20 @@ export const UserName = styled.h1`
   color: ${(props) => props.theme.secondaryText};
 `;
 
-export const FriendBtn = styled.button`
-  margin-left: auto;
+export const Button = styled.button`
   border: none;
   padding: 8px 12px;
   border-radius: 6px;
   color: ${(props) => props.theme.secondaryText};
   font-weight: 500;
-  font-size: 15px;
-  background-color: ${(props) => props.theme.secondaryBackground};
+  font-size: 1.5rem;
   transition: 0.1s;
   cursor: pointer;
+`;
+
+export const FriendBtn = styled(Button)`
+  margin-left: auto;
+  background-color: ${(props) => props.theme.secondaryBackground};
 
   &&:focus {
     background-color: ${(props) => props.theme.secondaryBackground};
@@ -53,13 +56,13 @@ export const FriendBtn = styled.button`
     outline: none;
   }
 
-  &&:active {
-    transform: scale(0.96);
-  }
-
   &&:hover {
     background-color: ${(props) => props.theme.secondaryHoverBackground};
     color: ${(props) => props.theme.secondaryText};
+  }
+
+  &&:active {
+    transform: scale(0.96);
   }
 `;
 
@@ -69,18 +72,13 @@ export const ActionsContainer = styled.div`
   width: 100%;
 `;
 
-export const RejectFriendBtn = styled.button`
+export const RemoveFriendBtn = styled(Button)`
   text-align: left;
-  font-size: 1.5rem;
-  border: none;
   padding: 8px;
   border-radius: 6px;
   display: flex;
   width: 100%;
   background-color: #fff;
-  color: ${(props) => props.theme.secondaryText};
-  transition: 0.1s;
-  font-weight: 500;
   cursor: pointer;
 
   &:hover {

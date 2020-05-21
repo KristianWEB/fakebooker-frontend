@@ -11,7 +11,7 @@ import {
   UserName,
   FriendBtn,
   ActionsContainer,
-  RejectFriendBtn,
+  RemoveFriendBtn,
 } from "./Friend.styles";
 import { REMOVE_FRIEND } from "../../utils/queries";
 
@@ -24,7 +24,7 @@ const Friend = ({ user, readOnly }) => {
 
   const RemoveFriend = () => (
     <ActionsContainer>
-      <RejectFriendBtn onClick={removeFriend} disabled={loading}>
+      <RemoveFriendBtn onClick={removeFriend} disabled={loading}>
         Unfriend
         {loading && (
           <Loader
@@ -39,7 +39,7 @@ const Friend = ({ user, readOnly }) => {
             width={20}
           />
         )}
-      </RejectFriendBtn>
+      </RemoveFriendBtn>
     </ActionsContainer>
   );
 
