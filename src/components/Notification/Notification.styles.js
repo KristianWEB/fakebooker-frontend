@@ -36,12 +36,16 @@ export const CreatorFullName = styled.span`
   color: ${(props) => props.theme.secondaryText};
 `;
 
-export const Body = styled.div`
+export const TextContainer = styled.h1`
   font-size: 1.5rem;
   color: ${(props) => props.theme.secondaryText};
+`;
+
+export const Body = styled(TextContainer)`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-weight: normal;
 `;
 
 export const Timestamp = styled.h3`
@@ -52,11 +56,8 @@ export const Timestamp = styled.h3`
   margin-top: 5px;
 `;
 
-export const NotificationHeading = styled.h1`
-  font-size: 1.5rem;
-  font-family: Roboto;
+export const NotificationHeading = styled(TextContainer)`
   font-weight: medium;
-  color: ${(props) => props.theme.secondaryText};
   padding: 0 16px;
   margin-bottom: 8px;
   margin-top: 8px;
