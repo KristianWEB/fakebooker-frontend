@@ -9,34 +9,24 @@ import {
   RegisterFormContainer,
   StyledButton,
   RegisterHeading,
-  FirstNameLabel,
-  LastNameLabel,
-  EmailLabel,
-  PasswordLabel,
-  GenderLabel,
-  FirstNameInput,
-  LastNameInput,
-  EmailInput,
-  PasswordInput,
+  Label,
+  Input,
+  BirthdayInput,
   NameContainer,
-  BirthdayLabel,
-  FirstNameContainer,
+  FullNameContainer,
   LastNameContainer,
   EmailContainer,
   PasswordContainer,
   BirthdayContainer,
   GenderContainer,
-  BirthdayInput,
-  FemaleGender,
-  MaleGender,
-  FemaleLabel,
-  MaleLabel,
+  GenderLabel,
+  GenderInputContainer,
   FemaleContainer,
-  MaleContainer,
   ErrorMessageContainer,
   ErrorMessageHeading,
   LoginContainer,
   LoginLink,
+  Gender,
 } from "./RegisterForm.styles";
 import { ReactComponent as ErrorIcon } from "../../assets/icons/alert-circle.svg";
 
@@ -74,10 +64,10 @@ const RegisterForm = () => {
         onSubmit={handleSubmit(onSubmitRegister)}
         style={{ padding: "3px" }}
       >
-        <NameContainer>
-          <FirstNameContainer>
-            <FirstNameLabel>First name</FirstNameLabel>
-            <FirstNameInput
+        <FullNameContainer>
+          <NameContainer>
+            <Label>First name</Label>
+            <Input
               name="firstName"
               ref={register({
                 required: "First name is required",
@@ -91,10 +81,10 @@ const RegisterForm = () => {
                 </ErrorMessageHeading>
               </ErrorMessageContainer>
             )}
-          </FirstNameContainer>
+          </NameContainer>
           <LastNameContainer>
-            <LastNameLabel>Last name</LastNameLabel>
-            <LastNameInput
+            <Label>Last name</Label>
+            <Input
               name="lastName"
               ref={register({
                 required: "Last name is required",
@@ -109,10 +99,10 @@ const RegisterForm = () => {
               </ErrorMessageContainer>
             )}
           </LastNameContainer>
-        </NameContainer>
+        </FullNameContainer>
         <EmailContainer>
-          <EmailLabel>Email</EmailLabel>
-          <EmailInput
+          <Label>Email</Label>
+          <Input
             name="email"
             ref={register({
               required: "Email is required",
@@ -136,8 +126,8 @@ const RegisterForm = () => {
           )}
         </EmailContainer>
         <PasswordContainer>
-          <PasswordLabel>Password</PasswordLabel>
-          <PasswordInput
+          <Label>Password</Label>
+          <Input
             name="password"
             type="password"
             ref={register({
@@ -154,7 +144,7 @@ const RegisterForm = () => {
           )}
         </PasswordContainer>
         <BirthdayContainer>
-          <BirthdayLabel>Birthday</BirthdayLabel>
+          <Label>Birthday</Label>
           <BirthdayInput
             name="birthday"
             type="date"
@@ -172,11 +162,11 @@ const RegisterForm = () => {
             </ErrorMessageContainer>
           )}
         </BirthdayContainer>
-        <GenderLabel>Gender</GenderLabel>
+        <Label>Gender</Label>
         <GenderContainer>
           <div style={{ display: "flex" }}>
             <FemaleContainer>
-              <FemaleGender
+              <Gender
                 name="gender"
                 value="Female"
                 type="radio"
@@ -184,10 +174,10 @@ const RegisterForm = () => {
                   required: "Gender is required",
                 })}
               />
-              <FemaleLabel htmlFor="female">Female</FemaleLabel>
+              <GenderLabel htmlFor="female">Female</GenderLabel>
             </FemaleContainer>
-            <MaleContainer>
-              <MaleGender
+            <GenderInputContainer>
+              <Gender
                 value="Male"
                 name="gender"
                 type="radio"
@@ -195,8 +185,8 @@ const RegisterForm = () => {
                   required: "Gender is required",
                 })}
               />
-              <MaleLabel htmlFor="male">Male</MaleLabel>
-            </MaleContainer>
+              <GenderLabel htmlFor="male">Male</GenderLabel>
+            </GenderInputContainer>
           </div>
           {errors.gender && (
             <ErrorMessageContainer>
