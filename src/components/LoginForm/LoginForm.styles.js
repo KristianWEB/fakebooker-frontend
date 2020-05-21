@@ -49,7 +49,7 @@ export const LoginHeading = styled.p`
   color: ${(props) => props.theme.secondaryText};
 `;
 
-export const EmailLabel = styled.p`
+export const Label = styled.p`
   display: inline-block;
   margin: 0;
   margin-bottom: 7px;
@@ -59,17 +59,7 @@ export const EmailLabel = styled.p`
   color: ${(props) => props.theme.secondaryText};
 `;
 
-export const PasswordLabel = styled.p`
-  display: inline-block;
-  margin: 0;
-  margin-bottom: 7px;
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1;
-  color: ${(props) => props.theme.secondaryText};
-`;
-
-export const EmailInput = styled.input`
+export const Input = styled.input`
   background-color: ${(props) => props.theme.inputColor};
   border: none;
   border-radius: 6px;
@@ -82,29 +72,10 @@ export const EmailInput = styled.input`
   }
 `;
 
-export const PasswordInput = styled.input`
-  background-color: ${(props) => props.theme.inputColor};
-  border: none;
-  border-radius: 6px;
-  height: 40px;
-  padding: 0 8px;
-  box-sizing: border-box;
-  &:focus {
-    outline: none;
-    border: 2px solid ${(props) => props.theme.primaryText};
-  }
-`;
-
-export const EmailContainer = styled.div`
+export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-`;
-
-export const PasswordContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 30px;
 `;
 
 export const ErrorMessageContainer = styled.div`
