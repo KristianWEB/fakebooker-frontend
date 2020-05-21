@@ -63,7 +63,6 @@ export const UserAvatar = styled.img`
   border-radius: 50%;
   border: 3px solid #ffffff;
 `;
-
 export const UserName = styled.h3`
   font-size: 2.6rem;
   font-weight: bold;
@@ -103,7 +102,7 @@ export const UserActionsContainer = styled.div`
   }
 `;
 
-export const TimelineContainerLink = styled.button`
+export const ContainerLink = styled.button`
   color: ${(props) => props.theme.tertiaryText};
   font-size: 1.5rem;
   font-weight: bold;
@@ -112,9 +111,8 @@ export const TimelineContainerLink = styled.button`
   background-color: transparent;
   cursor: pointer;
   margin: 6px 0;
-  padding: 0 16px;
+  padding: 0 12px;
   height: 50px;
-  z-index: 10;
 
   &:hover {
     background-color: ${(props) => props.theme.tertiaryBackground};
@@ -130,100 +128,27 @@ export const TimelineContainerLink = styled.button`
     background-color: ${(props) => props.theme.secondaryBackground};
     outline: none;
   }
+`;
+export const TimelineContainerLink = styled(ContainerLink)`
   @media only screen and (max-width: 480px) {
     padding: 0 12px;
   }
 `;
-
-export const AboutContainerLink = styled.button`
-  color: ${(props) => props.theme.tertiaryText};
-  font-size: 1.5rem;
-  font-weight: bold;
-  border-radius: 6px;
-  border: 0;
-  background-color: transparent;
-  cursor: pointer;
-  margin: 6px 0;
-  padding: 0 16px;
-  height: 50px;
-
-  &:hover {
-    background-color: ${(props) => props.theme.tertiaryBackground};
-    outline: none;
-  }
-
-  &::after,
-  &:focus {
-    outline: none;
-  }
-  &:active {
-    background-color: ${(props) => props.theme.secondaryBackground};
-  }
+export const AboutContainerLink = styled(ContainerLink)`
   @media only screen and (max-width: 480px) {
     padding: 0 12px;
   }
 `;
-
-export const FriendsContainerLink = styled.button`
-  color: ${(props) => props.theme.tertiaryText};
-  font-size: 1.5rem;
-  font-weight: bold;
-  border-radius: 6px;
-  border: 0;
-  background-color: transparent;
-  cursor: pointer;
-  margin: 6px 0;
-  padding: 0 16px;
-  height: 50px;
-
-  &:hover {
-    background-color: ${(props) => props.theme.tertiaryBackground};
-    outline: none;
-  }
-
-  &::after,
-  &:focus {
-    outline: none;
-  }
-  &:active {
-    background-color: ${(props) => props.theme.secondaryBackground};
-  }
-
-  display: block;
-
-  @media only screen and (max-width: 700px) {
+export const FriendsContainerLink = styled(ContainerLink)`
+  @media only screen and (max-width: 480px) {
+    padding: 0 12px;
     display: none;
   }
 `;
-
-export const PhotosContainerLink = styled.button`
-  color: ${(props) => props.theme.tertiaryText};
-  font-size: 1.5rem;
-  font-weight: bold;
-  border-radius: 6px;
-  border: 0;
-  background-color: transparent;
-  cursor: pointer;
-  margin: 6px 0;
-  padding: 0 16px;
-  height: 50px;
-  display: block;
-
-  @media only screen and (max-width: 700px) {
+export const PhotosContainerLink = styled(ContainerLink)`
+  @media only screen and (max-width: 480px) {
+    padding: 0 12px;
     display: none;
-  }
-
-  &:hover {
-    background-color: ${(props) => props.theme.tertiaryBackground};
-    outline: none;
-  }
-
-  &::after,
-  &:focus {
-    outline: none;
-  }
-  &:active {
-    background-color: ${(props) => props.theme.secondaryBackground};
   }
 `;
 
@@ -262,18 +187,21 @@ export const FriendActionContainer = styled.div`
   align-items: center;
   margin-left: auto;
 `;
-export const FriendBtn = styled.button`
+export const FriendActionButton = styled.button`
   padding: 8px 12px;
   border-radius: 6px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  color: ${(props) => props.theme.secondaryText};
   font-size: 1.5rem;
-  background-color: ${(props) => props.theme.secondaryBackground};
   transition: 0.1s;
   border: none;
   cursor: pointer;
+`;
+
+export const FriendBtn = styled(FriendActionButton)`
+  color: ${(props) => props.theme.secondaryText};
+  background-color: ${(props) => props.theme.secondaryBackground};
 
   &:focus {
     background-color: ${(props) => props.theme.secondaryBackground};
@@ -300,18 +228,9 @@ export const RespondContainer = styled.div`
   position: relative;
 `;
 
-export const RespondBtn = styled.button`
-  padding: 8px 12px;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+export const RespondBtn = styled(FriendActionButton)`
   color: ${(props) => props.theme.primaryText};
-  font-size: 1.5rem;
   background-color: ${(props) => props.theme.primaryBackground};
-  transition: 0.1s;
-  border-radius: 6px;
-  cursor: pointer;
 
   &&:focus {
     color: ${(props) => props.theme.primaryText};
@@ -342,17 +261,12 @@ export const ActionsContainer = styled.div`
   flex-direction: column;
 `;
 
-export const AcceptFriendBtn = styled.button`
-  text-align: left;
+export const AcceptFriendBtn = styled(FriendActionButton)`
+  justify-content: flex-start;
   position: relative;
-  border: none;
   padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1.5rem;
   background-color: #fff;
   color: ${(props) => props.theme.secondaryText};
-  transition: 0.1s;
   font-weight: 500;
 
   &:hover {
@@ -372,17 +286,13 @@ export const AcceptFriendBtn = styled.button`
   }
 `;
 
-export const RejectFriendBtn = styled.button`
-  text-align: left;
+export const RejectFriendBtn = styled(FriendActionButton)`
+  justify-content: flex-start;
   position: relative;
-  border: none;
   padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
   font-size: 1.5rem;
   background-color: #fff;
   color: ${(props) => props.theme.secondaryText};
-  transition: 0.1s;
   font-weight: 500;
 
   &:hover {
@@ -408,18 +318,9 @@ export const MessageContainer = styled.div`
   align-items: center;
   margin-left: 8px;
 `;
-export const MessageBtn = styled.button`
-  padding: 8px 12px;
-  display: flex;
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
-  justify-content: center;
-  align-items: flex-end;
+export const MessageBtn = styled(FriendActionButton)`
   color: ${(props) => props.theme.secondaryText};
-  font-size: 1.5rem;
   background-color: ${(props) => props.theme.secondaryBackground};
-  transition: 0.1s;
 
   &&:focus {
     background-color: ${(props) => props.theme.secondaryBackground};
@@ -435,7 +336,7 @@ export const MessageBtn = styled.button`
 
 export const MoreLinkContainer = styled.div`
   display: none;
-  @media only screen and (max-width: 700px) {
+  @media only screen and (max-width: 480px) {
     display: block;
   }
 `;
@@ -444,17 +345,13 @@ export const PopupLinkContainer = styled.div`
   flex-direction: column;
   width: 100%;
 `;
-export const PopupFriendsLink = styled.button`
-  text-align: left;
-  border: none;
+export const PopupActionLink = styled(FriendActionButton)`
+  justify-content: flex-start;
   width: 100%;
   padding: 8px;
-  border-radius: 6px;
   cursor: pointer;
-  font-size: 1.5rem;
   background-color: #fff;
   color: ${(props) => props.theme.secondaryText};
-  transition: 0.1s;
   font-weight: 500;
 
   &:hover {
@@ -473,49 +370,13 @@ export const PopupFriendsLink = styled.button`
     color: ${(props) => props.theme.secondaryText};
   }
 `;
-
-export const PopupPhotosLink = styled.button`
-  text-align: left;
-  border: none;
-  width: 100%;
-  padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1.5rem;
-  background-color: #fff;
-  color: ${(props) => props.theme.secondaryText};
-  transition: 0.1s;
-  font-weight: 500;
-
-  &:hover {
-    background-color: ${(props) => props.theme.tertiaryBackground};
-    color: ${(props) => props.theme.secondaryText};
-  }
-
-  &::after,
-  &:focus {
-    color: ${(props) => props.theme.secondaryText};
-    outline: none;
-  }
-
-  &:active {
-    background-color: ${(props) => props.theme.secondaryHoverBackground};
-    color: ${(props) => props.theme.secondaryText};
-  }
-`;
-
-export const MoreBtn = styled.button`
+export const MoreBtn = styled(FriendActionButton)`
   color: ${(props) => props.theme.tertiaryText};
-  font-size: 1.5rem;
   font-weight: bold;
-  border-radius: 6px;
-  border: 0;
   background-color: transparent;
-  cursor: pointer;
   margin: 6px 0;
   padding: 0 16px;
   height: 50px;
-  z-index: 10;
 
   &:hover {
     background-color: ${(props) => props.theme.tertiaryBackground};

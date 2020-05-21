@@ -12,8 +12,7 @@ import {
   ProfileBackgroundContainer,
   UserContainer,
   MoreLinkContainer,
-  PopupFriendsLink,
-  PopupPhotosLink,
+  PopupActionLink,
   PopupLinkContainer,
   MoreBtn,
   User,
@@ -22,12 +21,12 @@ import {
   UserDescription,
   UserDescriptionEdit,
   UserActionsContainer,
+  FriendActionContainer,
+  FriendBtn,
   TimelineContainerLink,
   AboutContainerLink,
   FriendsContainerLink,
   PhotosContainerLink,
-  FriendActionContainer,
-  FriendBtn,
   FriendText,
   RespondContainer,
   RespondBtn,
@@ -137,7 +136,7 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
       variables: {
         creator: user.username,
       },
-      update: async (proxy, result) => {
+      update: async (proxy) => {
         if (user && authUser) {
           const newData = { getSingleNotification: null };
 
@@ -272,9 +271,7 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
             }
           }}
         >
-          <AboutContainerLink type="link" data-testid="aboutLink">
-            About
-          </AboutContainerLink>
+          <AboutContainerLink>About</AboutContainerLink>
         </NavLink>
         <NavLink
           to={`/${user.username}/friends`}
@@ -286,7 +283,7 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
             }
           }}
         >
-          <FriendsContainerLink type="link">Friends</FriendsContainerLink>
+          <FriendsContainerLink>Friends</FriendsContainerLink>
         </NavLink>
         <NavLink
           to={`/${user.username}/photos`}
@@ -310,10 +307,10 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
           >
             <PopupLinkContainer>
               <Link to={`/${user.username}/friends`}>
-                <PopupFriendsLink>Friends</PopupFriendsLink>
+                <PopupActionLink>Friends</PopupActionLink>
               </Link>
               <Link to={`/${user.username}/photos`}>
-                <PopupPhotosLink>Photos</PopupPhotosLink>
+                <PopupActionLink>Photos</PopupActionLink>
               </Link>
             </PopupLinkContainer>
           </Popup>
@@ -417,7 +414,7 @@ const ProfileHeader = ({ user, authUser, readOnly }) => {
                 });
               }}
             >
-              <MessageBtn type="link">
+              <MessageBtn>
                 <ChatIcon width={20} height={20} />
               </MessageBtn>
             </MessageContainer>

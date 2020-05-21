@@ -36,7 +36,7 @@ export const CreatorFullName = styled.span`
   color: ${(props) => props.theme.secondaryText};
 `;
 
-export const TextContainer = styled.h1`
+export const TextContainer = styled.div`
   font-size: 1.5rem;
   color: ${(props) => props.theme.secondaryText};
 `;
