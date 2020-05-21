@@ -37,49 +37,40 @@ export const NewsFeedContainer = styled.div`
   }
 `;
 
-export const SearchBar = styled.input`
+export const SearchInput = styled.input`
+  height: 41px;
+  border-radius: 50px;
+  background-color: ${(props) => props.theme.inputColor};
+  border: none;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+
+  ::placeholder {
+    color: #8f9296;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const SearchBar = styled(SearchInput)`
   display: none;
   @media only screen and (min-width: 767px) {
     display: block;
     width: 240px;
-    height: 41px;
-    border-radius: 50px;
-    background-color: ${(props) => props.theme.inputColor};
-    border: none;
-    box-sizing: border-box;
     margin-right: 8px;
     padding-left: 40px;
-    font-size: 1.5rem;
     transition: 0.2s;
-
-    ::placeholder {
-      color: #8f9296;
-    }
-    &:focus {
-      outline: none;
-    }
   }
 `;
 
-export const SearchBarMobile = styled.input`
+export const SearchBarMobile = styled(SearchInput)`
   display: none;
   @media only screen and (max-width: 766px) {
     display: block;
     height: 41px;
     border-radius: 50px;
-    background-color: ${(props) => props.theme.inputColor};
-    border: none;
-    /* margin-left: 8px; */
-    /* width: 100%; */
     padding-left: 15px;
-    font-size: 1.5rem;
-
-    ::placeholder {
-      color: #8f9296;
-    }
-    &:focus {
-      outline: none;
-    }
   }
 `;
 
@@ -89,31 +80,27 @@ export const ProfileContainer = styled.div`
   margin: 0.5rem 1rem 0.5rem 0.5rem;
 `;
 
-export const BackArrowContainer = styled.div`
-  background-color: ${(props) => props.theme.inputColor};
+export const ActionContainer = styled.button`
   border-radius: 50%;
   display: flex;
+  border: none;
   align-items: center;
   justify-content: center;
   width: 41px;
   height: 41px;
-  margin-right: 0.5rem;
+  transition: 0.1s;
+  cursor: pointer;
 `;
 
-export const MessageContainer = styled.button`
+export const BackArrowContainer = styled(ActionContainer)`
+  background-color: ${(props) => props.theme.inputColor};
+  margin-right: 5px;
+`;
+
+export const MessageContainer = styled(ActionContainer)`
   padding: 0;
   background-color: ${(props) => props.theme.secondaryBackground};
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-right: 8px;
-  width: 41px;
-  height: 41px;
-  border: 0;
-  transition: 0.1s;
-  top: 0;
-  cursor: pointer;
 
   &:focus {
     background-color: ${(props) => props.theme.primaryBackground};
@@ -132,17 +119,11 @@ export const MessageContainer = styled.button`
   }
 `;
 
-export const NotificationContainer = styled.button`
+export const NotificationContainer = styled(ActionContainer)`
   padding: 0;
   background-color: ${(props) => props.theme.secondaryBackground};
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-right: 8px;
-  width: 41px;
-  height: 41px;
-  border: 0;
   transition: 0.1s;
   cursor: pointer;
 
@@ -205,20 +186,10 @@ export const Username = styled.h1`
     props.primary ? props.theme.primaryText : props.theme.secondaryText};
 `;
 
-export const SettingsContainer = styled.button`
+export const SettingsContainer = styled(ActionContainer)`
   padding: 0;
   background-color: ${(props) => props.theme.secondaryBackground};
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-right: 8px;
-  width: 41px;
-  height: 41px;
-  border: 0;
-  transition: 0.1s;
-  top: 0;
-  cursor: pointer;
 
   &:active,
   &:focus {
@@ -283,8 +254,7 @@ export const IconContainer = styled.div`
 
 export const UsersContainer = styled.div`
   background-color: #fff;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-radius: 8px;
   position: absolute;
   top: 50px;
   box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1),
