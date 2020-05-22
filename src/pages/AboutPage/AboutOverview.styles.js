@@ -35,36 +35,31 @@ export const AboutHeading = styled.p`
   margin: 20px 10px;
 `;
 
-export const Overview = styled.button`
-  color: ${(props) => props.theme.primaryText};
+export const SidebarButton = styled.button`
   border: none;
   width: 100%;
   text-align: left;
   font-size: 1.5rem;
-  background-color: ${(props) => props.theme.primaryBackground};
   padding: 10px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
   margin-bottom: 8px;
+`;
+
+export const Overview = styled(SidebarButton)`
+  color: ${(props) => props.theme.primaryText};
+  background-color: ${(props) => props.theme.primaryBackground};
 
   &:focus {
     outline: none;
   }
 `;
 
-export const WorkAndEducation = styled.button`
+export const WorkAndEducation = styled(SidebarButton)`
   color: ${(props) => props.theme.tertiaryText};
-  cursor: pointer;
-  border: none;
-  text-align: left;
-  width: 100%;
   background-color: #fff;
-  font-size: 1.5rem;
-  font-weight: 600;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 8px;
+
   &:hover {
     background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
@@ -81,21 +76,12 @@ export const WorkAndEducation = styled.button`
   }
 `;
 
-export const ContactAndBasicInfo = styled.button`
+export const ContactAndBasicInfo = styled(SidebarButton)`
   color: ${(props) => props.theme.tertiaryText};
-  cursor: pointer;
-  border: none;
-  text-align: left;
-  width: 100%;
   background-color: #fff;
-  font-size: 1.5rem;
-  font-weight: 600;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 8px;
+
   &:hover {
     background-color: ${(props) => props.theme.tertiaryBackground};
-    outline: none;
   }
 
   &::after,
@@ -122,37 +108,17 @@ export const WorkplaceContainer = styled.div`
   align-items: center;
 `;
 
-export const WorkplaceBody = styled.h1`
-  color: ${(props) => props.theme.secondaryText};
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin-left: 16px;
-`;
-
-export const SchoolContainer = styled.div`
+export const OverviewContainer = styled.div`
   margin-top: 16px;
   display: flex;
   align-items: center;
 `;
 
-export const SchoolBody = styled.h1`
+export const OverviewText = styled.h1`
   color: ${(props) => props.theme.secondaryText};
   font-size: 1.5rem;
-  margin-left: 16px;
   font-weight: 400;
-`;
-
-export const HomeContainer = styled.div`
-  margin-top: 16px;
-  display: flex;
-  align-items: center;
-`;
-
-export const HomeBody = styled.h1`
-  color: ${(props) => props.theme.secondaryText};
-  font-size: 1.5rem;
   margin-left: 16px;
-  font-weight: 400;
 `;
 
 export const AboutSkeleton = styled.div`
