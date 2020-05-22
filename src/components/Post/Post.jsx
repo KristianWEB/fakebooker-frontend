@@ -21,13 +21,11 @@ import {
   PopContainer,
   PopButton,
   LikesCount,
-  CommentsWrapper,
   CommentsCount,
-  LikesHeading,
-  CommentsHeading,
+  FooterHeading,
   CommentsContainer,
   PostImage,
-  LikeButton,
+  FooterButton,
 } from "./Post.styles";
 import { ReactComponent as CommentsSVG } from "../../assets/icons/chatbox.svg";
 import { ReactComponent as LikesSVG } from "../../assets/icons/thumbs-up.svg";
@@ -190,12 +188,12 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
       {post.image && <PostImage src={post.image} alt="post graphics" />}
       <PostFooter>
         {liked && !loading ? (
-          <LikeButton onClick={likePost}>
+          <FooterButton onClick={likePost}>
             <LikesSVG fill="#1876f2" width="25px" height="25px" />
             <LikesCount>{post.likes.length}</LikesCount>
-          </LikeButton>
+          </FooterButton>
         ) : (
-          <LikeButton onClick={likePost} disabled={loading}>
+          <FooterButton onClick={likePost} disabled={loading}>
             <LikesSVG fill="#65676b" width="25px" height="25px" />
             {loading ? (
               <Loader
@@ -208,20 +206,20 @@ const Post = ({ post, user, readOnly, onNewsfeed, onSinglePost }) => {
                 }}
               />
             ) : (
-              <LikesHeading>Like</LikesHeading>
+              <FooterHeading>Like</FooterHeading>
             )}
-          </LikeButton>
+          </FooterButton>
         )}
-        <CommentsWrapper>
+        <FooterButton>
           <CommentsSVG fill="#65676b" width="25px" height="25px" />
           <CommentsCount>
             {post.comments.length === 0 ? (
-              <CommentsHeading>Comment</CommentsHeading>
+              <FooterHeading>Comment</FooterHeading>
             ) : (
               post.comments.length
             )}
           </CommentsCount>
-        </CommentsWrapper>
+        </FooterButton>
       </PostFooter>
       <CommentsContainer>
         {post.comments.map((comment) => (

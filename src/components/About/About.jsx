@@ -5,10 +5,9 @@ import {
   AboutContainer,
   AboutHeading,
   HomeContainer,
-  HomeplaceBody,
+  InfoBody,
   StyledButton,
   WorkplaceContainer,
-  WorkplaceBody,
 } from "./About.styles";
 import { ReactComponent as HomeIcon } from "../../assets/icons/home.svg";
 import { ReactComponent as WorkplaceIcon } from "../../assets/icons/briefcase.svg";
@@ -20,19 +19,19 @@ const About = ({ readOnly, user }) => {
       {user.workPlace && (
         <WorkplaceContainer>
           <WorkplaceIcon width="20" height="20" fill="#65676b" />
-          <WorkplaceBody>
+          <InfoBody>
             Works at{" "}
             <span style={{ fontWeight: "bold" }}>{user.workPlace}</span>
-          </WorkplaceBody>
+          </InfoBody>
         </WorkplaceContainer>
       )}
       {user.homePlace && (
         <HomeContainer>
           <HomeIcon width="20" height="20" fill="#65676b" />
-          <HomeplaceBody>
+          <InfoBody>
             Lives in{" "}
             <span style={{ fontWeight: "bold" }}>{user.homePlace}</span>
-          </HomeplaceBody>
+          </InfoBody>
         </HomeContainer>
       )}
       {!readOnly && (

@@ -126,7 +126,7 @@ export const PublishBtn = styled.button`
   }
 `;
 
-export const ImageContainer = styled.div`
+export const AdditionalActionContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -146,7 +146,6 @@ export const ImageContainer = styled.div`
     background-color: ${(props) => props.theme.secondaryBackground};
   }
 `;
-
 export const PostImage = styled.div`
   background-image: url("${(props) => props.img}");
   display: block;
@@ -155,28 +154,6 @@ export const PostImage = styled.div`
   border-radius: 8px;
   min-height: 20rem;
 `;
-
-export const MarkdownContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 100%;
-
-  &:focus {
-    background-color: ${(props) => props.theme.tertiaryBackground};
-  }
-
-  &:hover {
-    background-color: ${(props) => props.theme.tertiaryBackground};
-  }
-
-  &:active {
-    background-color: ${(props) => props.theme.secondaryBackground};
-  }
-`;
-
 export const AdditionalActions = styled.div`
   display: flex;
   margin-left: auto;

@@ -69,13 +69,16 @@ export const CreatorImg = styled.img`
   border-radius: 50%;
 `;
 
-export const CreatorMessage = styled.div`
+export const Message = styled.div`
   font-size: 1.5rem;
   padding: 8px 12px;
   margin-left: 8px;
   font-family: "Roboto";
-  background-color: ${(props) => props.theme.secondaryBackground};
   border-radius: 18px;
+`;
+export const CreatorMessage = styled(Message)`
+  background-color: ${(props) => props.theme.secondaryBackground};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const AuthUserContainer = styled.div`
@@ -85,14 +88,9 @@ export const AuthUserContainer = styled.div`
   margin-left: 20%;
 `;
 
-export const AuthUserMessage = styled.div`
-  font-size: 1.5rem;
-  padding: 8px 12px;
-  margin-left: 8px;
-  font-family: "Roboto";
+export const AuthUserMessage = styled(Message)`
   background-color: #0084ff;
   color: #fff;
-  border-radius: 18px;
 `;
 
 export const InputContainer = styled.form`

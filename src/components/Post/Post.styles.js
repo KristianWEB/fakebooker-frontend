@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const PostContainer = styled.div`
   margin: 1.6rem 0;
-  /* padding: 13px; */
   &&:first-child {
     margin-top: 0;
   }
@@ -139,7 +138,7 @@ export const PostFooter = styled.div`
     margin: 0;
   }
 `;
-export const LikeButton = styled.button`
+export const FooterButton = styled.button`
   display: flex;
   cursor: pointer;
   align-items: center;
@@ -164,94 +163,57 @@ export const LikeButton = styled.button`
     background-color: ${(props) => props.theme.secondaryBackground};
   }
 `;
-export const LikesCount = styled.p`
+
+export const Count = styled.p`
   font-size: 1.5rem;
+  margin: 0;
   margin-left: 5px;
-  margin-top: 5px;
   line-height: 1;
+`;
+
+export const LikesCount = styled(Count)`
+  margin-top: 5px;
   color: ${(props) => props.theme.primaryText};
-  margin-bottom: 0;
-`;
-export const CommentsWrapper = styled.div`
-  margin: 3px 0;
-  margin-left: 0.5rem;
-  cursor: pointer;
-  border-radius: 6px;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 3;
-
-  &:hover {
-    background-color: ${(props) => props.theme.tertiaryBackground};
-    outline: none;
-  }
-
-  &::after,
-  &:focus {
-    outline: none;
-  }
-  &:active {
-    background-color: ${(props) => props.theme.secondaryBackground};
-  }
 `;
 
-export const CommentsCount = styled.p`
-  font-size: 1.5rem;
-  margin: 0;
+export const CommentsCount = styled(Count)`
   color: ${(props) => props.theme.secondaryTextColor};
-  margin-left: 5px;
 `;
 
-export const SharesWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  justify-content: center;
-  flex: 3;
-  margin: 3px 0;
-  margin-left: 0.5rem;
-  border-radius: 6px;
-  padding: 5px;
+// export const SharesWrapper = styled.div`
+//   display: flex;
+//   align-items: center;
+//   cursor: pointer;
+//   justify-content: center;
+//   flex: 3;
+//   margin: 3px 0;
+//   margin-left: 0.5rem;
+//   border-radius: 6px;
+//   padding: 5px;
 
-  &:hover {
-    background-color: ${(props) => props.theme.tertiaryBackground};
-    outline: none;
-  }
+//   &:hover {
+//     background-color: ${(props) => props.theme.tertiaryBackground};
+//     outline: none;
+//   }
 
-  &::after,
-  &:focus {
-    outline: none;
-  }
-  &:active {
-    background-color: ${(props) => props.theme.secondaryBackground};
-  }
-`;
-export const SharesCount = styled.p`
-  font-size: 1.5rem;
-  margin: 0;
-  margin-left: 6px;
-  color: ${(props) => props.theme.secondaryText};
-`;
+//   &::after,
+//   &:focus {
+//     outline: none;
+//   }
+//   &:active {
+//     background-color: ${(props) => props.theme.secondaryBackground};
+//   }
+// `;
+// export const SharesCount = styled.p`
+//   font-size: 1.5rem;
+//   margin: 0;
+//   margin-left: 6px;
+//   color: ${(props) => props.theme.secondaryText};
+// `;
 
-export const LikesHeading = styled.span`
-  font-size: 1.5rem;
-  margin-left: 5px;
-  color: ${(props) => props.theme.tertiaryText};
-  line-height: 1;
-  margin-top: 5px;
-`;
-export const CommentsHeading = styled.span`
+export const FooterHeading = styled.span`
   font-size: 1.5rem;
   margin-left: 5px;
-  color: ${(props) => props.theme.tertiaryText};
-  line-height: 1;
-  margin-top: 5px;
-`;
-
-export const SharesHeading = styled.span`
-  font-size: 1.5rem;
   color: ${(props) => props.theme.tertiaryText};
   line-height: 1;
   margin-top: 5px;
@@ -274,13 +236,4 @@ export const PostSkeleton = styled.div`
   background: #fff;
   border-radius: 8px;
   padding: 13px;
-
-  /* svg {
-    width: 100%;
-    height: 56px;
-    rect {
-      width: 100%;
-      height: 56px;
-    }
-  } */
 `;

@@ -15,23 +15,18 @@ import {
   ContactAndBasicInfo,
   AboutBodyContainer,
   WorkplaceContainer,
-  WorkplaceHeading,
-  WorkplaceAction,
-  WorkplaceSpan,
   SchoolContainer,
-  SchoolHeading,
-  SchoolAction,
-  SchoolSpan,
+  ActionHeading,
+  ActionSpan,
+  ActionBody,
+  ActionButton,
   School,
   WorkPlace,
   AboutSkeleton,
-  WorkPlaceBody,
-  SchoolBody,
   SettingsContainer,
   WorkplaceActionContainer,
-  WorkplaceInput,
+  ActionInput,
   SchoolActionContainer,
-  SchoolInput,
   CancelButton,
   SaveButton,
   Footer,
@@ -142,28 +137,28 @@ const AboutPageWorkAndEducation = () => {
             {readOnly() ? (
               <AboutBodyContainer>
                 <WorkplaceContainer>
-                  <WorkplaceHeading>Work</WorkplaceHeading>
+                  <ActionHeading>Work</ActionHeading>
                   {profileData.loadFromUrlUser.workPlace && (
                     <WorkPlace>
-                      <WorkPlaceBody data-testid="workplace">
+                      <ActionBody>
                         Works at{" "}
                         <span style={{ fontWeight: "bold" }}>
                           {profileData.loadFromUrlUser.workPlace}
                         </span>
-                      </WorkPlaceBody>
+                      </ActionBody>
                     </WorkPlace>
                   )}
                 </WorkplaceContainer>
                 <SchoolContainer>
-                  <SchoolHeading>High School</SchoolHeading>
+                  <ActionHeading>High School</ActionHeading>
                   {profileData.loadFromUrlUser.school && (
                     <School>
-                      <SchoolBody>
+                      <ActionBody>
                         Studies at{" "}
                         <span style={{ fontWeight: "bold" }}>
                           {profileData.loadFromUrlUser.school}
                         </span>
-                      </SchoolBody>
+                      </ActionBody>
                     </School>
                   )}
                 </SchoolContainer>
@@ -171,12 +166,12 @@ const AboutPageWorkAndEducation = () => {
             ) : (
               <AboutBodyContainer>
                 <WorkplaceContainer>
-                  <WorkplaceHeading>Work</WorkplaceHeading>
+                  <ActionHeading>Work</ActionHeading>
                   {addWorkplace && (
                     <WorkplaceActionContainer
                       onSubmit={handleSubmit(onSubmitWorkplace)}
                     >
-                      <WorkplaceInput
+                      <ActionInput
                         type="text"
                         name="workplace"
                         placeholder="Company"
@@ -205,19 +200,19 @@ const AboutPageWorkAndEducation = () => {
                     </WorkplaceActionContainer>
                   )}
                   {!addWorkplace && !userData.loadUser.workPlace && (
-                    <WorkplaceAction onClick={() => setAddWorkplace(true)}>
+                    <ActionButton onClick={() => setAddWorkplace(true)}>
                       <PlusIcon width={30} height={30} />
-                      <WorkplaceSpan>Add a workplace</WorkplaceSpan>
-                    </WorkplaceAction>
+                      <ActionSpan>Add a workplace</ActionSpan>
+                    </ActionButton>
                   )}
                   {userData.loadUser.workPlace && (
                     <WorkPlace>
-                      <WorkPlaceBody data-testid="workplace">
+                      <ActionBody>
                         Works at{" "}
                         <span style={{ fontWeight: "bold" }}>
                           {userData.loadUser.workPlace}
                         </span>
-                      </WorkPlaceBody>
+                      </ActionBody>
                       <SettingsContainer onClick={deleteWorkplaceCb}>
                         {!deleteWorkplaceLoading ? (
                           <CloseIcon width={20} height={20} />
@@ -234,12 +229,12 @@ const AboutPageWorkAndEducation = () => {
                   )}
                 </WorkplaceContainer>
                 <SchoolContainer>
-                  <SchoolHeading>High School</SchoolHeading>
+                  <ActionHeading>High School</ActionHeading>
                   {addSchool && (
                     <SchoolActionContainer
                       onSubmit={handleSubmit(onSubmitSchool)}
                     >
-                      <SchoolInput
+                      <ActionInput
                         type="text"
                         placeholder="School"
                         name="school"
@@ -270,19 +265,19 @@ const AboutPageWorkAndEducation = () => {
                     </SchoolActionContainer>
                   )}
                   {!addSchool && !userData.loadUser.school && (
-                    <SchoolAction onClick={() => setAddSchool(true)}>
+                    <ActionButton onClick={() => setAddSchool(true)}>
                       <PlusIcon width={30} height={30} />
-                      <SchoolSpan>Add a high school</SchoolSpan>
-                    </SchoolAction>
+                      <ActionSpan>Add a high school</ActionSpan>
+                    </ActionButton>
                   )}
                   {userData.loadUser.school && (
                     <School>
-                      <SchoolBody>
+                      <ActionBody>
                         Studies at{" "}
                         <span style={{ fontWeight: "bold" }}>
                           {userData.loadUser.school}
                         </span>
-                      </SchoolBody>
+                      </ActionBody>
                       <SettingsContainer onClick={deleteSchoolCb}>
                         {!deleteSchoolLoading ? (
                           <CloseIcon width={20} height={20} />

@@ -33,18 +33,22 @@ export const AboutHeading = styled.p`
   margin: 20px 10px;
 `;
 
-export const Overview = styled.button`
-  color: ${(props) => props.theme.tertiaryText};
-  cursor: pointer;
+export const SidebarButton = styled.button`
   border: none;
-  text-align: left;
   width: 100%;
-  background-color: #fff;
+  text-align: left;
   font-size: 1.5rem;
-  font-weight: 600;
   padding: 10px;
   border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
   margin-bottom: 8px;
+`;
+
+export const Overview = styled(SidebarButton)`
+  color: ${(props) => props.theme.tertiaryText};
+  background-color: #fff;
+
   &:hover {
     background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
@@ -61,18 +65,10 @@ export const Overview = styled.button`
   }
 `;
 
-export const WorkAndEducation = styled.button`
+export const WorkAndEducation = styled(SidebarButton)`
   color: ${(props) => props.theme.tertiaryText};
-  cursor: pointer;
-  border: none;
-  text-align: left;
-  width: 100%;
   background-color: #fff;
-  font-size: 1.5rem;
-  font-weight: 600;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 8px;
+
   &:hover {
     background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
@@ -89,18 +85,9 @@ export const WorkAndEducation = styled.button`
   }
 `;
 
-export const ContactAndBasicInfo = styled.button`
+export const ContactAndBasicInfo = styled(SidebarButton)`
   color: ${(props) => props.theme.primaryText};
-  border: none;
-  width: 100%;
-  text-align: left;
-  font-size: 1.5rem;
   background-color: ${(props) => props.theme.primaryBackground};
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  margin-bottom: 8px;
 
   &:focus {
     outline: none;
@@ -122,7 +109,7 @@ export const BasicInfoHeading = styled.h1`
   margin: 0;
 `;
 
-export const GenderAction = styled.button`
+export const ActionButton = styled.button`
   border: none;
   cursor: pointer;
   background-color: #fff;
@@ -137,29 +124,7 @@ export const GenderAction = styled.button`
   }
 `;
 
-export const GenderSpan = styled.span`
-  color: ${(props) => props.theme.primaryText};
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-left: 12px;
-`;
-
-export const BirthdayAction = styled.button`
-  border: none;
-  cursor: pointer;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  padding: 0;
-  margin-left: -5px;
-  margin-top: 10px;
-  margin-right: auto;
-  &:focus {
-    outline: none;
-  }
-`;
-
-export const BirthdaySpan = styled.span`
+export const ActionSpan = styled.span`
   color: ${(props) => props.theme.primaryText};
   font-size: 1.5rem;
   font-weight: 500;
@@ -185,28 +150,6 @@ export const BirthdayInput = styled.input`
     border: 1px solid ${(props) => props.theme.primaryText};
   }
 `;
-export const HomeplaceAction = styled.button`
-  border: none;
-  cursor: pointer;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  padding: 0;
-  margin-left: -5px;
-  margin-top: 10px;
-  margin-right: auto;
-  &:focus {
-    outline: none;
-  }
-`;
-
-export const HomeplaceSpan = styled.span`
-  color: ${(props) => props.theme.primaryText};
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-left: 12px;
-`;
-
 export const ActionContainer = styled.div`
   display: flex;
   width: 100%;
@@ -256,17 +199,21 @@ export const Footer = styled.div`
   justify-content: flex-end;
 `;
 
-export const CancelButton = styled.button`
-  margin-right: 8px;
+export const FooterButton = styled.button`
   font-weight: 500;
-  background-color: ${(props) => props.theme.secondaryBackground};
-  color: ${(props) => props.theme.secondaryText};
+  position: relative;
   border: none;
   font-size: 1.5rem;
   border-radius: 6px;
-  padding: 8px 12px;
+  padding: 8px 30px;
   transition: 0.1s;
   cursor: pointer;
+`;
+
+export const CancelButton = styled(FooterButton)`
+  margin-right: 8px;
+  background-color: ${(props) => props.theme.secondaryBackground};
+  color: ${(props) => props.theme.secondaryText};
 
   &&:focus {
     border-color: none;
@@ -286,17 +233,9 @@ export const CancelButton = styled.button`
   }
 `;
 
-export const SaveButton = styled.button`
+export const SaveButton = styled(FooterButton)`
   background-color: ${(props) => props.theme.primaryText};
   color: #fff;
-  position: relative;
-  font-weight: 500;
-  transition: 0.1s;
-  font-size: 1.5rem;
-  border: none;
-  padding: 8px 30px;
-  border-radius: 6px;
-  cursor: pointer;
 
   &&:focus,
   &&:hover {
@@ -311,21 +250,7 @@ export const SaveButton = styled.button`
   }
 `;
 
-export const Gender = styled.div`
-  font-size: 1.5rem;
-  display: flex;
-  color: ${(props) => props.theme.secondaryText};
-  align-items: center;
-`;
-
-export const Birthday = styled.div`
-  font-size: 1.5rem;
-  display: flex;
-  color: ${(props) => props.theme.secondaryText};
-  align-items: center;
-`;
-
-export const Homeplace = styled.div`
+export const ActionBody = styled.div`
   font-size: 1.5rem;
   display: flex;
   color: ${(props) => props.theme.secondaryText};
@@ -357,7 +282,7 @@ export const SettingsContainer = styled.button`
   }
 `;
 
-export const GenderBody = styled.div`
+export const ActionBodyContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -399,14 +324,6 @@ export const BirthdayCaption = styled.p`
   margin: 0;
 `;
 
-export const HomeplaceBody = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 12px;
-  margin-top: 20px;
-`;
-
 export const UserHomeplace = styled.p`
   margin: 0;
   font-size: 1.5rem;
@@ -420,23 +337,12 @@ export const HomeplaceCaption = styled.p`
   margin: 0;
 `;
 
-export const FemaleGender = styled.input`
+export const Gender = styled.input`
   margin-right: 8px;
   cursor: pointer;
 `;
 
-export const MaleGender = styled.input`
-  margin-right: 8px;
-  cursor: pointer;
-`;
-
-export const FemaleLabel = styled.label`
-  line-height: 1;
-  font-size: 1.5rem;
-  color: ${(props) => props.theme.secondaryText};
-`;
-
-export const MaleLabel = styled.label`
+export const Label = styled.label`
   line-height: 1;
   font-size: 1.5rem;
   color: ${(props) => props.theme.secondaryText};

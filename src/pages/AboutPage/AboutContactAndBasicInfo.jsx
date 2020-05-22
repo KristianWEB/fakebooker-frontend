@@ -11,46 +11,37 @@ import {
   AboutContainer,
   BirthdayInput,
   AboutSidebar,
+  Label,
+  ActionButton,
   AboutHeading,
   Overview,
   WorkAndEducation,
   ContactAndBasicInfo,
   AboutBodyContainer,
   BasicInfoHeading,
-  GenderAction,
-  GenderSpan,
   ActionContainer,
-  BirthdayAction,
-  BirthdaySpan,
-  HomeplaceAction,
-  HomeplaceSpan,
   GenderActionContainer,
   BirthdayActionContainer,
   Footer,
   CancelButton,
   SaveButton,
   Gender,
-  Birthday,
   SettingsContainer,
   HomeplaceActionContainer,
   HomeplaceInput,
-  Homeplace,
-  GenderBody,
   UserGender,
   GenderCaption,
   UserBirthday,
   BirthdayCaption,
+  ActionBodyContainer,
   UserHomeplace,
   HomeplaceCaption,
   BirthdayBody,
-  HomeplaceBody,
   FemaleContainer,
-  FemaleGender,
-  FemaleLabel,
   MaleContainer,
-  MaleGender,
-  MaleLabel,
   GenderContainer,
+  ActionBody,
+  ActionSpan,
 } from "./AboutContactAndBasicInfo.styles";
 import {
   LOAD_USER,
@@ -191,16 +182,16 @@ const AboutContactAndBasicInfo = () => {
                   {profileData.loadFromUrlUser.gender && (
                     <Gender>
                       <GenderIcon width={20} height={20} fill="#65676b" />
-                      <GenderBody>
+                      <ActionBodyContainer>
                         <UserGender>
                           {profileData.loadFromUrlUser.gender}
                         </UserGender>
                         <GenderCaption>Gender</GenderCaption>
-                      </GenderBody>
+                      </ActionBodyContainer>
                     </Gender>
                   )}
                   {profileData.loadFromUrlUser.birthday && (
-                    <Birthday>
+                    <ActionBody>
                       <BirthdayIcon width={20} height={20} fill="#65676b" />
                       <BirthdayBody>
                         <UserBirthday>
@@ -210,18 +201,18 @@ const AboutContactAndBasicInfo = () => {
                         </UserBirthday>
                         <BirthdayCaption>Birthday</BirthdayCaption>
                       </BirthdayBody>
-                    </Birthday>
+                    </ActionBody>
                   )}
                   {profileData.loadFromUrlUser.homePlace && (
-                    <Homeplace>
+                    <ActionBody>
                       <HomeIcon width={20} height={20} fill="#65676b" />
-                      <HomeplaceBody>
+                      <ActionBodyContainer>
                         <UserHomeplace>
                           {profileData.loadFromUrlUser.homePlace}
                         </UserHomeplace>
                         <HomeplaceCaption>Homeplace</HomeplaceCaption>
-                      </HomeplaceBody>
-                    </Homeplace>
+                      </ActionBodyContainer>
+                    </ActionBody>
                   )}
                 </ActionContainer>
               ) : (
@@ -232,22 +223,22 @@ const AboutContactAndBasicInfo = () => {
                     >
                       <GenderContainer>
                         <FemaleContainer>
-                          <FemaleGender
+                          <Gender
                             name="gender"
                             value="Female"
                             type="radio"
                             ref={register}
                           />
-                          <FemaleLabel htmlFor="female">Female</FemaleLabel>
+                          <Label htmlFor="female">Female</Label>
                         </FemaleContainer>
                         <MaleContainer>
-                          <MaleGender
+                          <Gender
                             value="Male"
                             name="gender"
                             type="radio"
                             ref={register}
                           />
-                          <MaleLabel htmlFor="male">Male</MaleLabel>
+                          <Label htmlFor="male">Male</Label>
                         </MaleContainer>
                       </GenderContainer>
                       <Footer>
@@ -274,18 +265,18 @@ const AboutContactAndBasicInfo = () => {
                     </GenderActionContainer>
                   )}
                   {!addGender && userData && !userData.loadUser.gender && (
-                    <GenderAction onClick={() => setAddGender(true)}>
+                    <ActionButton onClick={() => setAddGender(true)}>
                       <PlusIcon width={30} height={30} />
-                      <GenderSpan>Gender</GenderSpan>
-                    </GenderAction>
+                      <ActionSpan>Gender</ActionSpan>
+                    </ActionButton>
                   )}
                   {userData && userData.loadUser.gender && (
-                    <Gender>
+                    <ActionBody>
                       <GenderIcon width={20} height={20} fill="#65676b" />
-                      <GenderBody>
+                      <ActionBodyContainer>
                         <UserGender>{userData.loadUser.gender}</UserGender>
                         <GenderCaption>Gender</GenderCaption>
-                      </GenderBody>
+                      </ActionBodyContainer>
                       <SettingsContainer onClick={deleteGenderCb}>
                         {!deleteGenderLoading ? (
                           <CloseIcon width={20} height={20} />
@@ -298,7 +289,7 @@ const AboutContactAndBasicInfo = () => {
                           />
                         )}
                       </SettingsContainer>
-                    </Gender>
+                    </ActionBody>
                   )}
                   {addBirthday && (
                     <BirthdayActionContainer
@@ -334,13 +325,13 @@ const AboutContactAndBasicInfo = () => {
                     </BirthdayActionContainer>
                   )}
                   {!addBirthday && userData && !userData.loadUser.birthday && (
-                    <BirthdayAction onClick={() => setAddBirthday(true)}>
+                    <ActionButton onClick={() => setAddBirthday(true)}>
                       <PlusIcon width={30} height={30} />
-                      <BirthdaySpan>Birthday</BirthdaySpan>
-                    </BirthdayAction>
+                      <ActionSpan>Birthday</ActionSpan>
+                    </ActionButton>
                   )}
                   {userData && userData.loadUser.birthday && (
-                    <Birthday>
+                    <ActionBody>
                       <BirthdayIcon width={20} height={20} fill="#65676b" />
                       <BirthdayBody>
                         <UserBirthday>
@@ -362,7 +353,7 @@ const AboutContactAndBasicInfo = () => {
                           />
                         )}
                       </SettingsContainer>
-                    </Birthday>
+                    </ActionBody>
                   )}
                   {addHomeplace && (
                     <HomeplaceActionContainer
@@ -397,20 +388,20 @@ const AboutContactAndBasicInfo = () => {
                     </HomeplaceActionContainer>
                   )}
                   {!addHomeplace && userData && !userData.loadUser.homePlace && (
-                    <HomeplaceAction onClick={() => setAddHomeplace(true)}>
+                    <ActionButton onClick={() => setAddHomeplace(true)}>
                       <PlusIcon width={30} height={30} />
-                      <HomeplaceSpan>Homeplace</HomeplaceSpan>
-                    </HomeplaceAction>
+                      <ActionSpan>Homeplace</ActionSpan>
+                    </ActionButton>
                   )}
                   {userData && userData.loadUser.homePlace && (
-                    <Homeplace>
+                    <ActionBody>
                       <HomeIcon width={20} height={20} fill="#65676b" />
-                      <HomeplaceBody>
+                      <ActionBodyContainer>
                         <UserHomeplace>
                           {userData.loadUser.homePlace}
                         </UserHomeplace>
                         <HomeplaceCaption>Homeplace</HomeplaceCaption>
-                      </HomeplaceBody>
+                      </ActionBodyContainer>
                       <SettingsContainer onClick={deleteHomeplaceCb}>
                         {!deleteHomeplaceLoading ? (
                           <CloseIcon width={20} height={20} />
@@ -423,7 +414,7 @@ const AboutContactAndBasicInfo = () => {
                           />
                         )}
                       </SettingsContainer>
-                    </Homeplace>
+                    </ActionBody>
                   )}
                 </ActionContainer>
               )}

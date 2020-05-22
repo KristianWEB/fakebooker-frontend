@@ -8,14 +8,11 @@ import { LOGIN_USER } from "../../utils/queries";
 
 import {
   LoginFormContainer,
-  EmailLabel,
-  PasswordLabel,
-  EmailInput,
-  PasswordInput,
+  Label,
+  Input,
+  InputContainer,
   StyledButton,
   LoginHeading,
-  EmailContainer,
-  PasswordContainer,
   ErrorMessageContainer,
   ErrorMessageHeading,
   RegisterContainer,
@@ -50,9 +47,9 @@ const LoginForm = () => {
     <LoginFormContainer>
       <LoginHeading>Sign in to Fakebooker</LoginHeading>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <EmailContainer>
-          <EmailLabel>Email</EmailLabel>
-          <EmailInput
+        <InputContainer>
+          <Label>Email</Label>
+          <Input
             name="email"
             ref={register({
               required: "Email is required",
@@ -64,10 +61,10 @@ const LoginForm = () => {
               <ErrorMessageHeading>{errors.email.message}</ErrorMessageHeading>
             </ErrorMessageContainer>
           )}
-        </EmailContainer>
-        <PasswordContainer>
-          <PasswordLabel>Password</PasswordLabel>
-          <PasswordInput
+        </InputContainer>
+        <InputContainer>
+          <Label>Password</Label>
+          <Input
             name="password"
             type="password"
             ref={register({
@@ -82,7 +79,7 @@ const LoginForm = () => {
               </ErrorMessageHeading>
             </ErrorMessageContainer>
           )}
-        </PasswordContainer>
+        </InputContainer>
         <StyledButton htmlType="submit" disabled={loading}>
           Sign in
           {loading && (
