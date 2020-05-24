@@ -73,7 +73,7 @@ const RegisterForm = () => {
                 required: "First name is required",
                 pattern: {
                   value: /^[a-zA-Z]+$/,
-                  message: "Last name is not valid",
+                  message: "First name is not valid",
                 },
               })}
             />
