@@ -71,6 +71,10 @@ const RegisterForm = () => {
               name="firstName"
               ref={register({
                 required: "First name is required",
+                pattern: {
+                  value: /^[a-zA-Z]+$/,
+                  message: "Last name is not valid",
+                },
               })}
             />
             {errors.firstName && (
@@ -88,6 +92,10 @@ const RegisterForm = () => {
               name="lastName"
               ref={register({
                 required: "Last name is required",
+                pattern: {
+                  value: /^[a-zA-Z]+$/,
+                  message: "Last name is not valid",
+                },
               })}
             />
             {errors.lastName && (
@@ -107,7 +115,7 @@ const RegisterForm = () => {
             ref={register({
               required: "Email is required",
               pattern: {
-                value: /\S+@\S+\.\S+/,
+                value: /^\w+@\w+\.\w+$/,
                 message: "Email is not valid",
               },
             })}
