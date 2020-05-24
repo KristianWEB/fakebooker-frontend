@@ -18,10 +18,9 @@ import {
   CreatePostInputContainer,
   PublishBtn,
   PublishBtnContainer,
-  ImageContainer,
+  AdditionalActionContainer,
   PostImage,
   EndPositionContainer,
-  MarkdownContainer,
   AdditionalActions,
 } from "./CreatePostActive.styles";
 import { ReactComponent as CloseBtn } from "../../assets/icons/close.svg";
@@ -85,12 +84,12 @@ const CreatePostActive = ({ user, closeModal, onNewsfeed }) => {
             {user.firstName} {user.lastName}
           </UserName>
           <AdditionalActions>
-            <ImageContainer>
+            <AdditionalActionContainer>
               <Image setImage={setImage} loading={setImageLoading} />
-            </ImageContainer>
-            <MarkdownContainer>
+            </AdditionalActionContainer>
+            <AdditionalActionContainer>
               <MarkdownIcon width={20} height={20} />
-            </MarkdownContainer>
+            </AdditionalActionContainer>
           </AdditionalActions>
         </User>
         <CreatePostInputContainer>

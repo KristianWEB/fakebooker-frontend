@@ -12,12 +12,8 @@ import {
   Overview,
   WorkAndEducation,
   ContactAndBasicInfo,
-  WorkplaceContainer,
-  WorkplaceBody,
-  SchoolContainer,
-  SchoolBody,
-  HomeContainer,
-  HomeBody,
+  OverviewContainer,
+  OverviewText,
 } from "./AboutOverview.styles";
 import { LOAD_USER, LOAD_FROM_URL_USER } from "../../utils/queries";
 import { ReactComponent as WorkplaceIcon } from "../../assets/icons/briefcase.svg";
@@ -73,9 +69,9 @@ const AboutPageOverview = () => {
             </AboutSidebar>
             {readOnly() ? (
               <AboutBodyContainer>
-                <WorkplaceContainer>
+                <OverviewContainer>
                   <WorkplaceIcon width={20} height={20} fill="#65676b" />
-                  <WorkplaceBody>
+                  <OverviewText>
                     {profileData.loadFromUrlUser.workPlace ? (
                       <>
                         Works at
@@ -89,11 +85,11 @@ const AboutPageOverview = () => {
                         No workplace to show
                       </span>
                     )}
-                  </WorkplaceBody>
-                </WorkplaceContainer>
-                <SchoolContainer>
+                  </OverviewText>
+                </OverviewContainer>
+                <OverviewContainer>
                   <SchoolIcon width={20} height={20} fill="#65676b" />
-                  <SchoolBody>
+                  <OverviewText>
                     {profileData.loadFromUrlUser.school ? (
                       <>
                         Studies at{" "}
@@ -106,11 +102,11 @@ const AboutPageOverview = () => {
                         No school to show
                       </span>
                     )}
-                  </SchoolBody>
-                </SchoolContainer>
-                <HomeContainer>
+                  </OverviewText>
+                </OverviewContainer>
+                <OverviewContainer>
                   <HomeIcon width={20} height={20} fill="#65676b" />
-                  <HomeBody>
+                  <OverviewText>
                     {profileData.loadFromUrlUser.homePlace ? (
                       <>
                         Lives in{" "}
@@ -123,14 +119,14 @@ const AboutPageOverview = () => {
                         No homeplace to show
                       </span>
                     )}
-                  </HomeBody>
-                </HomeContainer>
+                  </OverviewText>
+                </OverviewContainer>
               </AboutBodyContainer>
             ) : (
               <AboutBodyContainer>
-                <WorkplaceContainer>
+                <OverviewContainer>
                   <WorkplaceIcon width={20} height={20} fill="#65676b" />
-                  <WorkplaceBody>
+                  <OverviewText>
                     {userData.loadUser.workPlace ? (
                       <>
                         Works at
@@ -144,11 +140,11 @@ const AboutPageOverview = () => {
                         No workplace to show
                       </span>
                     )}
-                  </WorkplaceBody>
-                </WorkplaceContainer>
-                <SchoolContainer>
+                  </OverviewText>
+                </OverviewContainer>
+                <OverviewContainer>
                   <SchoolIcon width={20} height={20} fill="#65676b" />
-                  <SchoolBody>
+                  <OverviewText>
                     {userData.loadUser.school ? (
                       <>
                         Studies at{" "}
@@ -161,11 +157,11 @@ const AboutPageOverview = () => {
                         No school to show
                       </span>
                     )}
-                  </SchoolBody>
-                </SchoolContainer>
-                <HomeContainer>
+                  </OverviewText>
+                </OverviewContainer>
+                <OverviewContainer>
                   <HomeIcon width={20} height={20} fill="#65676b" />
-                  <HomeBody>
+                  <OverviewText>
                     {userData.loadUser.homePlace ? (
                       <>
                         Lives in{" "}
@@ -178,8 +174,8 @@ const AboutPageOverview = () => {
                         No homeplace to show
                       </span>
                     )}
-                  </HomeBody>
-                </HomeContainer>
+                  </OverviewText>
+                </OverviewContainer>
               </AboutBodyContainer>
             )}
           </>

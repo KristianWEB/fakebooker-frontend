@@ -34,7 +34,7 @@ import {
 } from "./ProfilePage.styles";
 
 const ProfilePage = () => {
-  const { data: userData, loading: authUserLoading } = useQuery(LOAD_USER);
+  const { data: userData } = useQuery(LOAD_USER);
   const [pageLoading, setPageLoading] = useState(true);
 
   useEffect(() => {
@@ -215,7 +215,7 @@ const ProfilePage = () => {
             postsData.getPosts.map((post) => (
               <Post key={post.id} post={post} user={userData.loadUser} />
             ))}
-          {!postsData && !readOnly() && authUserLoading && (
+          {!postsData && !readOnly() && (
             <>
               <PostSkeleton>
                 <ContentLoader

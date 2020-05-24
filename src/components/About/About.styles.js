@@ -34,21 +34,13 @@ export const WorkplaceContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-export const WorkplaceBody = styled.p`
-  margin: 0;
-  margin-left: 12px;
-  line-height: 1;
-  font-size: 1.5rem;
-  color: ${(props) => props.theme.secondaryText};
-`;
-
 export const HomeContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 `;
 
-export const HomeplaceBody = styled.p`
+export const InfoBody = styled.p`
   margin: 0;
   margin-left: 12px;
   margin-top: 3px;

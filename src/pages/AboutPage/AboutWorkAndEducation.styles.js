@@ -33,18 +33,22 @@ export const AboutHeading = styled.p`
   margin: 20px 10px;
 `;
 
-export const Overview = styled.button`
-  color: ${(props) => props.theme.tertiaryText};
-  cursor: pointer;
+export const SidebarButton = styled.button`
   border: none;
-  text-align: left;
   width: 100%;
-  background-color: #fff;
+  text-align: left;
   font-size: 1.5rem;
-  font-weight: 600;
   padding: 10px;
   border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
   margin-bottom: 8px;
+`;
+
+export const Overview = styled(SidebarButton)`
+  color: ${(props) => props.theme.tertiaryText};
+  background-color: #fff;
+
   &:hover {
     background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
@@ -61,36 +65,19 @@ export const Overview = styled.button`
   }
 `;
 
-export const WorkAndEducation = styled.button`
+export const WorkAndEducation = styled(SidebarButton)`
   color: ${(props) => props.theme.primaryText};
-  border: none;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  font-size: 1.5rem;
   background-color: ${(props) => props.theme.primaryBackground};
-  padding: 10px;
-  border-radius: 6px;
-  font-weight: 600;
-  margin-bottom: 8px;
 
   &:focus {
     outline: none;
   }
 `;
 
-export const ContactAndBasicInfo = styled.button`
+export const ContactAndBasicInfo = styled(SidebarButton)`
   color: ${(props) => props.theme.tertiaryText};
-  cursor: pointer;
-  border: none;
-  text-align: left;
-  width: 100%;
   background-color: #fff;
-  font-size: 1.5rem;
-  font-weight: 600;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 8px;
+
   &:hover {
     background-color: ${(props) => props.theme.tertiaryBackground};
     outline: none;
@@ -118,7 +105,7 @@ export const AboutBodyContainer = styled.div`
 export const WorkplaceContainer = styled.div`
   width: 100%;
 `;
-export const WorkplaceHeading = styled.h1`
+export const ActionHeading = styled.h1`
   color: ${(props) => props.theme.secondaryText};
   font-weight: bold;
   font-size: 1.7rem;
@@ -126,7 +113,7 @@ export const WorkplaceHeading = styled.h1`
   margin: 0;
 `;
 
-export const WorkplaceAction = styled.button`
+export const ActionButton = styled.button`
   border: none;
   cursor: pointer;
   background-color: #fff;
@@ -140,41 +127,12 @@ export const WorkplaceAction = styled.button`
     outline: none;
   }
 `;
-
-export const WorkplaceSpan = styled.span`
-  color: ${(props) => props.theme.primaryText};
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-left: 12px;
-`;
-
 export const SchoolContainer = styled.div`
   width: 100%;
   margin-top: 32px;
 `;
-export const SchoolHeading = styled.h1`
-  color: ${(props) => props.theme.secondaryText};
-  font-weight: bold;
-  font-size: 1.7rem;
-  margin: 0;
-`;
 
-export const SchoolAction = styled.button`
-  border: none;
-  cursor: pointer;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  margin-left: -5px;
-  margin-top: 10px;
-  &:focus {
-    outline: none;
-  }
-`;
-
-export const SchoolSpan = styled.span`
+export const ActionSpan = styled.span`
   color: ${(props) => props.theme.primaryText};
   font-size: 1.5rem;
   font-weight: 500;
@@ -186,7 +144,7 @@ export const School = styled.div`
   align-items: center;
 `;
 
-export const SchoolBody = styled.h1`
+export const ActionBody = styled.h1`
   font-size: 1.5rem;
   font-weight: 400;
 `;
@@ -196,11 +154,6 @@ export const WorkPlace = styled.div`
   align-items: center;
   margin-top: 10px;
   color: ${(props) => props.theme.secondaryText};
-`;
-
-export const WorkPlaceBody = styled.h1`
-  font-size: 1.5rem;
-  font-weight: 400;
 `;
 
 export const SettingsContainer = styled.button`
@@ -234,32 +187,13 @@ export const WorkplaceActionContainer = styled.form`
   flex-direction: column;
 `;
 
-export const WorkplaceInput = styled.input`
-  border: 1px solid #ced0d4;
-  margin-top: 15px;
-  padding: 16px;
-  border-radius: 6px;
-  font-size: 1.5rem;
-  ::placeholder {
-    font-size: 1.5rem;
-  }
-  &:hover {
-    border: 1px solid #8a8d91;
-  }
-
-  &:focus {
-    outline: none;
-    border: 1px solid ${(props) => props.theme.primaryText};
-  }
-`;
-
 export const SchoolActionContainer = styled.form`
   display: flex;
   position: relative;
   flex-direction: column;
 `;
 
-export const SchoolInput = styled.input`
+export const ActionInput = styled.input`
   border: 1px solid #ced0d4;
   margin-top: 15px;
   padding: 16px;
@@ -278,17 +212,20 @@ export const SchoolInput = styled.input`
   }
 `;
 
-export const CancelButton = styled.button`
-  margin-right: 8px;
+export const FooterButton = styled.button`
   font-weight: 500;
-  background-color: ${(props) => props.theme.secondaryBackground};
-  color: ${(props) => props.theme.secondaryText};
   border: none;
   font-size: 1.5rem;
   border-radius: 6px;
   padding: 8px 12px;
   transition: 0.1s;
   cursor: pointer;
+`;
+
+export const CancelButton = styled(FooterButton)`
+  margin-right: 8px;
+  background-color: ${(props) => props.theme.secondaryBackground};
+  color: ${(props) => props.theme.secondaryText};
 
   &&:focus {
     border-color: none;
@@ -308,16 +245,9 @@ export const CancelButton = styled.button`
   }
 `;
 
-export const SaveButton = styled.button`
+export const SaveButton = styled(FooterButton)`
   background-color: ${(props) => props.theme.primaryText};
   color: #fff;
-  font-weight: 500;
-  transition: 0.1s;
-  font-size: 1.5rem;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
 
   &&:focus,
   &&:hover {
